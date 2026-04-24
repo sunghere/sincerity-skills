@@ -1,0 +1,102 @@
+# Asset Factory — SD 카탈로그 메타데이터
+# 큐레이션은 sincerity-skills 레포에서 관리, asset-factory는 SD_CATALOG_PATH로 이 파일을 가리킨다.
+# 키 매칭: lowercase + 확장자 제거 후 일치.
+# 새 모델/LoRA가 SD 서버에 추가되면 여기에 한 줄 추가하고 git push.
+
+models:
+  dreamshaper_8:
+    tags: []                       # TODO: pixel_art / character / sdxl / sd1.5 / general 등
+    notes: ""                     # TODO: 강점·권장 size·주의사항
+
+  meinamix_v12final:
+    tags: []                       # TODO: pixel_art / character / sdxl / sd1.5 / general 등
+    notes: ""                     # TODO: 강점·권장 size·주의사항
+
+  noobaixlnaixl_vpred10version:
+    tags: []                       # TODO: pixel_art / character / sdxl / sd1.5 / general 등
+    notes: ""                     # TODO: 강점·권장 size·주의사항
+
+  pixelartdiffusionxl_spriteshaper:
+    tags: []                       # TODO: pixel_art / character / sdxl / sd1.5 / general 등
+    notes: ""                     # TODO: 강점·권장 size·주의사항
+
+  ponydiffusionv6xl_v6startwiththisone:
+    tags: []                       # TODO: pixel_art / character / sdxl / sd1.5 / general 등
+    notes: ""                     # TODO: 강점·권장 size·주의사항
+
+  v1-5-pruned-emaonly:
+    tags: []                       # TODO: pixel_art / character / sdxl / sd1.5 / general 등
+    notes: ""                     # TODO: 강점·권장 size·주의사항
+
+loras:
+  meinastyle:
+    weight_default: 0.7            # TODO: Civitai/HF 모델카드 추천값
+    weight_range: [0.0, 1.0]       # TODO: 사용 권장 범위
+    tags: []                       # TODO: character / style / face 등
+    notes: ""                     # TODO: 사용 팁, stack 호환 여부
+
+  pixelartredmond15v-pixelart-pixarfk:
+    weight_default: 0.7            # TODO: Civitai/HF 모델카드 추천값
+    weight_range: [0.0, 1.0]       # TODO: 사용 권장 범위
+    tags: []                       # TODO: character / style / face 등
+    notes: ""                     # TODO: 사용 팁, stack 호환 여부
+
+  pixel_art_flux:
+    weight_default: 0.7            # TODO: Civitai/HF 모델카드 추천값
+    weight_range: [0.0, 1.0]       # TODO: 사용 권장 범위
+    tags: []                       # TODO: character / style / face 등
+    notes: ""                     # TODO: 사용 팁, stack 호환 여부
+
+  pixel_resin_x16_pixel_art_witches:
+    weight_default: 0.7            # TODO: Civitai/HF 모델카드 추천값
+    weight_range: [0.0, 1.0]       # TODO: 사용 권장 범위
+    tags: []                       # TODO: character / style / face 등
+    notes: ""                     # TODO: 사용 팁, stack 호환 여부
+
+  ragnarokspritenoob_bykonan:
+    weight_default: 0.7            # TODO: Civitai/HF 모델카드 추천값
+    weight_range: [0.0, 1.0]       # TODO: 사용 권장 범위
+    tags: []                       # TODO: character / style / face 등
+    notes: ""                     # TODO: 사용 팁, stack 호환 여부
+
+  birdman46049238_i_pixel_art_style_i_illustriousxl_and_noobai:
+    weight_default: 0.7            # TODO: Civitai/HF 모델카드 추천값
+    weight_range: [0.0, 1.0]       # TODO: 사용 권장 범위
+    tags: []                       # TODO: character / style / face 등
+    notes: ""                     # TODO: 사용 팁, stack 호환 여부
+
+  birdmanstyleanimationwanlora:
+    weight_default: 0.7            # TODO: Civitai/HF 모델카드 추천값
+    weight_range: [0.0, 1.0]       # TODO: 사용 권장 범위
+    tags: []                       # TODO: character / style / face 등
+    notes: ""                     # TODO: 사용 팁, stack 호환 여부
+
+  ip-adapter-plus-face_sdxl_vit-h:
+    weight_default: 0.7            # TODO: Civitai/HF 모델카드 추천값
+    weight_range: [0.0, 1.0]       # TODO: 사용 권장 범위
+    tags: []                       # TODO: character / style / face 등
+    notes: ""                     # TODO: 사용 팁, stack 호환 여부
+
+  pixel-art-flux-v3-learning-rate-4:
+    weight_default: 0.7            # TODO: Civitai/HF 모델카드 추천값
+    weight_range: [0.0, 1.0]       # TODO: 사용 권장 범위
+    tags: []                       # TODO: character / style / face 등
+    notes: ""                     # TODO: 사용 팁, stack 호환 여부
+
+  pixel-art-xl-v1.1:
+    weight_default: 0.7            # TODO: Civitai/HF 모델카드 추천값
+    weight_range: [0.0, 1.0]       # TODO: 사용 권장 범위
+    tags: []                       # TODO: character / style / face 등
+    notes: ""                     # TODO: 사용 팁, stack 호환 여부
+
+  pixel_art_a3:
+    weight_default: 0.7            # TODO: Civitai/HF 모델카드 추천값
+    weight_range: [0.0, 1.0]       # TODO: 사용 권장 범위
+    tags: []                       # TODO: character / style / face 등
+    notes: ""                     # TODO: 사용 팁, stack 호환 여부
+
+  ponydiffusionv6xl_mariagear-05:
+    weight_default: 0.7            # TODO: Civitai/HF 모델카드 추천값
+    weight_range: [0.0, 1.0]       # TODO: 사용 권장 범위
+    tags: []                       # TODO: character / style / face 등
+    notes: ""                     # TODO: 사용 팁, stack 호환 여부
