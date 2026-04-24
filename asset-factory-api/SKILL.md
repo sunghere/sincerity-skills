@@ -31,9 +31,11 @@ triggers:
 
 ## 서버 정보
 
-- **Base URL**: `http://192.168.50.95:8000` (LAN 고정 — Mac mini)
-  - 환경변수 `AF_HOST` 있으면 그걸 우선 사용
-  - 같은 머신에서 호출하면 `http://localhost:8000`도 동일 동작
+- **Base URL**: `http://localhost:8000` (페이퍼클립 에이전트는 같은 Mac mini에서 동작 → localhost로 충분)
+  - LAN 다른 머신에서 호출하려면 `http://192.168.50.250:8000` (Mac mini LAN IP)
+  - Tailscale: `http://yoons-macmini.tailbff496.ts.net:8000` 또는 `http://100.72.190.122:8000`
+  - 환경변수 `AF_HOST` 있으면 그걸 우선
+  - ⚠️ 서버를 LAN에 노출하려면 `AF_HOST=0.0.0.0 ./run-dev.sh restart`로 재기동 필요 (기본 127.0.0.1)
 - **API Key**: `.env`의 `API_KEY`. 변경(POST/PATCH)은 `x-api-key` 헤더 필요. 미설정 환경은 모두 공개.
 - **백엔드 SD**: AUTOMATIC1111 `192.168.50.225:7860` (Asset Factory가 알아서 호출 — **에이전트는 SD 직접 안 침**)
 - **Web UI**: `/app/` (사람이 후보 갤러리에서 승인/리젝)
@@ -44,7 +46,7 @@ triggers:
 ### 패턴 A — 단일 생성 (1 asset, 1 candidate)
 
 ```bash
-JOB=$(curl -s -X POST "${AF:-http://192.168.50.95:8000}/api/generate" \
+JOB=$(curl -s -X POST "${AF:-http://localhost:8000}/api/generate" \
   -H "Content-Type: application/json" \
   -H "x-api-key: $AF_API_KEY" \
   -d '{
@@ -59,7 +61,7 @@ JOB=$(curl -s -X POST "${AF:-http://192.168.50.95:8000}/api/generate" \
 
 # polling — 토큰 비용 0
 while :; do
-  S=$(curl -s "${AF:-http://192.168.50.95:8000}/api/jobs/$JOB" | jq -r .status)
+  S=$(curl -s "${AF:-http://localhost:8000}/api/jobs/$JOB" | jq -r .status)
   case "$S" in
     completed|failed) break ;;
   esac
@@ -72,7 +74,7 @@ done
 같은 asset에 대해 prompts × models × loras × seeds 곱집합으로 후보를 풀고, 사람이 UI에서 베스트 1장을 골라 메인 승격하는 흐름. 캐릭터 컨셉 픽업·아이콘 시리즈에 최적.
 
 ```bash
-RESP=$(curl -s -X POST "${AF:-http://192.168.50.95:8000}/api/mcp/design_asset" \
+RESP=$(curl -s -X POST "${AF:-http://localhost:8000}/api/mcp/design_asset" \
   -H "Content-Type: application/json" \
   -H "x-api-key: $AF_API_KEY" \
   -d '{
@@ -96,7 +98,7 @@ RESP=$(curl -s -X POST "${AF:-http://192.168.50.95:8000}/api/mcp/design_asset" \
 BATCH_ID=$(echo "$RESP" | jq -r .batch_id)
 JOB=$(echo "$RESP" | jq -r .job_id)
 echo "후보 수: $(echo "$RESP" | jq -r .expanded_count) / ETA: $(echo "$RESP" | jq -r .estimated_eta_seconds)s"
-echo "사람에게 알림: http://192.168.50.95:8000/cherry-pick?batch=$BATCH_ID"
+echo "사람에게 알림: http://localhost:8000/cherry-pick?batch=$BATCH_ID"
 ```
 
 폴링은 패턴 A와 동일. 완료되면 사용자에게 cherry-pick URL 전달하고 종료. **사람이 UI에서 승인 → 메인 에셋으로 자동 승격 → asset_history에 이전 버전 보존**. 에이전트가 후보 이미지 비교를 직접 할 필요 없음.
@@ -106,7 +108,7 @@ echo "사람에게 알림: http://192.168.50.95:8000/cherry-pick?batch=$BATCH_ID
 `specs/<project>.json` 파일을 미리 두고:
 
 ```bash
-curl -s -X POST "${AF:-http://192.168.50.95:8000}/api/generate/batch" \
+curl -s -X POST "${AF:-http://localhost:8000}/api/generate/batch" \
   -H "Content-Type: application/json" \
   -H "x-api-key: $AF_API_KEY" \
   -d '{"spec_id": "wooridul-factory"}'
@@ -131,10 +133,10 @@ curl -s -X POST "${AF:-http://192.168.50.95:8000}/api/generate/batch" \
 
 ```bash
 # 사용 가능한 모델 (pixel/anime/general 등 tags 포함)
-curl -s "${AF:-http://192.168.50.95:8000}/api/sd/catalog/models" | jq '.[] | {name, tags, notes}'
+curl -s "${AF:-http://localhost:8000}/api/sd/catalog/models" | jq '.[] | {name, tags, notes}'
 
 # LoRA + 권장 weight
-curl -s "${AF:-http://192.168.50.95:8000}/api/sd/catalog/loras" | jq '.[] | {name, weight_default, weight_range, tags, notes}'
+curl -s "${AF:-http://localhost:8000}/api/sd/catalog/loras" | jq '.[] | {name, weight_default, weight_range, tags, notes}'
 ```
 
 `config/sd_catalog.yml`에 정리된 메타가 머지돼서 응답됨 — 어느 모델이 픽셀아트 강한지, LoRA 권장 weight가 얼마인지 여기서 확인하고 spec 짜기.
@@ -202,7 +204,7 @@ rightmost girl: (short black bob:1.6), green eyes, ...
 올바른 패턴:
 1. 패턴 B로 batch enqueue
 2. polling으로 completed 확인
-3. 사용자에게 한 줄로 보고: `cherry-pick URL: http://192.168.50.95:8000/cherry-pick?batch=<id> — 후보 N장 준비됨`
+3. 사용자에게 한 줄로 보고: `cherry-pick URL: http://localhost:8000/cherry-pick?batch=<id> — 후보 N장 준비됨`
 4. 종료. 평가는 사람이.
 
 예외: OCR·수치 측정 같은 정량 검증이 꼭 필요한 경우만 vision 사용.
@@ -212,16 +214,16 @@ rightmost girl: (short black bob:1.6), green eyes, ...
 자동 승인이 필요하면 (사람 cherry-pick 없이):
 
 ```bash
-ASSET=$(curl -s "${AF:-http://192.168.50.95:8000}/api/assets?project=wooridul-factory" \
+ASSET=$(curl -s "${AF:-http://localhost:8000}/api/assets?project=wooridul-factory" \
   | jq -r '.[] | select(.asset_key=="kitten_idle") | .id')
 
-curl -s "${AF:-http://192.168.50.95:8000}/api/assets/$ASSET/image" -o ~/workspace/assets/kitten_idle.png
+curl -s "${AF:-http://localhost:8000}/api/assets/$ASSET/image" -o ~/workspace/assets/kitten_idle.png
 ```
 
 또는 export로 일괄 복사:
 
 ```bash
-curl -X POST "${AF:-http://192.168.50.95:8000}/api/export" \
+curl -X POST "${AF:-http://localhost:8000}/api/export" \
   -H "Content-Type: application/json" -H "x-api-key: $AF_API_KEY" \
   -d '{"project": "wooridul-factory", "save_manifest": true}'
 # → ~/workspace/assets/<project>/<category>/<asset_key>.png + asset-manifest.json
@@ -272,7 +274,7 @@ curl -X POST "${AF:-http://192.168.50.95:8000}/api/export" \
 2. **카탈로그 GET** — `GET /api/sd/catalog/{models,loras}`로 사용 가능한 자원 확인
 3. **spec 작성** — 위 패턴 B (디자인 배치)가 기본. 후보 4~8장으로 충분
 4. **`POST /api/mcp/design_asset`** → `batch_id`, `job_id` 받기
-5. **이슈에 코멘트** — `cherry-pick URL: http://192.168.50.95:8000/cherry-pick?batch=<id>` + ETA
+5. **이슈에 코멘트** — `cherry-pick URL: http://localhost:8000/cherry-pick?batch=<id>` + ETA
 6. **polling** (background) — completed 시 이슈에 다시 코멘트로 알림
 7. **사람 승인 후** — 필요시 `POST /api/export`로 프로젝트 디렉토리에 복사
 
