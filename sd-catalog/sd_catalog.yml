@@ -6,13 +6,13 @@ sources:
   append_policy: "Append new entries under models using normalized local filename keys."
 
 split:
-  detail_root: sd_catalog_civitai/detail
+  detail_root: sd_catalog/detail
   detail_file_pattern: '{model_key}.yml'
   detail_schema: civitai_model_detail
   model_count: 22
 models:
   anythingxl_xl:
-    detail_file: sd_catalog_civitai/detail/anythingxl_xl.yml
+    detail_file: sd_catalog/detail/anythingxl_xl.yml
     local_file: "AnythingXL_xl.safetensors"
     catalog_type: checkpoint
     base_model: sdxl
@@ -51,7 +51,7 @@ models:
       sample_count: 3
       nsfw_samples_present: false
   noobai-xl_nai-xl:
-    detail_file: sd_catalog_civitai/detail/noobai-xl_nai-xl.yml
+    detail_file: sd_catalog/detail/noobai-xl_nai-xl.yml
     local_file:
     catalog_type: checkpoint
     base_model: noob
@@ -82,7 +82,7 @@ models:
       sample_count: 6
       nsfw_samples_present: false
   pixel-art-flux-v3-learning-rate-4:
-    detail_file: sd_catalog_civitai/detail/pixel-art-flux-v3-learning-rate-4.yml
+    detail_file: sd_catalog/detail/pixel-art-flux-v3-learning-rate-4.yml
     local_file: "pixel-art-flux-v3-learning-rate-4.safetensors"
     catalog_type: lora
     base_model: flux
@@ -113,7 +113,7 @@ models:
       sample_count: 6
       nsfw_samples_present: true
   pixel_resin_x16_pixel_art_witches:
-    detail_file: sd_catalog_civitai/detail/pixel_resin_x16_pixel_art_witches.yml
+    detail_file: sd_catalog/detail/pixel_resin_x16_pixel_art_witches.yml
     local_file: "Pixel_Resin_x16_pixel_art_witches.safetensors"
     catalog_type: lora
     base_model: illustrious
@@ -144,7 +144,7 @@ models:
       sample_count: 6
       nsfw_samples_present: false
   pixelartspritediffusion_safetensors:
-    detail_file: sd_catalog_civitai/detail/pixelartspritediffusion_safetensors.yml
+    detail_file: sd_catalog/detail/pixelartspritediffusion_safetensors.yml
     local_file: "pixelArtSpriteDiffusion_safetensors.safetensors"
     catalog_type: checkpoint
     base_model: sd1.5
@@ -175,7 +175,7 @@ models:
       sample_count: 6
       nsfw_samples_present: false
   pixel-art-xl-v1.1:
-    detail_file: sd_catalog_civitai/detail/pixel-art-xl-v1.1.yml
+    detail_file: sd_catalog/detail/pixel-art-xl-v1.1.yml
     local_file: "pixel-art-xl-v1.1.safetensors"
     catalog_type: lora
     base_model: sdxl
@@ -206,7 +206,7 @@ models:
       sample_count: 6
       nsfw_samples_present: false
   pixel_art_flux_game_art_included:
-    detail_file: sd_catalog_civitai/detail/pixel_art_flux_game_art_included.yml
+    detail_file: sd_catalog/detail/pixel_art_flux_game_art_included.yml
     local_file: "Pixel Art FLUX_game_art_included.safetensors"
     catalog_type: lora
     base_model: flux
@@ -237,7 +237,7 @@ models:
       sample_count: 6
       nsfw_samples_present: false
   pixelart_up:
-    detail_file: sd_catalog_civitai/detail/pixelart_up.yml
+    detail_file: sd_catalog/detail/pixelart_up.yml
     local_file: "pixelart_up.safetensors"
     catalog_type: lora
     base_model: illustrious
@@ -268,7 +268,7 @@ models:
       sample_count: 6
       nsfw_samples_present: false
   rdxlpixelart_pony2:
-    detail_file: sd_catalog_civitai/detail/rdxlpixelart_pony2.yml
+    detail_file: sd_catalog/detail/rdxlpixelart_pony2.yml
     local_file: "rdxlPixelArt_pony2.safetensors"
     catalog_type: checkpoint
     base_model: pony
@@ -299,7 +299,7 @@ models:
       sample_count: 6
       nsfw_samples_present: false
   dreamshaper_8:
-    detail_file: sd_catalog_civitai/detail/dreamshaper_8.yml
+    detail_file: sd_catalog/detail/dreamshaper_8.yml
     local_file: "dreamshaper_8.safetensors"
     catalog_type: checkpoint
     base_model: sd1.5
@@ -331,7 +331,7 @@ models:
       sample_count: 6
       nsfw_samples_present: false
   flux1devkontext_f1text2img45llm:
-    detail_file: sd_catalog_civitai/detail/flux1devkontext_f1text2img45llm.yml
+    detail_file: sd_catalog/detail/flux1devkontext_f1text2img45llm.yml
     local_file: "flux1DEVKontext_F1Text2img45LLM.zip"
     catalog_type: workflow
     base_model: flux
@@ -365,7 +365,7 @@ models:
       sample_count: 6
       nsfw_samples_present: false
   pixel_character_sprite_illustrious:
-    detail_file: sd_catalog_civitai/detail/pixel_character_sprite_illustrious.yml
+    detail_file: sd_catalog/detail/pixel_character_sprite_illustrious.yml
     local_file: "pixel_character_sprite_illustrious.safetensors"
     catalog_type: lora
     base_model: illustrious
@@ -401,7 +401,7 @@ models:
       sample_count: 6
       nsfw_samples_present: false
   fnaf_into_the_pit__style:
-    detail_file: sd_catalog_civitai/detail/fnaf_into_the_pit__style.yml
+    detail_file: sd_catalog/detail/fnaf_into_the_pit__style.yml
     local_file: "Fnaf_into_the_Pit__Style.safetensors"
     catalog_type: lora
     base_model: pony
@@ -434,7 +434,7 @@ models:
       sample_count: 6
       nsfw_samples_present: true
   prefectponyxl_v6:
-    detail_file: sd_catalog_civitai/detail/prefectponyxl_v6.yml
+    detail_file: sd_catalog/detail/prefectponyxl_v6.yml
     local_file: "prefectPonyXL_v6.safetensors"
     catalog_type: checkpoint
     base_model: pony
@@ -465,7 +465,7 @@ models:
       sample_count: 6
       nsfw_samples_present: false
   hyphoria_v002:
-    detail_file: sd_catalog_civitai/detail/hyphoria_v002.yml
+    detail_file: sd_catalog/detail/hyphoria_v002.yml
     local_file: "hyphoria_v002.safetensors"
     catalog_type: checkpoint
     base_model: illustrious
@@ -496,7 +496,7 @@ models:
       sample_count: 6
       nsfw_samples_present: false
   oxalisanimepixelart_oxalispixelart:
-    detail_file: sd_catalog_civitai/detail/oxalisanimepixelart_oxalispixelart.yml
+    detail_file: sd_catalog/detail/oxalisanimepixelart_oxalispixelart.yml
     local_file: "oxalisAnimePixelArt_oxalisPixelArt.safetensors"
     catalog_type: checkpoint
     base_model: sd1.5
@@ -527,7 +527,7 @@ models:
       sample_count: 6
       nsfw_samples_present: false
   pixel_art_a3:
-    detail_file: sd_catalog_civitai/detail/pixel_art_a3.yml
+    detail_file: sd_catalog/detail/pixel_art_a3.yml
     local_file: "pixel_art_a3.safetensors"
     catalog_type: lora
     base_model: sdxl
@@ -560,7 +560,7 @@ models:
       sample_count: 6
       nsfw_samples_present: true
   sdxl_pixel:
-    detail_file: sd_catalog_civitai/detail/sdxl_pixel.yml
+    detail_file: sd_catalog/detail/sdxl_pixel.yml
     local_file: "sdxl_pixel.safetensors"
     catalog_type: lora
     base_model: sdxl
@@ -591,7 +591,7 @@ models:
       sample_count: 6
       nsfw_samples_present: false
   pixelartfantasy_v30:
-    detail_file: sd_catalog_civitai/detail/pixelartfantasy_v30.yml
+    detail_file: sd_catalog/detail/pixelartfantasy_v30.yml
     local_file:
     catalog_type: checkpoint
     base_model: illustrious
@@ -625,7 +625,7 @@ models:
       sample_count: 6
       nsfw_samples_present: false
   animaginexl40opt_clear:
-    detail_file: sd_catalog_civitai/detail/animaginexl40opt_clear.yml
+    detail_file: sd_catalog/detail/animaginexl40opt_clear.yml
     local_file: "animagineXL40Opt_clear.safetensors"
     catalog_type: checkpoint
     base_model: sdxl
@@ -662,7 +662,7 @@ models:
       sample_count: 1
       nsfw_samples_present: false
   meinamix_v12final:
-    detail_file: sd_catalog_civitai/detail/meinamix_v12final.yml
+    detail_file: sd_catalog/detail/meinamix_v12final.yml
     local_file: "meinamix_v12Final.safetensors"
     catalog_type: checkpoint
     base_model: sd1.5
@@ -699,7 +699,7 @@ models:
       sample_count: 0
       nsfw_samples_present: false
   pixelartdiffusionxl_spriteshaper:
-    detail_file: sd_catalog_civitai/detail/pixelartdiffusionxl_spriteshaper.yml
+    detail_file: sd_catalog/detail/pixelartdiffusionxl_spriteshaper.yml
     local_file: "pixelArtDiffusionXL_spriteShaper.safetensors"
     catalog_type: checkpoint
     base_model: sdxl

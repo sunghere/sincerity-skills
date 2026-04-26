@@ -103,7 +103,7 @@ D:\DEV\ComfyUI\input\
 ### 2.4 sd-catalog (메타데이터)
 ```
 D:\DEV\sincerity-skills\sd-catalog\
-└── sd_catalog_civitai.yml + detail/ (22개 모델)
+└── sd_catalog.yml + detail/ (22개 모델)
 ```
 
 ### 2.5 asset-factory (다음 작업 대상)
@@ -291,7 +291,7 @@ SKILL.md에 추가할 섹션:
 4. 통합 성공 → 나머지 카테고리 확장
 5. Track B (skill 확장)는 마지막
 
-**환경변수 메모**: `SD_CATALOG_PATH=D:\DEV\sincerity-skills\sd-catalog\sd_catalog_civitai.yml` 또는 변환된 단일 파일
+**환경변수 메모**: `SD_CATALOG_PATH=D:\DEV\sincerity-skills\sd-catalog\sd_catalog.yml` 또는 변환된 단일 파일
 
 ---
 

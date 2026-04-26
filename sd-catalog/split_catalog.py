@@ -10,9 +10,9 @@ from ruamel.yaml.comments import CommentedMap
 
 
 ROOT = Path(__file__).resolve().parent
-CATALOG_PATH = ROOT / "sd_catalog_civitai.yml"
-DETAIL_ROOT = ROOT / "sd_catalog_civitai" / "detail"
-DETAIL_ROOT_DISPLAY = "sd_catalog_civitai/detail"
+CATALOG_PATH = ROOT / "sd_catalog.yml"
+DETAIL_ROOT = ROOT / "sd_catalog" / "detail"
+DETAIL_ROOT_DISPLAY = "sd_catalog/detail"
 
 
 def cmap(items=()):
