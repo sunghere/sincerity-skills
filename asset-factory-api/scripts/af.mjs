@@ -10,6 +10,10 @@
 //   af catalog [models|loras]
 //   af gen <project> <asset_key> <prompt> [--category sprite] [--size 64] [--negative "..."] [--wait]
 //   af batch <project> <asset_key> --prompts "p1" "p2" --models m1 [--seeds 4] [--category character]
+//   af workflow catalog
+//   af workflow gen <category>/<variant> <project> <asset_key> "prompt"
+//                   [--seed 42] [--candidates 4] [--workflow-params '{"pose_image":"..."}']
+//                   [--negative "..."] [--steps 30] [--cfg 6.5] [--sampler dpmpp_2m] [--wait]
 //   af status <job_id>
 //   af wait <job_id> [--timeout 300]
 //   af list <project> [--status approved]
@@ -214,22 +218,106 @@ async function cmdExport(args) {
   out(await http("POST", "/api/export", { body }));
 }
 
+// ── workflow (ComfyUI 백엔드) ──────────────────────────────
+async function cmdWorkflow(args) {
+  const sub = args.positional[0];
+  const rest = { positional: args.positional.slice(1), flags: args.flags };
+  if (sub === "catalog") return cmdWorkflowCatalog();
+  if (sub === "gen") return cmdWorkflowGen(rest);
+  die("usage: af workflow {catalog|gen} ...");
+}
+
+async function cmdWorkflowCatalog() {
+  // /api/workflows/catalog 응답 그대로 — 카테고리/변형/available/outputs/defaults
+  out(await http("GET", "/api/workflows/catalog"));
+}
+
+async function cmdWorkflowGen(args) {
+  const { positional, flags } = args;
+  const [variantSpec, project, asset_key, ...promptParts] = positional;
+  if (!variantSpec || !project || !asset_key || promptParts.length === 0) {
+    die(
+      "usage: af workflow gen <category>/<variant> <project> <asset_key> \"prompt\"\n" +
+      "  e.g. af workflow gen sprite/pixel_alpha myproj hero \"1girl, silver hair\"\n" +
+      "  options: --seed N --candidates N --workflow-params '{\"key\":\"val\"}'\n" +
+      "           --negative \"...\" --steps N --cfg N --sampler s --wait"
+    );
+  }
+  if (!variantSpec.includes("/")) {
+    die("variant 는 'category/name' 형식 (예: sprite/pixel_alpha)");
+  }
+  const [workflow_category, workflow_variant] = variantSpec.split("/", 2);
+  const prompt = promptParts.join(" ");
+
+  const body = {
+    project,
+    asset_key,
+    category: flags.category || "sprite",
+    workflow_category,
+    workflow_variant,
+    prompt,
+    candidates_total: flags.candidates ? Number(flags.candidates) : 1,
+  };
+  if (flags.seed !== undefined) body.seed = Number(flags.seed);
+  if (flags.negative) body.negative_prompt = flags.negative;
+  if (flags.steps) body.steps = Number(flags.steps);
+  if (flags.cfg) body.cfg = Number(flags.cfg);
+  if (flags.sampler) body.sampler = flags.sampler;
+  if (flags["expected-size"]) body.expected_size = Number(flags["expected-size"]);
+  if (flags["max-colors"]) body.max_colors = Number(flags["max-colors"]);
+
+  // --workflow-params '{"pose_image":"...","controlnet_strength":0.9,"lora_strengths":{"x":0.5}}'
+  if (flags["workflow-params"]) {
+    try {
+      body.workflow_params = JSON.parse(flags["workflow-params"]);
+    } catch (e) {
+      die(`--workflow-params 가 JSON 이 아님: ${e.message}`);
+    }
+  }
+
+  const r = await http("POST", "/api/workflows/generate", { body });
+  log(`enqueued job_id=${r.job_id} variant=${r.workflow_category}/${r.workflow_variant} ` +
+      `candidates=${r.candidates_total} primary=${r.primary_output ?? "?"}`);
+  if (r.candidates_total > 1) {
+    log(`(cherry-pick UI 는 나중에 GET /api/jobs/${r.job_id} 의 batch_id 를 통해)`);
+  }
+  if (flags.wait || flags.w) {
+    const timeoutSec = Number(flags.timeout) || Math.max(120, r.candidates_total * 60);
+    const final = await pollJob(r.job_id, timeoutSec);
+    out({ ...final, workflow_category: r.workflow_category, workflow_variant: r.workflow_variant });
+  } else {
+    out(r);
+  }
+}
+
 function usage() {
   console.error(`af — Asset Factory CLI (host: ${HOST})
 
 Commands:
-  af health                            # 서버 + SD 연결 점검
-  af catalog [models|loras]            # 사용 가능한 모델/LoRA 목록
+  af health                            # 서버 + SD/ComfyUI 연결 점검 (양 백엔드)
+  af catalog [models|loras]            # A1111 모델/LoRA 목록
   af gen <project> <key> <prompt> [--size 64] [--negative "..."] [--model m] [--wait]
-                                       # 단일 에셋 생성. --wait 면 polling까지
+                                       # A1111 단일 에셋 생성
   af batch <project> <key> --prompts "p1" ["p2"...] --models m1 [m2...] [--seeds 4]
            [--loras "name:w,name:w" "..."] [--size 64] [--wait]
-                                       # 디자인 배치 (cherry-pick UI로 사람이 선택)
+                                       # A1111 디자인 배치 (cherry-pick)
+
+  af workflow catalog                  # ComfyUI 워크플로우 카탈로그 (sprite/illustration/...)
+  af workflow gen <category>/<variant> <project> <key> "prompt"
+        [--seed 42] [--candidates 4] [--workflow-params '{"pose_image":"x.png"}']
+        [--negative "..."] [--steps 30] [--cfg 6.5] [--sampler dpmpp_2m] [--wait]
+                                       # ComfyUI 변형 호출. multi-output 변형은 1슬롯에 N장 저장됨
+
   af status <job_id>                   # 잡 상태 단발 조회
   af wait <job_id> [--timeout 300]     # 폴링 (3초 간격)
   af list <project> [--status approved]
   af get <asset_id> [-o file.png]      # 에셋 이미지 다운로드
   af export <project> [--manifest]
+
+Examples:
+  af workflow catalog | jq '.categories | keys'
+  af workflow gen sprite/pixel_alpha myproj hero "1girl, silver hair, school uniform" --seed 42 --wait
+  af workflow gen illustration/hyphoria_hires myproj cover_v1 "fantasy landscape, masterpiece" --candidates 4
 
 Env: AF_HOST (default http://localhost:8000), AF_API_KEY, AF_QUIET=1
 `);
@@ -246,6 +334,7 @@ const handlers = {
   catalog: () => cmdCatalog(args.positional[0] || "models"),
   gen: () => cmdGen(args),
   batch: () => cmdBatch(args),
+  workflow: () => cmdWorkflow(args),
   status: () => cmdStatus(args),
   wait: () => cmdWait(args),
   list: () => cmdList(args),
