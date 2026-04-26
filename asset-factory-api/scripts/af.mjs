@@ -1,6 +1,16 @@
 #!/usr/bin/env node
 // af.mjs — Asset Factory CLI wrapper
 //
+// ⚠️  PARTIAL DEPRECATION (2026-04, post PR sunghere/asset-factory#18):
+//   - `af workflow {catalog,describe,gen,upload}` 는 asset-factory 레포의
+//     Python typer CLI (`python -m cli workflow ...`) 가 정식 채택됐다.
+//     동일 동작이며, 신규 기능(--input, --bypass-approval 등)은 Python 쪽에 먼저 들어간다.
+//     스크립트/스킬 신규 작성 시 `python -m cli workflow ...` 사용 권장.
+//   - `af health` / `af list` / `af get` / `af export` / `af catalog` (A1111) /
+//     `af gen` (A1111 단발) / `af batch` 는 Python 포팅 전이라 본 스크립트가
+//     계속 운영용 유일 진입점이다.
+//   완전 제거 시점은 위 명령들이 Python CLI 로 포팅된 이후.
+//
 // Why this exists:
 //   Asset Factory의 모든 흐름(generate → poll → fetch image)을 한 명령으로 압축.
 //   에이전트가 매번 curl/jq/base64 외울 필요 없게. 토큰 비용 0에 수렴.

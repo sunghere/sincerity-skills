@@ -59,6 +59,12 @@ triggers:
 
 설치 위치: `~/.local/bin/af` (NodeJS, deps 없음). 자세한 옵션은 `af --help`.
 
+> **백엔드 분기 (v4.1)**: `workflow` 서브트리(`catalog`, `describe`, `gen`, `upload`)는
+> asset-factory 레포의 **Python typer CLI** 로도 동일 동작한다 — `python -m cli workflow ...`
+> (PR #18에서 채택). `af workflow ...` 와 결과는 같다. `health` / `list` / `get` /
+> `export` / `batch` (A1111 호환) 등 그 외 명령은 당분간 `af` (Node.js) 에만 있다.
+> 일반 사용자는 `af` 그대로 쓰면 된다 — 분기는 운영자만 알면 충분.
+
 ```bash
 # 1. 점검
 af health                                 # ComfyUI 연결, registry 로드 상태
@@ -282,15 +288,15 @@ score_9, score_8_up, score_7_up, score_6_up,
 이 스킬은 [`asset-factory/docs/TODOS_for_SKILL.md`](https://github.com/sunghere/asset-factory/blob/main/docs/TODOS_for_SKILL.md) 의 P0 가
 **모두 채워졌다는 가정** 으로 작성됐다. 미충족 항목이 있으면 아래 우회법으로 동작:
 
-| P0 항목 | 미충족 시 우회 |
-|---|---|
-| `af workflow upload` CLI | `curl -F file=@x.png $AF_URL/api/workflows/inputs` 로 직접 호출 후 응답의 `name` 을 `workflow_params.load_images.<label>` 에 박아 generate 호출 |
-| `--bypass-approval` 플래그 | 임시 manual 승인 — 정식 우회 모드 등장까지는 검수 큐를 사용. 또는 `tmp_*` project 로만 격리 운영. |
-| catalog `input_labels` | `af workflow describe <variant>` 의 `defaults` 에서 `pose_image` / `source_image` 같은 키를 보고 라벨 추측. 매칭 안 되면 `--dry-run` 의 `report.skipped` 로 확인. |
-| `aliases` (`@character` 등) | full path (`sprite/pixel_alpha`) 로 호출. 공식 alias 등장까지 잠시 길게 적기. |
-| `--dry-run` | 직접 enqueue 후 작은 변형 (`sprite/pixel_alpha`, candidates=1) 으로 실 호출. |
-| `--input <label>=...` 통합 호출 | upload + generate 2-step. `workflow_params` JSON 직접 조립. |
-| `run:<run_id>/<output>` syntax | `from-asset` 으로 chain — asset_id 직접 룩업 (`af list <project>` 후 metadata 매칭). |
+| P0/P1 항목 | 상태 | 미충족 시 우회 |
+|---|---|---|
+| `--bypass-approval` 플래그 | ✅ 채워짐 (PR #18) | — |
+| catalog `input_labels` | ✅ 채워짐 (PR #18) | — |
+| `af workflow upload` CLI | ✅ 채워짐 (PR #18, Python `python -m cli workflow upload`) | — |
+| `--input <label>=...` 통합 호출 | ✅ 채워짐 (PR #18, Python CLI) | — |
+| `--dry-run` | ⏳ 미충족 | 직접 enqueue 후 작은 변형 (`sprite/pixel_alpha`, candidates=1) 으로 실 호출. `--input` 라벨 오타는 응답의 `report.skipped` 로 확인. |
+| `aliases` (`@character` 등) | ⏳ 미충족 | full path (`sprite/pixel_alpha`) 로 호출. |
+| `run:<run_id>/<output>` syntax | ⏳ 부분 충족 | `--input source_image=asset:<id>` 로 chain. 특정 output label 참조 (`run:.../pixel_alpha`) 는 asset_id 직접 룩업 (`af list <project>` → metadata 매칭). |
 
 **갭이 채워질 때마다 이 표에서 한 줄씩 지운다** (skill 유지보수자).
 
