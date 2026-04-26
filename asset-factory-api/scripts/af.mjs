@@ -224,7 +224,8 @@ async function cmdWorkflow(args) {
   const rest = { positional: args.positional.slice(1), flags: args.flags };
   if (sub === "catalog") return cmdWorkflowCatalog();
   if (sub === "gen") return cmdWorkflowGen(rest);
-  die("usage: af workflow {catalog|gen} ...");
+  if (sub === "upload") return cmdWorkflowUpload(rest);
+  die("usage: af workflow {catalog|gen|upload} ...");
 }
 
 async function cmdWorkflowCatalog() {
@@ -290,6 +291,108 @@ async function cmdWorkflowGen(args) {
   }
 }
 
+// ── workflow upload ──────────────────────────────────────
+//
+// 동적 입력 이미지를 ComfyUI input/<subfolder>/ 에 업로드한다.
+// 응답의 name 을 후속 `af workflow gen` 의 --workflow-params 의
+// load_images.<label> 에 박아 사용. SKILL.md 의 chain 패턴 참고.
+//
+// 두 가지 출처:
+//   1) 로컬 파일:    af workflow upload ./pose.png
+//   2) 기존 에셋:    af workflow upload --from-asset <asset_id>
+//
+// (P0-3 1차 — 멍멍이 합의한 단순 형태. P0-1/P0-2 가 머지된 후
+//  --from-run / --output / --bypass-approval 통합은 follow-up PR.)
+async function cmdWorkflowUpload(args) {
+  const { positional, flags } = args;
+  // parseArgs 가 `--from-asset abc /some/file.png` 같이 뒤따르는 positional 까지
+  // 배열로 슬러프할 수 있다. fromAsset 은 단일 string 으로 강제하고, 잉여는
+  // 명시적으로 거부.
+  let fromAsset = flags["from-asset"];
+  if (Array.isArray(fromAsset)) {
+    if (fromAsset.length > 1) {
+      die(`--from-asset 은 값 1개만 받음 (받음: ${JSON.stringify(fromAsset)})`);
+    }
+    fromAsset = fromAsset[0];
+  }
+  const subfolder = flags.subfolder || "";
+  const localPath = positional[0];
+
+  // 출처 검증 — 정확히 하나만
+  if (fromAsset && localPath) {
+    die("--from-asset 과 로컬 파일 경로는 동시 사용 불가");
+  }
+  if (!fromAsset && !localPath) {
+    die(
+      "usage: af workflow upload <local-file>\n" +
+      "       af workflow upload --from-asset <asset_id>\n" +
+      "  optional: --subfolder <name>  (default: asset-factory)\n" +
+      "\n" +
+      "  응답의 .name 을 --workflow-params 의 load_images.<label> 에 박아 사용.\n" +
+      "  예) af workflow upload ./pose.png  →  { \"name\": \"asset-factory_abc_pose.png\" }\n" +
+      "      af workflow gen sprite/pixel_alpha pj k \"...\" \\\n" +
+      "        --workflow-params '{\"load_images\":{\"pose_image\":\"asset-factory_abc_pose.png\"}}'"
+    );
+  }
+
+  if (fromAsset) {
+    // 기존 에셋 → 입력으로 chain
+    const body = { asset_id: fromAsset };
+    if (subfolder) body.subfolder = subfolder;
+    const r = await http("POST", "/api/workflows/inputs/from-asset", { body });
+    log(`uploaded from asset ${fromAsset} → name=${r.name}`);
+    out(r);
+    return;
+  }
+
+  // 로컬 파일 → multipart upload
+  // Node 18+ 의 native FormData / Blob / fetch 사용 (의존성 0).
+  const { readFileSync, statSync } = await import("node:fs");
+  const { basename } = await import("node:path");
+
+  let stat;
+  try {
+    stat = statSync(localPath);
+  } catch (e) {
+    die(`파일 없음: ${localPath}`);
+  }
+  if (!stat.isFile()) die(`파일이 아님: ${localPath}`);
+
+  const buf = readFileSync(localPath);
+  const fname = basename(localPath);
+
+  // content-type 추정 — 서버가 PNG/JPEG/WEBP 만 허용 (asset-factory server.py).
+  // 잘못된 확장자면 서버에서 415 — 호출자에게 명확히 알리는 게 낫다.
+  const ext = fname.toLowerCase().match(/\.(png|jpe?g|webp)$/);
+  const contentType = !ext ? null
+    : ext[1] === "png" ? "image/png"
+    : ext[1] === "webp" ? "image/webp"
+    : "image/jpeg";
+  if (!contentType) {
+    die(`지원 안 되는 확장자: ${fname} (.png/.jpg/.jpeg/.webp 만)`);
+  }
+
+  // FormData + Blob — Node 18+ native
+  const fd = new FormData();
+  fd.append("file", new Blob([buf], { type: contentType }), fname);
+  if (subfolder) fd.append("subfolder", subfolder);
+
+  // http() 헬퍼는 JSON body 전용이라 fetch 직접 호출.
+  const url = HOST.replace(/\/$/, "") + "/api/workflows/inputs";
+  const headers = {};
+  if (API_KEY) headers["x-api-key"] = API_KEY;
+  // Content-Type 은 fetch 가 boundary 포함해 자동 설정 — 직접 박지 마라.
+
+  const r = await fetch(url, { method: "POST", headers, body: fd });
+  if (!r.ok) {
+    const txt = await r.text().catch(() => "");
+    die(`HTTP ${r.status} POST /api/workflows/inputs\n${txt}`, 2);
+  }
+  const j = await r.json();
+  log(`uploaded ${fname} (${stat.size}B, ${contentType}) → name=${j.name}`);
+  out(j);
+}
+
 function usage() {
   console.error(`af — Asset Factory CLI (host: ${HOST})
 
@@ -307,6 +410,10 @@ Commands:
         [--seed 42] [--candidates 4] [--workflow-params '{"pose_image":"x.png"}']
         [--negative "..."] [--steps 30] [--cfg 6.5] [--sampler dpmpp_2m] [--wait]
                                        # ComfyUI 변형 호출. multi-output 변형은 1슬롯에 N장 저장됨
+  af workflow upload <local-file> [--subfolder name]
+  af workflow upload --from-asset <asset_id> [--subfolder name]
+                                       # 동적 입력 이미지 업로드 (PoseExtract/ControlNet)
+                                       # 응답의 .name 을 --workflow-params 의 load_images.<label> 에 사용
 
   af status <job_id>                   # 잡 상태 단발 조회
   af wait <job_id> [--timeout 300]     # 폴링 (3초 간격)
@@ -318,6 +425,11 @@ Examples:
   af workflow catalog | jq '.categories | keys'
   af workflow gen sprite/pixel_alpha myproj hero "1girl, silver hair, school uniform" --seed 42 --wait
   af workflow gen illustration/hyphoria_hires myproj cover_v1 "fantasy landscape, masterpiece" --candidates 4
+
+  # 동적 입력 chain — 사용자 사진 → pose extract → 캐릭터 합성
+  POSE_NAME=$(af workflow upload ./user_pose.png | jq -r .name)
+  af workflow gen sprite/pixel_alpha myproj knight "1girl, blue armor, ..." \\
+      --workflow-params "{\\"load_images\\":{\\"pose_image\\":\\"$POSE_NAME\\"}}" --wait
 
 Env: AF_HOST (default http://localhost:8000), AF_API_KEY, AF_QUIET=1
 `);
