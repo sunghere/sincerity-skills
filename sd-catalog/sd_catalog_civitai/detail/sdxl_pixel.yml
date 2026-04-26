@@ -1,0 +1,346 @@
+schema_version: 1
+kind: civitai_model_detail
+model_key: sdxl_pixel
+sources:
+  civitai_api: "https://civitai.com/api/v1/models/:modelId"
+  generated_at: "2026-04-25"
+  append_policy: "Append new entries under models using normalized local filename keys."
+
+model:
+  local_file: "sdxl_pixel.safetensors"
+  catalog_type: lora
+  base_model: sdxl
+  base_model_raw: "SDXL 1.0"
+
+  civitai:
+    model_id: 133643
+    model_url: "https://civitai.com/models/133643/lah-pixel-art-or-sdxl"
+    air: "urn:air:sdxl:lora:civitai:133643@147125"
+    version_id: 147125
+    model_name: "[Lah] Pixel Art | SDXL"
+    version_name: "v1.0"
+    creator: "Lah_Inthe_Futureland"
+    nsfw: false
+    tags: [anime, pixel, style]
+    trained_words: ["pixel art", "pixel"]
+    files:
+      - "sdxl_pixel.safetensors"
+    download_url: "https://civitai.com/api/download/models/147125"
+
+  compatibility:
+    checkpoint_family: sdxl
+    lora_compatible_base_models: [sdxl]
+    recommended_for: [anime, pixel_art, style]
+    not_recommended_for: [sd1.5, flux]
+
+  generation:
+    lora_weight:
+      recommended: 0.65
+      range: [0.4, 1.0]
+
+  prompting:
+    trigger_words: ["cute comic"]
+    helpful_tags: ["pixel art", "pixel"]
+
+  raw_notes: |
+    Canonical API file for [Lah] Pixel Art | SDXL version 147125.
+    Model card recommends Weight 0.4-1.0 and trigger words "cute comic".
+    Example prompt from API description uses <lora:sdxl_pixel:0.65>.
+
+  review:
+    status: api_enriched
+    missing: []
+    sample_status: api_enriched
+    sample_count: 6
+    nsfw_samples_present: false
+  samples:
+    status: api_enriched
+    source: civitai
+    fetched_at: '2026-04-25'
+    model_id: 133643
+    version_id: 147125
+    count: 6
+    items:
+      - image_id: 18278164
+        image_url: 
+          https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/dcdcbae0-3aae-4818-b644-1d2c611ac030/original=true/dcdcbae0-3aae-4818-b644-1d2c611ac030.jpeg
+        page_url: https://civitai.com/posts/4084173
+        nsfw: false
+        width: 832
+        height: 1216
+        prompt: |-
+          pixel art, Time flows backward as a clock melts into a Salvador Dalí-esque painting, storm night, 3d, fantasy art, cinema 4d, matte painting, polished, beautiful, colorful, intricate, eldritch, ethereal, vibrant, surrealism, surrealism, vray, nvdia ray tracing, cryengine, magical, 4k, 8k, masterpiece, crystal, romanticism. pixel, vibrant masterpiece, (32K:1.0), UHD, best resolution, best micro details, best quality, best details, best artist, sharp edges, detailed textures, full view, atmospheric lighting, visually stunning, perfect composition, trending on behance
+        negative_prompt: |-
+          ImgFixerPre0.3, (cropped image), bad hands, mangled hands, bad fingers, 6 fingers, bad proportions, (blurry:1.3), blurred composition, low resolution, bad, ugly, bad composition, terrible, render, comic, manga, flat, watermark, signature, worst quality, low quality, normal quality, lowres, simple background, inaccurate limb, extra fingers, fewer fingers, missing fingers, extra arms, extra legs, inaccurate eyes, bad composition, bad anatomy, error, extra digit, fewer digits, cinnadust, cropped, low res, worst quality, low quality, normal quality, jpeg artifacts, extra digit, fewer digits, trademark, watermark, artist's name, username, signature, text, words, human, blurry, blurred composition, blurry foreground, blurry background
+        generation:
+          seed: 74285507
+          steps: 25
+          cfg_scale: 8
+          sampler: DPM++ 2M Karras
+          scheduler:
+          clip_skip: 2
+          size: 832x1216
+          model_hash:
+        resources:
+          - type: checkpoint
+            name: v24
+            model_id:
+            version_id: 291443
+            weight:
+          - type: embed
+            name: ImgFixer PreV0.3
+            model_id:
+            version_id: 159184
+            weight: 1
+          - type: lora
+            name: v1.0
+            model_id:
+            version_id: 147125
+            weight: 1
+          - type: vae
+            name: SDXL-VAE
+            model_id:
+            version_id: 333245
+            weight: 1
+        tags: []
+        raw_meta:
+          Created Date: 2024-07-03T1414:54.3040425Z
+        post:
+          username: Cinnadust
+          created_at: '2024-07-03T14:21:21.525Z'
+      - image_id: 18278088
+        image_url: 
+          https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/e4f21c0b-c304-4004-ba4b-462819c71f12/original=true/e4f21c0b-c304-4004-ba4b-462819c71f12.jpeg
+        page_url: https://civitai.com/posts/4084152
+        nsfw: false
+        width: 832
+        height: 1216
+        prompt: |-
+          pixel art, Time flows backward as a clock melts into a Salvador Dalí-esque painting, storm night, 3d, fantasy art, cinema 4d, matte painting, polished, beautiful, colorful, intricate, eldritch, ethereal, vibrant, surrealism, surrealism, vray, nvdia ray tracing, cryengine, magical, 4k, 8k, masterpiece, crystal, romanticism. pixel, vibrant masterpiece, (32K:1.0), UHD, best resolution, best micro details, best quality, best details, best artist, sharp edges, detailed textures, full view, atmospheric lighting, visually stunning, perfect composition, trending on behance
+        negative_prompt: |-
+          ImgFixerPre0.3, (cropped image), bad hands, mangled hands, bad fingers, 6 fingers, bad proportions, (blurry:1.3), blurred composition, low resolution, bad, ugly, bad composition, terrible, render, comic, manga, flat, watermark, signature, worst quality, low quality, normal quality, lowres, simple background, inaccurate limb, extra fingers, fewer fingers, missing fingers, extra arms, extra legs, inaccurate eyes, bad composition, bad anatomy, error, extra digit, fewer digits, cinnadust, cropped, low res, worst quality, low quality, normal quality, jpeg artifacts, extra digit, fewer digits, trademark, watermark, artist's name, username, signature, text, words, human, blurry, blurred composition, blurry foreground, blurry background
+        generation:
+          seed: 3984028538
+          steps: 25
+          cfg_scale: 8
+          sampler: DPM++ 2M Karras
+          scheduler:
+          clip_skip: 2
+          size: 832x1216
+          model_hash:
+        resources:
+          - type: checkpoint
+            name: v24
+            model_id:
+            version_id: 291443
+            weight:
+          - type: embed
+            name: ImgFixer PreV0.3
+            model_id:
+            version_id: 159184
+            weight: 1
+          - type: lora
+            name: v1.0
+            model_id:
+            version_id: 147125
+            weight: 1
+          - type: vae
+            name: SDXL-VAE
+            model_id:
+            version_id: 333245
+            weight: 1
+        tags: []
+        raw_meta:
+          Created Date: 2024-07-03T1416:32.9658677Z
+        post:
+          username: Cinnadust
+          created_at: '2024-07-03T14:20:31.995Z'
+      - image_id: 18278089
+        image_url: 
+          https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/c473fa4d-3a7b-4097-8afd-81e13d205011/original=true/c473fa4d-3a7b-4097-8afd-81e13d205011.jpeg
+        page_url: https://civitai.com/posts/4084152
+        nsfw: false
+        width: 832
+        height: 1216
+        prompt: |-
+          pixel art, Time flows backward as a clock melts into a Salvador Dalí-esque painting, storm night, 3d, fantasy art, cinema 4d, matte painting, polished, beautiful, colorful, intricate, eldritch, ethereal, vibrant, surrealism, surrealism, vray, nvdia ray tracing, cryengine, magical, 4k, 8k, masterpiece, crystal, romanticism. pixel, vibrant masterpiece, (32K:1.0), UHD, best resolution, best micro details, best quality, best details, best artist, sharp edges, detailed textures, full view, atmospheric lighting, visually stunning, perfect composition, trending on behance
+        negative_prompt: |-
+          ImgFixerPre0.3, (cropped image), bad hands, mangled hands, bad fingers, 6 fingers, bad proportions, (blurry:1.3), blurred composition, low resolution, bad, ugly, bad composition, terrible, render, comic, manga, flat, watermark, signature, worst quality, low quality, normal quality, lowres, simple background, inaccurate limb, extra fingers, fewer fingers, missing fingers, extra arms, extra legs, inaccurate eyes, bad composition, bad anatomy, error, extra digit, fewer digits, cinnadust, cropped, low res, worst quality, low quality, normal quality, jpeg artifacts, extra digit, fewer digits, trademark, watermark, artist's name, username, signature, text, words, human, blurry, blurred composition, blurry foreground, blurry background
+        generation:
+          seed: 3984028536
+          steps: 25
+          cfg_scale: 8
+          sampler: DPM++ 2M Karras
+          scheduler:
+          clip_skip: 2
+          size: 832x1216
+          model_hash:
+        resources:
+          - type: checkpoint
+            name: v24
+            model_id:
+            version_id: 291443
+            weight:
+          - type: embed
+            name: ImgFixer PreV0.3
+            model_id:
+            version_id: 159184
+            weight: 1
+          - type: lora
+            name: v1.0
+            model_id:
+            version_id: 147125
+            weight: 1
+          - type: vae
+            name: SDXL-VAE
+            model_id:
+            version_id: 333245
+            weight: 1
+        tags: []
+        raw_meta:
+          Created Date: 2024-07-03T1416:34.9659483Z
+        post:
+          username: Cinnadust
+          created_at: '2024-07-03T14:20:31.995Z'
+      - image_id: 18278086
+        image_url: 
+          https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/19ebb071-aedf-43b0-befc-c1b65c0ec948/original=true/19ebb071-aedf-43b0-befc-c1b65c0ec948.jpeg
+        page_url: https://civitai.com/posts/4084152
+        nsfw: false
+        width: 832
+        height: 1216
+        prompt: |-
+          pixel art, Time flows backward as a clock melts into a Salvador Dalí-esque painting, storm night, 3d, fantasy art, cinema 4d, matte painting, polished, beautiful, colorful, intricate, eldritch, ethereal, vibrant, surrealism, surrealism, vray, nvdia ray tracing, cryengine, magical, 4k, 8k, masterpiece, crystal, romanticism. pixel, vibrant masterpiece, (32K:1.0), UHD, best resolution, best micro details, best quality, best details, best artist, sharp edges, detailed textures, full view, atmospheric lighting, visually stunning, perfect composition, trending on behance
+        negative_prompt: |-
+          ImgFixerPre0.3, (cropped image), bad hands, mangled hands, bad fingers, 6 fingers, bad proportions, (blurry:1.3), blurred composition, low resolution, bad, ugly, bad composition, terrible, render, comic, manga, flat, watermark, signature, worst quality, low quality, normal quality, lowres, simple background, inaccurate limb, extra fingers, fewer fingers, missing fingers, extra arms, extra legs, inaccurate eyes, bad composition, bad anatomy, error, extra digit, fewer digits, cinnadust, cropped, low res, worst quality, low quality, normal quality, jpeg artifacts, extra digit, fewer digits, trademark, watermark, artist's name, username, signature, text, words, human, blurry, blurred composition, blurry foreground, blurry background
+        generation:
+          seed: 3984028537
+          steps: 25
+          cfg_scale: 8
+          sampler: DPM++ 2M Karras
+          scheduler:
+          clip_skip: 2
+          size: 832x1216
+          model_hash:
+        resources:
+          - type: checkpoint
+            name: v24
+            model_id:
+            version_id: 291443
+            weight:
+          - type: embed
+            name: ImgFixer PreV0.3
+            model_id:
+            version_id: 159184
+            weight: 1
+          - type: lora
+            name: v1.0
+            model_id:
+            version_id: 147125
+            weight: 1
+          - type: vae
+            name: SDXL-VAE
+            model_id:
+            version_id: 333245
+            weight: 1
+        tags: []
+        raw_meta:
+          Created Date: 2024-07-03T1416:28.1031990Z
+        post:
+          username: Cinnadust
+          created_at: '2024-07-03T14:20:31.995Z'
+      - image_id: 18277378
+        image_url: 
+          https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/83492dfd-aad4-42d1-8ef4-1b1bf2b2e666/original=true/83492dfd-aad4-42d1-8ef4-1b1bf2b2e666.jpeg
+        page_url: https://civitai.com/posts/4083963
+        nsfw: false
+        width: 832
+        height: 1216
+        prompt: |-
+          pixel art, Delicate magical fairy dust in a bottle smoking with cosmic magical energy, highly detailed painting, deep color, fantastical, intricate detail, complementary colors, fantasy concept art, trending on Artstation Unreal Engine 5, by artist "anime", Anime Key Visual, Japanese Manga, Pixiv, Zerochan, Anime art, Fantia, Hyperrealistic, splash art, concept art, mid shot, intricately detailed, color depth, dramatic, 2/3 face angle, side light, colorful background, SAI Pixel Art. pixel, vibrant masterpiece, (32K:1.0), UHD, best resolution, best micro details, best quality, best details, best artist, sharp edges, detailed textures, full view, atmospheric lighting, visually stunning, perfect composition, trending on behance
+        negative_prompt: |-
+          ImgFixerPre0.3, (cropped image), bad hands, mangled hands, bad fingers, 6 fingers, bad proportions, (blurry:1.3), blurred composition, low resolution, bad, ugly, bad composition, terrible, render, comic, manga, flat, watermark, signature, worst quality, low quality, normal quality, lowres, simple background, inaccurate limb, extra fingers, fewer fingers, missing fingers, extra arms, extra legs, inaccurate eyes, bad composition, bad anatomy, error, extra digit, fewer digits, cinnadust, cropped, low res, worst quality, low quality, normal quality, jpeg artifacts, extra digit, fewer digits, trademark, watermark, artist's name, username, signature, text, words, human, blurry, blurred composition, blurry foreground, blurry background
+        generation:
+          seed: 2109859747
+          steps: 25
+          cfg_scale: 8
+          sampler: DPM++ 2M Karras
+          scheduler:
+          clip_skip: 2
+          size: 832x1216
+          model_hash:
+        resources:
+          - type: checkpoint
+            name: v24
+            model_id:
+            version_id: 291443
+            weight:
+          - type: embed
+            name: ImgFixer PreV0.3
+            model_id:
+            version_id: 159184
+            weight: 1
+          - type: lora
+            name: v1.0
+            model_id:
+            version_id: 147125
+            weight: 1
+          - type: vae
+            name: SDXL-VAE
+            model_id:
+            version_id: 333245
+            weight: 1
+        tags: []
+        raw_meta:
+          Created Date: 2024-07-03T1404:46.3228484Z
+        post:
+          username: Cinnadust
+          created_at: '2024-07-03T14:11:26.486Z'
+      - image_id: 18277090
+        image_url: 
+          https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/562d68aa-397f-478f-81a5-a0e85515b837/original=true/562d68aa-397f-478f-81a5-a0e85515b837.jpeg
+        page_url: https://civitai.com/posts/4083891
+        nsfw: false
+        width: 832
+        height: 1216
+        prompt: |-
+          pixel art, Delicate magical fairy dust in a bottle smoking with cosmic magical energy, highly detailed painting, deep color, fantastical, intricate detail, complementary colors, fantasy concept art, trending on Artstation Unreal Engine 5, by artist "anime", Anime Key Visual, Japanese Manga, Pixiv, Zerochan, Anime art, Fantia, Hyperrealistic, splash art, concept art, mid shot, intricately detailed, color depth, dramatic, 2/3 face angle, side light, colorful background, SAI Pixel Art. pixel, vibrant masterpiece, (32K:1.0), UHD, best resolution, best micro details, best quality, best details, best artist, sharp edges, detailed textures, full view, atmospheric lighting, visually stunning, perfect composition, trending on behance
+        negative_prompt: |-
+          ImgFixerPre0.3, (cropped image), bad hands, mangled hands, bad fingers, 6 fingers, bad proportions, (blurry:1.3), blurred composition, low resolution, bad, ugly, bad composition, terrible, render, comic, manga, flat, watermark, signature, worst quality, low quality, normal quality, lowres, simple background, inaccurate limb, extra fingers, fewer fingers, missing fingers, extra arms, extra legs, inaccurate eyes, bad composition, bad anatomy, error, extra digit, fewer digits, cinnadust, cropped, low res, worst quality, low quality, normal quality, jpeg artifacts, extra digit, fewer digits, trademark, watermark, artist's name, username, signature, text, words, human, blurry, blurred composition, blurry foreground, blurry background
+        generation:
+          seed: 2109859744
+          steps: 25
+          cfg_scale: 8
+          sampler: DPM++ 2M Karras
+          scheduler:
+          clip_skip: 2
+          size: 832x1216
+          model_hash:
+        resources:
+          - type: checkpoint
+            name: v24
+            model_id:
+            version_id: 291443
+            weight:
+          - type: embed
+            name: ImgFixer PreV0.3
+            model_id:
+            version_id: 159184
+            weight: 1
+          - type: lora
+            name: v1.0
+            model_id:
+            version_id: 147125
+            weight: 1
+          - type: vae
+            name: SDXL-VAE
+            model_id:
+            version_id: 333245
+            weight: 1
+        tags: []
+        raw_meta:
+          Created Date: 2024-07-03T1405:01.0613300Z
+        post:
+          username: Cinnadust
+          created_at: '2024-07-03T14:09:00.956Z'
+

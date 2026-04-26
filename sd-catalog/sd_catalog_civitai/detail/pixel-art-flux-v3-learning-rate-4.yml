@@ -1,0 +1,323 @@
+schema_version: 1
+kind: civitai_model_detail
+model_key: pixel-art-flux-v3-learning-rate-4
+sources:
+  civitai_api: "https://civitai.com/api/v1/models/:modelId"
+  generated_at: "2026-04-25"
+  append_policy: "Append new entries under models using normalized local filename keys."
+
+model:
+  local_file: "pixel-art-flux-v3-learning-rate-4.safetensors"
+  catalog_type: lora
+  base_model: flux
+  base_model_raw: "Flux.1 D"
+
+  civitai:
+    model_id: 646820
+    model_url: "https://civitai.com/models/646820/rd-pixel-art-lora"
+    air: "urn:air:flux1:lora:civitai:646820@833669"
+    version_id: 833669
+    model_name: "RD Pixel Art Lora"
+    version_name: "Flux V3 uncensored"
+    creator: "sinatra"
+    nsfw: false
+    tags: [style]
+    trained_words: ["pixel art"]
+    files:
+      - "pixel-art-flux-v3-learning-rate-4.safetensors"
+    download_url: "https://civitai.com/api/download/models/833669"
+
+  compatibility:
+    checkpoint_family: flux
+    lora_compatible_base_models: [flux]
+    recommended_for: [pixel_art, style]
+    not_recommended_for: [sd1.5, sdxl, pony, noob]
+
+  generation:
+    lora_weight:
+      recommended: 1.0
+      range: [0.6, 1.2]
+
+  prompting:
+    trigger_words: ["pixel art"]
+
+  raw_notes: |
+    API description: Real Dream Pixel Art Lora.
+    Local readMe listed Pixel_Art_FLUX strength 1; this Flux V3 entry keeps that as a practical starting point.
+
+  review:
+    status: api_enriched
+    missing: []
+    sample_status: api_enriched
+    sample_count: 6
+    nsfw_samples_present: true
+  samples:
+    status: api_enriched
+    source: civitai
+    fetched_at: '2026-04-25'
+    model_id: 646820
+    version_id: 833669
+    count: 6
+    items:
+      - image_id: 55460584
+        image_url: 
+          https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/d1f5abb3-fc75-4b97-bbbd-13a7d3a8d819/original=true/d1f5abb3-fc75-4b97-bbbd-13a7d3a8d819.jpeg
+        page_url: https://civitai.com/posts/12427386
+        nsfw: false
+        width: 832
+        height: 1216
+        prompt: |-
+          by Alexander Rostov,A gritty, neo-noir cityscape at dusk, inspired by the dark, gritty aesthetic of Disco Elysium, with crumbling buildings, flickering streetlights, and a sense of foreboding mystery, reminiscent of a worn, dog-eared detective novel, where the lines between reality and delusion blur, and the city seems to be a character in its own right, with a rich, muted color palette and intricate textures that evoke the sense of a world worn down by time and corruption.
+        negative_prompt:
+        generation:
+          seed: 1689719577
+          steps: 20
+          cfg_scale: 3.5
+          sampler: Undefined
+          scheduler:
+          clip_skip: 2
+          size: 832x1216
+          model_hash:
+        resources:
+          - type: checkpoint
+            name: Dev
+            model_id:
+            version_id: 691639
+            weight:
+          - type: lora
+            name: v1.0 Flux
+            model_id:
+            version_id: 1334648
+            weight: 1
+          - type: lora
+            name: Flux V3 uncensored
+            model_id:
+            version_id: 833669
+            weight: 0.6
+          - type: lora
+            name: v1.0
+            model_id:
+            version_id: 1122889
+            weight: 1
+        tags: []
+        raw_meta:
+          Created Date: 2025-01-28T1855:29.3675223Z
+        post:
+          username: Sheat13
+          created_at: '2025-02-03T00:04:33.918Z'
+      - image_id: 43137781
+        image_url: 
+          https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/779c72e0-1bb8-413a-9b7e-23e9ffc52618/original=true/779c72e0-1bb8-413a-9b7e-23e9ffc52618.jpeg
+        page_url: https://civitai.com/posts/9812996
+        nsfw: true
+        width: 1024
+        height: 1024
+        prompt: |-
+          pixel art a spaceship flying through space. it is firing lazers. they are hitting an asteroid and making it explode. other asteroids are in the sky.
+        negative_prompt:
+        generation:
+          seed: 1640624425
+          steps: 25
+          cfg_scale: 3.5
+          sampler: Undefined
+          scheduler:
+          clip_skip: 2
+          size: 1024x1024
+          model_hash:
+        resources:
+          - type: checkpoint
+            name: Dev
+            model_id:
+            version_id: 691639
+            weight:
+          - type: lora
+            name: V1
+            model_id:
+            version_id: 1108075
+            weight: 1
+          - type: lora
+            name: Flux V3 uncensored
+            model_id:
+            version_id: 833669
+            weight: 0.6
+        tags: []
+        raw_meta:
+          nsfw: true
+          draft: false
+          width: 1024
+          height: 1024
+          fluxMode: urn:air:flux1:checkpoint:civitai:618692@691639
+          quantity: 4
+          workflow: txt2img
+          baseModel: Flux1
+          Created Date: 2024-12-01T0019:09.6800913Z
+          fluxUltraRaw: false
+        post:
+          username: photonstorm
+          created_at: '2024-12-01T17:56:51.759Z'
+      - image_id: 54103336
+        image_url: 
+          https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/a01e235f-8207-4e97-8f26-f0502526eeba/original=true/a01e235f-8207-4e97-8f26-f0502526eeba.jpeg
+        page_url: https://civitai.com/posts/12138594
+        nsfw: false
+        width: 832
+        height: 1216
+        prompt: |-
+          pixel art, A futuristic artificial satellite floats serenely in orbit above the Earth, a celestial sentinel gazing out into the vast expanse of space. Below, the terrestrial world glows with a tapestry of vibrant city lights, a breathtaking display of human ingenuity and civilization. The satellite's metallic hull glints in the starlight, a beacon of technological advancement amidst the inky blackness of space. The planet's atmosphere shimmers like a canvas of iridescent hues, a kaleidoscope of blues and greens that seem to pulse with an otherworldly energy. The city lights twinkle like diamonds scattered across the surface, a mesmerizing spectacle that stretches as far as the eye can see. In the distance, the curve of the Earth rises like a majestic crescent, a reminder of the satellite's place in the grand tapestry of the cosmos.
+        negative_prompt:
+        generation:
+          seed: 1023075149
+          steps: 20
+          cfg_scale: 3.5
+          sampler: Undefined
+          scheduler:
+          clip_skip: 2
+          size: 832x1216
+          model_hash:
+        resources:
+          - type: checkpoint
+            name: Dev
+            model_id:
+            version_id: 691639
+            weight:
+          - type: lora
+            name: Flux V3 uncensored
+            model_id:
+            version_id: 833669
+            weight: 0.6
+          - type: lora
+            name: v1.0
+            model_id:
+            version_id: 1122889
+            weight: 1
+        tags: []
+        raw_meta:
+          extra:
+            remixOfId: 45007985
+          Created Date: 2025-01-26T1728:08.6742541Z
+        post:
+          username: Sheat13
+          created_at: '2025-01-27T00:03:31.542Z'
+      - image_id: 29036216
+        image_url: 
+          https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/b6e6dcdb-0d79-4adc-ae91-883e00f1e478/original=true/b6e6dcdb-0d79-4adc-ae91-883e00f1e478.jpeg
+        page_url: https://civitai.com/posts/6496708
+        nsfw: false
+        width: 1024
+        height: 1024
+        prompt: |-
+          pixel art,cute girl,vintage clothes
+        negative_prompt:
+        generation:
+          seed: 38509325
+          steps: 25
+          cfg_scale: 3.5
+          sampler: Undefined
+          scheduler:
+          clip_skip: 2
+          size: 1024x1024
+          model_hash:
+        resources:
+          - type: checkpoint
+            name: Dev
+            model_id:
+            version_id: 691639
+            weight:
+          - type: lora
+            name: Flux V3 uncensored
+            model_id:
+            version_id: 833669
+            weight: 0.7
+        tags: []
+        raw_meta:
+          Created Date: 2024-09-12T1221:20.9625986Z
+        post:
+          username: sinatra
+          created_at: '2024-09-12T12:21:50.182Z'
+      - image_id: 29063380
+        image_url: 
+          https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/be9da14e-8a75-4722-906b-7a48b7095a8c/original=true/be9da14e-8a75-4722-906b-7a48b7095a8c.jpeg
+        page_url: https://civitai.com/posts/6496708
+        nsfw: false
+        width: 1024
+        height: 1024
+        prompt: |-
+          pixel art,cute girl,vintage clothes,nature farm background,18yo
+        negative_prompt:
+        generation:
+          seed: 3464074206
+          steps: 25
+          cfg_scale: 3.5
+          sampler: Undefined
+          scheduler:
+          clip_skip: 2
+          size: 1024x1024
+          model_hash:
+        resources:
+          - type: checkpoint
+            name: Dev
+            model_id:
+            version_id: 691639
+            weight:
+          - type: lora
+            name: Flux V3 uncensored
+            model_id:
+            version_id: 833669
+            weight: 0.7
+        tags: []
+        raw_meta:
+          Created Date: 2024-09-12T1231:25.6389287Z
+        post:
+          username: sinatra
+          created_at: '2024-09-12T12:07:44.720Z'
+      - image_id: 43137780
+        image_url: 
+          https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/49810225-623a-4486-a71b-b5d23d1189a4/original=true/49810225-623a-4486-a71b-b5d23d1189a4.jpeg
+        page_url: https://civitai.com/posts/9812996
+        nsfw: true
+        width: 1024
+        height: 1024
+        prompt: |-
+          pixel art a spaceship flying through space. it is firing lazers. they are hitting an asteroid and making it explode. other asteroids are in the sky.
+        negative_prompt:
+        generation:
+          seed: 763779259
+          steps: 25
+          cfg_scale: 3.5
+          sampler: Undefined
+          scheduler:
+          clip_skip: 2
+          size: 1024x1024
+          model_hash:
+        resources:
+          - type: checkpoint
+            name: Dev
+            model_id:
+            version_id: 691639
+            weight:
+          - type: lora
+            name: V1
+            model_id:
+            version_id: 1108075
+            weight: 1
+          - type: lora
+            name: Flux V3 uncensored
+            model_id:
+            version_id: 833669
+            weight: 0.6
+        tags: []
+        raw_meta:
+          nsfw: true
+          draft: false
+          width: 1024
+          height: 1024
+          fluxMode: urn:air:flux1:checkpoint:civitai:618692@691639
+          quantity: 4
+          workflow: txt2img
+          baseModel: Flux1
+          Created Date: 2024-12-01T0113:18.1883151Z
+          fluxUltraRaw: false
+        post:
+          username: photonstorm
+          created_at: '2024-12-01T17:56:51.759Z'
+

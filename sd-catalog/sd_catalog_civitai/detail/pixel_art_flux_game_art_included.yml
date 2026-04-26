@@ -1,0 +1,293 @@
+schema_version: 1
+kind: civitai_model_detail
+model_key: pixel_art_flux_game_art_included
+sources:
+  civitai_api: "https://civitai.com/api/v1/models/:modelId"
+  generated_at: "2026-04-25"
+  append_policy: "Append new entries under models using normalized local filename keys."
+
+model:
+  local_file: "Pixel Art FLUX_game_art_included.safetensors"
+  catalog_type: lora
+  base_model: flux
+  base_model_raw: "Flux.1 D"
+
+  civitai:
+    model_id: 683579
+    model_url: "https://civitai.com/models/683579?modelVersionId=796693"
+    air: "urn:air:flux1:lora:civitai:683579@773113"
+    version_id: 773113
+    model_name: "Pixel Art Illustrations FLUX"
+    version_name: "V1.1 With game art"
+    creator: "koronyx"
+    nsfw: false
+    tags: [pixel_art, style]
+    trained_words: ["pixel art"]
+    files:
+      - "Pixel Art FLUX_game_art_included.safetensors"
+    download_url: "https://civitai.com/api/download/models/773113"
+
+  compatibility:
+    checkpoint_family: flux
+    lora_compatible_base_models: [flux]
+    recommended_for: [pixel_art, landscapes, art_pieces, game_art]
+    not_recommended_for: [sd1.5, sdxl]
+
+  generation:
+    lora_weight:
+      recommended: 0.8
+      range: [0.5, 1.0]
+
+  prompting:
+    trigger_words: ["pixel art"]
+    helpful_tags: [top down, isometric, side perspective, outlined]
+
+  raw_notes: |
+    Best at landscapes and art pieces rather than game art or standalone characters.
+    V1.1 adds game art maps and is more versatile, but slightly less aesthetic than V1.0.
+    Most generations will not have outlines unless "outlined" is included.
+
+  review:
+    status: api_enriched
+    missing: []
+    warnings:
+      - "Input URL includes modelVersionId=796693, but AIR points to @773113 and that version matches the provided local filename."
+
+    sample_status: api_enriched
+    sample_count: 6
+    nsfw_samples_present: false
+  samples:
+    status: api_enriched
+    source: civitai
+    fetched_at: '2026-04-25'
+    model_id: 683579
+    version_id: 773113
+    count: 6
+    items:
+      - image_id: 79966281
+        image_url: 
+          https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/04c699c3-c79e-4b34-b46b-16410a274f5f/original=true/04c699c3-c79e-4b34-b46b-16410a274f5f.jpeg
+        page_url: https://civitai.com/posts/17762543
+        nsfw: false
+        width: 1216
+        height: 832
+        prompt: |-
+          The fish returned to the water, forgetting about the incident on shore. 
+          �﷿🏾‍♀️, Mermaid, 
+          dreamscape, surreal, ethereal, dreamy, mysterious, fantasy, 
+          pixel-art, low-res, cute, big sparking eyes, blocky, pixelated, recognizable characters and objects, game assets, pixel art style, 8-bit graphics, fantasy, vibrant, pixel world, 
+          aidmafluxpro1.1, pixel art
+        negative_prompt:
+        generation:
+          seed: 2114544825
+          steps: 30
+          cfg_scale: 3
+          sampler: Undefined
+          scheduler:
+          clip_skip: 2
+          size: 1216x832
+          model_hash:
+        resources:
+          - type: checkpoint
+            name: Dev
+            model_id:
+            version_id: 691639
+            weight:
+          - type: lora
+            name: v1.0
+            model_id:
+            version_id: 885950
+            weight: 0.6
+          - type: lora
+            name: FLUX v0.3
+            model_id:
+            version_id: 1244911
+            weight: 0.7
+          - type: lora
+            name: V1.1 With game art
+            model_id:
+            version_id: 773113
+            weight: 1
+        tags: []
+        raw_meta:
+          draft: false
+          width: 1216
+          height: 832
+          fluxMode: urn:air:flux1:checkpoint:civitai:618692@691639
+          quantity: 1
+          workflow: txt2img
+          baseModel: Flux1
+          Created Date: 2025-06-02T1126:09.1178455Z
+        post:
+          username: Grimm0
+          created_at: '2025-06-02T11:36:01.625Z'
+      - image_id: 27330038
+        image_url: 
+          https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/433e0583-bfec-4e62-96b4-15ce458c0782/original=true/433e0583-bfec-4e62-96b4-15ce458c0782.jpeg
+        page_url: https://civitai.com/posts/5830964
+        nsfw: false
+        width: 1024
+        height: 1024
+        prompt: |-
+          pixel art, beautiful landscape with cabin people camping
+        negative_prompt:
+        generation:
+          seed: 2173696666
+          steps: 25
+          cfg_scale: 3.5
+          sampler: Undefined
+          scheduler:
+          clip_skip: 2
+          size: 1024x1024
+          model_hash:
+        resources:
+          - type: checkpoint
+            name: Dev
+            model_id:
+            version_id: 691639
+            weight:
+          - type: lora
+            name: V1.1 game_art_included
+            model_id:
+            version_id: 773113
+            weight: 1
+        tags: []
+        raw_meta:
+          Created Date: 2024-09-01T1823:50.4387241Z
+        post:
+          username: koronyx
+          created_at: '2024-08-25T14:26:34.461Z'
+      - image_id: 26331460
+        image_url: 
+          https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/c73b3dce-3153-4e50-84ca-6c4c9ec096f1/original=true/c73b3dce-3153-4e50-84ca-6c4c9ec096f1.jpeg
+        page_url: https://civitai.com/posts/5885438
+        nsfw: false
+        width: 512
+        height: 512
+        prompt: |-
+          pixel art, medieval building, in a forest, beautiful landscape, magic, sorcery, sunset
+        negative_prompt:
+        generation:
+          seed:
+          steps: 30
+          cfg_scale: 7.5
+          sampler: DDIM
+          scheduler:
+          clip_skip:
+          size: 512x512
+          model_hash:
+        resources: []
+        tags: []
+        raw_meta:
+          Model: 691639.safetensors
+        post:
+          username: koronyx
+          created_at: '2024-08-27T02:02:00.825Z'
+      - image_id: 26336438
+        image_url: 
+          https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/a9e555cb-f69f-466c-aeda-176450bbaaee/original=true/a9e555cb-f69f-466c-aeda-176450bbaaee.jpeg
+        page_url: https://civitai.com/posts/5885438
+        nsfw: false
+        width: 1024
+        height: 1024
+        prompt: |-
+          Pixel art, top down, game art, tile map, wooden house, farming sim, colorful orang red yellow fall trees, leaves on the ground, crops
+        negative_prompt:
+        generation:
+          seed: 828642235
+          steps: 25
+          cfg_scale: 3.5
+          sampler: Undefined
+          scheduler:
+          clip_skip: 2
+          size: 1024x1024
+          model_hash:
+        resources:
+          - type: checkpoint
+            name: Dev
+            model_id:
+            version_id: 691639
+            weight:
+          - type: lora
+            name: V1.1 game_art_included
+            model_id:
+            version_id: 773113
+            weight: 1
+        tags: []
+        raw_meta:
+          Created Date: 2024-08-27T0245:18.4170450Z
+        post:
+          username: koronyx
+          created_at: '2024-08-27T02:02:00.825Z'
+      - image_id: 26332284
+        image_url: 
+          https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/021f25a4-b7bb-4b1a-94b8-245d13cc2020/original=true/021f25a4-b7bb-4b1a-94b8-245d13cc2020.jpeg
+        page_url: https://civitai.com/posts/5885438
+        nsfw: false
+        width: 1024
+        height: 1024
+        prompt: |-
+          Pixel art, top down, game art, tile map, forest town with underground dungeon, people, magic, sorcery, night
+        negative_prompt:
+        generation:
+          seed: 2707397509
+          steps: 30
+          cfg_scale: 3.5
+          sampler: Undefined
+          scheduler:
+          clip_skip: 2
+          size: 1024x1024
+          model_hash:
+        resources:
+          - type: checkpoint
+            name: Dev
+            model_id:
+            version_id: 691639
+            weight:
+          - type: lora
+            name: V1.1 game_art_included
+            model_id:
+            version_id: 773113
+            weight: 1
+        tags: []
+        raw_meta:
+          Created Date: 2024-08-27T0205:17.8034386Z
+        post:
+          username: koronyx
+          created_at: '2024-08-27T02:02:00.825Z'
+      - image_id: 26335472
+        image_url: 
+          https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/445bebe3-7b5c-455b-acb6-2efe82722fa9/original=true/445bebe3-7b5c-455b-acb6-2efe82722fa9.jpeg
+        page_url: https://civitai.com/posts/5885438
+        nsfw: false
+        width: 1024
+        height: 1024
+        prompt: |-
+          Pixel art, side perspective, 2d side scroller game, forest town with underground dungeon, people, magic, sorcery, night
+        negative_prompt:
+        generation:
+          seed: 2282767541
+          steps: 30
+          cfg_scale: 3.5
+          sampler: Undefined
+          scheduler:
+          clip_skip: 2
+          size: 1024x1024
+          model_hash:
+        resources:
+          - type: checkpoint
+            name: Dev
+            model_id:
+            version_id: 691639
+            weight:
+          - type: lora
+            name: V1.1 game_art_included
+            model_id:
+            version_id: 773113
+            weight: 1
+        tags: []
+        raw_meta:
+          Created Date: 2024-08-27T0212:59.4335710Z
+        post:
+          username: koronyx
+          created_at: '2024-08-27T02:02:00.825Z'

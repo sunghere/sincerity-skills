@@ -1,0 +1,406 @@
+schema_version: 1
+kind: civitai_model_detail
+model_key: pixelart_up
+sources:
+  civitai_api: "https://civitai.com/api/v1/models/:modelId"
+  generated_at: "2026-04-25"
+  append_policy: "Append new entries under models using normalized local filename keys."
+
+model:
+  local_file: "pixelart_up.safetensors"
+  catalog_type: lora
+  base_model: illustrious
+  base_model_raw: "Illustrious"
+
+  civitai:
+    model_id: 1288970
+    model_url: "https://civitai.com/models/1288970/pixel-art-style-lora-or-illustrious"
+    air: "urn:air:sdxl:lora:civitai:1288970@1454408"
+    version_id: 1454408
+    model_name: "Pixel art style LoRa | Illustrious"
+    version_name: "v1.0"
+    creator: "Oktaze"
+    nsfw: false
+    tags: [pixel_art, style]
+    trained_words: ["pixel art"]
+    files:
+      - "pixelart.safetensors"
+    download_url: "https://civitai.com/api/download/models/1454408"
+
+  compatibility:
+    checkpoint_family: illustrious
+    lora_compatible_base_models: [illustrious]
+    recommended_for: [pixel_art, style]
+    not_recommended_for: [sd1.5, flux]
+
+  generation:
+    lora_weight:
+      recommended: 0.8
+      range: [0.5, 1.0]
+
+  prompting:
+    trigger_words: ["pixel art"]
+
+  raw_notes: |
+    API file name is pixelart.safetensors, while provided local filename is pixelart_up.safetensors.
+    Trained on a large dataset for consistent pixel-art style.
+
+  review:
+    status: api_enriched
+    missing: []
+    warnings:
+      - "Provided local filename differs from API file name."
+
+    sample_status: api_enriched
+    sample_count: 6
+    nsfw_samples_present: false
+  samples:
+    status: api_enriched
+    source: civitai
+    fetched_at: '2026-04-25'
+    model_id: 1288970
+    version_id: 1454408
+    count: 6
+    items:
+      - image_id: 106886165
+        image_url: 
+          https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/eda94275-83b6-4c0f-a5bc-ea5c78004c50/original=true/eda94275-83b6-4c0f-a5bc-ea5c78004c50.jpeg
+        page_url: https://civitai.com/posts/23701933
+        nsfw: false
+        width: 832
+        height: 1216
+        prompt: |-
+          pixel art, (masterpiece, best quality, very aesthetic, absurdres, artist:edalv), gradient background, shadow, shaded, (eyesHD, detailed eyesdetailed eyes, beautiful eyes, high definition eyes), by wamudraws), 1girl, solo, mature female, chest up, old woman, single bun, grey hair, wrinkled skin, wrinkles, purple eyes, sad expression wavy mouth, glasses, granny, beautiful, detailed face, turtleneck sweater, sleeveless, sleeveless sweater, orange sweater, looking at viewer, simple background, hearts, buzz pls, speech bubble,
+        negative_prompt: |-
+          modern, recent, old, oldest, anime, graphic, text, painting, crayon, graphite, abstract, glitch, deformed, mutated, ugly, disfigured, long body, lowres, bad anatomy, bad hands, missing fingers, extra fingers, extra digits, fewer digits, cropped, very displeasing, (worst quality, bad quality:1.2), sketch, jpeg artifacts, signature, watermark, username, (censored, bar_censor, mosaic_censor:1.2), simple background, conjoined, bad ai-generated, bad finger positioning, added fingers, missing fingers, (((missing toes))), ugly hands, ugly feet, (missing fingers on hands), (((missing fingers))), (combined, fused fingers), ((((only 4four fingers)))), ((fragmentation)), ((artifacts)), ((bad pixels)), (((missing toe on foot)), ((big feet)), ((ugly hands)), (((SIX TOES))), (((added toes))), ((combined toes)), ((((SIX TOES:1.5)))), (((bad hand positioning))), (((bad hand turns))), (((wrong finger positioning))), (((missing toes))), (((bad pixels))), (((glitches))), extra hands, NSFW
+        generation:
+          seed: 21687
+          steps: 40
+          cfg_scale: 7
+          sampler: Euler a
+          scheduler:
+          clip_skip: 2
+          size: 832x1216
+          model_hash:
+        resources:
+          - type: checkpoint
+            name:
+            model_id:
+            version_id: 1714002
+            weight:
+          - type: lora
+            name:
+            model_id:
+            version_id: 1574981
+            weight: 1
+          - type: lora
+            name:
+            model_id:
+            version_id: 1454408
+            weight: 1
+          - type: lora
+            name:
+            model_id:
+            version_id: 1732488
+            weight: 1
+        tags: []
+        raw_meta:
+          draft: false
+          extra:
+            remixOfId: 106816926
+          width: 832
+          height: 1216
+          process: txt2img
+          quantity: 1
+          workflow: txt2img
+          baseModel: Illustrious
+          disablePoi: true
+          aspectRatio: 13:19
+          Created Date: 2025-10-20T1851:16.7349483Z
+        post:
+          username: cc7611454442
+          created_at: '2025-10-20T18:55:57.164Z'
+      - image_id: 106887611
+        image_url: 
+          https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/b04d064a-b85d-40fe-8ded-9f6e0cc8aca7/original=true/b04d064a-b85d-40fe-8ded-9f6e0cc8aca7.jpeg
+        page_url: https://civitai.com/posts/23702206
+        nsfw: false
+        width: 832
+        height: 1216
+        prompt: |-
+          pixel art, (masterpiece, best quality, very aesthetic, absurdres, artist:edalv), gradient background, shadow, shaded, (eyesHD, detailed eyesdetailed eyes, beautiful eyes, high definition eyes), by wamudraws), 1girl, solo, wrinkled skin, old woman, beautiful, hair bun, white hair, looking at viewer, chest up, cropped image, smile, gentle smile, orange eyes, profile, portrait, turtleneck sweater, green sweater, simple background, black background, big chest, heart, beautiful, detailed face, nose, closed mouth, ears, beautiful hair, mature female, buzz pls, speech bubble,
+        negative_prompt: |-
+          modern, recent, old, oldest, anime, graphic, text, painting, crayon, graphite, abstract, glitch, deformed, mutated, ugly, disfigured, long body, lowres, bad anatomy, bad hands, missing fingers, extra fingers, extra digits, fewer digits, cropped, very displeasing, (worst quality, bad quality:1.2), sketch, jpeg artifacts, signature, watermark, username, (censored, bar_censor, mosaic_censor:1.2), simple background, conjoined, bad ai-generated, bad finger positioning, added fingers, missing fingers, (((missing toes))), ugly hands, ugly feet, (missing fingers on hands), (((missing fingers))), (combined, fused fingers), ((((only 4four fingers)))), ((fragmentation)), ((artifacts)), ((bad pixels)), (((missing toe on foot)), ((big feet)), ((ugly hands)), (((SIX TOES))), (((added toes))), ((combined toes)), ((((SIX TOES:1.5)))), (((bad hand positioning))), (((bad hand turns))), (((wrong finger positioning))), (((missing toes))), (((bad pixels))), (((glitches))), extra hands, NSFW
+        generation:
+          seed: 21687
+          steps: 40
+          cfg_scale: 7
+          sampler: Euler a
+          scheduler:
+          clip_skip: 2
+          size: 832x1216
+          model_hash:
+        resources:
+          - type: checkpoint
+            name:
+            model_id:
+            version_id: 1714002
+            weight:
+          - type: lora
+            name:
+            model_id:
+            version_id: 1574981
+            weight: 1
+          - type: lora
+            name:
+            model_id:
+            version_id: 1454408
+            weight: 1
+          - type: lora
+            name:
+            model_id:
+            version_id: 1732488
+            weight: 1
+        tags: []
+        raw_meta:
+          draft: false
+          width: 832
+          height: 1216
+          process: txt2img
+          quantity: 1
+          workflow: txt2img
+          baseModel: Illustrious
+          disablePoi: true
+          aspectRatio: 13:19
+          Created Date: 2025-10-20T1902:06.9274662Z
+        post:
+          username: cc7611454442
+          created_at: '2025-10-20T19:09:00.096Z'
+      - image_id: 123920926
+        image_url: 
+          https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/4a7123ec-ec91-454c-9ed4-77cbc0fa9995/original=true/4a7123ec-ec91-454c-9ed4-77cbc0fa9995.jpeg
+        page_url: https://civitai.com/posts/27194340
+        nsfw: false
+        width: 832
+        height: 1216
+        prompt: |-
+          amazing quality,pixel art,masterpiece,best quality,very aesthetic,absurdres,artist:edalv,gradient background,shadow,shaded,eyesHD,detailed eyesdetailed eyes,beautiful eyes,high definition eyes,by wamudraws,solo,mature female,chest up,mirko,boku_no_hero_academia,ponytail,hair_over_shoulder,hair_between_eyes,white_hair,short_hair,teeth,long_eyelashes,red_eyes,dark-skinned_female,fur_collar,rabbit_ears,large breasts,1girl,sad expression wavy mouth,glasses,granny,beautiful,detailed face,turtleneck sweater,sleeveless,sleeveless sweater,purple sweater,looking at viewer,simple background,hearts,buzz pls,speech bubble  <lora:pixelart:1> <lora:Hata4564:1> <lora:buzz pls,speech bubble_illustrious:1>
+        negative_prompt: |-
+          shota, loli, child, kid, aged down, little, watermark, artist_name, signature, url, patreon_username, patreon_logo, patreon_reward, patreon_link, patreon_url, bad quality, worst quality, worst detail, text, english_text, japanese_text, chinese_text, watermark, sketch, censor, censored, artifacts, easynegative, embedding:Illustrious/style/lazyneg, embedding:Illustrious/style/ILXLneg, embedding:Illustrious/style/neghand
+        generation:
+          seed: 58892617
+          steps: 8
+          cfg_scale: 1.2
+          sampler: euler_ancestral_beta
+          scheduler:
+          clip_skip: 2
+          size: 1216x832
+          model_hash: 9bbf8791ee
+        resources:
+          - type: lora
+            name: pixelart
+            model_id:
+            version_id:
+            weight: 1
+          - type: lora
+            name: Hata4564
+            model_id:
+            version_id:
+            weight: 1
+          - type: lora
+            name: speech bubble_illustrious
+            model_id:
+            version_id:
+            weight:
+          - type: lora
+            name: dmd2_sdxl_4step_lora
+            model_id:
+            version_id:
+            weight:
+          - type: model
+            name: novaOrangeXL_v140
+            model_id:
+            version_id:
+            weight:
+        tags: []
+        raw_meta:
+          VAE: Default
+          Date: 2026-03-11T1648:37
+          Model: novaOrangeXL_v140
+          Score: '611'
+          hashes:
+            vae: e3b0c44298
+            model: 9bbf8791ee
+            lora:Hata4564: 8d219c0f99
+            lora:pixelart: c7c3e006ca
+            lora:dmd2_sdxl_4step_lora: a374289e94
+            lora:speech bubble_illustrious: d3978e916b
+            lora:buzz pls, speech bubble_illustrious: d3978e916b
+          Version: ComfyUI
+          PAG scale: '1'
+        post:
+          username: second_cumming
+          created_at: '2026-03-12T08:33:32.709Z'
+      - image_id: 81857042
+        image_url: 
+          https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/3cf7e7b6-1a10-4845-83ea-c09cad9e530d/original=true/3cf7e7b6-1a10-4845-83ea-c09cad9e530d.jpeg
+        page_url: https://civitai.com/posts/18183023
+        nsfw: false
+        width: 1216
+        height: 1024
+        prompt: |-
+          solo, sexy, <lora:Hiyori_Illus:0.7> hiyori, black hair, bangs, twintails, heterochromia, bandaged right arm || Jirai kei, gothic, under-eye bags, dark circles under the eyes, bandaids, Overly detailed, decorated, lots of accessories, piercings, hair ornament, large breasts
+          ,
+          looking at viewer, happy, crazy grin, blush, (shaded face:0.8), thighhighs, legwear, standing, hand on own cheek, holding, baseball bat over shoulder, cowboy shot
+          ,
+          masterpiece, best quality, very aesthetic, absurdres, Detailed face, detailed background, 1=2  <lora:pixelart:1> pixel art
+        negative_prompt: |-
+          bad quality,worst quality,worst detail,watermark, bad anatomy,
+        generation:
+          seed: 311421726
+          steps: 29
+          cfg_scale: 5
+          sampler: Euler a
+          scheduler:
+          clip_skip:
+          size: 1216x1024
+          model_hash: 1207404b17
+        resources:
+          - type: lora
+            name: Hiyori_Illus
+            model_id:
+            version_id:
+            weight: 0.7
+          - type: lora
+            name: pixelart
+            model_id:
+            version_id:
+            weight: 1
+          - type: model
+            name: ntrMIXIllustriousXL_xiii
+            model_id:
+            version_id:
+            weight:
+        tags: []
+        raw_meta:
+          Model: ntrMIXIllustriousXL_xiii
+          hashes:
+            model: 1207404b17
+            lora:pixelart: bee7c76c4b8a
+            lora:Hiyori_Illus: eebed8b5bff0
+          Version: f2.0.1v1.10.1-previous-662-g0ced1d0c
+          Schedule type: Automatic
+        post:
+          username: MrZhigga
+          created_at: '2025-06-12T09:00:00.000Z'
+      - image_id: 123920921
+        image_url: 
+          https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/4f9b87e2-ddfe-4d13-9b8f-096b765ed19a/original=true/4f9b87e2-ddfe-4d13-9b8f-096b765ed19a.jpeg
+        page_url: https://civitai.com/posts/27194340
+        nsfw: false
+        width: 832
+        height: 1216
+        prompt: |-
+          amazing quality,pixel art,masterpiece,best quality,very aesthetic,absurdres,artist:edalv,gradient background,shadow,shaded,eyesHD,detailed eyesdetailed eyes,beautiful eyes,high definition eyes,by wamudraws,solo,mature femboy,trap,otoko no ko,chest up,astolfo_(fate),fate_(series),1boy,male_focus,twintails,braid,hair_intakes,white_hair,long_braid,skin_fang,heart-shaped_pupils,pink_eyes,shiny_skin,sailor_collar,black_bowtie,hood,black_ribbon,animal_ears,flat chest,femboy,sad expression wavy mouth,glasses,granny,beautiful,detailed face,turtleneck sweater,sleeveless,sleeveless sweater,blush sweater,looking at viewer,simple background,hearts,buzz pls,speech bubble  <lora:pixelart:1> <lora:Hata4564:1> <lora:buzz pls,speech bubble_illustrious:1>
+        negative_prompt: |-
+          shota, loli, child, kid, aged down, little, watermark, artist_name, signature, url, patreon_username, patreon_logo, patreon_reward, patreon_link, patreon_url, bad quality, worst quality, worst detail, text, english_text, japanese_text, chinese_text, watermark, sketch, censor, censored, artifacts, easynegative, embedding:Illustrious/style/lazyneg, embedding:Illustrious/style/ILXLneg, embedding:Illustrious/style/neghand
+        generation:
+          seed: 629473128
+          steps: 8
+          cfg_scale: 1.2
+          sampler: euler_ancestral_beta
+          scheduler:
+          clip_skip: 2
+          size: 1216x832
+          model_hash: 9bbf8791ee
+        resources:
+          - type: lora
+            name: pixelart
+            model_id:
+            version_id:
+            weight: 1
+          - type: lora
+            name: Hata4564
+            model_id:
+            version_id:
+            weight: 1
+          - type: lora
+            name: speech bubble_illustrious
+            model_id:
+            version_id:
+            weight:
+          - type: lora
+            name: dmd2_sdxl_4step_lora
+            model_id:
+            version_id:
+            weight:
+          - type: model
+            name: novaOrangeXL_v140
+            model_id:
+            version_id:
+            weight:
+        tags: []
+        raw_meta:
+          VAE: Default
+          Date: 2026-03-11T1652:52
+          Model: novaOrangeXL_v140
+          Score: '661'
+          hashes:
+            vae: e3b0c44298
+            model: 9bbf8791ee
+            lora:Hata4564: 8d219c0f99
+            lora:pixelart: c7c3e006ca
+            lora:dmd2_sdxl_4step_lora: a374289e94
+            lora:speech bubble_illustrious: d3978e916b
+            lora:buzz pls, speech bubble_illustrious: d3978e916b
+          Version: ComfyUI
+          PAG scale: '1'
+        post:
+          username: second_cumming
+          created_at: '2026-03-12T08:33:32.709Z'
+      - image_id: 59730720
+        image_url: 
+          https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/df93c167-c087-4fba-8fcf-ea949ba837c6/original=true/df93c167-c087-4fba-8fcf-ea949ba837c6.jpeg
+        page_url: https://civitai.com/posts/13357900
+        nsfw: false
+        width: 1664
+        height: 2432
+        prompt: |-
+          <lora:pixelart:1>,pixel art,masterpiece, absurdres,amazing quality, best quality, detailed background, 8k, 1girl, zero two, selfie pose, :p, from above, mecha,
+        negative_prompt: |-
+          lowres, bad quality, worst quality, bad anatomy, sketch, jpeg artifacts, ugly, poorly drawn, censor,blurry, watermark,old,oldest,watermark,bad toes, bad fingers, text, text bubble, multiple views, school uniform, patreon logo, out of frame, twitter logo, artist name,3d, extra legs, extra arms, extra fingers, extra navel, extra breasts, extra hands,
+        generation:
+          seed: 1838427335
+          steps: 30
+          cfg_scale: 4
+          sampler: Euler a
+          scheduler:
+          clip_skip:
+          size: 832x1216
+          model_hash: c3688ee04c
+        resources:
+          - type: lora
+            name: pixelart
+            model_id:
+            version_id:
+            weight: 1
+          - type: model
+            name: waiNSFWIllustrious_v110
+            model_id:
+            version_id:
+            weight:
+        tags: []
+        raw_meta:
+          Model: waiNSFWIllustrious_v110
+          hashes:
+            model: c3688ee04c
+            lora:pixelart: bee7c76c4b8a
+          Version: v1.10.1
+          Hires steps: '15'
+          Hires upscale: '2'
+          Schedule type: Automatic
+          Hires upscaler: R-ESRGAN 4x+ Anime6B
+          Denoising strength: '0.45'
+        post:
+          username: Oktaze
+          created_at: '2025-02-24T01:35:46.071Z'

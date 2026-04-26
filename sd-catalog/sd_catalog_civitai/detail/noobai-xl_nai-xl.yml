@@ -1,0 +1,436 @@
+schema_version: 1
+kind: civitai_model_detail
+model_key: noobai-xl_nai-xl
+sources:
+  civitai_api: "https://civitai.com/api/v1/models/:modelId"
+  generated_at: "2026-04-25"
+  append_policy: "Append new entries under models using normalized local filename keys."
+
+model:
+  local_file:
+  catalog_type: checkpoint
+  base_model: noob
+  base_model_raw: "NoobAI"
+
+  civitai:
+    model_id: 833294
+    model_url: "https://civitai.com/models/833294/noobai-xl-nai-xl?modelVersionId=968495"
+    air: "urn:air:sdxl:checkpoint:civitai:833294@968495"
+    version_id: 968495
+    model_name: "NoobAI-XL (NAI-XL)"
+    version_name: "Epsilon-pred 0.5-Version"
+    creator: "L_A_X"
+    nsfw: false
+    tags: [anime, base_model, based, styles]
+    trained_words: []
+    files:
+      - "noobaiXLNAIXL_epsilonPred05Version.safetensors"
+    download_url: "https://civitai.com/api/download/models/968495"
+
+  compatibility:
+    checkpoint_family: noob
+    lora_compatible_base_models: [noob, illustrious_noob]
+    recommended_for: [anime, illustration]
+    not_recommended_for: [sd1.5_lora, flux_lora]
+
+  generation:
+    sampler:
+      recommended: ["Euler"]
+      notes: "Model card warns that other samplers may not work properly for this v-pred workflow."
+    steps:
+      recommended: [28, 35]
+    cfg_scale:
+      recommended: [4, 5]
+    resolution:
+      recommended:
+        - "768x1344"
+        - "832x1216"
+        - "896x1152"
+        - "1024x1024"
+        - "1152x896"
+        - "1216x832"
+        - "1344x768"
+      notes: "Keep total area around 1024x1024."
+
+  prompting:
+    positive_prefix: "masterpiece, best quality, newest, absurdres, highres, safe"
+    negative_prompt:
+      recommended:
+        - nsfw
+        - worst quality
+        - old
+        - early
+        - low quality
+        - lowres
+        - signature
+        - username
+        - logo
+        - bad hands
+        - mutated hands
+        - mammal
+        - anthro
+        - furry
+        - ambiguous form
+        - feral
+    template:
+      - "<1girl/1boy/1other>"
+      - "<character>"
+      - "<series>"
+      - "<artists>"
+      - "<special_tags>"
+      - "<general_tags>"
+      - "<other_tags>"
+    special_tags:
+      years:
+        old: "2005 to 2010"
+        early: "2011 to 2014"
+        mid: "2014 to 2017"
+        recent: "2018 to 2020"
+        newest: "2021 to 2024"
+      quality:
+        masterpiece: "> 95th percentile"
+        best quality: "> 85th and <= 95th percentile"
+        good quality: "> 60th and <= 85th percentile"
+        normal quality: "> 30th and <= 60th percentile"
+        worst quality: "<= 30th percentile"
+
+  raw_notes: |
+    File not downloaded yet. Download if NoobAI-compatible LoRAs are added.
+    Fine-tuned from Laxhar/noobai-XL_v1.0.
+    This v-prediction model requires specific parameter configuration.
+    Diffusers scheduler args from card: prediction_type="v_prediction", rescale_betas_zero_snr=true.
+    Recommended settings: CFG 4-5, Steps 28-35, Sampling Method Euler.
+
+  review:
+    status: api_enriched
+    missing: [local_file]
+    sample_status: api_enriched
+    sample_count: 6
+    nsfw_samples_present: false
+  samples:
+    status: api_enriched
+    source: civitai
+    fetched_at: '2026-04-25'
+    model_id: 833294
+    version_id: 968495
+    count: 6
+    items:
+      - image_id: 35430457
+        image_url: 
+          https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/e1628eed-eabd-41f9-9b08-bbbe3ef03487/original=true/e1628eed-eabd-41f9-9b08-bbbe3ef03487.jpeg
+        page_url: https://civitai.com/posts/8096746
+        nsfw: false
+        width: 832
+        height: 1216
+        prompt: |-
+          abstract, disintegration, masterpiece, best quality, solo, glitch, glitching, aesthetic, 8k, ethereal lighting, purple, nighttime, darkness, surreal art, fantasy, spot color, blue and black theme, dark, sad, parted lips, floating hair, gothic, flora, black and thick liquid, fog, underlighting, bokeh, blurry background, strong visual impact, film lighting, raiden shogun,  <lora:TCV_illusXL_Incrs_v2:0.4>, different reflection, (glass, breaking, shatter:1.2), reflection, glass shards, broken glass, reaching towards viewer, shatter across face, blood from eyes, split, glass over on eye, close-up, glass across face, glowing eye,
+        negative_prompt: |-
+          bad anatomy, bad proportions, extra limbs, extra digit, extra legs, extra legs and arms, disfigured, missing arms, too many fingers, fused fingers, missing fingers, unclear eyes, watermark, username
+        generation:
+          seed: 3228774137
+          steps: 24
+          cfg_scale: 6
+          sampler: Euler a
+          scheduler:
+          clip_skip:
+          size: 832x1216
+          model_hash: 5b2239e943
+        resources:
+          - type: lora
+            name: TCV_illusXL_Incrs_v2
+            model_id:
+            version_id:
+            weight: 0.4
+          - type: model
+            name: noobaiXLNAIXL_epsilonPred05Version
+            model_id:
+            version_id:
+            weight:
+        tags: []
+        raw_meta:
+          RNG: NV
+          VAE: fixFP16ErrorsSDXLLowerMemoryUse_v10.safetensors
+          Model: noobaiXLNAIXL_epsilonPred05Version
+          hashes:
+            vae: 235745af8d
+            model: 5b2239e943
+            lora:TCV_illusXL_Incrs_v2: d3b85b43ac0c
+          Version: f0.0.17v1.8.0rc-latest-287-g77bdb920
+        post:
+          username: FallenIncursio
+          created_at: '2024-10-19T13:57:44.882Z'
+      - image_id: 35667753
+        image_url: 
+          https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/39616a47-8501-4586-9c17-8f498ecf6107/original=true/39616a47-8501-4586-9c17-8f498ecf6107.jpeg
+        page_url: https://civitai.com/posts/8150164
+        nsfw: false
+        width: 1664
+        height: 2432
+        prompt: |-
+          masterpiece, best quality, 1girl, Manaka Nemu, braided hair, purple eyes, medium breasts, sidelocks, long sleeves, black skirt, black serafuku, neckerchief, black thighhighs, breast pocket,  standing, outdoors, wind, park, looking at viewer,   <lora:Nemu last IXL:1>
+        negative_prompt: |-
+          bad anatomy, bad proportions, extra limbs, extra digit, extra legs, extra legs and arms, disfigured, missing arms, too many fingers, fused fingers, missing fingers, unclear eyes, watermark, username, speech bubble,
+        generation:
+          seed: 1822681723
+          steps: 30
+          cfg_scale: 6
+          sampler: Euler A Comfy
+          scheduler:
+          clip_skip: 2
+          size: 832x1216
+          model_hash: 5b2239e943
+        resources:
+          - type: lora
+            name: Nemu last IXL
+            model_id:
+            version_id:
+            weight:
+          - type: model
+            name: noobaiXLNAIXL_epsilonPred05Version
+            model_id:
+            version_id:
+            weight:
+        tags: []
+        raw_meta:
+          VAE: sdxl_vae.safetensors
+          Model: noobaiXLNAIXL_epsilonPred05Version
+          hashes:
+            vae: 235745af8d
+            model: 5b2239e943
+            lora:Nemu last IXL: 4c2643d85f9e
+          Version: f1.0.2-v1.10.1RC-latest-697-g037b6482
+          Hires upscale: '2'
+          Schedule type: Align Your Steps
+          Hires upscaler: 4xNomos8kDAT
+          Denoising strength: '0.25'
+        post:
+          username: 'null'
+          created_at: '2025-02-08T11:18:36.612Z'
+      - image_id: 35672719
+        image_url: 
+          https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/3ae09ca9-2517-4ea7-8421-d1b85518a38e/original=true/3ae09ca9-2517-4ea7-8421-d1b85518a38e.jpeg
+        page_url: https://civitai.com/posts/8151534
+        nsfw: false
+        width: 832
+        height: 1216
+        prompt: |-
+          artist:bigpeaches, artist:lun7732, artist:tanabe kyou, artist:antechinus, realistic, masterpiece, best quality, 1girl, QueenMarika, yellow eyes, single braid, jewelry, necklace, forehead jewel, armlet, <lora:QueenMarika_illusXL_Incrs_v1.1:1>, <lora:ChamIllustriousBackgroundEnhancer:0.8>, white hoodie, skirt, black pantyhose, night, outdoors, street, hands in pockets,
+        negative_prompt: |-
+          bad anatomy, bad proportions, extra limbs, extra digit, extra legs, extra legs and arms, disfigured, missing arms, too many fingers, fused fingers, missing fingers, unclear eyes, watermark, username, blurry, blurry background, simple background, censored,
+        generation:
+          seed: 1887213783
+          steps: 24
+          cfg_scale: 6
+          sampler: Euler a
+          scheduler:
+          clip_skip:
+          size: 832x1216
+          model_hash: 5b2239e943
+        resources:
+          - type: lora
+            name: QueenMarika_illusXL_Incrs_v1.1
+            model_id:
+            version_id:
+            weight: 1
+          - type: lora
+            name: ChamIllustriousBackgroundEnhancer
+            model_id:
+            version_id:
+            weight: 0.8
+          - type: model
+            name: noobaiXLNAIXL_epsilonPred05Version
+            model_id:
+            version_id:
+            weight:
+        tags: []
+        raw_meta:
+          RNG: NV
+          VAE: fixFP16ErrorsSDXLLowerMemoryUse_v10.safetensors
+          Model: noobaiXLNAIXL_epsilonPred05Version
+          hashes:
+            vae: 235745af8d
+            model: 5b2239e943
+            lora:QueenMarika_illusXL_Incrs_v1.1: ec1ccd98f9f0
+            lora:ChamIllustriousBackgroundEnhancer: d8eb0b4191fb
+          Version: f0.0.17v1.8.0rc-latest-287-g77bdb920
+          ADetailer model: face_yolov8n.pt
+          ADetailer version: 24.9.0
+          ADetailer mask blur: '4'
+          ADetailer confidence: '0.3'
+          ADetailer dilate erode: '4'
+          ADetailer inpaint padding: '32'
+          ADetailer denoising strength: '0.4'
+          ADetailer inpaint only masked: 'True'
+        post:
+          username: FallenIncursio
+          created_at: '2024-10-20T22:58:51.685Z'
+      - image_id: 39034120
+        image_url: 
+          https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/1acc1951-4a52-4dfc-bd56-8ffb94428125/original=true/1acc1951-4a52-4dfc-bd56-8ffb94428125.jpeg
+        page_url: https://civitai.com/posts/8907540
+        nsfw: false
+        width: 1664
+        height: 2432
+        prompt: |-
+          1girl, solo, bakugou mitsuki, purple shirt, ribbed sweater, blonde hair, mature female, portrait, looking at viewer, simple background, presenting, depth of field, 
+          masterpiece, best quality, <lora:blackwhiplash(bwl)-guy90-Illust-Lycorisv1:1> blaash
+        negative_prompt: |-
+          lowres, worst quality, low quality, bad anatomy, bad hands, multiple views, 4koma, censored, jpeg artifacts
+        generation:
+          seed: 1207556183
+          steps: 30
+          cfg_scale: 7
+          sampler: Euler a
+          scheduler:
+          clip_skip: 2
+          size: 1664x2432
+          model_hash: 5b2239e943
+        resources:
+          - type: lora
+            name: blackwhiplash(bwl)-guy90-Illust-Lycorisv1
+            model_id:
+            version_id:
+            weight:
+          - type: model
+            name: noobaiXLNAIXL_epsilonPred05Version
+            model_id:
+            version_id:
+            weight:
+        tags: []
+        raw_meta:
+          RNG: NV
+          VAE: sdxlVAE_sdxlVAE.safetensors
+          Model: noobaiXLNAIXL_epsilonPred05Version
+          hashes:
+            vae: 63aeecb90f
+            model: 5b2239e943
+            lora:blackwhiplash(bwl)-guy90-Illust-Lycorisv1: '0xa6c667ed73'
+          Version: f1.0.2-v1.10.1RC-latest-702-g363970b5
+          Schedule type: Normal
+          Denoising strength: '0.2'
+          multidiffusion_method: Mixture of Diffusers
+          multidiffusion_enabled: 'True'
+          multidiffusion_tile_width: '832'
+          multidiffusion_tile_height: '1216'
+          multidiffusion_tile_overlap: '256'
+          multidiffusion_tile_batch_size: '2'
+        post:
+          username: guy90
+          created_at: '2024-11-08T15:34:22.590Z'
+      - image_id: 62352491
+        image_url: 
+          https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/4d79a189-7cb9-4adc-b983-b3b83be07080/original=true/4d79a189-7cb9-4adc-b983-b3b83be07080.jpeg
+        page_url: https://civitai.com/posts/13926379
+        nsfw: false
+        width: 1248
+        height: 1872
+        prompt: |-
+          masterpiece, best quality, 1girl, solo <lora:ootzelda-illu-nvwls-v1-000006:1> ocarzld, blonde hair, long hair, sidelocks, pointy ears, gold tiara, earrings, gold armor, shoulder armor, long dress, white dress, magenta tunic, sleeveless tunic, tabard, elbow gloves, white gloves  <lora:style_walfie_illustriousXL-GLoRA:1> chibi, simple background, arms up, open mouth, looking up, floating triforce above head
+        negative_prompt: |-
+          worst quality, low quality, bad anatomy, watermark
+        generation:
+          seed: 3553510153
+          steps: 24
+          cfg_scale: 6
+          sampler: Euler a
+          scheduler:
+          clip_skip:
+          size: 832x1248
+          model_hash: 5b2239e943
+        resources:
+          - type: lora
+            name: ootzelda-illu-nvwls-v1-000006
+            model_id:
+            version_id:
+            weight: 1
+          - type: lora
+            name: style_walfie_illustriousXL-GLoRA
+            model_id:
+            version_id:
+            weight: 1
+          - type: model
+            name: noobaiXLNAIXL_epsilonPred05Version
+            model_id:
+            version_id:
+            weight:
+        tags: []
+        raw_meta:
+          RNG: CPU
+          VAE: sdxl_vae_fixed_fp16.safetensors
+          Model: noobaiXLNAIXL_epsilonPred05Version
+          hashes:
+            vae: 235745af8d
+            model: 5b2239e943
+            lora:ootzelda-illu-nvwls-v1-000006: 8085aee20d09
+            lora:style_walfie_illustriousXL-GLoRA: 20c33490cbc2
+          Version: f0.0.20.1dev-v1.10.0RC-latest-685-gf033e578
+          Hires steps: '10'
+          Hires upscale: '1.5'
+          Schedule type: Automatic
+          Hires upscaler: 4x-AnimeSharp
+          ADetailer model: face_yolov8n.pt
+          ADetailer version: 24.4.2
+          Denoising strength: '0.5'
+          ADetailer mask blur: '4'
+          ADetailer confidence: '0.3'
+          ADetailer dilate erode: '4'
+          ADetailer inpaint padding: '32'
+          ADetailer denoising strength: '0.4'
+          ADetailer inpaint only masked: 'True'
+        post:
+          username: novowels
+          created_at: '2025-03-08T23:49:13.556Z'
+      - image_id: 39033187
+        image_url: 
+          https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/8f303bbe-d346-45a2-b565-d9fa4c8961b2/original=true/8f303bbe-d346-45a2-b565-d9fa4c8961b2.jpeg
+        page_url: https://civitai.com/posts/8907336
+        nsfw: false
+        width: 1664
+        height: 2432
+        prompt: |-
+          1girl, solo, gwen stacy, 
+          masterpiece, best quality, <lora:afrobull-guy90-Illust-Lycorisv1:1>, afbul
+        negative_prompt: |-
+          lowres, worst quality, low quality, bad anatomy, bad hands, multiple views, 4koma, censored, jpeg artifacts
+        generation:
+          seed: 4168377768
+          steps: 30
+          cfg_scale: 7
+          sampler: Euler a
+          scheduler:
+          clip_skip: 2
+          size: 1664x2432
+          model_hash: 5b2239e943
+        resources:
+          - type: lora
+            name: afrobull-guy90-Illust-Lycorisv1
+            model_id:
+            version_id:
+            weight: 1
+          - type: model
+            name: noobaiXLNAIXL_epsilonPred05Version
+            model_id:
+            version_id:
+            weight:
+        tags: []
+        raw_meta:
+          RNG: NV
+          VAE: sdxlVAE_sdxlVAE.safetensors
+          Model: noobaiXLNAIXL_epsilonPred05Version
+          hashes:
+            vae: 63aeecb90f
+            model: 5b2239e943
+            lora:afrobull-guy90-Illust-Lycorisv1: '0xc20b15b9f4'
+          Version: f1.0.2-v1.10.1RC-latest-702-g363970b5
+          Schedule type: Normal
+          Denoising strength: '0.2'
+          multidiffusion_method: Mixture of Diffusers
+          multidiffusion_enabled: 'True'
+          multidiffusion_tile_width: '832'
+          multidiffusion_tile_height: '1216'
+          multidiffusion_tile_overlap: '64'
+          multidiffusion_tile_batch_size: '2'
+        post:
+          username: guy90
+          created_at: '2024-11-08T15:27:17.658Z'
+

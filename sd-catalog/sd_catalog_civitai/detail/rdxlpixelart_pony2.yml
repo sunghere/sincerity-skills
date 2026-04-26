@@ -1,0 +1,831 @@
+schema_version: 1
+kind: civitai_model_detail
+model_key: rdxlpixelart_pony2
+sources:
+  civitai_api: "https://civitai.com/api/v1/models/:modelId"
+  generated_at: "2026-04-25"
+  append_policy: "Append new entries under models using normalized local filename keys."
+
+model:
+  local_file: "rdxlPixelArt_pony2.safetensors"
+  catalog_type: checkpoint
+  base_model: pony
+  base_model_raw: "Pony"
+
+  civitai:
+    model_id: 638637
+    model_url: "https://civitai.com/models/638637?modelVersionId=724915"
+    air: "urn:air:sdxl:checkpoint:civitai:638637@724915"
+    version_id: 724915
+    model_name: "RDXL Pixel Art"
+    version_name: "Pony 2"
+    creator: "sinatra"
+    nsfw: false
+    tags: [style]
+    trained_words: ["pixel art"]
+    files:
+      - "rdxlPixelArt_pony2.safetensors"
+    download_url: "https://civitai.com/api/download/models/724915"
+
+  compatibility:
+    checkpoint_family: pony
+    lora_compatible_base_models: [pony]
+    recommended_for: [pixel_art, style]
+    not_recommended_for: [sd1.5_lora, flux_lora]
+
+  prompting:
+    trigger_words: ["pixel art"]
+
+  raw_notes: |
+    Real Dream Pixel Art Pony SDXL checkpoint.
+
+  review:
+    status: api_enriched
+    missing: []
+    sample_status: api_enriched
+    sample_count: 6
+    nsfw_samples_present: false
+  samples:
+    status: api_enriched
+    source: civitai
+    fetched_at: '2026-04-25'
+    model_id: 638637
+    version_id: 724915
+    count: 6
+    items:
+      - image_id: 78390715
+        image_url: 
+          https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/db69377c-bbec-4932-901d-2a277e2cb851/original=true/db69377c-bbec-4932-901d-2a277e2cb851.jpeg
+        page_url: https://civitai.com/posts/17413483
+        nsfw: false
+        width: 1216
+        height: 832
+        prompt: |-
+          score_9, score_8_up, score_7_up, source_photo
+          BREAK, 
+           <lora:810iv:1>, 810interview, ,sitting, solo, indoor,  silver couch, against window shade, window shade,
+          (from side:0.8)
+          black shirt,
+          white short pants,
+          his is one hand up
+          yellow buzz, holding yellow buzz,
+          draw perfect buzz shape
+          (large "I need BUZZ" in the speech bubble on his right side:1.3)
+          following speech bubble is not pixel drawing
+          composition his body and head facing to right side,
+          balanced pallet
+        negative_prompt: |-
+          source_furry, source_pony, source_cartoon,
+          not hold a sign board
+          his hands down on sofa
+          (his plane shirt has no logo)
+          another text in sign board
+          interior photo frame on the wall
+          (his hand not having sign board:1.5)
+          composition his body and head facing to left side,
+          (his face child looks:1.2)
+          (short body:1.2)
+        generation:
+          seed: 1947701956
+          steps: 40
+          cfg_scale: 7
+          sampler: Euler a
+          scheduler:
+          clip_skip: 2
+          size: 1216x832
+          model_hash:
+        resources:
+          - type: lora
+            name: 810iv
+            model_id:
+            version_id:
+            weight: 1
+          - type: checkpoint
+            name: Pony 2
+            model_id:
+            version_id: 724915
+            weight:
+          - type: lora
+            name: v1.0
+            model_id:
+            version_id: 749933
+            weight: 1.2
+          - type: lora
+            name: PONY
+            model_id:
+            version_id: 1667455
+            weight: 1
+          - type: lora
+            name: v1.0
+            model_id:
+            version_id: 565868
+            weight: 1.25
+          - type: lora
+            name: IL
+            model_id:
+            version_id: 1505911
+            weight: 1.4
+        tags: []
+        raw_meta:
+          nsfw: false
+          draft: false
+          extra:
+            remixOfId: 15406710
+          width: 1216
+          height: 832
+          quantity: 1
+          workflow: txt2img
+          baseModel: Pony
+          Created Date: 2025-05-25T1056:46.3910690Z
+        post:
+          username: h2cib84592
+          created_at: '2025-05-25T10:57:59.270Z'
+      - image_id: 34033067
+        image_url: 
+          https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/9d7894a4-5a2f-42f5-ba01-9793d7831f70/original=true/9d7894a4-5a2f-42f5-ba01-9793d7831f70.jpeg
+        page_url: https://civitai.com/posts/7779363
+        nsfw: false
+        width: 1024
+        height: 960
+        prompt: |-
+          retro game art Original HoMM2 style portrait of a witch with fair skin and long, wavy golden blonde hair with a fringe. She is wearing a large, purple witch hat with bronze tip, adorned with a pumpkin, leaves, berries, and bronze hat ribbon with belt buckle. The hat made of fabric with stars pattern. Her facial features include vibrant green eyes, red lips, blushing cheeks and a subtle smile. She is also wearing blue, dangling earrings in the shape of a letter "A" and a dark, intricate sheer dress with a golden star on a laced collar. The background includes a red bat flying in a dark blue and pale pink sky with clouds at dusk and hints of at a whimsical, festive, Halloween-themed setting with decorations and structures of a church and a windmill visible in the distance against the autumn forest . 16-bit, vibrant colors, pixelated, nostalgic, charming, fun, Original HoMM2 style portrait of a witch with fair skin and long, wavy golden blonde hair with a fringe. She is wearing a large, purple witch hat with bronze tip, adorned with a pumpkin, leaves, berries, and bronze hat ribbon with belt buckle. The hat made of fabric with stars pattern. Her facial features include vibrant green eyes, red lips, blushing cheeks and a subtle smile. She is also wearing blue, dangling earrings in the shape of a letter "A" and a dark, intricate sheer dress with a golden star on a laced collar. The background includes a red bat flying in a dark blue and pale pink sky with clouds at dusk and hints of at a whimsical, festive, Halloween-themed setting with decorations and structures of a church and a windmill visible in the distance against the autumn forest, magic, detailed, cozy, highly colorful, vivid color, open atmosphere, incredible quality, very inspirational, inspiring, thought, cinematic, artistic, innocent, beautiful, epic composition, dramatic, elegant, rich deep colors, amazing dynamic, stunning, aesthetic, creative, positive, unique
+        negative_prompt: |-
+          realistic, photorealistic, 35mm film, deformed, glitch, low contrast, noisy, (worst quality, low quality, normal quality, lowres, low details, oversaturated, undersaturated, overexposed, underexposed, grayscale, bw, bad photo, bad photography, bad art:1.4), (watermark, signature, text font, username, error, logo, words, letters, digits, autograph, trademark, name:1.2), (blur, blurry, grainy), morbid, ugly, asymmetrical, mutated malformed, mutilated, poorly lit, bad shadow, draft, cropped, out of frame, cut off, censored, jpeg artifacts, out of focus, glitch, duplicate, (airbrushed, cartoon, anime, semi-realistic, cgi, render, blender, digital art, manga, amateur:1.3), (3D ,3D Game, 3D Game Scene, 3D Character:1.1), (bad hands, bad anatomy, bad body, bad face, bad teeth, bad arms, bad legs, deformities:1.3)
+        generation:
+          seed: 3344298084279060000
+          steps: 8
+          cfg_scale: 1
+          sampler: LCM
+          scheduler: lcm
+          clip_skip: 2
+          size: 1024x960
+          model_hash: 3ac4995c74
+        resources:
+          - type: lora
+            name: sd_xl_offset_example-lora_1.0
+            model_id:
+            version_id:
+            weight:
+          - type: lora
+            name: Heroes_of_Might_and_Magic_2_portraits_SDXL-000017
+            model_id:
+            version_id:
+            weight:
+          - type: lora
+            name: HoMM2_style-V2
+            model_id:
+            version_id:
+            weight:
+          - type: lora
+            name: Heroes_of_Might_and_Magic_2_style_Pony_V1
+            model_id:
+            version_id:
+            weight:
+          - type: lora
+            name: sdxl_lcm_lora
+            model_id:
+            version_id:
+            weight:
+          - type: model
+            name: rdxlPixelArt_pony2
+            model_id:
+            version_id:
+            weight:
+        tags: []
+        raw_meta:
+          VAE: Default (model)
+          Model: rdxlPixelArt_pony2
+          hashes:
+            model: 3ac4995c74
+            lora:sdxl_lcm_lora: c3dbf7eb26
+            lora:HoMM2_style-V2: 1ea21f847b
+            lora:sd_xl_offset_example-lora_1.0: '4852686128'
+            lora:Heroes_of_Might_and_Magic_2_style_Pony_V1: 52108d7d0b
+            lora:Heroes_of_Might_and_Magic_2_portraits_SDXL-000017: bd73d56cd6
+          Version: Fooocus v2.5.5
+          Scheduler: lcm
+          Sharpness: '0.0'
+          Performance: Extreme Speed
+          Adaptive CFG: '1.0'
+          Lora weights:
+            sdxl_lcm_lora: '1.0'
+            HoMM2_style-V2: '0.4'
+            sd_xl_offset_example-lora_1.0: '0.1'
+            Heroes_of_Might_and_Magic_2_style_Pony_V1: '0.4'
+            Heroes_of_Might_and_Magic_2_portraits_SDXL-000017: '1.0'
+        post:
+          username: GorMor
+          created_at: '2024-10-11T15:38:00.388Z'
+      - image_id: 24440252
+        image_url: 
+          https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/2d721057-72ba-4018-8731-00550ae71c2b/original=true/2d721057-72ba-4018-8731-00550ae71c2b.jpeg
+        page_url: https://civitai.com/posts/5457786
+        nsfw: false
+        width: 1024
+        height: 1024
+        prompt: |-
+          princess zelda biker, [pixel art],[score_9]
+        negative_prompt: |-
+          realistic,photorealistic,nsfw,porn,hentai, sex, erotic, nude,naked,
+        generation:
+          seed: 564894964
+          steps: 23
+          cfg_scale: 7
+          sampler: DPM++ SDE
+          scheduler:
+          clip_skip:
+          size: 1024x1024
+          model_hash: 3ac4995c74
+        resources:
+          - type: model
+            name: rdxl-pixel-art-2
+            model_id:
+            version_id:
+            weight:
+        tags: []
+        raw_meta:
+          Model: rdxl-pixel-art-2
+          hashes:
+            model: 3ac4995c74
+          Version: v1.10.1
+          FP8 weight: Enable
+          ControlNet 0:
+            Model: None
+            Module: none
+            Weight: '1.0'
+            Resize Mode: Crop and Resize
+            Threshold A: '0.5'
+            Threshold B: '0.5'
+            Control Mode: Balanced
+            Guidance End: '1.0'
+            Pixel Perfect: 'False'
+            Processor Res: '512'
+            Guidance Start: '0.0'
+          ControlNet 1:
+            Model: None
+            Module: none
+            Weight: '1.0'
+            Resize Mode: Crop and Resize
+            Threshold A: '0.5'
+            Threshold B: '0.5'
+            Control Mode: Balanced
+            Guidance End: '1.0'
+            Pixel Perfect: 'False'
+            Processor Res: '512'
+            Guidance Start: '0.0'
+          ControlNet 2:
+            Model: None
+            Module: none
+            Weight: '1.0'
+            Resize Mode: Crop and Resize
+            Threshold A: '0.5'
+            Threshold B: '0.5'
+            Control Mode: Balanced
+            Guidance End: '1.0'
+            Pixel Perfect: 'False'
+            Processor Res: '512'
+            Guidance Start: '0.0'
+          Schedule type: Karras
+          Denoising strength: '0.35'
+          Token merging ratio: '0.5'
+          Cache FP16 weight for LoRA: 'False'
+        post:
+          username: sinatra
+          created_at: '2024-08-15T14:34:49.638Z'
+      - image_id: 26315339
+        image_url: 
+          https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/e74e6e12-5dca-479e-ade8-2e4956cf9a54/original=true/e74e6e12-5dca-479e-ade8-2e4956cf9a54.jpeg
+        page_url: https://civitai.com/posts/5457786
+        nsfw: false
+        width: 3072
+        height: 4096
+        prompt: |-
+          1girl,blonde hair,very long hair,sleepy,student,longeyelashes,serafuku,
+        negative_prompt: |-
+          bad hands,missing fingers,fused fingers,missing limb,malformed limbs,floating limbs,extra arms,mutated hands,poorly drawn hands,malformed hands,mutated hands and fingers,bad feet,mutation,disfigured,poorly drawn face,
+        generation:
+          seed: 359619393821692
+          steps: 20
+          cfg_scale: 8
+          sampler: Euler
+          scheduler: normal
+          clip_skip:
+          size: 3072x4096
+          model_hash:
+        resources: []
+        tags: []
+        raw_meta:
+          vaes:
+            - sdxl_vae.safetensors
+          Model: rdxlPixelArt_pony2
+          comfy: '{"prompt": {"3": {"inputs": {"seed": 359619393821692, "steps": 20, "cfg": 8.0, "sampler_name": "euler",
+            "scheduler": "normal", "denoise": 1.0, "model": ["41", 0], "positive": ["6", 0], "negative": ["7", 0], "latent_image":
+            ["5", 0]}, "class_type": "KSampler"}, "5": {"inputs": {"width": 768, "height": 1024, "batch_size": 2}, "class_type":
+            "EmptyLatentImage"}, "6": {"inputs": {"text": "1girl,blonde hair,very long hair,sleepy,student,longeyelashes,serafuku,",
+            "clip": ["29", 0]}, "class_type": "CLIPTextEncode"}, "7": {"inputs": {"text": "bad hands,missing fingers,fused
+            fingers,missing limb,malformed limbs,floating limbs,extra arms,mutated hands,poorly drawn hands,malformed hands,mutated
+            hands and fingers,bad feet,mutation,disfigured,poorly drawn face,", "clip": ["41", 1]}, "class_type": "CLIPTextEncode"},
+            "8": {"inputs": {"samples": ["3", 0], "vae": ["36", 0]}, "class_type": "VAEDecode"}, "9": {"inputs": {"filename_prefix":
+            "rdxlPixelArt_pony2.safetensors/image", "images": ["54", 0]}, "class_type": "SaveImage"}, "17": {"inputs": {"model_name":
+            "4x-AnimeSharp.pth"}, "class_type": "UpscaleModelLoader"}, "29": {"inputs": {"stop_at_clip_layer": -2, "clip":
+            ["41", 1]}, "class_type": "CLIPSetLastLayer"}, "36": {"inputs": {"vae_name": "sdxl_vae.safetensors"}, "class_type":
+            "VAELoader"}, "41": {"inputs": {"ckpt_name": "rdxlPixelArt_pony2.safetensors"}, "class_type": "CheckpointLoaderSimple"},
+            "43": {"inputs": {"text": "best quality,masterpiece,1girl,hair between eyes,long hair,very long hair,sexy,thigh_ribbon,crown,green
+            hair,short_kimono,yokozuwari,", "clip": ["58", 0]}, "class_type": "CLIPTextEncode"}, "44": {"inputs": {"text":
+            "bad hands,missing fingers,fused fingers,missing limb,malformed limbs,floating limbs,extra arms,mutated hands,poorly
+            drawn hands,malformed hands,mutated hands and fingers,bad feet,mutation,disfigured,poorly drawn face,", "clip":
+            ["41", 1]}, "class_type": "CLIPTextEncode"}, "45": {"inputs": {"seed": 792085967636374, "steps": 20, "cfg": 8.0,
+            "sampler_name": "euler", "scheduler": "normal", "denoise": 1.0, "model": ["41", 0], "positive": ["43", 0], "negative":
+            ["44", 0], "latent_image": ["50", 0]}, "class_type": "KSampler"}, "50": {"inputs": {"width": 768, "height": 1024,
+            "batch_size": 2}, "class_type": "EmptyLatentImage"}, "54": {"inputs": {"upscale_model": ["17", 0], "image": ["8",
+            0]}, "class_type": "ImageUpscaleWithModel"}, "55": {"inputs": {"samples": ["45", 0], "vae": ["36", 0]}, "class_type":
+            "VAEDecode"}, "56": {"inputs": {"upscale_model": ["17", 0], "image": ["55", 0]}, "class_type": "ImageUpscaleWithModel"},
+            "57": {"inputs": {"filename_prefix": "rdxlPixelArt_pony2.safetensors/image", "images": ["56", 0]}, "class_type":
+            "SaveImage"}, "58": {"inputs": {"stop_at_clip_layer": -2, "clip": ["41", 1]}, "class_type": "CLIPSetLastLayer"},
+            "59": {"inputs": {"stop_at_clip_layer": -2, "clip": ["41", 1]}, "class_type": "CLIPSetLastLayer"}, "60": {"inputs":
+            {"stop_at_clip_layer": -2, "clip": ["41", 1]}, "class_type": "CLIPSetLastLayer"}, "61": {"inputs": {"text": "1girl,mature_female,teacher,silver
+            hair,longeyelashes,beautiful_detailed_eyes,hair bun,suit,teasing_smile,seductive_smile,", "clip": ["59", 0]},
+            "class_type": "CLIPTextEncode"}, "62": {"inputs": {"text": "bad hands,missing fingers,fused fingers,missing limb,malformed
+            limbs,floating limbs,extra arms,mutated hands,poorly drawn hands,malformed hands,mutated hands and fingers,bad
+            feet,mutation,disfigured,poorly drawn face,", "clip": ["41", 1]}, "class_type": "CLIPTextEncode"}, "63": {"inputs":
+            {"text": "2girls,female_pervert,big breasts,purple hair,blunt bangs,pink eyes,asymmetrical_docking,ear_biting,female_orgasm,",
+            "clip": ["60", 0]}, "class_type": "CLIPTextEncode"}, "64": {"inputs": {"text": "bad hands,missing fingers,fused
+            fingers,missing limb,malformed limbs,floating limbs,extra arms,mutated hands,poorly drawn hands,malformed hands,mutated
+            hands and fingers,bad feet,mutation,disfigured,poorly drawn face,", "clip": ["41", 1]}, "class_type": "CLIPTextEncode"},
+            "65": {"inputs": {"seed": 735149047989265, "steps": 20, "cfg": 8.0, "sampler_name": "euler", "scheduler": "normal",
+            "denoise": 1.0, "model": ["41", 0], "positive": ["61", 0], "negative": ["62", 0], "latent_image": ["67", 0]},
+            "class_type": "KSampler"}, "66": {"inputs": {"seed": 640056571578535, "steps": 20, "cfg": 8.0, "sampler_name":
+            "euler", "scheduler": "normal", "denoise": 1.0, "model": ["41", 0], "positive": ["63", 0], "negative": ["64",
+            0], "latent_image": ["68", 0]}, "class_type": "KSampler"}, "67": {"inputs": {"width": 1024, "height": 768, "batch_size":
+            2}, "class_type": "EmptyLatentImage"}, "68": {"inputs": {"width": 960, "height": 1280, "batch_size": 2}, "class_type":
+            "EmptyLatentImage"}, "69": {"inputs": {"samples": ["65", 0], "vae": ["36", 0]}, "class_type": "VAEDecode"}, "70":
+            {"inputs": {"samples": ["66", 0], "vae": ["36", 0]}, "class_type": "VAEDecode"}, "71": {"inputs": {"filename_prefix":
+            "rdxlPixelArt_pony2.safetensors/image", "images": ["69", 0]}, "class_type": "SaveImage"}, "72": {"inputs": {"filename_prefix":
+            "rdxlPixelArt_pony2.safetensors/image", "images": ["70", 0]}, "class_type": "SaveImage"}}, "workflow": {"last_node_id":
+            72, "last_link_id": 90, "nodes": [{"id": 29, "type": "CLIPSetLastLayer", "pos": [90, -204], "size": {"0": 315,
+            "1": 58}, "flags": {}, "order": 8, "mode": 0, "inputs": [{"name": "clip", "type": "CLIP", "link": 48, "label":
+            "clip"}], "outputs": [{"name": "CLIP", "type": "CLIP", "links": [35], "slot_index": 0, "shape": 3, "label": "CLIP"}],
+            "properties": {"Node name for S&R": "CLIPSetLastLayer"}, "widgets_values": [-2]}, {"id": 5, "type": "EmptyLatentImage",
+            "pos": [913, 105], "size": {"0": 315, "1": 106}, "flags": {}, "order": 0, "mode": 0, "outputs": [{"name": "LATENT",
+            "type": "LATENT", "links": [2], "slot_index": 0, "label": "LATENT"}], "properties": {"Node name for S&R": "EmptyLatentImage"},
+            "widgets_values": [768, 1024, 2]}, {"id": 17, "type": "UpscaleModelLoader", "pos": [1273, -145], "size": {"0":
+            315, "1": 58}, "flags": {}, "order": 1, "mode": 0, "outputs": [{"name": "UPSCALE_MODEL", "type": "UPSCALE_MODEL",
+            "links": [62, 63], "slot_index": 0, "shape": 3, "label": "UPSCALE_MODEL"}], "properties": {"Node name for S&R":
+            "UpscaleModelLoader"}, "widgets_values": ["4x-AnimeSharp.pth"]}, {"id": 8, "type": "VAEDecode", "pos": [1315,
+            -36], "size": {"0": 210, "1": 46}, "flags": {}, "order": 23, "mode": 0, "inputs": [{"name": "samples", "type":
+            "LATENT", "link": 7, "label": "samples"}, {"name": "vae", "type": "VAE", "link": 39, "label": "vae"}], "outputs":
+            [{"name": "IMAGE", "type": "IMAGE", "links": [58], "slot_index": 0, "label": "IMAGE"}], "properties": {"Node name
+            for S&R": "VAEDecode"}}, {"id": 9, "type": "SaveImage", "pos": [1649, -122], "size": {"0": 210, "1": 270}, "flags":
+            {"collapsed": false}, "order": 31, "mode": 0, "inputs": [{"name": "images", "type": "IMAGE", "link": 59, "label":
+            "images"}], "properties": {}, "widgets_values": ["%Load Checkpoint.ckpt_name%/image"]}, {"id": 54, "type": "ImageUpscaleWithModel",
+            "pos": [1279, 86], "size": {"0": 241.79998779296875, "1": 46}, "flags": {}, "order": 27, "mode": 0, "inputs":
+            [{"name": "upscale_model", "type": "UPSCALE_MODEL", "link": 63, "label": "upscale_model"}, {"name": "image", "type":
+            "IMAGE", "link": 58, "label": "image"}], "outputs": [{"name": "IMAGE", "type": "IMAGE", "links": [59], "slot_index":
+            0, "shape": 3, "label": "IMAGE"}], "properties": {"Node name for S&R": "ImageUpscaleWithModel"}}, {"id": 55, "type":
+            "VAEDecode", "pos": [1291, 374], "size": {"0": 210, "1": 46}, "flags": {}, "order": 24, "mode": 0, "inputs": [{"name":
+            "samples", "type": "LATENT", "link": 60, "label": "samples"}, {"name": "vae", "type": "VAE", "link": 61, "label":
+            "vae"}], "outputs": [{"name": "IMAGE", "type": "IMAGE", "links": [64], "shape": 3, "label": "IMAGE"}], "properties":
+            {"Node name for S&R": "VAEDecode"}}, {"id": 56, "type": "ImageUpscaleWithModel", "pos": [1286, 508], "size": {"0":
+            241.79998779296875, "1": 46}, "flags": {}, "order": 28, "mode": 0, "inputs": [{"name": "upscale_model", "type":
+            "UPSCALE_MODEL", "link": 62, "label": "upscale_model"}, {"name": "image", "type": "IMAGE", "link": 64, "label":
+            "image"}], "outputs": [{"name": "IMAGE", "type": "IMAGE", "links": [65], "slot_index": 0, "shape": 3, "label":
+            "IMAGE"}], "properties": {"Node name for S&R": "ImageUpscaleWithModel"}}, {"id": 45, "type": "KSampler", "pos":
+            [912, 267], "size": {"0": 315, "1": 262}, "flags": {}, "order": 20, "mode": 0, "inputs": [{"name": "model", "type":
+            "MODEL", "link": 51, "label": "model"}, {"name": "positive", "type": "CONDITIONING", "link": 66, "label": "positive"},
+            {"name": "negative", "type": "CONDITIONING", "link": 67, "label": "negative"}, {"name": "latent_image", "type":
+            "LATENT", "link": 53, "label": "latent_image"}], "outputs": [{"name": "LATENT", "type": "LATENT", "links": [60],
+            "slot_index": 0, "shape": 3, "label": "LATENT"}], "properties": {"Node name for S&R": "KSampler"}, "widgets_values":
+            [792085967636374, "randomize", 20, 8, "euler", "normal", 1]}, {"id": 50, "type": "EmptyLatentImage", "pos": [905,
+            602], "size": {"0": 315, "1": 106}, "flags": {}, "order": 2, "mode": 0, "outputs": [{"name": "LATENT", "type":
+            "LATENT", "links": [53], "shape": 3, "label": "LATENT"}], "properties": {"Node name for S&R": "EmptyLatentImage"},
+            "widgets_values": [768, 1024, 2]}, {"id": 3, "type": "KSampler", "pos": [917, -206], "size": {"0": 315, "1": 262},
+            "flags": {}, "order": 19, "mode": 0, "inputs": [{"name": "model", "type": "MODEL", "link": 46, "label": "model"},
+            {"name": "positive", "type": "CONDITIONING", "link": 4, "label": "positive"}, {"name": "negative", "type": "CONDITIONING",
+            "link": 6, "label": "negative"}, {"name": "latent_image", "type": "LATENT", "link": 2, "label": "latent_image"}],
+            "outputs": [{"name": "LATENT", "type": "LATENT", "links": [7], "slot_index": 0, "label": "LATENT"}], "properties":
+            {"Node name for S&R": "KSampler"}, "widgets_values": [359619393821692, "randomize", 20, 8, "euler", "normal",
+            1]}, {"id": 58, "type": "CLIPSetLastLayer", "pos": [104, 274], "size": {"0": 315, "1": 58}, "flags": {}, "order":
+            10, "mode": 0, "inputs": [{"name": "clip", "type": "CLIP", "link": 68, "label": "clip"}], "outputs": [{"name":
+            "CLIP", "type": "CLIP", "links": [69], "slot_index": 0, "shape": 3, "label": "CLIP"}], "properties": {"Node name
+            for S&R": "CLIPSetLastLayer"}, "widgets_values": [-2]}, {"id": 57, "type": "SaveImage", "pos": [1624, 328], "size":
+            {"0": 315, "1": 270}, "flags": {}, "order": 32, "mode": 0, "inputs": [{"name": "images", "type": "IMAGE", "link":
+            65, "label": "images"}], "properties": {}, "widgets_values": ["%Load Checkpoint.ckpt_name%/image"]}, {"id": 59,
+            "type": "CLIPSetLastLayer", "pos": [83, 775], "size": {"0": 315, "1": 58}, "flags": {}, "order": 11, "mode": 0,
+            "inputs": [{"name": "clip", "type": "CLIP", "link": 72, "label": "clip"}], "outputs": [{"name": "CLIP", "type":
+            "CLIP", "links": [74], "shape": 3, "label": "CLIP", "slot_index": 0}], "properties": {"Node name for S&R": "CLIPSetLastLayer"},
+            "widgets_values": [-2]}, {"id": 60, "type": "CLIPSetLastLayer", "pos": [81, 1109], "size": {"0": 315, "1": 58},
+            "flags": {}, "order": 12, "mode": 0, "inputs": [{"name": "clip", "type": "CLIP", "link": 73, "label": "clip"}],
+            "outputs": [{"name": "CLIP", "type": "CLIP", "links": [75], "shape": 3, "label": "CLIP", "slot_index": 0}], "properties":
+            {"Node name for S&R": "CLIPSetLastLayer"}, "widgets_values": [-2]}, {"id": 65, "type": "KSampler", "pos": [912,
+            774], "size": {"0": 315, "1": 262}, "flags": {}, "order": 21, "mode": 0, "inputs": [{"name": "model", "type":
+            "MODEL", "link": 79, "label": "model"}, {"name": "positive", "type": "CONDITIONING", "link": 78, "label": "positive"},
+            {"name": "negative", "type": "CONDITIONING", "link": 84, "label": "negative"}, {"name": "latent_image", "type":
+            "LATENT", "link": 85, "label": "latent_image"}], "outputs": [{"name": "LATENT", "type": "LATENT", "links": [89],
+            "shape": 3, "label": "LATENT"}], "properties": {"Node name for S&R": "KSampler"}, "widgets_values": [735149047989265,
+            "randomize", 20, 8, "euler", "normal", 1]}, {"id": 66, "type": "KSampler", "pos": [923, 1239], "size": {"0": 315,
+            "1": 262}, "flags": {}, "order": 22, "mode": 0, "inputs": [{"name": "model", "type": "MODEL", "link": 80, "label":
+            "model"}, {"name": "positive", "type": "CONDITIONING", "link": 83, "label": "positive"}, {"name": "negative",
+            "type": "CONDITIONING", "link": 82, "label": "negative"}, {"name": "latent_image", "type": "LATENT", "link": 86,
+            "label": "latent_image"}], "outputs": [{"name": "LATENT", "type": "LATENT", "links": [87], "shape": 3, "label":
+            "LATENT", "slot_index": 0}], "properties": {"Node name for S&R": "KSampler"}, "widgets_values": [640056571578535,
+            "randomize", 20, 8, "euler", "normal", 1]}, {"id": 70, "type": "VAEDecode", "pos": [1307, 1294], "size": {"0":
+            210, "1": 46}, "flags": {}, "order": 26, "mode": 0, "inputs": [{"name": "samples", "type": "LATENT", "link": 87,
+            "label": "samples"}, {"name": "vae", "type": "VAE", "link": 71, "label": "vae"}], "outputs": [{"name": "IMAGE",
+            "type": "IMAGE", "links": [88], "shape": 3, "label": "IMAGE", "slot_index": 0}], "properties": {"Node name for
+            S&R": "VAEDecode"}}, {"id": 69, "type": "VAEDecode", "pos": [1300, 902], "size": {"0": 210, "1": 46}, "flags":
+            {}, "order": 25, "mode": 0, "inputs": [{"name": "samples", "type": "LATENT", "link": 89, "label": "samples"},
+            {"name": "vae", "type": "VAE", "link": 70, "label": "vae"}], "outputs": [{"name": "IMAGE", "type": "IMAGE", "links":
+            [90], "shape": 3, "label": "IMAGE", "slot_index": 0}], "properties": {"Node name for S&R": "VAEDecode"}}, {"id":
+            67, "type": "EmptyLatentImage", "pos": [914, 1082], "size": {"0": 315, "1": 106}, "flags": {}, "order": 3, "mode":
+            0, "outputs": [{"name": "LATENT", "type": "LATENT", "links": [85], "shape": 3, "label": "LATENT"}], "properties":
+            {"Node name for S&R": "EmptyLatentImage"}, "widgets_values": [1024, 768, 2]}, {"id": 71, "type": "SaveImage",
+            "pos": [1759, 950], "size": [315, 270.00002002716064], "flags": {}, "order": 29, "mode": 0, "inputs": [{"name":
+            "images", "type": "IMAGE", "link": 90, "label": "images"}], "properties": {}, "widgets_values": ["%Load Checkpoint.ckpt_name%/image"]},
+            {"id": 72, "type": "SaveImage", "pos": [1661, 1281], "size": [315, 270], "flags": {}, "order": 30, "mode": 0,
+            "inputs": [{"name": "images", "type": "IMAGE", "link": 88, "label": "images"}], "properties": {}, "widgets_values":
+            ["%Load Checkpoint.ckpt_name%/image"]}, {"id": 68, "type": "EmptyLatentImage", "pos": [918, 1548], "size": {"0":
+            315, "1": 106}, "flags": {}, "order": 4, "mode": 0, "outputs": [{"name": "LATENT", "type": "LATENT", "links":
+            [86], "shape": 3, "label": "LATENT"}], "properties": {"Node name for S&R": "EmptyLatentImage"}, "widgets_values":
+            [960, 1280, 2]}, {"id": 61, "type": "CLIPTextEncode", "pos": [458, 710], "size": {"0": 400, "1": 200}, "flags":
+            {}, "order": 17, "mode": 0, "inputs": [{"name": "clip", "type": "CLIP", "link": 74, "label": "clip"}], "outputs":
+            [{"name": "CONDITIONING", "type": "CONDITIONING", "links": [78], "shape": 3, "label": "CONDITIONING", "slot_index":
+            0}], "properties": {"Node name for S&R": "CLIPTextEncode"}, "widgets_values": ["1girl,mature_female,teacher,silver
+            hair,longeyelashes,beautiful_detailed_eyes,hair bun,suit,teasing_smile,seductive_smile,"]}, {"id": 63, "type":
+            "CLIPTextEncode", "pos": [456, 1190], "size": {"0": 400, "1": 200}, "flags": {}, "order": 18, "mode": 0, "inputs":
+            [{"name": "clip", "type": "CLIP", "link": 75, "label": "clip"}], "outputs": [{"name": "CONDITIONING", "type":
+            "CONDITIONING", "links": [83], "shape": 3, "label": "CONDITIONING", "slot_index": 0}], "properties": {"Node name
+            for S&R": "CLIPTextEncode"}, "widgets_values": ["2girls,female_pervert,big breasts,purple hair,blunt bangs,pink
+            eyes,asymmetrical_docking,ear_biting,female_orgasm,"]}, {"id": 44, "type": "CLIPTextEncode", "pos": [453, 473],
+            "size": {"0": 400, "1": 200}, "flags": {}, "order": 9, "mode": 0, "inputs": [{"name": "clip", "type": "CLIP",
+            "link": 50, "label": "clip"}], "outputs": [{"name": "CONDITIONING", "type": "CONDITIONING", "links": [67], "shape":
+            3, "label": "CONDITIONING"}], "properties": {"Node name for S&R": "CLIPTextEncode"}, "widgets_values": ["bad hands,missing
+            fingers,fused fingers,missing limb,malformed limbs,floating limbs,extra arms,mutated hands,poorly drawn hands,malformed
+            hands,mutated hands and fingers,bad feet,mutation,disfigured,poorly drawn face,"]}, {"id": 7, "type": "CLIPTextEncode",
+            "pos": [440, 13], "size": {"0": 425.27801513671875, "1": 180.6060791015625}, "flags": {"collapsed": false}, "order":
+            7, "mode": 0, "inputs": [{"name": "clip", "type": "CLIP", "link": 47, "label": "clip"}], "outputs": [{"name":
+            "CONDITIONING", "type": "CONDITIONING", "links": [6], "slot_index": 0, "label": "CONDITIONING"}], "properties":
+            {"Node name for S&R": "CLIPTextEncode"}, "widgets_values": ["bad hands,missing fingers,fused fingers,missing limb,malformed
+            limbs,floating limbs,extra arms,mutated hands,poorly drawn hands,malformed hands,mutated hands and fingers,bad
+            feet,mutation,disfigured,poorly drawn face,"]}, {"id": 64, "type": "CLIPTextEncode", "pos": [463, 1426], "size":
+            {"0": 400, "1": 200}, "flags": {}, "order": 14, "mode": 0, "inputs": [{"name": "clip", "type": "CLIP", "link":
+            77, "label": "clip"}], "outputs": [{"name": "CONDITIONING", "type": "CONDITIONING", "links": [82], "shape": 3,
+            "label": "CONDITIONING"}], "properties": {"Node name for S&R": "CLIPTextEncode"}, "widgets_values": ["bad hands,missing
+            fingers,fused fingers,missing limb,malformed limbs,floating limbs,extra arms,mutated hands,poorly drawn hands,malformed
+            hands,mutated hands and fingers,bad feet,mutation,disfigured,poorly drawn face,"]}, {"id": 62, "type": "CLIPTextEncode",
+            "pos": [458, 949], "size": {"0": 400, "1": 200}, "flags": {}, "order": 13, "mode": 0, "inputs": [{"name": "clip",
+            "type": "CLIP", "link": 76, "label": "clip"}], "outputs": [{"name": "CONDITIONING", "type": "CONDITIONING", "links":
+            [84], "shape": 3, "label": "CONDITIONING"}], "properties": {"Node name for S&R": "CLIPTextEncode"}, "widgets_values":
+            ["bad hands,missing fingers,fused fingers,missing limb,malformed limbs,floating limbs,extra arms,mutated hands,poorly
+            drawn hands,malformed hands,mutated hands and fingers,bad feet,mutation,disfigured,poorly drawn face,"]}, {"id":
+            6, "type": "CLIPTextEncode", "pos": [442, -188], "size": {"0": 422.84503173828125, "1": 164.31304931640625}, "flags":
+            {}, "order": 15, "mode": 0, "inputs": [{"name": "clip", "type": "CLIP", "link": 35, "label": "clip"}], "outputs":
+            [{"name": "CONDITIONING", "type": "CONDITIONING", "links": [4], "slot_index": 0, "label": "CONDITIONING"}], "properties":
+            {"Node name for S&R": "CLIPTextEncode"}, "widgets_values": ["1girl,blonde hair,very long hair,sleepy,student,longeyelashes,serafuku,"]},
+            {"id": 43, "type": "CLIPTextEncode", "pos": [447, 233], "size": {"0": 400, "1": 200}, "flags": {}, "order": 16,
+            "mode": 0, "inputs": [{"name": "clip", "type": "CLIP", "link": 69, "label": "clip"}], "outputs": [{"name": "CONDITIONING",
+            "type": "CONDITIONING", "links": [66], "slot_index": 0, "shape": 3, "label": "CONDITIONING"}], "properties": {"Node
+            name for S&R": "CLIPTextEncode"}, "widgets_values": ["best quality,masterpiece,1girl,hair between eyes,long hair,very
+            long hair,sexy,thigh_ribbon,crown,green hair,short_kimono,yokozuwari,"]}, {"id": 41, "type": "CheckpointLoaderSimple",
+            "pos": [-476, 565], "size": {"0": 315, "1": 98}, "flags": {}, "order": 5, "mode": 0, "outputs": [{"name": "MODEL",
+            "type": "MODEL", "links": [46, 51, 79, 80], "slot_index": 0, "shape": 3, "label": "MODEL"}, {"name": "CLIP", "type":
+            "CLIP", "links": [47, 48, 50, 68, 72, 73, 76, 77], "shape": 3, "label": "CLIP", "slot_index": 1}, {"name": "VAE",
+            "type": "VAE", "links": null, "shape": 3, "label": "VAE"}], "properties": {"Node name for S&R": "CheckpointLoaderSimple"},
+            "widgets_values": ["rdxlPixelArt_pony2.safetensors"]}, {"id": 36, "type": "VAELoader", "pos": [1260, 206], "size":
+            {"0": 315, "1": 58}, "flags": {}, "order": 6, "mode": 0, "outputs": [{"name": "VAE", "type": "VAE", "links": [39,
+            61, 70, 71], "shape": 3, "label": "VAE"}], "properties": {"Node name for S&R": "VAELoader"}, "widgets_values":
+            ["sdxl_vae.safetensors"]}], "links": [[2, 5, 0, 3, 3, "LATENT"], [4, 6, 0, 3, 1, "CONDITIONING"], [6, 7, 0, 3,
+            2, "CONDITIONING"], [7, 3, 0, 8, 0, "LATENT"], [35, 29, 0, 6, 0, "CLIP"], [39, 36, 0, 8, 1, "VAE"], [46, 41, 0,
+            3, 0, "MODEL"], [47, 41, 1, 7, 0, "CLIP"], [48, 41, 1, 29, 0, "CLIP"], [50, 41, 1, 44, 0, "CLIP"], [51, 41, 0,
+            45, 0, "MODEL"], [53, 50, 0, 45, 3, "LATENT"], [58, 8, 0, 54, 1, "IMAGE"], [59, 54, 0, 9, 0, "IMAGE"], [60, 45,
+            0, 55, 0, "LATENT"], [61, 36, 0, 55, 1, "VAE"], [62, 17, 0, 56, 0, "UPSCALE_MODEL"], [63, 17, 0, 54, 0, "UPSCALE_MODEL"],
+            [64, 55, 0, 56, 1, "IMAGE"], [65, 56, 0, 57, 0, "IMAGE"], [66, 43, 0, 45, 1, "CONDITIONING"], [67, 44, 0, 45,
+            2, "CONDITIONING"], [68, 41, 1, 58, 0, "CLIP"], [69, 58, 0, 43, 0, "CLIP"], [70, 36, 0, 69, 1, "VAE"], [71, 36,
+            0, 70, 1, "VAE"], [72, 41, 1, 59, 0, "CLIP"], [73, 41, 1, 60, 0, "CLIP"], [74, 59, 0, 61, 0, "CLIP"], [75, 60,
+            0, 63, 0, "CLIP"], [76, 41, 1, 62, 0, "CLIP"], [77, 41, 1, 64, 0, "CLIP"], [78, 61, 0, 65, 1, "CONDITIONING"],
+            [79, 41, 0, 65, 0, "MODEL"], [80, 41, 0, 66, 0, "MODEL"], [82, 64, 0, 66, 2, "CONDITIONING"], [83, 63, 0, 66,
+            1, "CONDITIONING"], [84, 62, 0, 65, 2, "CONDITIONING"], [85, 67, 0, 65, 3, "LATENT"], [86, 68, 0, 66, 3, "LATENT"],
+            [87, 66, 0, 70, 0, "LATENT"], [88, 70, 0, 72, 0, "IMAGE"], [89, 65, 0, 69, 0, "LATENT"], [90, 69, 0, 71, 0, "IMAGE"]],
+            "groups": [], "config": {}, "extra": {"ds": {"scale": 0.6830134553650705, "offset": [900.2105610224036, 204.84302608107288]}},
+            "version": 0.4}}'
+          width: 768
+          height: 1024
+          models:
+            - rdxlPixelArt_pony2.safetensors
+          denoise: 1
+          upscalers:
+            - 4x-AnimeSharp.pth
+        post:
+          username: sinatra
+          created_at: '2024-08-15T14:34:49.638Z'
+      - image_id: 84133946
+        image_url: 
+          https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/314946f8-deff-40fe-aaa2-aa713d6a59af/original=true/314946f8-deff-40fe-aaa2-aa713d6a59af.jpeg
+        page_url: https://civitai.com/posts/18678647
+        nsfw: false
+        width: 1216
+        height: 832
+        prompt: |-
+          score_9, score_8_up, score_7_up, source_photo
+          BREAK, 
+           <lora:810iv:1>, 810interview, ,sitting, solo, indoor,  silver couch, against window shade, window shade,
+          (from side:0.8)
+          black shirt,
+          white short pants,
+          his is one hand up
+          yellow buzz, holding yellow buzz,
+          draw perfect buzz shape
+          composition his body and head facing to right side,
+          balanced pallet
+          35  years old,
+        negative_prompt: |-
+          source_furry, source_pony, source_cartoon,
+          not hold a sign board
+          his hands down on sofa
+          (his plane shirt has no logo)
+          another text in sign board
+          interior photo frame on the wall
+          (his hand not having sign board:1.5)
+          composition his body and head facing to left side,
+          (his face child looks:1.2)
+          (short body:1.2)
+          text in speech bubbles
+        generation:
+          seed: 680435681
+          steps: 38
+          cfg_scale: 7
+          sampler: Euler a
+          scheduler:
+          clip_skip: 2
+          size: 1216x832
+          model_hash:
+        resources:
+          - type: lora
+            name: 810iv
+            model_id:
+            version_id:
+            weight: 1
+          - type: checkpoint
+            name: Pony 2
+            model_id:
+            version_id: 724915
+            weight:
+          - type: lora
+            name: v1.0
+            model_id:
+            version_id: 749933
+            weight: 1.2
+          - type: lora
+            name: PONY
+            model_id:
+            version_id: 1667455
+            weight: 1
+          - type: lora
+            name: v1.0
+            model_id:
+            version_id: 565868
+            weight: 1.25
+          - type: lora
+            name: v0.6
+            model_id:
+            version_id: 1146968
+            weight: 1
+        tags: []
+        raw_meta:
+          draft: false
+          extra:
+            remixOfId: 15406710
+          width: 1216
+          height: 832
+          quantity: 1
+          workflow: txt2img
+          baseModel: Pony
+          Created Date: 2025-06-24T0000:28.3781922Z
+        post:
+          username: h2cib84592
+          created_at: '2025-06-24T00:11:08.762Z'
+      - image_id: 26314108
+        image_url: 
+          https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/1d160d96-0964-48e1-b3f5-2e18a3c0cc41/original=true/1d160d96-0964-48e1-b3f5-2e18a3c0cc41.jpeg
+        page_url: https://civitai.com/posts/5457786
+        nsfw: false
+        width: 3072
+        height: 4096
+        prompt: |-
+          1girl,blonde hair,very long hair,sleepy,student,longeyelashes,serafuku,
+        negative_prompt: |-
+          bad hands,missing fingers,fused fingers,missing limb,malformed limbs,floating limbs,extra arms,mutated hands,poorly drawn hands,malformed hands,mutated hands and fingers,bad feet,mutation,disfigured,poorly drawn face,
+        generation:
+          seed: 202792045394502
+          steps: 20
+          cfg_scale: 8
+          sampler: Euler
+          scheduler: normal
+          clip_skip:
+          size: 3072x4096
+          model_hash:
+        resources: []
+        tags: []
+        raw_meta:
+          vaes:
+            - sdxl_vae.safetensors
+          Model: rdxlPixelArt_pony2
+          comfy: '{"prompt": {"3": {"inputs": {"seed": 202792045394502, "steps": 20, "cfg": 8.0, "sampler_name": "euler",
+            "scheduler": "normal", "denoise": 1.0, "model": ["41", 0], "positive": ["6", 0], "negative": ["7", 0], "latent_image":
+            ["5", 0]}, "class_type": "KSampler"}, "5": {"inputs": {"width": 768, "height": 1024, "batch_size": 2}, "class_type":
+            "EmptyLatentImage"}, "6": {"inputs": {"text": "1girl,blonde hair,very long hair,sleepy,student,longeyelashes,serafuku,",
+            "clip": ["29", 0]}, "class_type": "CLIPTextEncode"}, "7": {"inputs": {"text": "bad hands,missing fingers,fused
+            fingers,missing limb,malformed limbs,floating limbs,extra arms,mutated hands,poorly drawn hands,malformed hands,mutated
+            hands and fingers,bad feet,mutation,disfigured,poorly drawn face,", "clip": ["41", 1]}, "class_type": "CLIPTextEncode"},
+            "8": {"inputs": {"samples": ["3", 0], "vae": ["36", 0]}, "class_type": "VAEDecode"}, "9": {"inputs": {"filename_prefix":
+            "rdxlPixelArt_pony2.safetensors/image", "images": ["54", 0]}, "class_type": "SaveImage"}, "17": {"inputs": {"model_name":
+            "4x-AnimeSharp.pth"}, "class_type": "UpscaleModelLoader"}, "29": {"inputs": {"stop_at_clip_layer": -2, "clip":
+            ["41", 1]}, "class_type": "CLIPSetLastLayer"}, "36": {"inputs": {"vae_name": "sdxl_vae.safetensors"}, "class_type":
+            "VAELoader"}, "41": {"inputs": {"ckpt_name": "rdxlPixelArt_pony2.safetensors"}, "class_type": "CheckpointLoaderSimple"},
+            "43": {"inputs": {"text": "best quality,masterpiece,1girl,hair between eyes,long hair,very long hair,sexy,thigh_ribbon,crown,green
+            hair,short_kimono,yokozuwari,", "clip": ["58", 0]}, "class_type": "CLIPTextEncode"}, "44": {"inputs": {"text":
+            "bad hands,missing fingers,fused fingers,missing limb,malformed limbs,floating limbs,extra arms,mutated hands,poorly
+            drawn hands,malformed hands,mutated hands and fingers,bad feet,mutation,disfigured,poorly drawn face,", "clip":
+            ["41", 1]}, "class_type": "CLIPTextEncode"}, "45": {"inputs": {"seed": 59089513881968, "steps": 20, "cfg": 8.0,
+            "sampler_name": "euler", "scheduler": "normal", "denoise": 1.0, "model": ["41", 0], "positive": ["43", 0], "negative":
+            ["44", 0], "latent_image": ["50", 0]}, "class_type": "KSampler"}, "50": {"inputs": {"width": 768, "height": 1024,
+            "batch_size": 2}, "class_type": "EmptyLatentImage"}, "54": {"inputs": {"upscale_model": ["17", 0], "image": ["8",
+            0]}, "class_type": "ImageUpscaleWithModel"}, "55": {"inputs": {"samples": ["45", 0], "vae": ["36", 0]}, "class_type":
+            "VAEDecode"}, "56": {"inputs": {"upscale_model": ["17", 0], "image": ["55", 0]}, "class_type": "ImageUpscaleWithModel"},
+            "57": {"inputs": {"filename_prefix": "rdxlPixelArt_pony2.safetensors/image", "images": ["56", 0]}, "class_type":
+            "SaveImage"}, "58": {"inputs": {"stop_at_clip_layer": -2, "clip": ["41", 1]}, "class_type": "CLIPSetLastLayer"},
+            "59": {"inputs": {"stop_at_clip_layer": -2, "clip": ["41", 1]}, "class_type": "CLIPSetLastLayer"}, "60": {"inputs":
+            {"stop_at_clip_layer": -2, "clip": ["41", 1]}, "class_type": "CLIPSetLastLayer"}, "61": {"inputs": {"text": "1girl,mature_female,teacher,silver
+            hair,longeyelashes,beautiful_detailed_eyes,hair bun,suit,teasing_smile,seductive_smile,", "clip": ["59", 0]},
+            "class_type": "CLIPTextEncode"}, "62": {"inputs": {"text": "bad hands,missing fingers,fused fingers,missing limb,malformed
+            limbs,floating limbs,extra arms,mutated hands,poorly drawn hands,malformed hands,mutated hands and fingers,bad
+            feet,mutation,disfigured,poorly drawn face,", "clip": ["41", 1]}, "class_type": "CLIPTextEncode"}, "63": {"inputs":
+            {"text": "2girls,female_pervert,big breasts,purple hair,blunt bangs,pink eyes,asymmetrical_docking,ear_biting,female_orgasm,",
+            "clip": ["60", 0]}, "class_type": "CLIPTextEncode"}, "64": {"inputs": {"text": "bad hands,missing fingers,fused
+            fingers,missing limb,malformed limbs,floating limbs,extra arms,mutated hands,poorly drawn hands,malformed hands,mutated
+            hands and fingers,bad feet,mutation,disfigured,poorly drawn face,", "clip": ["41", 1]}, "class_type": "CLIPTextEncode"},
+            "65": {"inputs": {"seed": 912949201068688, "steps": 20, "cfg": 8.0, "sampler_name": "euler", "scheduler": "normal",
+            "denoise": 1.0, "model": ["41", 0], "positive": ["61", 0], "negative": ["62", 0], "latent_image": ["67", 0]},
+            "class_type": "KSampler"}, "66": {"inputs": {"seed": 299673150902601, "steps": 20, "cfg": 8.0, "sampler_name":
+            "euler", "scheduler": "normal", "denoise": 1.0, "model": ["41", 0], "positive": ["63", 0], "negative": ["64",
+            0], "latent_image": ["68", 0]}, "class_type": "KSampler"}, "67": {"inputs": {"width": 1024, "height": 768, "batch_size":
+            2}, "class_type": "EmptyLatentImage"}, "68": {"inputs": {"width": 960, "height": 1280, "batch_size": 2}, "class_type":
+            "EmptyLatentImage"}, "69": {"inputs": {"samples": ["65", 0], "vae": ["36", 0]}, "class_type": "VAEDecode"}, "70":
+            {"inputs": {"samples": ["66", 0], "vae": ["36", 0]}, "class_type": "VAEDecode"}, "71": {"inputs": {"filename_prefix":
+            "rdxlPixelArt_pony2.safetensors/image", "images": ["69", 0]}, "class_type": "SaveImage"}, "72": {"inputs": {"filename_prefix":
+            "rdxlPixelArt_pony2.safetensors/image", "images": ["70", 0]}, "class_type": "SaveImage"}}, "workflow": {"last_node_id":
+            72, "last_link_id": 90, "nodes": [{"id": 29, "type": "CLIPSetLastLayer", "pos": [90, -204], "size": {"0": 315,
+            "1": 58}, "flags": {}, "order": 8, "mode": 0, "inputs": [{"name": "clip", "type": "CLIP", "link": 48, "label":
+            "clip"}], "outputs": [{"name": "CLIP", "type": "CLIP", "links": [35], "slot_index": 0, "shape": 3, "label": "CLIP"}],
+            "properties": {"Node name for S&R": "CLIPSetLastLayer"}, "widgets_values": [-2]}, {"id": 5, "type": "EmptyLatentImage",
+            "pos": [913, 105], "size": {"0": 315, "1": 106}, "flags": {}, "order": 0, "mode": 0, "outputs": [{"name": "LATENT",
+            "type": "LATENT", "links": [2], "slot_index": 0, "label": "LATENT"}], "properties": {"Node name for S&R": "EmptyLatentImage"},
+            "widgets_values": [768, 1024, 2]}, {"id": 17, "type": "UpscaleModelLoader", "pos": [1273, -145], "size": {"0":
+            315, "1": 58}, "flags": {}, "order": 1, "mode": 0, "outputs": [{"name": "UPSCALE_MODEL", "type": "UPSCALE_MODEL",
+            "links": [62, 63], "slot_index": 0, "shape": 3, "label": "UPSCALE_MODEL"}], "properties": {"Node name for S&R":
+            "UpscaleModelLoader"}, "widgets_values": ["4x-AnimeSharp.pth"]}, {"id": 8, "type": "VAEDecode", "pos": [1315,
+            -36], "size": {"0": 210, "1": 46}, "flags": {}, "order": 23, "mode": 0, "inputs": [{"name": "samples", "type":
+            "LATENT", "link": 7, "label": "samples"}, {"name": "vae", "type": "VAE", "link": 39, "label": "vae"}], "outputs":
+            [{"name": "IMAGE", "type": "IMAGE", "links": [58], "slot_index": 0, "label": "IMAGE"}], "properties": {"Node name
+            for S&R": "VAEDecode"}}, {"id": 9, "type": "SaveImage", "pos": [1649, -122], "size": {"0": 210, "1": 270}, "flags":
+            {"collapsed": false}, "order": 31, "mode": 0, "inputs": [{"name": "images", "type": "IMAGE", "link": 59, "label":
+            "images"}], "properties": {}, "widgets_values": ["%Load Checkpoint.ckpt_name%/image"]}, {"id": 54, "type": "ImageUpscaleWithModel",
+            "pos": [1279, 86], "size": {"0": 241.79998779296875, "1": 46}, "flags": {}, "order": 27, "mode": 0, "inputs":
+            [{"name": "upscale_model", "type": "UPSCALE_MODEL", "link": 63, "label": "upscale_model"}, {"name": "image", "type":
+            "IMAGE", "link": 58, "label": "image"}], "outputs": [{"name": "IMAGE", "type": "IMAGE", "links": [59], "slot_index":
+            0, "shape": 3, "label": "IMAGE"}], "properties": {"Node name for S&R": "ImageUpscaleWithModel"}}, {"id": 55, "type":
+            "VAEDecode", "pos": [1291, 374], "size": {"0": 210, "1": 46}, "flags": {}, "order": 24, "mode": 0, "inputs": [{"name":
+            "samples", "type": "LATENT", "link": 60, "label": "samples"}, {"name": "vae", "type": "VAE", "link": 61, "label":
+            "vae"}], "outputs": [{"name": "IMAGE", "type": "IMAGE", "links": [64], "shape": 3, "label": "IMAGE"}], "properties":
+            {"Node name for S&R": "VAEDecode"}}, {"id": 56, "type": "ImageUpscaleWithModel", "pos": [1286, 508], "size": {"0":
+            241.79998779296875, "1": 46}, "flags": {}, "order": 28, "mode": 0, "inputs": [{"name": "upscale_model", "type":
+            "UPSCALE_MODEL", "link": 62, "label": "upscale_model"}, {"name": "image", "type": "IMAGE", "link": 64, "label":
+            "image"}], "outputs": [{"name": "IMAGE", "type": "IMAGE", "links": [65], "slot_index": 0, "shape": 3, "label":
+            "IMAGE"}], "properties": {"Node name for S&R": "ImageUpscaleWithModel"}}, {"id": 45, "type": "KSampler", "pos":
+            [912, 267], "size": {"0": 315, "1": 262}, "flags": {}, "order": 20, "mode": 0, "inputs": [{"name": "model", "type":
+            "MODEL", "link": 51, "label": "model"}, {"name": "positive", "type": "CONDITIONING", "link": 66, "label": "positive"},
+            {"name": "negative", "type": "CONDITIONING", "link": 67, "label": "negative"}, {"name": "latent_image", "type":
+            "LATENT", "link": 53, "label": "latent_image"}], "outputs": [{"name": "LATENT", "type": "LATENT", "links": [60],
+            "slot_index": 0, "shape": 3, "label": "LATENT"}], "properties": {"Node name for S&R": "KSampler"}, "widgets_values":
+            [59089513881968, "randomize", 20, 8, "euler", "normal", 1]}, {"id": 50, "type": "EmptyLatentImage", "pos": [905,
+            602], "size": {"0": 315, "1": 106}, "flags": {}, "order": 2, "mode": 0, "outputs": [{"name": "LATENT", "type":
+            "LATENT", "links": [53], "shape": 3, "label": "LATENT"}], "properties": {"Node name for S&R": "EmptyLatentImage"},
+            "widgets_values": [768, 1024, 2]}, {"id": 3, "type": "KSampler", "pos": [917, -206], "size": {"0": 315, "1": 262},
+            "flags": {}, "order": 19, "mode": 0, "inputs": [{"name": "model", "type": "MODEL", "link": 46, "label": "model"},
+            {"name": "positive", "type": "CONDITIONING", "link": 4, "label": "positive"}, {"name": "negative", "type": "CONDITIONING",
+            "link": 6, "label": "negative"}, {"name": "latent_image", "type": "LATENT", "link": 2, "label": "latent_image"}],
+            "outputs": [{"name": "LATENT", "type": "LATENT", "links": [7], "slot_index": 0, "label": "LATENT"}], "properties":
+            {"Node name for S&R": "KSampler"}, "widgets_values": [202792045394502, "randomize", 20, 8, "euler", "normal",
+            1]}, {"id": 58, "type": "CLIPSetLastLayer", "pos": [104, 274], "size": {"0": 315, "1": 58}, "flags": {}, "order":
+            10, "mode": 0, "inputs": [{"name": "clip", "type": "CLIP", "link": 68, "label": "clip"}], "outputs": [{"name":
+            "CLIP", "type": "CLIP", "links": [69], "slot_index": 0, "shape": 3, "label": "CLIP"}], "properties": {"Node name
+            for S&R": "CLIPSetLastLayer"}, "widgets_values": [-2]}, {"id": 57, "type": "SaveImage", "pos": [1624, 328], "size":
+            {"0": 315, "1": 270}, "flags": {}, "order": 32, "mode": 0, "inputs": [{"name": "images", "type": "IMAGE", "link":
+            65, "label": "images"}], "properties": {}, "widgets_values": ["%Load Checkpoint.ckpt_name%/image"]}, {"id": 59,
+            "type": "CLIPSetLastLayer", "pos": [83, 775], "size": {"0": 315, "1": 58}, "flags": {}, "order": 11, "mode": 0,
+            "inputs": [{"name": "clip", "type": "CLIP", "link": 72, "label": "clip"}], "outputs": [{"name": "CLIP", "type":
+            "CLIP", "links": [74], "shape": 3, "label": "CLIP", "slot_index": 0}], "properties": {"Node name for S&R": "CLIPSetLastLayer"},
+            "widgets_values": [-2]}, {"id": 60, "type": "CLIPSetLastLayer", "pos": [81, 1109], "size": {"0": 315, "1": 58},
+            "flags": {}, "order": 12, "mode": 0, "inputs": [{"name": "clip", "type": "CLIP", "link": 73, "label": "clip"}],
+            "outputs": [{"name": "CLIP", "type": "CLIP", "links": [75], "shape": 3, "label": "CLIP", "slot_index": 0}], "properties":
+            {"Node name for S&R": "CLIPSetLastLayer"}, "widgets_values": [-2]}, {"id": 65, "type": "KSampler", "pos": [912,
+            774], "size": {"0": 315, "1": 262}, "flags": {}, "order": 21, "mode": 0, "inputs": [{"name": "model", "type":
+            "MODEL", "link": 79, "label": "model"}, {"name": "positive", "type": "CONDITIONING", "link": 78, "label": "positive"},
+            {"name": "negative", "type": "CONDITIONING", "link": 84, "label": "negative"}, {"name": "latent_image", "type":
+            "LATENT", "link": 85, "label": "latent_image"}], "outputs": [{"name": "LATENT", "type": "LATENT", "links": [89],
+            "shape": 3, "label": "LATENT"}], "properties": {"Node name for S&R": "KSampler"}, "widgets_values": [912949201068688,
+            "randomize", 20, 8, "euler", "normal", 1]}, {"id": 66, "type": "KSampler", "pos": [923, 1239], "size": {"0": 315,
+            "1": 262}, "flags": {}, "order": 22, "mode": 0, "inputs": [{"name": "model", "type": "MODEL", "link": 80, "label":
+            "model"}, {"name": "positive", "type": "CONDITIONING", "link": 83, "label": "positive"}, {"name": "negative",
+            "type": "CONDITIONING", "link": 82, "label": "negative"}, {"name": "latent_image", "type": "LATENT", "link": 86,
+            "label": "latent_image"}], "outputs": [{"name": "LATENT", "type": "LATENT", "links": [87], "shape": 3, "label":
+            "LATENT", "slot_index": 0}], "properties": {"Node name for S&R": "KSampler"}, "widgets_values": [299673150902601,
+            "randomize", 20, 8, "euler", "normal", 1]}, {"id": 70, "type": "VAEDecode", "pos": [1307, 1294], "size": {"0":
+            210, "1": 46}, "flags": {}, "order": 26, "mode": 0, "inputs": [{"name": "samples", "type": "LATENT", "link": 87,
+            "label": "samples"}, {"name": "vae", "type": "VAE", "link": 71, "label": "vae"}], "outputs": [{"name": "IMAGE",
+            "type": "IMAGE", "links": [88], "shape": 3, "label": "IMAGE", "slot_index": 0}], "properties": {"Node name for
+            S&R": "VAEDecode"}}, {"id": 69, "type": "VAEDecode", "pos": [1300, 902], "size": {"0": 210, "1": 46}, "flags":
+            {}, "order": 25, "mode": 0, "inputs": [{"name": "samples", "type": "LATENT", "link": 89, "label": "samples"},
+            {"name": "vae", "type": "VAE", "link": 70, "label": "vae"}], "outputs": [{"name": "IMAGE", "type": "IMAGE", "links":
+            [90], "shape": 3, "label": "IMAGE", "slot_index": 0}], "properties": {"Node name for S&R": "VAEDecode"}}, {"id":
+            67, "type": "EmptyLatentImage", "pos": [914, 1082], "size": {"0": 315, "1": 106}, "flags": {}, "order": 3, "mode":
+            0, "outputs": [{"name": "LATENT", "type": "LATENT", "links": [85], "shape": 3, "label": "LATENT"}], "properties":
+            {"Node name for S&R": "EmptyLatentImage"}, "widgets_values": [1024, 768, 2]}, {"id": 71, "type": "SaveImage",
+            "pos": [1759, 950], "size": [315, 270.00002002716064], "flags": {}, "order": 29, "mode": 0, "inputs": [{"name":
+            "images", "type": "IMAGE", "link": 90, "label": "images"}], "properties": {}, "widgets_values": ["%Load Checkpoint.ckpt_name%/image"]},
+            {"id": 72, "type": "SaveImage", "pos": [1661, 1281], "size": [315, 270], "flags": {}, "order": 30, "mode": 0,
+            "inputs": [{"name": "images", "type": "IMAGE", "link": 88, "label": "images"}], "properties": {}, "widgets_values":
+            ["%Load Checkpoint.ckpt_name%/image"]}, {"id": 68, "type": "EmptyLatentImage", "pos": [918, 1548], "size": {"0":
+            315, "1": 106}, "flags": {}, "order": 4, "mode": 0, "outputs": [{"name": "LATENT", "type": "LATENT", "links":
+            [86], "shape": 3, "label": "LATENT"}], "properties": {"Node name for S&R": "EmptyLatentImage"}, "widgets_values":
+            [960, 1280, 2]}, {"id": 61, "type": "CLIPTextEncode", "pos": [458, 710], "size": {"0": 400, "1": 200}, "flags":
+            {}, "order": 17, "mode": 0, "inputs": [{"name": "clip", "type": "CLIP", "link": 74, "label": "clip"}], "outputs":
+            [{"name": "CONDITIONING", "type": "CONDITIONING", "links": [78], "shape": 3, "label": "CONDITIONING", "slot_index":
+            0}], "properties": {"Node name for S&R": "CLIPTextEncode"}, "widgets_values": ["1girl,mature_female,teacher,silver
+            hair,longeyelashes,beautiful_detailed_eyes,hair bun,suit,teasing_smile,seductive_smile,"]}, {"id": 63, "type":
+            "CLIPTextEncode", "pos": [456, 1190], "size": {"0": 400, "1": 200}, "flags": {}, "order": 18, "mode": 0, "inputs":
+            [{"name": "clip", "type": "CLIP", "link": 75, "label": "clip"}], "outputs": [{"name": "CONDITIONING", "type":
+            "CONDITIONING", "links": [83], "shape": 3, "label": "CONDITIONING", "slot_index": 0}], "properties": {"Node name
+            for S&R": "CLIPTextEncode"}, "widgets_values": ["2girls,female_pervert,big breasts,purple hair,blunt bangs,pink
+            eyes,asymmetrical_docking,ear_biting,female_orgasm,"]}, {"id": 44, "type": "CLIPTextEncode", "pos": [453, 473],
+            "size": {"0": 400, "1": 200}, "flags": {}, "order": 9, "mode": 0, "inputs": [{"name": "clip", "type": "CLIP",
+            "link": 50, "label": "clip"}], "outputs": [{"name": "CONDITIONING", "type": "CONDITIONING", "links": [67], "shape":
+            3, "label": "CONDITIONING"}], "properties": {"Node name for S&R": "CLIPTextEncode"}, "widgets_values": ["bad hands,missing
+            fingers,fused fingers,missing limb,malformed limbs,floating limbs,extra arms,mutated hands,poorly drawn hands,malformed
+            hands,mutated hands and fingers,bad feet,mutation,disfigured,poorly drawn face,"]}, {"id": 7, "type": "CLIPTextEncode",
+            "pos": [440, 13], "size": {"0": 425.27801513671875, "1": 180.6060791015625}, "flags": {"collapsed": false}, "order":
+            7, "mode": 0, "inputs": [{"name": "clip", "type": "CLIP", "link": 47, "label": "clip"}], "outputs": [{"name":
+            "CONDITIONING", "type": "CONDITIONING", "links": [6], "slot_index": 0, "label": "CONDITIONING"}], "properties":
+            {"Node name for S&R": "CLIPTextEncode"}, "widgets_values": ["bad hands,missing fingers,fused fingers,missing limb,malformed
+            limbs,floating limbs,extra arms,mutated hands,poorly drawn hands,malformed hands,mutated hands and fingers,bad
+            feet,mutation,disfigured,poorly drawn face,"]}, {"id": 64, "type": "CLIPTextEncode", "pos": [463, 1426], "size":
+            {"0": 400, "1": 200}, "flags": {}, "order": 14, "mode": 0, "inputs": [{"name": "clip", "type": "CLIP", "link":
+            77, "label": "clip"}], "outputs": [{"name": "CONDITIONING", "type": "CONDITIONING", "links": [82], "shape": 3,
+            "label": "CONDITIONING"}], "properties": {"Node name for S&R": "CLIPTextEncode"}, "widgets_values": ["bad hands,missing
+            fingers,fused fingers,missing limb,malformed limbs,floating limbs,extra arms,mutated hands,poorly drawn hands,malformed
+            hands,mutated hands and fingers,bad feet,mutation,disfigured,poorly drawn face,"]}, {"id": 62, "type": "CLIPTextEncode",
+            "pos": [458, 949], "size": {"0": 400, "1": 200}, "flags": {}, "order": 13, "mode": 0, "inputs": [{"name": "clip",
+            "type": "CLIP", "link": 76, "label": "clip"}], "outputs": [{"name": "CONDITIONING", "type": "CONDITIONING", "links":
+            [84], "shape": 3, "label": "CONDITIONING"}], "properties": {"Node name for S&R": "CLIPTextEncode"}, "widgets_values":
+            ["bad hands,missing fingers,fused fingers,missing limb,malformed limbs,floating limbs,extra arms,mutated hands,poorly
+            drawn hands,malformed hands,mutated hands and fingers,bad feet,mutation,disfigured,poorly drawn face,"]}, {"id":
+            6, "type": "CLIPTextEncode", "pos": [442, -188], "size": {"0": 422.84503173828125, "1": 164.31304931640625}, "flags":
+            {}, "order": 15, "mode": 0, "inputs": [{"name": "clip", "type": "CLIP", "link": 35, "label": "clip"}], "outputs":
+            [{"name": "CONDITIONING", "type": "CONDITIONING", "links": [4], "slot_index": 0, "label": "CONDITIONING"}], "properties":
+            {"Node name for S&R": "CLIPTextEncode"}, "widgets_values": ["1girl,blonde hair,very long hair,sleepy,student,longeyelashes,serafuku,"]},
+            {"id": 43, "type": "CLIPTextEncode", "pos": [447, 233], "size": {"0": 400, "1": 200}, "flags": {}, "order": 16,
+            "mode": 0, "inputs": [{"name": "clip", "type": "CLIP", "link": 69, "label": "clip"}], "outputs": [{"name": "CONDITIONING",
+            "type": "CONDITIONING", "links": [66], "slot_index": 0, "shape": 3, "label": "CONDITIONING"}], "properties": {"Node
+            name for S&R": "CLIPTextEncode"}, "widgets_values": ["best quality,masterpiece,1girl,hair between eyes,long hair,very
+            long hair,sexy,thigh_ribbon,crown,green hair,short_kimono,yokozuwari,"]}, {"id": 41, "type": "CheckpointLoaderSimple",
+            "pos": [-476, 565], "size": {"0": 315, "1": 98}, "flags": {}, "order": 5, "mode": 0, "outputs": [{"name": "MODEL",
+            "type": "MODEL", "links": [46, 51, 79, 80], "slot_index": 0, "shape": 3, "label": "MODEL"}, {"name": "CLIP", "type":
+            "CLIP", "links": [47, 48, 50, 68, 72, 73, 76, 77], "shape": 3, "label": "CLIP", "slot_index": 1}, {"name": "VAE",
+            "type": "VAE", "links": null, "shape": 3, "label": "VAE"}], "properties": {"Node name for S&R": "CheckpointLoaderSimple"},
+            "widgets_values": ["rdxlPixelArt_pony2.safetensors"]}, {"id": 36, "type": "VAELoader", "pos": [1260, 206], "size":
+            {"0": 315, "1": 58}, "flags": {}, "order": 6, "mode": 0, "outputs": [{"name": "VAE", "type": "VAE", "links": [39,
+            61, 70, 71], "shape": 3, "label": "VAE"}], "properties": {"Node name for S&R": "VAELoader"}, "widgets_values":
+            ["sdxl_vae.safetensors"]}], "links": [[2, 5, 0, 3, 3, "LATENT"], [4, 6, 0, 3, 1, "CONDITIONING"], [6, 7, 0, 3,
+            2, "CONDITIONING"], [7, 3, 0, 8, 0, "LATENT"], [35, 29, 0, 6, 0, "CLIP"], [39, 36, 0, 8, 1, "VAE"], [46, 41, 0,
+            3, 0, "MODEL"], [47, 41, 1, 7, 0, "CLIP"], [48, 41, 1, 29, 0, "CLIP"], [50, 41, 1, 44, 0, "CLIP"], [51, 41, 0,
+            45, 0, "MODEL"], [53, 50, 0, 45, 3, "LATENT"], [58, 8, 0, 54, 1, "IMAGE"], [59, 54, 0, 9, 0, "IMAGE"], [60, 45,
+            0, 55, 0, "LATENT"], [61, 36, 0, 55, 1, "VAE"], [62, 17, 0, 56, 0, "UPSCALE_MODEL"], [63, 17, 0, 54, 0, "UPSCALE_MODEL"],
+            [64, 55, 0, 56, 1, "IMAGE"], [65, 56, 0, 57, 0, "IMAGE"], [66, 43, 0, 45, 1, "CONDITIONING"], [67, 44, 0, 45,
+            2, "CONDITIONING"], [68, 41, 1, 58, 0, "CLIP"], [69, 58, 0, 43, 0, "CLIP"], [70, 36, 0, 69, 1, "VAE"], [71, 36,
+            0, 70, 1, "VAE"], [72, 41, 1, 59, 0, "CLIP"], [73, 41, 1, 60, 0, "CLIP"], [74, 59, 0, 61, 0, "CLIP"], [75, 60,
+            0, 63, 0, "CLIP"], [76, 41, 1, 62, 0, "CLIP"], [77, 41, 1, 64, 0, "CLIP"], [78, 61, 0, 65, 1, "CONDITIONING"],
+            [79, 41, 0, 65, 0, "MODEL"], [80, 41, 0, 66, 0, "MODEL"], [82, 64, 0, 66, 2, "CONDITIONING"], [83, 63, 0, 66,
+            1, "CONDITIONING"], [84, 62, 0, 65, 2, "CONDITIONING"], [85, 67, 0, 65, 3, "LATENT"], [86, 68, 0, 66, 3, "LATENT"],
+            [87, 66, 0, 70, 0, "LATENT"], [88, 70, 0, 72, 0, "IMAGE"], [89, 65, 0, 69, 0, "LATENT"], [90, 69, 0, 71, 0, "IMAGE"]],
+            "groups": [], "config": {}, "extra": {"ds": {"scale": 0.620921323059155, "offset": [1216.8953910224031, 306.74438608107295]}},
+            "version": 0.4}}'
+          width: 768
+          height: 1024
+          models:
+            - rdxlPixelArt_pony2.safetensors
+          denoise: 1
+          upscalers:
+            - 4x-AnimeSharp.pth
+        post:
+          username: sinatra
+          created_at: '2024-08-27T00:10:27.013Z'
+

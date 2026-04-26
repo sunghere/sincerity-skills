@@ -1,0 +1,346 @@
+schema_version: 1
+kind: civitai_model_detail
+model_key: pixelartfantasy_v30
+sources:
+  civitai_api: "https://civitai.com/api/v1/models/:modelId"
+  generated_at: "2026-04-25"
+  append_policy: "Append new entries under models using normalized local filename keys."
+
+model:
+  local_file:
+  catalog_type: checkpoint
+  base_model: illustrious
+  base_model_raw: "Illustrious"
+
+  civitai:
+    model_id: 2252830
+    model_url: "https://civitai.com/models/2252830/pixelart-fantasy"
+    air:
+    version_id: 2858423
+    model_name: "PixelArt Fantasy"
+    version_name: "v3.0"
+    creator: "Murex90707"
+    nsfw: false
+    tags: [style]
+    trained_words: []
+    files:
+      - "pixelartFantasy_v30.safetensors"
+    download_url: "https://civitai.com/api/download/models/2858423"
+
+  compatibility:
+    checkpoint_family: illustrious
+    lora_compatible_base_models: [illustrious]
+    recommended_for: [pixel_art, portrait, full_body, fantasy, cyberpunk]
+    not_recommended_for: [sd1.5_lora, flux_lora]
+
+  generation:
+    sampler:
+      recommended: ["euler_ancestral"]
+    scheduler:
+      recommended: "normal"
+    steps:
+      recommended: [20, 25]
+    cfg_scale:
+      recommended: [5, 7]
+
+  prompting:
+    helpful_tags: ["Pixel art style", "low-res", "8-bit"]
+    tools: ["ADetailer if needed"]
+
+  raw_notes: |
+    Purchase/membership required according to user note.
+    Creates pixel-art style images from a high-quality manually captioned dataset.
+
+  review:
+    status: api_enriched
+    missing:
+      - local_file
+      - air
+
+    sample_status: api_enriched
+    sample_count: 6
+    nsfw_samples_present: false
+  samples:
+    status: api_enriched
+    source: civitai
+    fetched_at: '2026-04-25'
+    model_id: 2252830
+    version_id: 2858423
+    count: 6
+    items:
+      - image_id: 127464550
+        image_url: 
+          https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/3115ed63-3dfe-42d0-9344-9b19f433157a/original=true/3115ed63-3dfe-42d0-9344-9b19f433157a.jpeg
+        page_url: https://civitai.com/posts/27965799
+        nsfw: false
+        width: 896
+        height: 1152
+        prompt: |-
+          1girl
+        negative_prompt:
+        generation:
+          seed:
+          steps:
+          cfg_scale:
+          sampler: Euler a
+          scheduler:
+          clip_skip:
+          size: 896x1152
+          model_hash: 4b113b365d
+        resources:
+          - type: model
+            name: PixelArtFantasy3.0
+            model_id:
+            version_id:
+            weight:
+        tags: []
+        raw_meta:
+          Model: PixelArtFantasy3.0
+          width: 896
+          hashes:
+            model: 4b113b365d
+          height: 1152
+          Version: f2.0.1v1.10.1-previous-659-gc055f2d4
+          Schedule type: Karras
+          ADetailer model: face_yolov8n.pt
+          ADetailer prompt: Beautiful female face
+          ADetailer version: 26.2.0
+          ADetailer mask blur: '4'
+          ADetailer confidence: '0.3'
+          ADetailer dilate erode: '4'
+          ADetailer inpaint padding: '32'
+          ADetailer denoising strength: '0.4'
+          ADetailer inpaint only masked: 'True'
+        post:
+          username: Murex90707
+          created_at: '2026-04-14T22:53:46.847Z'
+      - image_id: 127464633
+        image_url: 
+          https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/c449ad53-3091-4621-b694-76241aed7933/original=true/c449ad53-3091-4621-b694-76241aed7933.jpeg
+        page_url: https://civitai.com/posts/27965799
+        nsfw: false
+        width: 896
+        height: 1152
+        prompt: |-
+          1girl
+        negative_prompt:
+        generation:
+          seed:
+          steps:
+          cfg_scale:
+          sampler: Euler a
+          scheduler:
+          clip_skip:
+          size: 896x1152
+          model_hash: 4b113b365d
+        resources:
+          - type: model
+            name: PixelArtFantasy3.0
+            model_id:
+            version_id:
+            weight:
+        tags: []
+        raw_meta:
+          Model: PixelArtFantasy3.0
+          width: 896
+          hashes:
+            model: 4b113b365d
+          height: 1152
+          Version: f2.0.1v1.10.1-previous-659-gc055f2d4
+          Schedule type: Karras
+          ADetailer model: face_yolov8n.pt
+          ADetailer prompt: Beautiful female face
+          ADetailer version: 26.2.0
+          ADetailer mask blur: '4'
+          ADetailer confidence: '0.3'
+          ADetailer dilate erode: '4'
+          ADetailer inpaint padding: '32'
+          ADetailer denoising strength: '0.4'
+          ADetailer inpaint only masked: 'True'
+        post:
+          username: Murex90707
+          created_at: '2026-04-14T22:53:46.847Z'
+      - image_id: 127464572
+        image_url: 
+          https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/156e5507-1d63-48bd-b49a-cb4d689c1ea8/original=true/156e5507-1d63-48bd-b49a-cb4d689c1ea8.jpeg
+        page_url: https://civitai.com/posts/27965799
+        nsfw: false
+        width: 896
+        height: 1152
+        prompt: |-
+          1girl
+        negative_prompt:
+        generation:
+          seed:
+          steps:
+          cfg_scale:
+          sampler: Euler a
+          scheduler:
+          clip_skip:
+          size: 896x1152
+          model_hash: 4b113b365d
+        resources:
+          - type: model
+            name: PixelArtFantasy3.0
+            model_id:
+            version_id:
+            weight:
+        tags: []
+        raw_meta:
+          Model: PixelArtFantasy3.0
+          width: 896
+          hashes:
+            model: 4b113b365d
+          height: 1152
+          Version: f2.0.1v1.10.1-previous-659-gc055f2d4
+          Schedule type: Karras
+          ADetailer model: face_yolov8n.pt
+          ADetailer prompt: Beautiful female face
+          ADetailer version: 26.2.0
+          ADetailer mask blur: '4'
+          ADetailer confidence: '0.3'
+          ADetailer dilate erode: '4'
+          ADetailer inpaint padding: '32'
+          ADetailer denoising strength: '0.4'
+          ADetailer inpaint only masked: 'True'
+        post:
+          username: Murex90707
+          created_at: '2026-04-14T22:53:46.847Z'
+      - image_id: 127464604
+        image_url: 
+          https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/dd0912ab-2f92-46e9-993b-2f0c5f995d84/original=true/dd0912ab-2f92-46e9-993b-2f0c5f995d84.jpeg
+        page_url: https://civitai.com/posts/27965799
+        nsfw: false
+        width: 896
+        height: 1152
+        prompt: |-
+          1girl
+        negative_prompt:
+        generation:
+          seed:
+          steps:
+          cfg_scale:
+          sampler: Euler a
+          scheduler:
+          clip_skip:
+          size: 896x1152
+          model_hash: 4b113b365d
+        resources:
+          - type: model
+            name: PixelArtFantasy3.0
+            model_id:
+            version_id:
+            weight:
+        tags: []
+        raw_meta:
+          Model: PixelArtFantasy3.0
+          width: 896
+          hashes:
+            model: 4b113b365d
+          height: 1152
+          Version: f2.0.1v1.10.1-previous-659-gc055f2d4
+          Schedule type: Karras
+          ADetailer model: face_yolov8n.pt
+          ADetailer prompt: Beautiful female face
+          ADetailer version: 26.2.0
+          ADetailer mask blur: '4'
+          ADetailer confidence: '0.3'
+          ADetailer dilate erode: '4'
+          ADetailer inpaint padding: '32'
+          ADetailer denoising strength: '0.4'
+          ADetailer inpaint only masked: 'True'
+        post:
+          username: Murex90707
+          created_at: '2026-04-14T22:53:46.847Z'
+      - image_id: 127464653
+        image_url: 
+          https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/fde83c44-6e6a-466f-9887-d19b659e1083/original=true/fde83c44-6e6a-466f-9887-d19b659e1083.jpeg
+        page_url: https://civitai.com/posts/27965799
+        nsfw: false
+        width: 896
+        height: 1152
+        prompt: |-
+          1girl
+        negative_prompt:
+        generation:
+          seed:
+          steps:
+          cfg_scale:
+          sampler: Euler a
+          scheduler:
+          clip_skip:
+          size: 896x1152
+          model_hash: 4b113b365d
+        resources:
+          - type: model
+            name: PixelArtFantasy3.0
+            model_id:
+            version_id:
+            weight:
+        tags: []
+        raw_meta:
+          Model: PixelArtFantasy3.0
+          width: 896
+          hashes:
+            model: 4b113b365d
+          height: 1152
+          Version: f2.0.1v1.10.1-previous-659-gc055f2d4
+          Schedule type: Karras
+          ADetailer model: face_yolov8n.pt
+          ADetailer prompt: Beautiful female face
+          ADetailer version: 26.2.0
+          ADetailer mask blur: '4'
+          ADetailer confidence: '0.3'
+          ADetailer dilate erode: '4'
+          ADetailer inpaint padding: '32'
+          ADetailer denoising strength: '0.4'
+          ADetailer inpaint only masked: 'True'
+        post:
+          username: Murex90707
+          created_at: '2026-04-14T22:53:46.847Z'
+      - image_id: 127464654
+        image_url: 
+          https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/4d1af84d-d7ad-421e-9836-74b7c2de39cf/original=true/4d1af84d-d7ad-421e-9836-74b7c2de39cf.jpeg
+        page_url: https://civitai.com/posts/27965799
+        nsfw: false
+        width: 896
+        height: 1152
+        prompt: |-
+          1girl
+        negative_prompt:
+        generation:
+          seed:
+          steps:
+          cfg_scale:
+          sampler: Euler a
+          scheduler:
+          clip_skip:
+          size: 896x1152
+          model_hash: 4b113b365d
+        resources:
+          - type: model
+            name: PixelArtFantasy3.0
+            model_id:
+            version_id:
+            weight:
+        tags: []
+        raw_meta:
+          Model: PixelArtFantasy3.0
+          width: 896
+          hashes:
+            model: 4b113b365d
+          height: 1152
+          Version: f2.0.1v1.10.1-previous-659-gc055f2d4
+          Schedule type: Karras
+          ADetailer model: face_yolov8n.pt
+          ADetailer prompt: Beautiful female face
+          ADetailer version: 26.2.0
+          ADetailer mask blur: '4'
+          ADetailer confidence: '0.3'
+          ADetailer dilate erode: '4'
+          ADetailer inpaint padding: '32'
+          ADetailer denoising strength: '0.4'
+          ADetailer inpaint only masked: 'True'
+        post:
+          username: Murex90707
+          created_at: '2026-04-14T22:53:46.847Z'

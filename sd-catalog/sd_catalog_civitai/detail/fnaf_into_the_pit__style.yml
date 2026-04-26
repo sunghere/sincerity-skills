@@ -1,0 +1,354 @@
+schema_version: 1
+kind: civitai_model_detail
+model_key: fnaf_into_the_pit__style
+sources:
+  civitai_api: "https://civitai.com/api/v1/models/:modelId"
+  generated_at: "2026-04-25"
+  append_policy: "Append new entries under models using normalized local filename keys."
+
+model:
+  local_file: "Fnaf_into_the_Pit__Style.safetensors"
+  catalog_type: lora
+  base_model: pony
+  base_model_raw: "Pony"
+
+  civitai:
+    model_id: 945288
+    model_url:
+    air: "urn:air:sdxl:lora:civitai:945288@1058340"
+    version_id: 1058340
+    model_name: "Fnaf into the Pit / Style"
+    version_name: "V1"
+    creator: "HildasNumber1Simp"
+    nsfw: false
+    tags: [style]
+    trained_words: ["pixel art", "game assets", "overworld"]
+    files:
+      - "Fnaf_into_the_Pit__Style.safetensors"
+    download_url: "https://civitai.com/api/download/models/1058340"
+
+  compatibility:
+    checkpoint_family: pony
+    lora_compatible_base_models: [pony]
+    recommended_for: [pixel_art, game_assets, overworld, sprite_style]
+    not_recommended_for: [sd1.5, flux]
+
+  prompting:
+    trigger_words: ["pixel art", "game assets", "overworld"]
+
+  raw_notes: |
+    Style LoRA for recreating the spritework of Fnaf into the Pit, both solo and overworld sprites.
+
+  review:
+    status: api_enriched
+    missing:
+      - civitai.model_url
+
+    sample_status: api_enriched
+    sample_count: 6
+    nsfw_samples_present: true
+  samples:
+    status: api_enriched
+    source: civitai
+    fetched_at: '2026-04-25'
+    model_id: 945288
+    version_id: 1058340
+    count: 6
+    items:
+      - image_id: 40480383
+        image_url: 
+          https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/6e342a0f-b74b-4ca5-ba3b-8b0e783f09e8/original=true/6e342a0f-b74b-4ca5-ba3b-8b0e783f09e8.jpeg
+        page_url: https://civitai.com/posts/9223580
+        nsfw: true
+        width: 832
+        height: 1216
+        prompt: |-
+          score_9, score_8, mikus-concept,  freddy, bear ears, top hat,pixel art, game assets, overworld,
+        negative_prompt: |-
+          , score_1, score_2, score_3, score_4, score_5, , ((low quality, bad quality, awful quality)),
+        generation:
+          seed: 1788310486
+          steps: 30
+          cfg_scale: 7
+          sampler: Euler a
+          scheduler:
+          clip_skip: 2
+          size: 832x1216
+          model_hash:
+        resources:
+          - type: checkpoint
+            name: V6 (start with this one)
+            model_id:
+            version_id: 290640
+            weight:
+          - type: lora
+            name: V1
+            model_id:
+            version_id: 1058340
+            weight: 1
+          - type: lora
+            name: freddy 4 (best version)
+            model_id:
+            version_id: 509755
+            weight: 0.7
+        tags: []
+        raw_meta:
+          nsfw: true
+          draft: false
+          extra:
+            remixOfId: 40439969
+          width: 832
+          height: 1216
+          quantity: 4
+          workflow: txt2img
+          baseModel: Pony
+          Created Date: 2024-11-16T1926:05.0661816Z
+        post:
+          username: xmattar
+          created_at: '2024-11-16T20:27:26.381Z'
+      - image_id: 43528613
+        image_url: 
+          https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/0be81c42-8b94-4b62-bd15-2339eae03589/original=true/0be81c42-8b94-4b62-bd15-2339eae03589.jpeg
+        page_url: https://civitai.com/posts/9892272
+        nsfw: false
+        width: 832
+        height: 1232
+        prompt: |-
+          score_9, score_8_up, score_7_up,,  good quality ,, character focus, solo, , best quality  <lora:optimus-10:1>  optimus, robot, mecha, autobot, solo,<lora:Fnaf_into_the_Pit__Style:1> pixel art, game assets, overworld
+        negative_prompt: |-
+          (worst quality, ears, low quality:1.4), mouth
+        generation:
+          seed: 3923433960
+          steps: 20
+          cfg_scale: 7
+          sampler: DPM++ 2M
+          scheduler:
+          clip_skip:
+          size: 832x1232
+          model_hash: 821aa5537f
+        resources:
+          - type: lora
+            name: optimus-10
+            model_id:
+            version_id:
+            weight: 1
+          - type: lora
+            name: Fnaf_into_the_Pit__Style
+            model_id:
+            version_id:
+            weight: 1
+          - type: model
+            name: autismmixSDXL_autismmixPony
+            model_id:
+            version_id:
+            weight:
+        tags: []
+        raw_meta:
+          Model: autismmixSDXL_autismmixPony
+          hashes:
+            model: 821aa5537f
+            lora:optimus-10: cbe96cf6d372
+            lora:Fnaf_into_the_Pit__Style: 9a2e34471503
+          Version: v1.10.1
+          FP8 weight: Enable for SDXL
+          Schedule type: Karras
+          Cache FP16 weight for LoRA: 'False'
+        post:
+          username: xmattar
+          created_at: '2024-12-03T21:41:26.149Z'
+      - image_id: 40485954
+        image_url: 
+          https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/631864f8-a9c4-49db-bc34-7c09879db0b1/original=true/631864f8-a9c4-49db-bc34-7c09879db0b1.jpeg
+        page_url: https://civitai.com/posts/9224816
+        nsfw: true
+        width: 832
+        height: 1216
+        prompt: |-
+          score_9, score_8, scp035, mask, , pixel art, game assets, overworld
+        negative_prompt: |-
+          , score_1, score_2, score_3, score_4, score_5, , ((low quality, bad quality, awful quality)),
+        generation:
+          seed: 798310366
+          steps: 30
+          cfg_scale: 7
+          sampler: Euler a
+          scheduler:
+          clip_skip: 2
+          size: 832x1216
+          model_hash:
+        resources:
+          - type: checkpoint
+            name: V6 (start with this one)
+            model_id:
+            version_id: 290640
+            weight:
+          - type: lora
+            name: Pony
+            model_id:
+            version_id: 1061612
+            weight: 1
+          - type: lora
+            name: V1
+            model_id:
+            version_id: 1058340
+            weight: 1
+        tags: []
+        raw_meta:
+          nsfw: true
+          draft: false
+          width: 832
+          height: 1216
+          quantity: 4
+          workflow: txt2img
+          baseModel: Pony
+          Created Date: 2024-11-16T2010:02.2490296Z
+        post:
+          username: xmattar
+          created_at: '2024-11-16T21:18:40.212Z'
+      - image_id: 90437753
+        image_url: 
+          https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/4dcded49-e7cf-49d7-a553-c722ae0d3ae9/original=true/4dcded49-e7cf-49d7-a553-c722ae0d3ae9.jpeg
+        page_url: https://civitai.com/posts/20056517
+        nsfw: false
+        width: 1024
+        height: 1024
+        prompt: |-
+          pixel art, game assets, overworld, fnia_puppet, white hair, long hair, ponytail, hair ornament, white skin, black eyes, makeup, black bodysuit, white buttons, gloves,
+          angled cowboy shot,
+          score_9, score_8_up, good shadows, detailed shading, detailed body, highres, good hands, good fingers, best quality, masterpiece, detailed hands, solo, good eyes,
+        negative_prompt: |-
+          fewer digits, extra digits, extra ears, bad hands, multiple tails, lowres, bad anatomy, bad hands, extra digits, missing digits, extra limbs, worst quality, extra fingers,
+          Paw pads, human, from above, from below, nipples,
+        generation:
+          seed: 732701051
+          steps: 46
+          cfg_scale: 5
+          sampler: Euler a
+          scheduler:
+          clip_skip: 2
+          size: 1024x1024
+          model_hash:
+        resources:
+          - type: checkpoint
+            name: v14.0
+            model_id:
+            version_id: 1761560
+            weight:
+          - type: lora
+            name: V1
+            model_id:
+            version_id: 2021761
+            weight: 1
+          - type: lora
+            name: V1
+            model_id:
+            version_id: 1058340
+            weight: 1
+        tags: []
+        raw_meta:
+          Created Date: 2025-07-25T0255:08.5213147Z
+        post:
+          username: Robert_Entertainment
+          created_at: '2025-07-25T19:04:52.001Z'
+      - image_id: 40480380
+        image_url: 
+          https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/d603e253-1df1-4577-ac6c-e7c2afa505ed/original=true/d603e253-1df1-4577-ac6c-e7c2afa505ed.jpeg
+        page_url: https://civitai.com/posts/9223580
+        nsfw: true
+        width: 832
+        height: 1216
+        prompt: |-
+          score_9, score_8, mikus-concept,  freddy, bear ears, top hat,pixel art, game assets, overworld,
+        negative_prompt: |-
+          , score_1, score_2, score_3, score_4, score_5, , ((low quality, bad quality, awful quality)),
+        generation:
+          seed: 1978399075
+          steps: 30
+          cfg_scale: 7
+          sampler: Euler a
+          scheduler:
+          clip_skip: 2
+          size: 832x1216
+          model_hash:
+        resources:
+          - type: checkpoint
+            name: V6 (start with this one)
+            model_id:
+            version_id: 290640
+            weight:
+          - type: lora
+            name: V1
+            model_id:
+            version_id: 1058340
+            weight: 1
+          - type: lora
+            name: freddy 4 (best version)
+            model_id:
+            version_id: 509755
+            weight: 1
+        tags: []
+        raw_meta:
+          nsfw: true
+          draft: false
+          extra:
+            remixOfId: 40439969
+          width: 832
+          height: 1216
+          quantity: 4
+          workflow: txt2img
+          baseModel: Pony
+          Created Date: 2024-11-16T1926:58.7834127Z
+        post:
+          username: xmattar
+          created_at: '2024-11-16T20:27:26.381Z'
+      - image_id: 40480379
+        image_url: 
+          https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/9ab51d95-6807-4e2f-a1a8-69f18273694d/original=true/9ab51d95-6807-4e2f-a1a8-69f18273694d.jpeg
+        page_url: https://civitai.com/posts/9223580
+        nsfw: true
+        width: 832
+        height: 1216
+        prompt: |-
+          score_9, score_8, mikus-concept,  freddy, bear ears, top hat,pixel art, game assets, overworld,
+        negative_prompt: |-
+          , score_1, score_2, score_3, score_4, score_5, , ((low quality, bad quality, awful quality)),
+        generation:
+          seed: 1788310485
+          steps: 30
+          cfg_scale: 7
+          sampler: Euler a
+          scheduler:
+          clip_skip: 2
+          size: 832x1216
+          model_hash:
+        resources:
+          - type: checkpoint
+            name: V6 (start with this one)
+            model_id:
+            version_id: 290640
+            weight:
+          - type: lora
+            name: V1
+            model_id:
+            version_id: 1058340
+            weight: 1
+          - type: lora
+            name: freddy 4 (best version)
+            model_id:
+            version_id: 509755
+            weight: 0.7
+        tags: []
+        raw_meta:
+          nsfw: true
+          draft: false
+          extra:
+            remixOfId: 40439969
+          width: 832
+          height: 1216
+          quantity: 4
+          workflow: txt2img
+          baseModel: Pony
+          Created Date: 2024-11-16T1927:24.6812235Z
+        post:
+          username: xmattar
+          created_at: '2024-11-16T20:27:26.381Z'

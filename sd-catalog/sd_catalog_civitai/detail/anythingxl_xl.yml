@@ -1,0 +1,252 @@
+schema_version: 1
+kind: civitai_model_detail
+model_key: anythingxl_xl
+sources:
+  civitai_api: "https://civitai.com/api/v1/models/:modelId"
+  generated_at: "2026-04-25"
+  append_policy: "Append new entries under models using normalized local filename keys."
+
+model:
+  local_file: "AnythingXL_xl.safetensors"
+  catalog_type: checkpoint
+  base_model: sdxl
+  base_model_raw: "SDXL 1.0"
+
+  civitai:
+    model_id: 9409
+    model_url: "https://civitai.com/models/9409/or-anything-xl"
+    air: "urn:air:sdxl:checkpoint:civitai:9409@384264"
+    version_id: 384264
+    model_name:
+    version_name:
+    creator:
+    nsfw:
+    tags: []
+    trained_words: []
+    download_url:
+
+  compatibility:
+    checkpoint_family: sdxl
+    lora_compatible_base_models: [sdxl]
+    recommended_for: [anime, illustration, pixel_art]
+    not_recommended_for: [sd1.5_lora]
+
+  generation:
+    sampler:
+      recommended: ["Euler a", "DPM++ 2S a Karras"]
+      examples_seen: ["euler_a", "DPM++ 2S a Karras"]
+    steps:
+      recommended: [20, 25]
+      examples_seen: [20]
+    cfg_scale:
+      recommended: [5, 7]
+      examples_seen: [5, 7]
+    resolution:
+      recommended:
+        - "960x1536"
+        - "1024x1024"
+        - "1280x1536"
+        - "1280x2048"
+      not_recommended:
+        - "2048x2048"
+        - "2048x512"
+        - "512x2048"
+      notes: "A resolution greater than 1024x1024 is recommended. Hires fix is recommended for higher resolution or quality."
+    hires_fix:
+      recommended: true
+      notes: "Some examples use no hires fix, but the model-card notes recommend hires fix for higher resolution or quality."
+
+  prompting:
+    notes: "Prompt words differ from SD1.5. Structured anime-tag style prompting is recommended."
+    template:
+      - "<special>"
+      - "<artist>"
+      - "<special_optional>"
+      - "<characters_name>, <copyrights>"
+      - "<quality>, <meta>, <rating>"
+      - "<tags>"
+    special_tags:
+      years:
+        newest: "2021 to 2024"
+        recent: "2018 to 2020"
+        mid: "2015 to 2017"
+        early: "2011 to 2014"
+        old: "2005 to 2010"
+      rating:
+        safe: "General"
+        sensitive: "Sensitive"
+        nsfw: "Questionable"
+        explicit: "Explicit"
+      quality:
+        positive:
+          - masterpiece
+          - best quality
+          - great quality
+          - good quality
+          - normal quality
+        negative:
+          - low quality
+          - worst quality
+    negative_prompt:
+      recommended:
+        - lowres
+        - bad anatomy
+        - bad hands
+        - text
+        - error
+        - missing fingers
+        - extra digit
+        - fewer digits
+        - cropped
+        - worst quality
+        - low quality
+        - normal quality
+        - jpeg artifacts
+        - signature
+        - watermark
+        - username
+        - blurry
+        - artist name
+      notes: "Negative tags can include common negative tags, but avoid overly high weights such as ugly:2.8 unless intentionally
+        testing."
+
+  samples:
+    status: local_curated
+    source: Stable-diffusion-info.md
+    fetched_at: '2026-04-25'
+    model_id: 9409
+    version_id: 384264
+    count: 3
+    items:
+      - image_id: local-anythingxl_xl-1
+        image_url:
+        page_url: "https://civitai.com/models/9409/or-anything-xl"
+        nsfw: false
+        width: 960
+        height: 1536
+        prompt: |-
+          1girl, best quality, wand, grey hoodie, holding hair, virtual youtuber, horns, hands up, yellow bow, looking at viewer, yellow nails, hooded capelet, pixel art, fingernails, straight-on, fake horns, very long hair, orange nails, cow horns, black capelet, closed mouth, smile, hair intakes, hood, heart, pink nails, sleeves past wrists, short eyebrows, character name, long fingernails, long sleeves, hoodie, animal print, nail polish, hat, blue nails, thick eyebrows, black headwear, long hair, purple hair, blonde hair, print headwear, top hat, twintails, cow print, capelet, red eyes, transparent background, holding wand, solo, chin strap, eyes visible through hair, hood down, multicolored nails, ponytail, holding, dot nose, bow, hair tie, masterpiece, newest, absurdres, safe
+        negative_prompt: |-
+          Black-and-white picture, (worst quality, low quality:1.4), negative_hand Negative Embedding, verybadimagenegative_v1.3, 2girls, nsfw:1.4, bad anatomy, bad hands, cropped, missing fingers, too many fingers, missing arms, long neck, Humpbacked, deformed, disfigured, poorly drawn face, distorted face, mutation, mutated, extra limb, ugly, poorly drawn hands, missing limb, floating limbs, disconnected limbs, malformed hands, out of focus, long body, missing toes, too many toes, monochrome, symbol, text, logo, door frame, window frame, mirror frame
+        generation:
+          seed: 4087110221
+          steps: 20
+          cfg_scale: 7
+          sampler: "DPM++ 2S a Karras"
+          scheduler:
+          clip_skip:
+          size: 960x1536
+          model_hash:
+        resources: []
+        tags:
+          - "PIXEL ART CASE1"
+      - image_id: local-anythingxl_xl-2
+        image_url:
+        page_url: "https://civitai.com/models/9409/or-anything-xl"
+        nsfw: false
+        width: 960
+        height: 1536
+        prompt: |-
+          pixel art, cute fox girl, light blue hair and tail and eyes, white hoodie, black long socks, sleepy
+        negative_prompt: |-
+          (worst quality, low quality:1.4), negative_hand Negative Embedding, verybadimagenegative_v1.3, 2girls, nsfw:1.4, bad anatomy, bad hands, cropped, missing fingers, too many fingers, missing arms, long neck, Humpbacked, deformed, disfigured, poorly drawn face, distorted face, mutation, mutated, extra limb, ugly, poorly drawn hands, missing limb, floating limbs, disconnected limbs, malformed hands, out of focus, long body, missing toes, too many toes, monochrome, symbol, text, logo, door frame, window frame, mirror frame
+        generation:
+          seed: 3501448373
+          steps: 20
+          cfg_scale: 7
+          sampler: "DPM++ 2S a Karras"
+          scheduler:
+          clip_skip: 2
+          size: 960x1536
+          model_hash:
+        resources: []
+        tags:
+          - "PIXEL ART CASE2"
+        raw_meta:
+          denoising_strength: 0
+          style_selector_style: "base"
+          style_selector_enabled: true
+          style_selector_randomize: false
+      - image_id: local-anythingxl_xl-3
+        image_url:
+        page_url: "https://civitai.com/models/9409/or-anything-xl"
+        nsfw: false
+        width: 960
+        height: 1536
+        prompt: |-
+          1girl, mika\(blue archive\), blue archive, game cg, solo, double v, happy, (looking at viewer), one eye closed, upper body, spoken_heart, cinematic angle, depth of field, outdoors, sunset, masterpiece, best quality
+        negative_prompt: |-
+          lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer digits, cropped, worstquality, low quality, normal quality, jpegartifacts, signature, watermark, username, blurry, bad feet
+        generation:
+          seed: 916712473
+          steps: 20
+          cfg_scale: 5
+          sampler: "Euler a"
+          scheduler:
+          clip_skip:
+          size: 960x1536
+          model_hash:
+        resources: []
+        tags:
+          - "Anime Illust"
+  raw_notes: |
+    Base Model SDXL 1.0
+
+    Parameters+:
+    Prompt words are different from SD1.5, and for best results, it is recommended to follow a structured prompt template:
+
+    <|special|>,
+    <|artist|>,
+    <|special(optional)|>,
+    <|characters name|>, <|copyrights|>,
+    <|quality|>, <|meta|>, <|rating|>,
+    <|tags|>
+
+    Special tags:
+    years:
+    newest 2021 to 2024
+    recent 2018 to 2020
+    mid 2015 to 2017
+    early 2011 to 2014
+    old 2005 to 2010
+
+    NSFW:
+    safe General
+    sensitive Sensitive
+    nsfw Questionable
+    explicit, nsfw Explicit
+
+    quality:
+    masterpiece > 95%
+    best quality > ?
+    great quality > ?
+    good quality > ?
+    normal quality > ?
+    low quality > ?
+    worst quality <= 10%
+
+    Resolution:
+    A resolution greater than 1024x1024 is recommended, and hires fix is recommended if you want higher resolution or quality.
+
+    Most example generation parameters:
+    euler_a | 20 steps | no hires fix | CFG 7
+    960x1536 Recommended
+    1024x1024 1:1 Square
+    768x512 SD1.5
+    2048x512 Unable to guarantee the quality
+    512x2048 Unable to guarantee the quality
+
+  review:
+    status: needs_api_enrichment
+    missing:
+      - civitai.model_name
+      - civitai.version_name
+      - civitai.creator
+      - civitai.nsfw
+      - civitai.tags
+      - civitai.trained_words
+      - civitai.download_url
+
+    sample_status: local_curated
+    sample_count: 3
+    nsfw_samples_present: false

@@ -1,0 +1,380 @@
+schema_version: 1
+kind: civitai_model_detail
+model_key: oxalisanimepixelart_oxalispixelart
+sources:
+  civitai_api: "https://civitai.com/api/v1/models/:modelId"
+  generated_at: "2026-04-25"
+  append_policy: "Append new entries under models using normalized local filename keys."
+
+model:
+  local_file: "oxalisAnimePixelArt_oxalisPixelArt.safetensors"
+  catalog_type: checkpoint
+  base_model: sd1.5
+  base_model_raw: "SD 1.5"
+
+  civitai:
+    model_id: 362670
+    model_url: "https://civitai.com/models/362670/oxalis-anime-pixel-art-oap?modelVersionId=405242"
+    air: "urn:air:sd1:checkpoint:civitai:362670@405242"
+    version_id: 405242
+    model_name: "Oxalis Anime Pixel Art - OAP"
+    version_name: "Oxalis Pixel Art"
+    creator: "KorMode"
+    nsfw: false
+    tags: [anime, pixel_art, base_model, pixel, oxalis, oxalis_anime_model]
+    trained_words: ["pixel art"]
+    files:
+      - "oxalisAnimePixelArt_oxalisPixelArt.safetensors"
+    download_url: "https://civitai.com/api/download/models/405242"
+
+  compatibility:
+    checkpoint_family: sd1.5
+    lora_compatible_base_models: [sd1.5]
+    recommended_for: [anime, pixel_art]
+    not_recommended_for: [sdxl_lora, flux_lora]
+
+  generation:
+    clip_skip:
+      recommended: 2
+    eta:
+      example: 31337
+    restore_faces:
+      recommended: false
+    upscaler:
+      recommended: "anime upscaler 1.5x or 2.0x"
+
+  prompting:
+    trigger_words: ["pixel art"]
+    positive_prompt:
+      recommended: ["Pixel art", "masterpiece", "best quality", "high quality", "ultra-detailed", "best details"]
+    negative_prompt:
+      notes: "Card suggests anime negative embeddings such as EasyNegativeV2, verybadimagenegative_v1.3, FastNegativeV2."
+
+  raw_notes: |
+    Version notes: pruned version with baked VAE.
+    Card recommends Danbooru tags, ADetailer, tagcomplete, aspect-ratio helper, and anti-burn extensions.
+
+  review:
+    status: api_enriched
+    missing: []
+    sample_status: api_enriched
+    sample_count: 6
+    nsfw_samples_present: false
+  samples:
+    status: api_enriched
+    source: civitai
+    fetched_at: '2026-04-25'
+    model_id: 362670
+    version_id: 405242
+    count: 6
+    items:
+      - image_id: 8373598
+        image_url: 
+          https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/40bbd9fb-0517-4528-84fc-ba6af1fd6c4c/original=true/40bbd9fb-0517-4528-84fc-ba6af1fd6c4c.jpeg
+        page_url: https://civitai.com/posts/1811957
+        nsfw: false
+        width: 1232
+        height: 1536
+        prompt: |-
+          pixel art, 1girl, solo, smile, looking at viewer, beautiful character design, happy, eye focus, makeup, white background, cowboy shot, masterpiece, best quality, high quality
+        negative_prompt: |-
+          low quality, worst quality, low quality, worst quality, AnimeSupport-neg, Anti3dReality, bad_prompt_version2-neg, By bad artist -neg, EasyNegativeV2, FastNegativeV2, NGH, NIV-neg, SimpleNegativeV3, verybadimagenegative_v1.3
+        generation:
+          seed: 418130498
+          steps: 40
+          cfg_scale: 7
+          sampler: DPM++ 2M Karras
+          scheduler:
+          clip_skip: 2
+          size: 512x640
+          model_hash: 2cd23481f8
+        resources:
+          - type: model
+            name: Oxalis Anime Pixel Art - OAP
+            model_id:
+            version_id:
+            weight:
+        tags: []
+        raw_meta:
+          Model: Oxalis Anime Pixel Art - OAP
+          hashes:
+            model: 2cd23481f8
+          Version: v1.8.0
+          AntiBurn: Count=3;Skip=1;
+          Mask blur: '4'
+          TI hashes:
+            NGH: d9226d81fd0b
+            NIV-neg: f2050edf2fc8
+            Anti3dReality: 493122d83190
+            EasyNegativeV2: 339cc9210f70
+            FastNegativeV2: a7465e7cc2a2
+            AnimeSupport-neg: 0097f721b632
+            SimpleNegativeV3: 3dc1192fe70c
+            By bad artist -neg: 2d356134903e
+            bad_prompt_version2-neg: 6f35e7dd816a
+            verybadimagenegative_v1.3: d70463f87042
+          Hires steps: '25'
+          Hires resize: 616x768
+          Inpaint area: Only masked
+          Hires upscaler: ESRGAN_4x
+          ADetailer model: face_yolov8n.pt
+          ADetailer version: 24.3.1
+          Denoising strength: '0.4'
+          ADetailer mask blur: '4'
+          Masked area padding: '32'
+          ADetailer confidence: '0.3'
+          ADetailer dilate erode: '4'
+          ADetailer inpaint padding: '32'
+          ADetailer denoising strength: '0.4'
+          ADetailer inpaint only masked: 'True'
+        post:
+          username: KorMode
+          created_at: '2024-03-22T13:53:11.999Z'
+      - image_id: 55527939
+        image_url: 
+          https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/2936f038-8eba-4fbd-ac20-27e4008d147f/original=true/2936f038-8eba-4fbd-ac20-27e4008d147f.jpeg
+        page_url: https://civitai.com/posts/12440565
+        nsfw: false
+        width: 768
+        height: 1152
+        prompt: |-
+          1girl, solo, masterpiece, best quality
+        negative_prompt: |-
+          lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer digits, cropped, worst quality, low quality, normal quality, jpeg artifacts, signature, watermark, username, blurry, artist name, Bad Hand_v4, bad_prompt, Easy Negative
+        generation:
+          seed: 2142866884
+          steps: 32
+          cfg_scale: 3
+          sampler: DPM++ 3M SDE Karras
+          scheduler:
+          clip_skip: 2
+          size: 512x768
+          model_hash: 2cd23481f8
+        resources:
+          - type: model
+            name: oxalisAnimePixelArt_oxalisPixelArt
+            model_id:
+            version_id:
+            weight:
+        tags: []
+        raw_meta:
+          VAE: kl-f8-anime2.ckpt
+          Model: oxalisAnimePixelArt_oxalisPixelArt
+          hashes:
+            vae: c6a580b13a
+            model: 2cd23481f8
+          Version: v1.6.0
+          Hires upscale: '1.5'
+          Hires upscaler: R-ESRGAN 4x+ Anime6B
+          Denoising strength: '0.3'
+        post:
+          username: MaElRan
+          created_at: '2025-02-03T06:46:34.415Z'
+      - image_id: 8373596
+        image_url: 
+          https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/b89e1901-1bd9-4be0-a2ad-e3993aeaaa56/original=true/b89e1901-1bd9-4be0-a2ad-e3993aeaaa56.jpeg
+        page_url: https://civitai.com/posts/1811957
+        nsfw: false
+        width: 616
+        height: 768
+        prompt: |-
+          pixel art, 1girl, solo, smile, looking at viewer, beautiful character design, happy, eye focus, makeup, cowboy shot, walking in street of a autumn day, masterpiece, best quality, high quality
+        negative_prompt: |-
+          low quality, worst quality, low quality, worst quality, AnimeSupport-neg, Anti3dReality, bad_prompt_version2-neg, By bad artist -neg, EasyNegativeV2, FastNegativeV2, NGH, NIV-neg, SimpleNegativeV3, verybadimagenegative_v1.3
+        generation:
+          seed: 1265993438
+          steps: 40
+          cfg_scale: 7
+          sampler: DPM++ 2M Karras
+          scheduler:
+          clip_skip: 2
+          size: 512x640
+          model_hash: 2cd23481f8
+        resources:
+          - type: model
+            name: Oxalis Anime Pixel Art - OAP
+            model_id:
+            version_id:
+            weight:
+        tags: []
+        raw_meta:
+          Model: Oxalis Anime Pixel Art - OAP
+          hashes:
+            model: 2cd23481f8
+          Version: v1.8.0
+          AntiBurn: Count=3;Skip=1;
+          Mask blur: '4'
+          TI hashes:
+            NGH: d9226d81fd0b
+            NIV-neg: f2050edf2fc8
+            Anti3dReality: 493122d83190
+            EasyNegativeV2: 339cc9210f70
+            FastNegativeV2: a7465e7cc2a2
+            AnimeSupport-neg: 0097f721b632
+            SimpleNegativeV3: 3dc1192fe70c
+            By bad artist -neg: 2d356134903e
+            bad_prompt_version2-neg: 6f35e7dd816a
+            verybadimagenegative_v1.3: d70463f87042
+          Hires steps: '25'
+          Hires resize: 616x768
+          Inpaint area: Only masked
+          Hires upscaler: ESRGAN_4x
+          ADetailer model: face_yolov8n.pt
+          ADetailer version: 24.3.1
+          Denoising strength: '0.4'
+          ADetailer mask blur: '4'
+          Masked area padding: '32'
+          ADetailer confidence: '0.3'
+          ADetailer dilate erode: '4'
+          ADetailer inpaint padding: '32'
+          ADetailer denoising strength: '0.4'
+          ADetailer inpaint only masked: 'True'
+        post:
+          username: KorMode
+          created_at: '2024-03-22T13:53:11.999Z'
+      - image_id: 8373593
+        image_url: 
+          https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/b9968946-f094-439a-b94e-5365685ba133/original=true/b9968946-f094-439a-b94e-5365685ba133.jpeg
+        page_url: https://civitai.com/posts/1811957
+        nsfw: false
+        width: 768
+        height: 616
+        prompt: |-
+          pixel art, 1girl, solo, smile, looking at viewer, beautiful character design, happy, eye focus, makeup, cowboy shot, sitting and traveling inside a train interior beautiful, masterpiece, best quality, high quality
+        negative_prompt: |-
+          low quality, worst quality, low quality, worst quality, AnimeSupport-neg, Anti3dReality, bad_prompt_version2-neg, By bad artist -neg, EasyNegativeV2, FastNegativeV2, NGH, NIV-neg, SimpleNegativeV3, verybadimagenegative_v1.3
+        generation:
+          seed: 1836687495
+          steps: 40
+          cfg_scale: 7
+          sampler: DPM++ 2M Karras
+          scheduler:
+          clip_skip: 2
+          size: 640x512
+          model_hash: 2cd23481f8
+        resources:
+          - type: model
+            name: Oxalis Anime Pixel Art - OAP
+            model_id:
+            version_id:
+            weight:
+        tags: []
+        raw_meta:
+          Model: Oxalis Anime Pixel Art - OAP
+          hashes:
+            model: 2cd23481f8
+          Version: v1.8.0
+          AntiBurn: Count=3;Skip=1;
+          Mask blur: '4'
+          TI hashes:
+            NGH: d9226d81fd0b
+            NIV-neg: f2050edf2fc8
+            Anti3dReality: 493122d83190
+            EasyNegativeV2: 339cc9210f70
+            FastNegativeV2: a7465e7cc2a2
+            AnimeSupport-neg: 0097f721b632
+            SimpleNegativeV3: 3dc1192fe70c
+            By bad artist -neg: 2d356134903e
+            bad_prompt_version2-neg: 6f35e7dd816a
+            verybadimagenegative_v1.3: d70463f87042
+          Hires steps: '25'
+          Hires resize: 768x616
+          Inpaint area: Only masked
+          Hires upscaler: ESRGAN_4x
+          ADetailer model: face_yolov8n.pt
+          ADetailer version: 24.3.1
+          Denoising strength: '0.4'
+          ADetailer mask blur: '4'
+          Masked area padding: '32'
+          ADetailer confidence: '0.3'
+          ADetailer dilate erode: '4'
+          ADetailer inpaint padding: '32'
+          ADetailer denoising strength: '0.4'
+          ADetailer inpaint only masked: 'True'
+        post:
+          username: KorMode
+          created_at: '2024-03-22T13:53:11.999Z'
+      - image_id: 8373595
+        image_url: 
+          https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/06937bbc-3893-476e-9ef9-54ae8dea9ca6/original=true/06937bbc-3893-476e-9ef9-54ae8dea9ca6.jpeg
+        page_url: https://civitai.com/posts/1811957
+        nsfw: false
+        width: 2048
+        height: 1152
+        prompt: |-
+          pixel art, beautiful garden with flowers in a snow day, masterpiece, best quality, high quality
+        negative_prompt: |-
+          low quality, worst quality, AnimeSupport-neg, Anti3dReality, bad_prompt_version2-neg, By bad artist -neg, EasyNegativeV2, FastNegativeV2, NGH, NIV-neg, SimpleNegativeV3, verybadimagenegative_v1.3
+        generation:
+          seed: 521005086
+          steps: 40
+          cfg_scale: 7
+          sampler: DPM++ 2M Karras
+          scheduler:
+          clip_skip: 2
+          size: 912x512
+          model_hash: 2cd23481f8
+        resources:
+          - type: model
+            name: Oxalis Anime Pixel Art - OAP
+            model_id:
+            version_id:
+            weight:
+        tags: []
+        raw_meta:
+          Model: Oxalis Anime Pixel Art - OAP
+          hashes:
+            model: 2cd23481f8
+          Version: v1.8.0
+          AntiBurn: Count=3;Skip=1;
+          Hires steps: '25'
+          Hires resize: 1024x576
+          Hires upscaler: ESRGAN_4x
+          ADetailer model: face_yolov8n.pt
+          ADetailer version: 24.3.1
+          Denoising strength: '0.7'
+          ADetailer mask blur: '4'
+          ADetailer confidence: '0.3'
+          ADetailer dilate erode: '4'
+          ADetailer inpaint padding: '32'
+          ADetailer denoising strength: '0.4'
+          ADetailer inpaint only masked: 'True'
+        post:
+          username: KorMode
+          created_at: '2024-03-22T13:53:11.999Z'
+      - image_id: 8805855
+        image_url: 
+          https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/e99a8207-4206-48d2-8ad0-541a5a4284ce/original=true/e99a8207-4206-48d2-8ad0-541a5a4284ce.jpeg
+        page_url: https://civitai.com/posts/1903528
+        nsfw: false
+        width: 768
+        height: 1024
+        prompt: |-
+          1girl,Pixel art, masterpiece, best quality, high quality, ultra-detailed, best details, (masterpiece:1.2),best quality,Colorful portraits,multicolored,masterpiece,best quality,((an extremely delicate and beautiful)),floating,(detailed wet clothes),(detailed light),feather,nature,(sunlight),river,floating palace,beautiful and delicate water,(bloom),(shine),(wash painting),(ink s...),
+        negative_prompt: |-
+          0001SoftRealistic Negative and Positive Embeddings BadDream badhandv4 EasyNegative EasyNegativeV2 ng_deepnegative_v1_75t,child,chibi,
+        generation:
+          seed: 3105957605
+          steps: 15
+          cfg_scale: 15
+          sampler: DPM++ 2M Karras
+          scheduler:
+          clip_skip: 2
+          size: 768x1024
+          model_hash: 342f5bba3f
+        resources:
+          - type: model
+            name: oxalisAnimePixelArt_oxalisPixelArt
+            model_id:
+            version_id:
+            weight:
+        tags: []
+        raw_meta:
+          Model: oxalisAnimePixelArt_oxalisPixelArt
+          hashes:
+            model: 342f5bba3f
+          Version: f0.0.17v1.8.0rc-latest-276-g29be1da7
+        post:
+          username: jtwjyjy
+          created_at: '2024-03-30T02:29:55.103Z'
+

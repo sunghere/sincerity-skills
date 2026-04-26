@@ -1,0 +1,662 @@
+schema_version: 1
+kind: civitai_model_detail
+model_key: pixel_art_a3
+sources:
+  civitai_api: "https://civitai.com/api/v1/models/:modelId"
+  generated_at: "2026-04-25"
+  append_policy: "Append new entries under models using normalized local filename keys."
+
+model:
+  local_file: "pixel_art_a3.safetensors"
+  catalog_type: lora
+  base_model: sdxl
+  base_model_raw: "SDXL 1.0"
+
+  civitai:
+    model_id: 373048
+    model_url:
+    air: "urn:air:sdxl:lora:civitai:373048@499951"
+    version_id: 499951
+    model_name: "Pixel Art 像素艺术 XL"
+    version_name: "v2.0"
+    creator: "Chenkin"
+    nsfw: false
+    tags: [anime, pixel, style]
+    trained_words: ["pixel_art"]
+    files:
+      - "pixel_art_a3.safetensors"
+    download_url: "https://civitai.com/api/download/models/499951"
+
+  compatibility:
+    checkpoint_family: sdxl
+    lora_compatible_base_models: [sdxl, animagine]
+    recommended_for: [anime, pixel_art, random_style]
+    not_recommended_for: [sd1.5, flux]
+
+  generation:
+    lora_weight:
+      recommended: 0.9
+      range: [0.8, 1.0]
+    resolution:
+      training: "1024x1024"
+      recommended:
+        - "1024x1280"
+        - "832x1216"
+
+  prompting:
+    trigger_words: ["pixel_art"]
+
+  raw_notes: |
+    Final user-confirmed AIR: urn:air:sdxl:lora:civitai:373048@499951.
+    API model/version matches file pixel_art_a3.safetensors.
+    Training and inference model: Animagine XL V3.1.
+    Model card recommends output resolution 1024x1280 or 832x1216 and weight 0.8-1.0.
+
+  review:
+    status: api_enriched
+    missing:
+      - civitai.model_url
+
+    sample_status: api_enriched
+    sample_count: 6
+    nsfw_samples_present: true
+  samples:
+    status: api_enriched
+    source: civitai
+    fetched_at: '2026-04-25'
+    model_id: 373048
+    version_id: 499951
+    count: 6
+    items:
+      - image_id: 57799447
+        image_url: 
+          https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/e15a090a-e6b9-43bb-948f-3f5f6d5b543c/original=true/e15a090a-e6b9-43bb-948f-3f5f6d5b543c.jpeg
+        page_url: https://civitai.com/posts/12935976
+        nsfw: false
+        width: 1280
+        height: 1856
+        prompt: |-
+          masterpiece, best quality,
+          sdxl_lightning_4step_lora_rank1,
+          isometric,patch,pixel_art, (detailed),
+          PARADOX PARALLAX, SCENERY, FROM ABOVE, FLESH, GROWTHS, CORRUPTION,
+          3girl, multiple girls, multiple different girls, 3 different girls,
+          (1girl, remilia scarlet, at the top),
+          (1girl. Hakurei reimu. at the bottom, holding a sword),
+          (1gir, marisa kirisame, at the bottom, holding a magic staff),
+          (wide shot:1.2), long shot, depth of field
+        negative_prompt: |-
+          bad anatomy, from side, full body, male, penis, speech bubble, suit, simple background, grey background, white background,
+          3D, MONOCHROME, HIDEOUS, BLURRY FACE, TEXT, WATERMARK, LOW RESOLUTION, WORST QUALITY,
+        generation:
+          seed:
+          steps: 50
+          cfg_scale: 7
+          sampler: Euler a
+          scheduler:
+          clip_skip:
+          size: 1280x1856
+          model_hash:
+        resources:
+          - type: unknown
+            name:
+            model_id:
+            version_id: 1410435
+            weight: 1
+          - type: unknown
+            name:
+            model_id:
+            version_id: 1402683
+            weight: 1
+          - type: unknown
+            name:
+            model_id:
+            version_id: 745193
+            weight: 1
+          - type: unknown
+            name:
+            model_id:
+            version_id: 135867
+            weight: 1
+          - type: unknown
+            name:
+            model_id:
+            version_id: 499951
+            weight: 1
+          - type: checkpoint
+            name:
+            model_id:
+            version_id: 1410435
+            weight:
+          - type: upscaler
+            name:
+            model_id:
+            version_id: 164821
+            weight:
+          - type: lora
+            name:
+            model_id:
+            version_id: 1402683
+            weight: 1
+          - type: lora
+            name:
+            model_id:
+            version_id: 745193
+            weight: 1
+          - type: lora
+            name:
+            model_id:
+            version_id: 135867
+            weight: 1
+          - type: lora
+            name:
+            model_id:
+            version_id: 499951
+            weight: 1
+        tags: []
+        raw_meta:
+          Model: urn:air:sdxl:checkpoint:civitai:827184@1410435
+          models:
+            - urn:air:sdxl:checkpoint:civitai:827184@1410435
+          workflow: img2img-hires
+          upscalers:
+            - urn:air:other:upscaler:civitai:147759@164821
+          additionalResources:
+            - name: urn:air:sdxl:lora:civitai:1199904@1402683
+              type: lora
+              strength: 1
+              strengthClip: 1
+            - name: urn:air:sdxl:lora:civitai:665840@745193
+              type: lora
+              strength: 1
+              strengthClip: 1
+            - name: urn:air:sdxl:lora:civitai:122359@135867
+              type: lora
+              strength: 1
+              strengthClip: 1
+            - name: urn:air:sdxl:lora:civitai:373048@499951
+              type: lora
+              strength: 1
+              strengthClip: 1
+        post:
+          username: zoroaster2024
+          created_at: '2025-02-15T00:03:00.000Z'
+      - image_id: 57799446
+        image_url: 
+          https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/dc2541dc-7d7b-43aa-a91e-c63b0f9b9b48/original=true/dc2541dc-7d7b-43aa-a91e-c63b0f9b9b48.jpeg
+        page_url: https://civitai.com/posts/12935976
+        nsfw: false
+        width: 1280
+        height: 1856
+        prompt: |-
+          masterpiece, best quality,
+          isometric,patch,pixel_art, (detailed),
+          sdxl_lightning_4step_lora_rank1,
+          PARADOX PARALLAX, SCENERY, FROM ABOVE, ABOVE ABYSS, FLOATING ROCKS, RUNIC,
+          2girl, multiple girls, multiple different girls, 2 different girls,
+          (1girl. Sariel, six wings, six Angel wings, at the top),
+          (1girl. Hakurei Reimu. at the bottom),
+          (wide shot:1.2), long shot, depth of field,
+          xxx667_illu, glowing, glitch
+        negative_prompt: |-
+          bad anatomy, from side, full body, male, penis, speech bubble, suit, simple background, grey background, white background,
+          3D, MONOCHROME, HIDEOUS, BLURRY FACE, TEXT, WATERMARK, LOW RESOLUTION, WORST QUALITY,
+        generation:
+          seed:
+          steps: 30
+          cfg_scale: 7
+          sampler: DPM++ 2M
+          scheduler:
+          clip_skip:
+          size: 1280x1856
+          model_hash:
+        resources:
+          - type: unknown
+            name:
+            model_id:
+            version_id: 1410435
+            weight: 1
+          - type: unknown
+            name:
+            model_id:
+            version_id: 745193
+            weight: 1
+          - type: unknown
+            name:
+            model_id:
+            version_id: 135867
+            weight: 1
+          - type: unknown
+            name:
+            model_id:
+            version_id: 499951
+            weight: 1
+          - type: unknown
+            name:
+            model_id:
+            version_id: 1356500
+            weight: 1
+          - type: unknown
+            name:
+            model_id:
+            version_id: 1351118
+            weight: 0.7
+          - type: unknown
+            name:
+            model_id:
+            version_id: 1388867
+            weight: 0.2
+          - type: checkpoint
+            name:
+            model_id:
+            version_id: 1410435
+            weight:
+          - type: lora
+            name:
+            model_id:
+            version_id: 745193
+            weight: 1
+          - type: lora
+            name:
+            model_id:
+            version_id: 135867
+            weight: 1
+          - type: lora
+            name:
+            model_id:
+            version_id: 499951
+            weight: 1
+          - type: lora
+            name:
+            model_id:
+            version_id: 1356500
+            weight: 1
+          - type: lora
+            name:
+            model_id:
+            version_id: 1351118
+            weight: 0.7
+          - type: lycoris
+            name:
+            model_id:
+            version_id: 1388867
+            weight: 0.2
+        tags: []
+        raw_meta:
+          Model: urn:air:sdxl:checkpoint:civitai:827184@1410435
+          models:
+            - urn:air:sdxl:checkpoint:civitai:827184@1410435
+          workflow: img2img-facefix
+          additionalResources:
+            - name: urn:air:sdxl:lora:civitai:665840@745193
+              type: lora
+              strength: 1
+              strengthClip: 1
+            - name: urn:air:sdxl:lora:civitai:122359@135867
+              type: lora
+              strength: 1
+              strengthClip: 1
+            - name: urn:air:sdxl:lora:civitai:373048@499951
+              type: lora
+              strength: 1
+              strengthClip: 1
+            - name: urn:air:sdxl:lora:civitai:1204563@1356500
+              type: lora
+              strength: 1
+              strengthClip: 1
+            - name: urn:air:sdxl:lora:civitai:1199904@1351118
+              type: lora
+              strength: 0.7
+              strengthClip: 1
+            - name: urn:air:sdxl:lycoris:civitai:1232535@1388867
+              type: lora
+              strength: 0.2
+              strengthClip: 1
+        post:
+          username: zoroaster2024
+          created_at: '2025-02-15T00:03:00.000Z'
+      - image_id: 44489142
+        image_url: 
+          https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/25c28ca2-a78c-4c7b-9200-af43429d8f1b/original=true/25c28ca2-a78c-4c7b-9200-af43429d8f1b.jpeg
+        page_url: https://civitai.com/posts/10090361
+        nsfw: true
+        width: 1216
+        height: 832
+        prompt: |-
+          ulblackholetech, (masterpiece), An abandoned pyramid city floating in the void of space, constructed from a fusion of organic and metallic structures. Each building appears alive, with pulsating roots that throb like massive veins. In the sky, a warped moon made of eyes and mouths watches the scene eerily. The shadows cast by the light of a dying sun seem to move independently from the figures that create them
+           (8k uhd:1,4),, inspired in cosmic horror, (epic composition, epic proportion), intricate, professional work, soft shadow, volumetric lighting, ((dynamic Image))
+        negative_prompt: |-
+          bad anatomy, bad hands, three hands, three legs, bad arms, disembodied limbs, disembodied arms, missing legs, missing arms, poorly drawn face, bad face, disembodied feet, disembodied hands, fused face, cloned face, worst face, three crus, extra crus, disembodied legs, disembodied head, fused crus, 
+          worst feet, three feet, fused feet, fused thigh, three thigh, fused thigh, extra thigh, worst thigh, missing fingers, extra fingers, ugly fingers, long fingers, horn, extra eyes, huge eyes, amputation, disconnected limbs, (watermark)
+          cartoon, unreal, animate, lazy eyes, lazy arms, lazy legs, lazy eye, lazy arm, lazy leg, creepy hand, creepy leg, creepy face, saggy breasts, deformed breasts, 
+          missing breasts, extra breasts, crossed eyes, 2girls, cracked, damaged, busted, dishevel, fractured, broken, low definition, low detailed, low quality, head out of frame, body out of frame, hands out of frame, feet out of frame, legs out of frame, hip out of frame, torso out of frame
+        generation:
+          seed: 594203320
+          steps: 25
+          cfg_scale: 7
+          sampler: Euler a
+          scheduler:
+          clip_skip: 2
+          size: 1216x832
+          model_hash:
+        resources:
+          - type: checkpoint
+            name: v1.1
+            model_id:
+            version_id: 600365
+            weight:
+          - type: lora
+            name: SDXL
+            model_id:
+            version_id: 331641
+            weight: 0.3
+          - type: lora
+            name: v2.0
+            model_id:
+            version_id: 383563
+            weight: 2
+          - type: lora
+            name: SDXL
+            model_id:
+            version_id: 463633
+            weight: 1.2
+          - type: lora
+            name: v1.0
+            model_id:
+            version_id: 135867
+            weight: 2
+          - type: lora
+            name: v1.0
+            model_id:
+            version_id: 233513
+            weight: 0.95
+          - type: lora
+            name: Unweathered Pyramids
+            model_id:
+            version_id: 266067
+            weight: 1.25
+          - type: lora
+            name: v1.0 SDXL
+            model_id:
+            version_id: 240870
+            weight: 0.55
+          - type: lora
+            name: HellAI XL
+            model_id:
+            version_id: 165964
+            weight: 1.25
+          - type: lora
+            name: v2.0
+            model_id:
+            version_id: 499951
+            weight: 1
+        tags: []
+        raw_meta:
+          nsfw: true
+          draft: false
+          width: 1216
+          height: 832
+          quantity: 2
+          workflow: txt2img
+          baseModel: SDXL
+          Created Date: 2024-12-09T0346:30.3647110Z
+        post:
+          username: KamilRose
+          created_at: '2024-12-09T03:48:48.760Z'
+      - image_id: 44489140
+        image_url: 
+          https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/de589f61-7e4c-46df-8880-a3d87e6098f1/original=true/de589f61-7e4c-46df-8880-a3d87e6098f1.jpeg
+        page_url: https://civitai.com/posts/10090361
+        nsfw: true
+        width: 1216
+        height: 832
+        prompt: |-
+          ulblackholetech, (masterpiece), An abandoned pyramid city floating in the void of space, constructed from a fusion of organic and metallic structures. Each building appears alive, with pulsating roots that throb like massive veins. In the sky, a warped moon made of eyes and mouths watches the scene eerily. The shadows cast by the light of a dying sun seem to move independently from the figures that create them
+           (8k uhd:1,4),, inspired in cosmic horror, (epic composition, epic proportion), intricate, professional work, soft shadow, volumetric lighting, ((dynamic Image))
+        negative_prompt: |-
+          bad anatomy, bad hands, three hands, three legs, bad arms, disembodied limbs, disembodied arms, missing legs, missing arms, poorly drawn face, bad face, disembodied feet, disembodied hands, fused face, cloned face, worst face, three crus, extra crus, disembodied legs, disembodied head, fused crus, 
+          worst feet, three feet, fused feet, fused thigh, three thigh, fused thigh, extra thigh, worst thigh, missing fingers, extra fingers, ugly fingers, long fingers, horn, extra eyes, huge eyes, amputation, disconnected limbs, (watermark)
+          cartoon, unreal, animate, lazy eyes, lazy arms, lazy legs, lazy eye, lazy arm, lazy leg, creepy hand, creepy leg, creepy face, saggy breasts, deformed breasts, 
+          missing breasts, extra breasts, crossed eyes, 2girls, cracked, damaged, busted, dishevel, fractured, broken, low definition, low detailed, low quality, head out of frame, body out of frame, hands out of frame, feet out of frame, legs out of frame, hip out of frame, torso out of frame
+        generation:
+          seed: 594203319
+          steps: 25
+          cfg_scale: 7
+          sampler: Euler a
+          scheduler:
+          clip_skip: 2
+          size: 1216x832
+          model_hash:
+        resources:
+          - type: checkpoint
+            name: v1.1
+            model_id:
+            version_id: 600365
+            weight:
+          - type: lora
+            name: SDXL
+            model_id:
+            version_id: 331641
+            weight: 0.3
+          - type: lora
+            name: v2.0
+            model_id:
+            version_id: 383563
+            weight: 2
+          - type: lora
+            name: SDXL
+            model_id:
+            version_id: 463633
+            weight: 1.2
+          - type: lora
+            name: v1.0
+            model_id:
+            version_id: 135867
+            weight: 2
+          - type: lora
+            name: v1.0
+            model_id:
+            version_id: 233513
+            weight: 0.95
+          - type: lora
+            name: Unweathered Pyramids
+            model_id:
+            version_id: 266067
+            weight: 1.25
+          - type: lora
+            name: v1.0 SDXL
+            model_id:
+            version_id: 240870
+            weight: 0.55
+          - type: lora
+            name: HellAI XL
+            model_id:
+            version_id: 165964
+            weight: 1.25
+          - type: lora
+            name: v2.0
+            model_id:
+            version_id: 499951
+            weight: 1
+        tags: []
+        raw_meta:
+          nsfw: true
+          draft: false
+          width: 1216
+          height: 832
+          quantity: 2
+          workflow: txt2img
+          baseModel: SDXL
+          Created Date: 2024-12-09T0346:51.8780287Z
+        post:
+          username: KamilRose
+          created_at: '2024-12-09T03:48:48.760Z'
+      - image_id: 57799449
+        image_url: 
+          https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/fc1f158a-9420-4747-8591-3bb3c30c90ac/original=true/fc1f158a-9420-4747-8591-3bb3c30c90ac.jpeg
+        page_url: https://civitai.com/posts/12935976
+        nsfw: false
+        width: 1280
+        height: 1856
+        prompt: |-
+          masterpiece, best quality,
+          sdxl_lightning_4step_lora_rank1,
+          (detailed),
+          PARADOX PARALLAX, SCENERY, FROM ABOVE, SCI-FI, ABOVE SPACE, ABOVE CLOUDS, ASTEROID, RECKAGE,
+          1girl. yakumo yukari. (back view:1.1),
+          (wide shot:1.2), long shot, depth of field,
+          xxx667_illu, glowing
+        negative_prompt: |-
+          bad anatomy, from side, full body, male, penis, speech bubble, suit, simple background, grey background, white background,
+          3D, MONOCHROME, HIDEOUS, BLURRY FACE, TEXT, WATERMARK, LOW RESOLUTION, WORST QUALITY,
+        generation:
+          seed:
+          steps: 29
+          cfg_scale: 7
+          sampler: Euler a
+          scheduler:
+          clip_skip:
+          size: 1280x1856
+          model_hash:
+        resources:
+          - type: unknown
+            name:
+            model_id:
+            version_id: 1410435
+            weight: 1
+          - type: unknown
+            name:
+            model_id:
+            version_id: 745193
+            weight: 1
+          - type: unknown
+            name:
+            model_id:
+            version_id: 135867
+            weight: 1
+          - type: unknown
+            name:
+            model_id:
+            version_id: 499951
+            weight: 1
+          - type: unknown
+            name:
+            model_id:
+            version_id: 1402561
+            weight: 0.7
+          - type: unknown
+            name:
+            model_id:
+            version_id: 1356500
+            weight: 1
+          - type: checkpoint
+            name:
+            model_id:
+            version_id: 1410435
+            weight:
+          - type: upscaler
+            name:
+            model_id:
+            version_id: 164821
+            weight:
+          - type: lora
+            name:
+            model_id:
+            version_id: 745193
+            weight: 1
+          - type: lora
+            name:
+            model_id:
+            version_id: 135867
+            weight: 1
+          - type: lora
+            name:
+            model_id:
+            version_id: 499951
+            weight: 1
+          - type: lora
+            name:
+            model_id:
+            version_id: 1402561
+            weight: 0.7
+          - type: lora
+            name:
+            model_id:
+            version_id: 1356500
+            weight: 1
+        tags: []
+        raw_meta:
+          Model: urn:air:sdxl:checkpoint:civitai:827184@1410435
+          models:
+            - urn:air:sdxl:checkpoint:civitai:827184@1410435
+          workflow: img2img-hires
+          upscalers:
+            - urn:air:other:upscaler:civitai:147759@164821
+          additionalResources:
+            - name: urn:air:sdxl:lora:civitai:665840@745193
+              type: lora
+              strength: 1
+              strengthClip: 1
+            - name: urn:air:sdxl:lora:civitai:122359@135867
+              type: lora
+              strength: 1
+              strengthClip: 1
+            - name: urn:air:sdxl:lora:civitai:373048@499951
+              type: lora
+              strength: 1
+              strengthClip: 1
+            - name: urn:air:sdxl:lora:civitai:1199904@1402561
+              type: lora
+              strength: 0.7
+              strengthClip: 1
+            - name: urn:air:sdxl:lora:civitai:1204563@1356500
+              type: lora
+              strength: 1
+              strengthClip: 1
+        post:
+          username: zoroaster2024
+          created_at: '2025-02-15T00:03:00.000Z'
+      - image_id: 12159996
+        image_url: 
+          https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/6bed255c-52cd-4d12-9382-e1ca0b81f43d/original=true/6bed255c-52cd-4d12-9382-e1ca0b81f43d.jpeg
+        page_url: https://civitai.com/posts/2684752
+        nsfw: false
+        width: 832
+        height: 1216
+        prompt: |-
+          score_9,score_8_up,score_7_up,<lora:pixel_art_a3:1>,3boys,3girls,aircraft,animal_hat,animated,aviator_cap,black_cat,black_hair,blonde_hair,blue_eyes,brown_hair,bush,chair,chibi,cloud,commentary_request,crystal,cup,dark_skin,day,dollhouse_view,fishing,floating_island,frog_hat,garden,green_eyes,hot_air_balloon,industrial_pipe,isometric,outdoors,patch,pixel_art,plank,potted_plant,rabbit_ears,red_eyes,scarf,scenery,short_hair,short_ponytail,sidewalk,sign,sitting,sky,stairs,steam,sunflower,table,taxi,teapot,video,watering_can,white_cat,windmill,
+        negative_prompt: |-
+          logo,score_4,score_5,score_6,lowres,(bad),text,error,fewer,extra,missing,worst quality,jpeg artifacts,low quality,watermark,unfinished,displeasing,oldest,early,chromatic aberration,signature,extra digits,artistic error,username,scan,[abstract],
+        generation:
+          seed: 1600159431
+          steps: 28
+          cfg_scale: 7
+          sampler: Euler a
+          scheduler:
+          clip_skip: 2
+          size: 832x1216
+          model_hash: e3c47aedb0
+        resources:
+          - type: lora
+            name: pixel_art_a3
+            model_id:
+            version_id:
+            weight: 1
+          - type: model
+            name: animagine-xl-3.1
+            model_id:
+            version_id:
+            weight:
+        tags: []
+        raw_meta:
+          Model: animagine-xl-3.1
+          hashes:
+            model: e3c47aedb0
+            lora:pixel_art_a3: fdd5473971da
+          Version: v1.9.3
+          Pad conds: 'True'
+          Schedule type: Automatic
+          Downcast alphas_cumprod: 'True'
+        post:
+          username: Chenkin
+          created_at: '2024-05-11T14:53:28.257Z'

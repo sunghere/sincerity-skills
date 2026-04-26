@@ -1,0 +1,229 @@
+schema_version: 1
+kind: civitai_model_detail
+model_key: pixel_resin_x16_pixel_art_witches
+sources:
+  civitai_api: "https://civitai.com/api/v1/models/:modelId"
+  generated_at: "2026-04-25"
+  append_policy: "Append new entries under models using normalized local filename keys."
+
+model:
+  local_file: "Pixel_Resin_x16_pixel_art_witches.safetensors"
+  catalog_type: lora
+  base_model: illustrious
+  base_model_raw: "Illustrious"
+
+  civitai:
+    model_id: 1999880
+    model_url: "https://civitai.com/models/1999880/pixelresin-x16-pixel-art?modelVersionId=2263626"
+    air: "urn:air:sdxl:lora:civitai:1999880@2263626"
+    version_id: 2263626
+    model_name: "Pixel_Resin x16 pixel art"
+    version_name: "V1_preprocess_20ep"
+    creator: "alavelasq415"
+    nsfw: false
+    tags: [pixel_art, minimalist, witch, simple, style, artist, blending]
+    trained_words: ["resin_style", "simple background", "blending"]
+    files:
+      - "Pixel_Resin_x16_pixel_art_witches.safetensors"
+    download_url: "https://civitai.com/api/download/models/2263626"
+
+  compatibility:
+    checkpoint_family: illustrious
+    lora_compatible_base_models: [illustrious]
+    recommended_for: [pixel_art, witch, minimalist, flat_color]
+    not_recommended_for: [flux, sd1.5]
+
+  generation:
+    lora_weight:
+      recommended: 0.7
+      range: [0.5, 1.0]
+      notes: "Model card says weights 0.5-1 are good, with lower weights sometimes producing better pixel art or flat color."
+    resolution:
+      training: "1024x1024"
+
+  prompting:
+    trigger_words: ["resin_style", "simple background", "blending"]
+    helpful_tags:
+      - pixel art
+      - limited palette
+      - "{color} background"
+      - "{color} outline"
+
+  raw_notes: |
+    Trained on 32 preprocessed 16x pixel-size images at 1024x1024.
+    Training images are mostly witch girls, which may affect results.
+    Card says the model is not suited for fancy images but handles absent prompts fairly well.
+
+  review:
+    status: api_enriched
+    missing: []
+    sample_status: api_enriched
+    sample_count: 6
+    nsfw_samples_present: false
+  samples:
+    status: api_enriched
+    source: civitai
+    fetched_at: '2026-04-25'
+    model_id: 1999880
+    version_id: 2263626
+    count: 6
+    items:
+      - image_id: 103190110
+        image_url: 
+          https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/5eb61842-8cb1-4165-9831-219e0c4f4529/original=true/5eb61842-8cb1-4165-9831-219e0c4f4529.jpeg
+        page_url: https://civitai.com/posts/22893656
+        nsfw: false
+        width: 960
+        height: 1440
+        prompt: |-
+          cloak, simple background, ((blush, blue cloak, wind, cute)), spoken heart,
+          <lora:enaru:1.0> enaru, no humans, one-eyed, flower, snake, pink flower, green eye, looking at viewer
+          <lora:Pixel_Resin_x16_pixel_art_witches:1>
+        negative_prompt: |-
+          (low quality, bad quality, worst quality:1.2), lowres, watermark, text, signature, noise, noisy, noisy background, compression artifacts, low contrast, nose, mouth, hood
+          Steps: 20, Sampler: Euler a, Schedule type: Automatic, CFG scale: 5, Seed: 87, Size: 960x1440, Model hash: 95165ce0d6, Model: plantMilkModelSuite_walnut, ENSD: 31337, Lora hashes: "enaru: 714615b14f5e, Pixel_Resin_x16_pixel_art_witches: 0c5c69a61fe7", Discard penultimate sigma: True, Eta: 0.67, NGMS: 7.0, Version: f2.0.1v1.10.1-previous-669-gdfdcbab6
+        generation:
+          seed:
+          steps:
+          cfg_scale:
+          sampler:
+          scheduler:
+          clip_skip:
+          size: 960x1440
+          model_hash:
+        resources: []
+        tags: []
+        post:
+          username: Lostcut
+          created_at: '2025-09-29T20:00:00.000Z'
+      - image_id: 103168402
+        image_url: 
+          https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/11858c78-3b1d-4ff7-b29b-90099a416173/original=true/11858c78-3b1d-4ff7-b29b-90099a416173.jpeg
+        page_url: https://civitai.com/posts/22888169
+        nsfw: false
+        width: 1024
+        height: 1024
+        prompt: |-
+          hooded cloak, simple background, 1girl, solo, full body, dark fantasy, fungi priestess fox girl, aura, very big and long fox ears, glowing green eyes, green spirits
+        negative_prompt: |-
+          (low quality, bad quality, worst quality:1.2), lowres, watermark, text, signature, noise, noisy, noisy background, compression artifacts, low contrast, score_5, score_4, score_3, score_2, score_1
+        generation:
+          seed: 86
+          steps: 20
+          cfg_scale: 5
+          sampler: Euler a
+          scheduler:
+          clip_skip:
+          size: 1024x1024
+          model_hash:
+        resources: []
+        tags: []
+        post:
+          username: alavelasq415
+          created_at: '2025-09-29T16:09:52.148Z'
+      - image_id: 103190106
+        image_url: 
+          https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/b502d662-2970-4912-8f3e-6b6f5def7b64/original=true/b502d662-2970-4912-8f3e-6b6f5def7b64.jpeg
+        page_url: https://civitai.com/posts/22893656
+        nsfw: false
+        width: 960
+        height: 1440
+        prompt: |-
+          hooded cloak, pose, fighting stance, sprite, view from side, 1girl, solo, full body, dark fantasy, tiger girl hannah witch, ahoge, aura, glowing pink eyes, green spirits, spirit magic, dynamic pose ,dynamic angle,
+
+          <lora:Pixel_Resin_x16_pixel_art_witches:1> <lora:Hannah_Mahjong_Soul_Illustrious_v02:1>
+        negative_prompt: |-
+          (low quality, bad quality, worst quality:1.2), lowres, explicit, questionable
+          Steps: 30, Sampler: Euler a, Schedule type: Automatic, CFG scale: 5, Seed: 3337120070, Size: 960x1440, Model hash: 95165ce0d6, Model: plantMilkModelSuite_walnut, Clip skip: 2, ENSD: 31337, Lora hashes: "Pixel_Resin_x16_pixel_art_witches: 0c5c69a61fe7, Hannah_Mahjong_Soul_Illustrious_v02: efa4e28d6b83", Discard penultimate sigma: True, Eta: 0.67, NGMS: 7.0, Version: f2.0.1v1.10.1-previous-669-gdfdcbab6
+        generation:
+          seed:
+          steps:
+          cfg_scale:
+          sampler:
+          scheduler:
+          clip_skip:
+          size: 960x1440
+          model_hash:
+        resources: []
+        tags: []
+        post:
+          username: Lostcut
+          created_at: '2025-09-29T20:00:00.000Z'
+      - image_id: 103168405
+        image_url: 
+          https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/f3ec9356-8625-4086-b16b-5ae87eb0cb23/original=true/f3ec9356-8625-4086-b16b-5ae87eb0cb23.jpeg
+        page_url: https://civitai.com/posts/22888169
+        nsfw: false
+        width: 1024
+        height: 1024
+        prompt: |-
+          resin_style, 1girl, solo, witch hat, hat, long hair, simple background, orange hair, witch, green background, green eyes, full body, standing, cape, spark, long sleeves, boots, blending, green dress, belt
+        negative_prompt: |-
+          (low quality, bad quality, worst quality:1.2), lowres, watermark, text, signature, noise, noisy, noisy background, compression artifacts, low contrast, score_5, score_4, score_3, score_2, score_1
+        generation:
+          seed: 86
+          steps: 20
+          cfg_scale: 5
+          sampler: Euler a
+          scheduler:
+          clip_skip:
+          size: 1024x1024
+          model_hash:
+        resources: []
+        tags: []
+        post:
+          username: alavelasq415
+          created_at: '2025-09-29T16:09:52.148Z'
+      - image_id: 103190100
+        image_url: 
+          https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/0520f92c-5aba-41a7-abda-e50bcd4186b9/original=true/0520f92c-5aba-41a7-abda-e50bcd4186b9.jpeg
+        page_url: https://civitai.com/posts/22893656
+        nsfw: false
+        width: 1280
+        height: 1920
+        prompt: |-
+          hooded cloak, simple background, 1girl, solo, full body, dark fantasy, tiger girl hannah witch, ahoge, aura, glowing pink eyes, green spirits, spirit magic
+
+          <lora:Pixel_Resin_x16_pixel_art_witches:1> <lora:Hannah_Mahjong_Soul_Illustrious_v02:1>
+        negative_prompt: |-
+          (low quality, bad quality, worst quality:1.2), lowres, watermark, text, signature, noise, noisy, noisy background, compression artifacts, low contrast, score_5, score_4, score_3, score_2, score_1
+          Steps: 20, Sampler: Euler a, Schedule type: Automatic, CFG scale: 5, Seed: 89, Size: 960x1440, Model hash: 95165ce0d6, Model: plantMilkModelSuite_walnut, ENSD: 31337, Lora hashes: "Pixel_Resin_x16_pixel_art_witches: 0c5c69a61fe7, Hannah_Mahjong_Soul_Illustrious_v02: efa4e28d6b83", Discard penultimate sigma: True, Eta: 0.67, NGMS: 7.0, Version: f2.0.1v1.10.1-previous-669-gdfdcbab6
+        generation:
+          seed:
+          steps:
+          cfg_scale:
+          sampler:
+          scheduler:
+          clip_skip:
+          size: 1280x1920
+          model_hash:
+        resources: []
+        tags: []
+        post:
+          username: Lostcut
+          created_at: '2025-09-29T20:00:00.000Z'
+      - image_id: 103286477
+        image_url: 
+          https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/9f6b4ad7-12a5-4a69-a545-2de972d17074/original=true/9f6b4ad7-12a5-4a69-a545-2de972d17074.jpeg
+        page_url: https://civitai.com/posts/22914119
+        nsfw: false
+        width: 1024
+        height: 1024
+        prompt: |-
+          resin_style, 1girl, solo, witch hat, hat, long hair, simple background, orange hair, witch, green background, green eyes, full body, standing, cape, spark, long sleeves, boots, blending, green dress, belt
+        negative_prompt:
+        generation:
+          seed:
+          steps:
+          cfg_scale:
+          sampler:
+          scheduler:
+          clip_skip:
+          size: 1024x1024
+          model_hash:
+        resources: []
+        tags: []
+        post:
+          username: alavelasq415
+          created_at: '2025-09-30T05:18:47.986Z'
+

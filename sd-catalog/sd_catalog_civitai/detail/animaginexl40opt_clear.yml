@@ -1,0 +1,128 @@
+schema_version: 1
+kind: civitai_model_detail
+model_key: animaginexl40opt_clear
+sources:
+  civitai_api: "https://civitai.com/api/v1/models/:modelId"
+  generated_at: "2026-04-25"
+  append_policy: "Append new entries under models using normalized local filename keys."
+
+model:
+  local_file: "animagineXL40Opt_clear.safetensors"
+  catalog_type: checkpoint
+  base_model: sdxl
+  base_model_raw: "SDXL 1.0"
+
+  civitai:
+    model_id: 2110148
+    model_url: "https://civitai.com/models/2110148/animagine-xl40optclear"
+    air: "urn:air:sdxl:checkpoint:civitai:2110148@2387208"
+    version_id: 2387208
+    model_name: "Animagine XL 4.0 Opt Clear"
+    version_name:
+    creator:
+    nsfw:
+    tags: []
+    trained_words: []
+    files:
+      - "animagineXL40Opt_clear.safetensors"
+    download_url:
+
+  compatibility:
+    checkpoint_family: sdxl
+    lora_compatible_base_models: [sdxl]
+    recommended_for: [anime, illustration, pixel_art]
+    not_recommended_for: [sd1.5_lora, flux_lora]
+
+  generation:
+    sampler:
+      recommended: ["DPM++ 2M SDE", "Euler a"]
+    scheduler:
+      recommended: "beta"
+    steps:
+      recommended: [15, 25]
+      sweet_spot: 20
+    cfg_scale:
+      recommended: [4, 6]
+    upscaler:
+      examples:
+        - "RealESRGAN_x4Plus Anime 6B"
+        - "IllustrationJaNai_V1_ESRGAN"
+    detailer:
+      recommended: true
+
+  prompting:
+    quality_tags:
+      positive:
+        - masterpiece
+        - high score
+        - great score
+        - absurdres
+    negative_prompt:
+      recommended:
+        - lowres
+        - bad anatomy
+        - bad hands
+        - text
+        - error
+        - missing finger
+        - extra digits
+        - fewer digits
+        - cropped
+        - worst quality
+        - low quality
+        - low score
+        - bad score
+        - average score
+        - signature
+        - watermark
+        - username
+        - blurry
+
+  samples:
+    status: local_curated
+    source: Stable-diffusion-info.md
+    fetched_at: '2026-04-25'
+    model_id: 2110148
+    version_id: 2387208
+    count: 1
+    items:
+      - image_id: local-animaginexl40opt_clear-1
+        image_url:
+        page_url: "https://civitai.com/models/2110148/animagine-xl40optclear"
+        nsfw: false
+        width:
+        height:
+        prompt: |-
+          drawing of a boy and girl holding hands under an umbrella, pixel art style, black background, simple background, white shirts, black hair, red bowtie, holding hands, boy on the left, girl on the right, dutch angle, dynamic angle, close up, upper body, small breasts, burgundy, rouge, alizarin, royal purple, indigo, deep blue, masterpiece, high score, great score, absurdres
+        negative_prompt: |-
+          lowres, bad anatomy, bad hands, text, error, missing finger, extra digits, fewer digits, cropped, worst quality, low quality, low score, bad score, average score, signature, watermark, username, blurry
+        generation:
+          seed:
+          steps: 20
+          cfg_scale: 4
+          sampler: "DPM++ 2M SDE"
+          scheduler:
+          clip_skip:
+          size:
+          model_hash:
+        resources: []
+        tags:
+          - "PIXEL ART"
+  raw_notes: |
+    Base Model: SDXL 1.0.
+    Recommended Settings: CFG 4-6, DPM++ 2M SDE or Euler a, beta scheduler, 15-25 steps around 20.
+    Quality tags are the same as Animagine-XL 4.0: masterpiece, high score, great score, absurdres.
+    License: CreativeML Open RAIL++-M.
+
+  review:
+    status: user_curated
+    missing:
+      - civitai.version_name
+      - civitai.creator
+      - civitai.nsfw
+      - civitai.tags
+      - civitai.download_url
+
+    sample_status: local_curated
+    sample_count: 1
+    nsfw_samples_present: false

@@ -1,0 +1,459 @@
+schema_version: 1
+kind: civitai_model_detail
+model_key: prefectponyxl_v6
+sources:
+  civitai_api: "https://civitai.com/api/v1/models/:modelId"
+  generated_at: "2026-04-25"
+  append_policy: "Append new entries under models using normalized local filename keys."
+
+model:
+  local_file: "prefectPonyXL_v6.safetensors"
+  catalog_type: checkpoint
+  base_model: pony
+  base_model_raw: "Pony"
+
+  civitai:
+    model_id: 439889
+    model_url: "https://civitai.com/models/439889/prefect-pony-xl"
+    air: "urn:air:sdxl:checkpoint:civitai:439889@2114187"
+    version_id: 2114187
+    model_name: "Prefect Pony XL"
+    version_name: "v6"
+    creator: "Goofy_Ai"
+    nsfw: false
+    tags: [anime, base_model, woman, girls, animagine, pony_xl]
+    trained_words: []
+    files:
+      - "prefectPonyXL_v6.safetensors"
+    download_url: "https://civitai.com/api/download/models/2114187"
+
+  compatibility:
+    checkpoint_family: pony
+    lora_compatible_base_models: [pony]
+    recommended_for: [anime, pony, girls]
+    not_recommended_for: [sd1.5_lora, flux_lora]
+
+  generation:
+    clip_skip:
+      recommended: 2
+    ensd:
+      example: 31337
+    hires_fix:
+      recommended: true
+    restore_faces:
+      recommended: false
+    upscaler:
+      examples_seen: ["4x-Ultrasharp"]
+
+  raw_notes: |
+    Author says v6 is the current release in the Prefect Pony XL series.
+    Suggested settings from card include CLIP skip 2, ENSD 31337, highres.fix or img2img at higher resolution, ADetailer for face details, tiled diffusion for img2img upscaling, and no restore faces.
+
+  review:
+    status: api_enriched
+    missing: []
+    sample_status: api_enriched
+    sample_count: 6
+    nsfw_samples_present: false
+  samples:
+    status: api_enriched
+    source: civitai
+    fetched_at: '2026-04-25'
+    model_id: 439889
+    version_id: 2114187
+    count: 6
+    items:
+      - image_id: 94281629
+        image_url: 
+          https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/951bbe5c-e077-49f5-a1a0-67f0d619fe65/original=true/951bbe5c-e077-49f5-a1a0-67f0d619fe65.jpeg
+        page_url: https://civitai.com/posts/20917894
+        nsfw: false
+        width: 1248
+        height: 1824
+        prompt: |-
+          score_9, score_8_up, score_7_up,source_anime, BREAK
+          1girl, animal ears, animal collar, clothes writing, white shirt, long hair, looking at viewer, blonde hair, red collar, animal ear fluff, upper body, blunt bangs, cat girl, t-shirt, aqua eyes, white background, extra ears, off shoulder, open mouth, simple background, chestnut mouth
+        negative_prompt: |-
+          realistic,monochrome,greyscale, artist name, signature, watermark,
+        generation:
+          seed: 2554603257
+          steps: 20
+          cfg_scale: 5
+          sampler: DPM++ 2M
+          scheduler:
+          clip_skip:
+          size: 1248x1824
+          model_hash: 20fecc2ec6
+        resources:
+          - type: model
+            name: prefect_pony_v6.fp16
+            model_id:
+            version_id:
+            weight:
+        tags: []
+        raw_meta:
+          VAE: sdxl_vae_fixed.safetensors
+          Model: prefect_pony_v6.fp16
+          hashes:
+            vae: 235745af8d
+            model: 20fecc2ec6
+          Version: v1.10.1-84-g374bb6cc
+          Tile Overlap: '48'
+          Schedule type: Karras
+          Upscale factor: '1.5'
+          ADetailer model: anzhc_Face_seg_640_v3_y11n.pt
+          Keep input size: true}
+          Tile batch size: '6'
+          Tile tile width: '160'
+          Tile tile height: '160'
+          ADetailer version: 24.11.1
+          Denoising strength: '0.2'
+          ADetailer mask blur: '4'
+          ADetailer confidence: '0.3'
+          ADetailer dilate erode: '4'
+          Tiled Diffusion upscaler: 4x-UltraSharp
+          ADetailer inpaint padding: '32'
+          ADetailer denoising strength: '0.4'
+          Tiled Diffusion scale factor: '1.5'
+          ADetailer inpaint only masked: 'True'
+        post:
+          username: Goofy_Ai
+          created_at: '2025-08-14T23:18:30.853Z'
+      - image_id: 94281633
+        image_url: 
+          https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/fd37b4bb-763d-4c81-8acd-f1914d6edf84/original=true/fd37b4bb-763d-4c81-8acd-f1914d6edf84.jpeg
+        page_url: https://civitai.com/posts/20917894
+        nsfw: false
+        width: 1248
+        height: 1824
+        prompt: |-
+          score_9, score_8_up, score_7_up,source_anime, BREAK
+          1girl, animal ears, black hair, black jacket, black nails, cellphone, closed mouth, grey hair, hair over one eye, holding, holding phone, jacket, looking at viewer, multicolored hair, nail polish, phone, red eyes, short hair, simple background, smartphone, solo, streaked hair, two-tone hair, upper body, v-shaped eyebrows, white background, zipper, zipper pull tab
+        negative_prompt: |-
+          realistic,monochrome,greyscale, artist name, signature, watermark,
+        generation:
+          seed: 2554603249
+          steps: 20
+          cfg_scale: 5
+          sampler: DPM++ 2M
+          scheduler:
+          clip_skip:
+          size: 1248x1824
+          model_hash: 20fecc2ec6
+        resources:
+          - type: model
+            name: prefect_pony_v6.fp16
+            model_id:
+            version_id:
+            weight:
+        tags: []
+        raw_meta:
+          VAE: sdxl_vae_fixed.safetensors
+          Model: prefect_pony_v6.fp16
+          hashes:
+            vae: 235745af8d
+            model: 20fecc2ec6
+          Version: v1.10.1-84-g374bb6cc
+          Tile Overlap: '48'
+          Schedule type: Karras
+          Upscale factor: '1.5'
+          ADetailer model: anzhc_Face_seg_640_v3_y11n.pt
+          Keep input size: true}
+          Tile batch size: '6'
+          Tile tile width: '160'
+          Tile tile height: '160'
+          ADetailer version: 24.11.1
+          Denoising strength: '0.2'
+          ADetailer mask blur: '4'
+          ADetailer confidence: '0.3'
+          ADetailer dilate erode: '4'
+          Tiled Diffusion upscaler: 4x-UltraSharp
+          ADetailer inpaint padding: '32'
+          ADetailer denoising strength: '0.4'
+          Tiled Diffusion scale factor: '1.5'
+          ADetailer inpaint only masked: 'True'
+        post:
+          username: Goofy_Ai
+          created_at: '2025-08-14T21:48:49.477Z'
+      - image_id: 106085111
+        image_url: 
+          https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/817727bb-1440-4098-994e-fd0b1fc1f07e/original=true/817727bb-1440-4098-994e-fd0b1fc1f07e.jpeg
+        page_url: https://civitai.com/posts/23529650
+        nsfw: false
+        width: 832
+        height: 1216
+        prompt: |-
+          score_9, score_8_up, score_7_up, source_anime,
+          erzascarlet, ponytail, <lora:erza-scarlet-ponyxl-lora-nochekaiser:1>
+           O F: black turtleneck, golden necklace, bracelets, golden bracelets, rings blue earrings, masterpiece, highres, high quality, best quality, volumetric lighting, UHD, skin texture, skin detail, high quality skin, highly detailed
+          B: glossy lips
+          smirk, half closed eyes, need_buzz, holding sign
+          outdoors, face focus
+        negative_prompt: |-
+          bad face, bad quality, bad body, bad finger, bad proportions, bad saturation, bad lights.
+        generation:
+          seed: 2051302002
+          steps: 25
+          cfg_scale: 7.5
+          sampler: DPM++ 2M Karras
+          scheduler:
+          clip_skip: 2
+          size: 832x1216
+          model_hash:
+        resources:
+          - type: lora
+            name: erza-scarlet-ponyxl-lora-nochekaiser
+            model_id:
+            version_id:
+            weight: 1
+          - type: checkpoint
+            name:
+            model_id:
+            version_id: 2114187
+            weight:
+          - type: lora
+            name:
+            model_id:
+            version_id: 939046
+            weight: 0.1
+          - type: lora
+            name:
+            model_id:
+            version_id: 1178697
+            weight: 0.75
+          - type: lora
+            name:
+            model_id:
+            version_id: 2044332
+            weight: 0.4
+          - type: lora
+            name:
+            model_id:
+            version_id: 925821
+            weight: 0.5
+          - type: lora
+            name:
+            model_id:
+            version_id: 416696
+            weight: 0.5
+          - type: lora
+            name:
+            model_id:
+            version_id: 1079784
+            weight: 1
+        tags: []
+        raw_meta:
+          draft: false
+          width: 832
+          engine: comfyui
+          height: 1216
+          process: txt2img
+          quantity: 2
+          workflow: txt2img
+          baseModel: Pony
+          disablePoi: true
+          aspectRatio: 13:19
+          Created Date: 2025-10-14T2137:58.1703328Z
+          enhancedCompatibility: true
+        post:
+          username: marcopasqualino05750
+          created_at: '2025-10-14T23:03:23.478Z'
+      - image_id: 119290258
+        image_url: 
+          https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/cefec046-4cc1-4017-828a-db71914a325b/original=true/cefec046-4cc1-4017-828a-db71914a325b.jpeg
+        page_url: https://civitai.com/posts/26245552
+        nsfw: false
+        width: 832
+        height: 1216
+        prompt: |-
+          score_9, score_8_up, score_7_up, score_6_up, 
+          rating_safe, no humans art style,
+          Clown dragon, red nose, white mask,
+        negative_prompt: |-
+          score_6, score_5, score_4,
+          _
+          worst quality, low quality, watermark, broken, error, blurry, blurred, signature, deformed, lowres, bad anatomy, jpeg artifacts,
+          _
+          nsfw, partial nudity, nude, naked, nudity, sexy attire, cleavage, nipples, breasts, navel, sexual, seductive
+        generation:
+          seed: 1486753824
+          steps: 19
+          cfg_scale: 7
+          sampler: DPM++ 2M Karras
+          scheduler:
+          clip_skip: 2
+          size: 832x1216
+          model_hash:
+        resources:
+          - type: checkpoint
+            name:
+            model_id:
+            version_id: 2114187
+            weight:
+          - type: lora
+            name:
+            model_id:
+            version_id: 669580
+            weight: 0.7
+        tags: []
+        raw_meta:
+          draft: false
+          width: 832
+          height: 1216
+          process: img2img
+          quantity: 1
+          workflow: txt2img
+          baseModel: Pony
+          disablePoi: true
+          aspectRatio: 13:19
+          Created Date: 2026-01-30T0523:46.4796404Z
+          outputFormat: jpeg
+        post:
+          username: Neuronomicon
+          created_at: '2026-01-30T06:45:00.000Z'
+      - image_id: 118023296
+        image_url: 
+          https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/999f2d0a-9c8d-4227-b1ef-65c7a884fb1f/original=true/999f2d0a-9c8d-4227-b1ef-65c7a884fb1f.jpeg
+        page_url: https://civitai.com/posts/25992764
+        nsfw: false
+        width: 832
+        height: 1216
+        prompt: |-
+          Herbs_Morf, Stable_Yogis_PDXL_Positives, photorealistic, score_9, score_8_up, score_7_up, real photo, ultra detailed, (tack sharp, sharp focus, (very colorful, vivid), raw, photo, 8K, BREAK,
+          (((Dynamic colorful African herb souk, market, Market stalls with colorful herbs and (cute cat with goggles), Rosemary, basil, chives, oregano, thyme, coriander, salad, cute cat with goggles, very colorful, rainbow colors))), BREAK, 
+          ((Very detailed African market background, snake charmer, playing flute, cute cat with goggles, people)), sun, blue sky, pyramids, intricate details, (((action shot, close up))),
+        negative_prompt: |-
+          Stable_Yogis_PDXL_Negatives,
+        generation:
+          seed: 1564699758
+          steps: 40
+          cfg_scale: 10
+          sampler: Euler a
+          scheduler:
+          clip_skip: 2
+          size: 832x1216
+          model_hash:
+        resources:
+          - type: checkpoint
+            name:
+            model_id:
+            version_id: 2114187
+            weight:
+          - type: lora
+            name:
+            model_id:
+            version_id: 641475
+            weight: 0.8
+          - type: embed
+            name:
+            model_id:
+            version_id: 775151
+            weight: 1
+          - type: embed
+            name:
+            model_id:
+            version_id: 772342
+            weight: 1
+          - type: lora
+            name:
+            model_id:
+            version_id: 244808
+            weight: 1
+          - type: lora
+            name:
+            model_id:
+            version_id: 712947
+            weight: 4.95
+        tags: []
+        raw_meta:
+          draft: false
+          extra:
+            remixOfId: 62700967
+          width: 832
+          engine: comfyui
+          height: 1216
+          process: txt2img
+          quantity: 2
+          workflow: txt2img
+          baseModel: Pony
+          disablePoi: true
+          aspectRatio: 13:19
+          Created Date: 2026-01-17T0107:28.2696961Z
+          outputFormat: jpeg
+          enhancedCompatibility: true
+        post:
+          username: icy799
+          created_at: '2026-02-27T00:32:00.000Z'
+      - image_id: 111385076
+        image_url: 
+          https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/eaf340b4-7d5d-4cad-833d-c3e167729855/original=true/eaf340b4-7d5d-4cad-833d-c3e167729855.jpeg
+        page_url: https://civitai.com/posts/24632664
+        nsfw: false
+        width: 832
+        height: 1216
+        prompt: |-
+          Semirealistic, illustration, action portrait, PG rating, score_9, score_8_up, source_anime, cinematic lighting, SmoothQualityPony, cow boy shot, side view
+          1girl, UltimateBunny, helmet, twintails, long hair, obscured eyes, large bust, girl jumping after flying yellow buzz holding sign with words "Yellow buzz, please", electricity arcs all over the place, speed lines,
+        negative_prompt: |-
+          explicit nudity, R rated, SmoothNegativePony, embedding:EasyNegative, cleavage
+        generation:
+          seed: 1102542429
+          steps: 30
+          cfg_scale: 7
+          sampler: DPM++ 2M Karras
+          scheduler:
+          clip_skip: 2
+          size: 832x1216
+          model_hash:
+        resources:
+          - type: checkpoint
+            name:
+            model_id:
+            version_id: 2114187
+            weight:
+          - type: embed
+            name:
+            model_id:
+            version_id: 1196553
+            weight: 1
+          - type: lora
+            name:
+            model_id:
+            version_id: 1291951
+            weight: 0.5
+          - type: embed
+            name:
+            model_id:
+            version_id: 1196555
+            weight: 1
+          - type: lora
+            name:
+            model_id:
+            version_id: 2335466
+            weight: 0.9
+          - type: lora
+            name:
+            model_id:
+            version_id: 622155
+            weight: 0.9
+          - type: lora
+            name:
+            model_id:
+            version_id: 735350
+            weight: 0.7
+        tags: []
+        raw_meta:
+          draft: false
+          width: 832
+          height: 1216
+          process: txt2img
+          quantity: 4
+          workflow: txt2img
+          baseModel: Pony
+          disablePoi: true
+          aspectRatio: 13:19
+          Created Date: 2025-11-24T0819:36.9685786Z
+        post:
+          username: coffeebugg
+          created_at: '2025-11-24T09:49:14.752Z'
+

@@ -1,0 +1,236 @@
+schema_version: 1
+kind: civitai_model_detail
+model_key: pixelartspritediffusion_safetensors
+sources:
+  civitai_api: "https://civitai.com/api/v1/models/:modelId"
+  generated_at: "2026-04-25"
+  append_policy: "Append new entries under models using normalized local filename keys."
+
+model:
+  local_file: "pixelArtSpriteDiffusion_safetensors.safetensors"
+  catalog_type: checkpoint
+  base_model: sd1.5
+  base_model_raw: "SD 1.5"
+
+  civitai:
+    model_id: 129057
+    model_url: "https://civitai.com/models/129057/pixel-art-sprite-diffusion-safetensors"
+    air: "urn:air:sd1:checkpoint:civitai:129057@141392"
+    version_id: 141392
+    model_name: "Pixel Art Sprite Diffusion [Safetensors]"
+    version_name: "Safetensors"
+    creator: "GetAiKOFi"
+    nsfw: false
+    tags: [anime, pixel_art, female, pixel, style, woman, game_character, girls, video_game]
+    trained_words: ["PixelartFSS", "PixelartRSS", "PixelartBSS", "PixelartLSS"]
+    files:
+      - "pixelArtSpriteDiffusion_safetensors.safetensors"
+    download_url: "https://civitai.com/api/download/models/141392"
+
+  compatibility:
+    checkpoint_family: sd1.5
+    lora_compatible_base_models: [sd1.5]
+    recommended_for: [pixel_art, sprite, game_character]
+    not_recommended_for: [sdxl_lora, flux_lora]
+
+  prompting:
+    trigger_words: ["PixelartFSS", "PixelartRSS", "PixelartBSS", "PixelartLSS"]
+    trigger_notes:
+      PixelartFSS: "front view"
+      PixelartRSS: "right view"
+      PixelartBSS: "back view"
+      PixelartLSS: "left view"
+
+  raw_notes: |
+    Safetensors conversion of Pixel Art Sprite Diffusion.
+    Use view-specific trigger words for front/right/back/left sprite views.
+
+  review:
+    status: api_enriched
+    missing: []
+    sample_status: api_enriched
+    sample_count: 6
+    nsfw_samples_present: false
+  samples:
+    status: api_enriched
+    source: civitai
+    fetched_at: '2026-04-25'
+    model_id: 129057
+    version_id: 141392
+    count: 6
+    items:
+      - image_id: 2049890
+        image_url: 
+          https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/62c4a9a0-c30e-4b9b-a969-63ad740bb73f/original=true/62c4a9a0-c30e-4b9b-a969-63ad740bb73f.jpeg
+        page_url: https://civitai.com/posts/503598
+        nsfw: false
+        width: 450
+        height: 450
+        prompt: |-
+          PixelartFSS, 8k portrait of beautiful cyborg with brown hair, intricate, elegant, highly detailed, majestic, digital photography, art by artgerm and ruan jia and greg rutkowski surreal painting gold butterfly filigree, broken glass, (masterpiece, sidelighting, finely detailed beautiful eyes: 1.2), hdr,
+        negative_prompt: |-
+          ng_deepnegative_v1_75t, (badhandv4:1.2), (worst quality:2), (low quality:2), (normal quality:2), lowres, bad anatomy, bad hands, normal quality, ((monochrome)), ((grayscale)) watermark
+        generation:
+          seed: 1170668618
+          steps: 50
+          cfg_scale: 7
+          sampler: DPM++ SDE Karras
+          scheduler:
+          clip_skip: 2
+          size: 512x512
+          model_hash: 85524e631a
+        resources: []
+        tags: []
+        raw_meta:
+          ENSD: '31337'
+          (badhandv4: 1.2)
+          Mimic scale: '7'
+          (low quality: 2)
+          (worst quality: 2)
+          (normal quality: 2), lowres, bad anatomy, bad hands, normal quality, ((monochrome)), ((grayscale)) watermark"
+          Unprompted Seed: '1170668618'
+          Unprompted Prompt: '"PixelartFSS, 8k portrait of beautiful cyborg with brown hair, intricate, elegant, highly detailed,
+            majestic, digital photography, art by artgerm and ruan jia and greg rutkowski surreal painting gold butterfly
+            filigree, broken glass, (masterpiece, sidelighting'
+          Unprompted Enabled: 'True'
+          Threshold percentile: '100'
+          Unprompted Negative Prompt: '"ng_deepnegative_v1_75t'
+          Dynamic thresholding enabled: 'True'
+          finely detailed beautiful eyes: 1.2), hdr,"
+        post:
+          username: GetAiKOFi
+          created_at: '2024-02-14T00:01:32.980Z'
+      - image_id: 2049891
+        image_url: 
+          https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/d1077f2d-46eb-47db-8ffc-20a5443311d5/original=true/d1077f2d-46eb-47db-8ffc-20a5443311d5.jpeg
+        page_url: https://civitai.com/posts/503598
+        nsfw: false
+        width: 450
+        height: 450
+        prompt: |-
+          PixelartFSS, 8k portrait of beautiful cyborg with brown hair, intricate, elegant, highly detailed, majestic, digital photography, art by artgerm and ruan jia and greg rutkowski surreal painting gold butterfly filigree, broken glass, (masterpiece, sidelighting, finely detailed beautiful eyes: 1.2), hdr,
+        negative_prompt: |-
+          ng_deepnegative_v1_75t, (badhandv4:1.2), (worst quality:2), (low quality:2), (normal quality:2), lowres, bad anatomy, bad hands, normal quality, ((monochrome)), ((grayscale)) watermark
+        generation:
+          seed: 579617103
+          steps: 50
+          cfg_scale: 7
+          sampler: DPM++ SDE Karras
+          scheduler:
+          clip_skip: 2
+          size: 512x512
+          model_hash: 85524e631a
+        resources: []
+        tags: []
+        raw_meta:
+          ENSD: '31337'
+          (badhandv4: 1.2)
+          Mimic scale: '7'
+          (low quality: 2)
+          (worst quality: 2)
+          (normal quality: 2), lowres, bad anatomy, bad hands, normal quality, ((monochrome)), ((grayscale)) watermark"
+          Unprompted Seed: '579617103'
+          Unprompted Prompt: '"PixelartFSS, 8k portrait of beautiful cyborg with brown hair, intricate, elegant, highly detailed,
+            majestic, digital photography, art by artgerm and ruan jia and greg rutkowski surreal painting gold butterfly
+            filigree, broken glass, (masterpiece, sidelighting'
+          Unprompted Enabled: 'True'
+          Threshold percentile: '100'
+          Unprompted Negative Prompt: '"ng_deepnegative_v1_75t'
+          Dynamic thresholding enabled: 'True'
+          finely detailed beautiful eyes: 1.2), hdr,"
+        post:
+          username: GetAiKOFi
+          created_at: '2024-02-14T00:02:06.727Z'
+      - image_id: 2049889
+        image_url: 
+          https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/0e4214c8-22a2-4874-acbe-7b16e8942353/original=true/0e4214c8-22a2-4874-acbe-7b16e8942353.jpeg
+        page_url: https://civitai.com/posts/503598
+        nsfw: false
+        width: 450
+        height: 409
+        prompt:
+        negative_prompt:
+        generation:
+          seed:
+          steps:
+          cfg_scale:
+          sampler:
+          scheduler:
+          clip_skip:
+          size: 450x409
+          model_hash:
+        resources: []
+        tags: []
+        post:
+          username: GetAiKOFi
+          created_at: '2023-08-25T21:00:00.000Z'
+      - image_id: 2049892
+        image_url: 
+          https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/12827a84-a540-4075-94ae-71f6dbfe9e39/original=true/12827a84-a540-4075-94ae-71f6dbfe9e39.jpeg
+        page_url: https://civitai.com/posts/503598
+        nsfw: false
+        width: 450
+        height: 179
+        prompt:
+        negative_prompt:
+        generation:
+          seed:
+          steps:
+          cfg_scale:
+          sampler:
+          scheduler:
+          clip_skip:
+          size: 450x179
+          model_hash:
+        resources: []
+        tags: []
+        post:
+          username: GetAiKOFi
+          created_at: '2023-08-25T21:00:00.000Z'
+      - image_id: 2049893
+        image_url: 
+          https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/47152a93-1377-4a09-a370-25609b08addf/original=true/47152a93-1377-4a09-a370-25609b08addf.jpeg
+        page_url: https://civitai.com/posts/503598
+        nsfw: false
+        width: 450
+        height: 225
+        prompt:
+        negative_prompt:
+        generation:
+          seed:
+          steps:
+          cfg_scale:
+          sampler:
+          scheduler:
+          clip_skip:
+          size: 450x225
+          model_hash:
+        resources: []
+        tags: []
+        post:
+          username: GetAiKOFi
+          created_at: '2024-02-13T23:34:11.041Z'
+      - image_id: 2049894
+        image_url: 
+          https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/28fa82f2-179c-4138-a574-6b258ca8e3b5/original=true/28fa82f2-179c-4138-a574-6b258ca8e3b5.jpeg
+        page_url: https://civitai.com/posts/503598
+        nsfw: false
+        width: 450
+        height: 186
+        prompt:
+        negative_prompt:
+        generation:
+          seed:
+          steps:
+          cfg_scale:
+          sampler:
+          scheduler:
+          clip_skip:
+          size: 450x186
+          model_hash:
+        resources: []
+        tags: []
+        post:
+          username: GetAiKOFi
+          created_at: '2023-08-25T21:00:00.000Z'
+

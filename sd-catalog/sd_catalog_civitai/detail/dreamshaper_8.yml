@@ -1,0 +1,398 @@
+schema_version: 1
+kind: civitai_model_detail
+model_key: dreamshaper_8
+sources:
+  civitai_api: "https://civitai.com/api/v1/models/:modelId"
+  generated_at: "2026-04-25"
+  append_policy: "Append new entries under models using normalized local filename keys."
+
+model:
+  local_file: "dreamshaper_8.safetensors"
+  catalog_type: checkpoint
+  base_model: sd1.5
+  base_model_raw: "SD 1.5"
+
+  civitai:
+    model_id: 4384
+    model_url: "https://civitai.com/models/4384?modelVersionId=128713"
+    air: "urn:air:sd1:checkpoint:civitai:4384@128713"
+    version_id: 128713
+    model_name: "DreamShaper"
+    version_name: "8"
+    creator: "Lykon"
+    nsfw: false
+    tags: [anime, landscapes, 3d, photorealistic, inpainting, digital_art, scifi, base_model, fantasy_art, art_style, 
+          paintings, woman, illustration, 2d, digital_illustration, fantasy, girls, portraits, realistic, video_game]
+    trained_words: []
+    files:
+      - "dreamshaper_8.safetensors"
+    download_url: "https://civitai.com/api/download/models/128713"
+
+  compatibility:
+    checkpoint_family: sd1.5
+    lora_compatible_base_models: [sd1.5]
+    recommended_for: [illustration, realistic, anime, fantasy, portraits]
+    not_recommended_for: [sdxl_lora, flux_lora]
+
+  generation:
+    clip_skip:
+      notes: "Author used CLIP skip 2 on some images; model works with it too."
+    hires_fix:
+      recommended: true
+    restore_faces:
+      recommended: false
+    ensd:
+      example: 31337
+
+  raw_notes: |
+    Version 8 focuses on improving version 7: better Character LoRA handling, photorealism, range, and NSFW.
+    Primary goal remains art and illustration, while still supporting realism and anime.
+    Inpainting DreamShaper versions are for inpaint/outpaint only, not txt2img or mixing.
+
+  review:
+    status: api_enriched
+    missing: []
+    sample_status: api_enriched
+    sample_count: 6
+    nsfw_samples_present: false
+  samples:
+    status: api_enriched
+    source: civitai
+    fetched_at: '2026-04-25'
+    model_id: 4384
+    version_id: 128713
+    count: 6
+    items:
+      - image_id: 94080991
+        image_url: 
+          https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/fe74d016-5876-434e-a99e-fe56a4075027/original=true/fe74d016-5876-434e-a99e-fe56a4075027.jpeg
+        page_url: https://civitai.com/posts/20871139
+        nsfw: false
+        width: 512
+        height: 768
+        prompt: |-
+          score_9, score_8_up,score_7_up, score_6_up, score_5_up, score_4_up, detailed background, hiker standing over edge, standing on the side of a mountain, mountainrange, looking into distance, from the back, landscape, "looking for buzz" text above monkey
+        negative_prompt: |-
+          distortion, score_6_up, score_5_up, score_4_up,
+        generation:
+          seed: 746810293
+          steps: 25
+          cfg_scale: 7
+          sampler: DPM++ 2M Karras
+          scheduler:
+          clip_skip: 2
+          size: 512x768
+          model_hash:
+        resources:
+          - type: checkpoint
+            name: '8'
+            model_id:
+            version_id: 128713
+            weight:
+          - type: embed
+            name: v1.0
+            model_id:
+            version_id: 106916
+            weight:
+        tags: []
+        raw_meta:
+          Created Date: 2024-10-15T0650:14.9721320Z
+        post:
+          username: jus98
+          created_at: '2025-08-13T19:28:41.363Z'
+      - image_id: 91402089
+        image_url: 
+          https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/e2f0aee4-0953-49ef-93ac-f77f16255e5f/original=true/e2f0aee4-0953-49ef-93ac-f77f16255e5f.jpeg
+        page_url: https://civitai.com/posts/20276469
+        nsfw: false
+        width: 768
+        height: 768
+        prompt: |-
+          potato robot assembly line, massive lego-built factory where potatoes are peeled, mashed, and shaped into mechanical bots, steam-powered mash press, conveyor belts transporting skins, red-hot gravy pipes overhead, robotic arms assembling figures with carrot bolts and pea eyes, comically industrial atmosphere, factory floor in warm tones, blend of toy-scale proportions with large mechanical logic, humorous chaos, overhead view of organized food industry madness, contrast of soft ingredients and hard structure, playful absurdity, (M.A.S.H., Lego)
+        negative_prompt: |-
+          nudity, plastic skin, anime eyes, human characters, muscle tone, semi-realistic bodies, smooth surfaces, shiny materials, over-rendered lighting, cinematic bloom, photorealism, detailed human anatomy, provocative themes, lens flares, sweat rendering, anatomical focus, hyperreal detail
+        generation:
+          seed:
+          steps: 27
+          cfg_scale: 4
+          sampler: Euler a
+          scheduler:
+          clip_skip: 2
+          size: 768x768
+          model_hash:
+        resources:
+          - type: unknown
+            name:
+            model_id:
+            version_id: 128713
+            weight: 1
+          - type: unknown
+            name:
+            model_id:
+            version_id: 646924
+            weight: 1
+          - type: unknown
+            name:
+            model_id:
+            version_id: 87153
+            weight: 1
+          - type: checkpoint
+            name:
+            model_id:
+            version_id: 128713
+            weight:
+          - type: upscaler
+            name:
+            model_id:
+            version_id: 164821
+            weight:
+          - type: lora
+            name:
+            model_id:
+            version_id: 646924
+            weight: 1
+          - type: lora
+            name:
+            model_id:
+            version_id: 87153
+            weight: 1
+        tags: []
+        raw_meta:
+          Model: urn:air:sd1:checkpoint:civitai:4384@128713
+          width: 512
+          height: 512
+          models:
+            - urn:air:sd1:checkpoint:civitai:4384@128713
+          process: txt2img
+          priority: low
+          quantity: 4
+          workflow: txt2img-hires
+          baseModel: SD1
+          upscalers:
+            - urn:air:other:upscaler:civitai:147759@164821
+          disablePoi: true
+          aspectRatio: 1:1
+          experimental: false
+          additionalResources:
+            - name: urn:air:sd1:lora:civitai:580018@646924
+              type: lora
+              strength: 1
+              strengthClip: 1
+            - name: urn:air:sd1:lora:civitai:82098@87153
+              type: lora
+              strength: 1
+              strengthClip: 1
+        post:
+          username: abaaba110
+          created_at: '2025-07-30T16:07:22.502Z'
+      - image_id: 91402090
+        image_url: 
+          https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/98477246-0ded-49fe-824a-1e64ea9b4c8d/original=true/98477246-0ded-49fe-824a-1e64ea9b4c8d.jpeg
+        page_url: https://civitai.com/posts/20276469
+        nsfw: false
+        width: 768
+        height: 768
+        prompt: |-
+          lego trench filled with mashed potatoes, battlefield of food toys, little potato soldiers launching butter bombs, gravy rivers flowing through craters, lego tanks with scoop wheels, clouds shaped like steam, cinematic dusk lighting, bittersweet nostalgic tone, fusion of childhood imagination and wartime parody, absurd historical reenactment, potato skins as camouflage, blocky structures crumbling into creamy rubble, toy realism, (M.A.S.H., Lego)
+        negative_prompt: |-
+          nudity, anime proportions, plastic aesthetic, shiny skin, exaggerated anatomy, emotional expression, dramatic shading, hypersexual elements, visible muscles, digital sheen, close-up realism, hyper-detail of skin, CGI smoothness, explicit focus, filmic glow
+        generation:
+          seed:
+          steps: 27
+          cfg_scale: 4
+          sampler: Euler a
+          scheduler:
+          clip_skip: 2
+          size: 768x768
+          model_hash:
+        resources:
+          - type: unknown
+            name:
+            model_id:
+            version_id: 128713
+            weight: 1
+          - type: unknown
+            name:
+            model_id:
+            version_id: 646924
+            weight: 1
+          - type: unknown
+            name:
+            model_id:
+            version_id: 87153
+            weight: 1
+          - type: checkpoint
+            name:
+            model_id:
+            version_id: 128713
+            weight:
+          - type: upscaler
+            name:
+            model_id:
+            version_id: 164821
+            weight:
+          - type: lora
+            name:
+            model_id:
+            version_id: 646924
+            weight: 1
+          - type: lora
+            name:
+            model_id:
+            version_id: 87153
+            weight: 1
+        tags: []
+        raw_meta:
+          Model: urn:air:sd1:checkpoint:civitai:4384@128713
+          width: 512
+          height: 512
+          models:
+            - urn:air:sd1:checkpoint:civitai:4384@128713
+          process: txt2img
+          priority: low
+          quantity: 4
+          workflow: txt2img-hires
+          baseModel: SD1
+          upscalers:
+            - urn:air:other:upscaler:civitai:147759@164821
+          disablePoi: true
+          aspectRatio: 1:1
+          experimental: false
+          additionalResources:
+            - name: urn:air:sd1:lora:civitai:580018@646924
+              type: lora
+              strength: 1
+              strengthClip: 1
+            - name: urn:air:sd1:lora:civitai:82098@87153
+              type: lora
+              strength: 1
+              strengthClip: 1
+        post:
+          username: abaaba110
+          created_at: '2025-07-30T16:02:20.238Z'
+      - image_id: 21039408
+        image_url: 
+          https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/4486bb99-17a8-440d-8d30-69d4a692fb8b/original=true/4486bb99-17a8-440d-8d30-69d4a692fb8b.jpeg
+        page_url: https://civitai.com/posts/4692213
+        nsfw: false
+        width: 512
+        height: 768
+        prompt: |-
+          <lora:Calligraphy-ink-style-darquelilly-v1:1> calligraphyinkstyle, red color, circle shape, monk temple, top of mountain, snow, sun
+        negative_prompt: |-
+          simultaneous,bad anatomy, low-res, (watermarks:1.2), username, paintings, sketches, (worst quality:2), (low quality:2), (normal quality:2),bad anatomy, low-res, animal tail, anime, yellow light, canvas frame, ((disfigured)), ((bad art)), ((deformed)),, wierd colors, blurry, (((duplicate))), ((morbid)), ((mutilated)), [out of frame], signature, watermarks,paintings in the background, thunder, thunderstorms
+        generation:
+          seed: 1184656305
+          steps: 10
+          cfg_scale: 1
+          sampler: Euler a
+          scheduler:
+          clip_skip: 2
+          size: 512x768
+          model_hash:
+        resources:
+          - type: lora
+            name: Calligraphy-ink-style-darquelilly-v1
+            model_id:
+            version_id:
+            weight: 1
+          - type: checkpoint
+            name: '8'
+            model_id:
+            version_id: 128713
+            weight:
+          - type: lora
+            name: v1.0
+            model_id:
+            version_id: 83390
+            weight: 0.9
+        tags: []
+        raw_meta:
+          Created Date: 2024-07-23T1322:05.5442775Z
+        post:
+          username: NeoBuyako
+          created_at: '2024-07-23T13:31:46.620Z'
+      - image_id: 14942796
+        image_url: 
+          https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/fcf9d8e7-504b-478c-811d-f981e8546313/original=true/fcf9d8e7-504b-478c-811d-f981e8546313.jpeg
+        page_url: https://civitai.com/posts/3313372
+        nsfw: false
+        width: 512
+        height: 768
+        prompt: |-
+          beautiful colorful fantasy world with fairies and dragons, ((masterpiece)), ((best quality)), 8k, high texture resolution,
+        negative_prompt: |-
+          worst quality, normal quality, low quality, blurry, blurred,jpeg artifacts,((monochrome)), ((grayscale)), error,poor effort,unsharp,bad composition, ugly from far away, ugly, lowres, signature, watermark, url, website, username, patreon username, writing, text, letters, logo, out of frame, grainy, noisy, draft,
+        generation:
+          seed: 455859946
+          steps: 20
+          cfg_scale: 7
+          sampler: DPM++ 2M Karras
+          scheduler:
+          clip_skip: 2
+          size: 512x768
+          model_hash:
+        resources:
+          - type: checkpoint
+            name: '8'
+            model_id:
+            version_id: 128713
+            weight:
+        tags: []
+        raw_meta:
+          Created Date: 2024-06-07T1300:43.5689845Z
+        post:
+          username: GrumpyFurball
+          created_at: '2024-06-07T13:03:43.865Z'
+      - image_id: 19325406
+        image_url: 
+          https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/e4a8f395-8166-44a8-82b1-bb0901c10aa3/original=true/e4a8f395-8166-44a8-82b1-bb0901c10aa3.jpeg
+        page_url: https://civitai.com/posts/4318371
+        nsfw: false
+        width: 512
+        height: 768
+        prompt: |-
+          white saber-tooth tiger, red eyes, albino, large canines
+        negative_prompt:
+        generation:
+          seed: 268708332
+          steps: 6
+          cfg_scale: 1
+          sampler: LCM
+          scheduler:
+          clip_skip: 2
+          size: 512x768
+          model_hash:
+        resources:
+          - type: checkpoint
+            name: '8'
+            model_id:
+            version_id: 128713
+            weight:
+          - type: lora
+            name: AnimaliaStyle
+            model_id:
+            version_id: 260602
+            weight: 0.8
+          - type: vae
+            name: V1-Safetensors
+            model_id:
+            version_id: 218292
+            weight:
+          - type: lora
+            name: LCM for SD 1.5
+            model_id:
+            version_id: 424706
+            weight: 1
+          - type: embed
+            name: v1.0
+            model_id:
+            version_id: 106916
+            weight:
+        tags: []
+        raw_meta:
+          Created Date: 2024-07-11T0339:35.1175525Z
+        post:
+          username: GreenKuma
+          created_at: '2024-07-11T04:26:20.096Z'
+

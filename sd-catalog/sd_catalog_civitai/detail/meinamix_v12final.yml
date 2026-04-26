@@ -1,0 +1,100 @@
+schema_version: 1
+kind: civitai_model_detail
+model_key: meinamix_v12final
+sources:
+  civitai_api: "https://civitai.com/api/v1/models/:modelId"
+  generated_at: "2026-04-25"
+  append_policy: "Append new entries under models using normalized local filename keys."
+
+model:
+  local_file: "meinamix_v12Final.safetensors"
+  catalog_type: checkpoint
+  base_model: sd1.5
+  base_model_raw: "SD 1.5"
+
+  civitai:
+    model_id:
+    model_url:
+    air:
+    version_id:
+    model_name: "MeinaMix"
+    version_name: "v12Final"
+    creator:
+    nsfw:
+    tags: []
+    trained_words: []
+    files:
+      - "meinamix_v12Final.safetensors"
+    download_url:
+
+  compatibility:
+    checkpoint_family: sd1.5
+    lora_compatible_base_models: [sd1.5]
+    recommended_for: [anime, illustration, portrait]
+    not_recommended_for: [sdxl_lora, flux_lora]
+
+  generation:
+    sampler:
+      recommended:
+        - "DPM++ SDE Karras"
+        - "DPM++ 2M Karras"
+        - "Euler a"
+      settings:
+        - sampler: "DPM++ SDE Karras"
+          steps: [20, 30]
+        - sampler: "DPM++ 2M Karras"
+          steps: [20, 60]
+        - sampler: "Euler a"
+          steps: [40, 60]
+    cfg_scale:
+      recommended: [4, 9]
+    resolution:
+      portrait:
+        - "512x768"
+        - "512x1024"
+      landscape:
+        - "768x512"
+        - "1024x512"
+        - "1536x512"
+    hires_fix:
+      recommended: true
+      upscaler: "R-ESRGAN 4x+Anime6b"
+      steps: 10
+      denoising_strength: [0.3, 0.6]
+      notes: "Needed for far-away character prompts to improve face and eye quality."
+    clip_skip:
+      recommended: 2
+    quantization:
+      recommended: true
+      notes: "Enable Quantization in K samplers."
+
+  prompting:
+    negative_prompt:
+      recommended: "(worst quality, low quality), (zombie, interlocked fingers)"
+      without_hires_fix: "(worst quality:1.6, low quality:1.6), (zombie, sketch, interlocked fingers, comic)"
+
+  raw_notes: |
+    Base Model: SD 1.5.
+    Hires.fix drastically improves quality of face and eyes when the character is far away.
+    Clip Skip: 2.
+
+  review:
+    status: user_curated
+    missing:
+      - civitai.model_id
+      - civitai.model_url
+      - civitai.air
+      - civitai.creator
+      - civitai.download_url
+
+    sample_status: missing_or_unavailable
+    sample_count: 0
+    nsfw_samples_present: false
+  samples:
+    status: missing_or_unavailable
+    source: civitai
+    fetched_at: '2026-04-25'
+    model_id:
+    version_id:
+    count: 0
+    items: []

@@ -1,0 +1,738 @@
+schema_version: 1
+kind: civitai_catalog_index
+sources:
+  civitai_api: "https://civitai.com/api/v1/models/:modelId"
+  generated_at: "2026-04-25"
+  append_policy: "Append new entries under models using normalized local filename keys."
+
+split:
+  detail_root: sd_catalog_civitai/detail
+  detail_file_pattern: '{model_key}.yml'
+  detail_schema: civitai_model_detail
+  model_count: 22
+models:
+  anythingxl_xl:
+    detail_file: sd_catalog_civitai/detail/anythingxl_xl.yml
+    local_file: "AnythingXL_xl.safetensors"
+    catalog_type: checkpoint
+    base_model: sdxl
+    base_model_raw: "SDXL 1.0"
+    civitai:
+      model_id: 9409
+      version_id: 384264
+      model_url: "https://civitai.com/models/9409/or-anything-xl"
+      air: "urn:air:sdxl:checkpoint:civitai:9409@384264"
+      model_name:
+      version_name:
+      creator:
+      nsfw:
+      tags: []
+      trained_words: []
+      download_url:
+    samples:
+      status: local_curated
+      source: Stable-diffusion-info.md
+      fetched_at: '2026-04-25'
+      model_id: 9409
+      version_id: 384264
+      count: 3
+    review:
+      status: needs_api_enrichment
+      missing:
+        - civitai.model_name
+        - civitai.version_name
+        - civitai.creator
+        - civitai.nsfw
+        - civitai.tags
+        - civitai.trained_words
+        - civitai.download_url
+
+      sample_status: local_curated
+      sample_count: 3
+      nsfw_samples_present: false
+  noobai-xl_nai-xl:
+    detail_file: sd_catalog_civitai/detail/noobai-xl_nai-xl.yml
+    local_file:
+    catalog_type: checkpoint
+    base_model: noob
+    base_model_raw: "NoobAI"
+    civitai:
+      model_id: 833294
+      version_id: 968495
+      model_url: "https://civitai.com/models/833294/noobai-xl-nai-xl?modelVersionId=968495"
+      air: "urn:air:sdxl:checkpoint:civitai:833294@968495"
+      model_name: "NoobAI-XL (NAI-XL)"
+      version_name: "Epsilon-pred 0.5-Version"
+      creator: "L_A_X"
+      nsfw: false
+      tags: [anime, base_model, based, styles]
+      trained_words: []
+      download_url: "https://civitai.com/api/download/models/968495"
+    samples:
+      status: api_enriched
+      source: civitai
+      fetched_at: '2026-04-25'
+      model_id: 833294
+      version_id: 968495
+      count: 6
+    review:
+      status: api_enriched
+      missing: [local_file]
+      sample_status: api_enriched
+      sample_count: 6
+      nsfw_samples_present: false
+  pixel-art-flux-v3-learning-rate-4:
+    detail_file: sd_catalog_civitai/detail/pixel-art-flux-v3-learning-rate-4.yml
+    local_file: "pixel-art-flux-v3-learning-rate-4.safetensors"
+    catalog_type: lora
+    base_model: flux
+    base_model_raw: "Flux.1 D"
+    civitai:
+      model_id: 646820
+      version_id: 833669
+      model_url: "https://civitai.com/models/646820/rd-pixel-art-lora"
+      air: "urn:air:flux1:lora:civitai:646820@833669"
+      model_name: "RD Pixel Art Lora"
+      version_name: "Flux V3 uncensored"
+      creator: "sinatra"
+      nsfw: false
+      tags: [style]
+      trained_words: ["pixel art"]
+      download_url: "https://civitai.com/api/download/models/833669"
+    samples:
+      status: api_enriched
+      source: civitai
+      fetched_at: '2026-04-25'
+      model_id: 646820
+      version_id: 833669
+      count: 6
+    review:
+      status: api_enriched
+      missing: []
+      sample_status: api_enriched
+      sample_count: 6
+      nsfw_samples_present: true
+  pixel_resin_x16_pixel_art_witches:
+    detail_file: sd_catalog_civitai/detail/pixel_resin_x16_pixel_art_witches.yml
+    local_file: "Pixel_Resin_x16_pixel_art_witches.safetensors"
+    catalog_type: lora
+    base_model: illustrious
+    base_model_raw: "Illustrious"
+    civitai:
+      model_id: 1999880
+      version_id: 2263626
+      model_url: "https://civitai.com/models/1999880/pixelresin-x16-pixel-art?modelVersionId=2263626"
+      air: "urn:air:sdxl:lora:civitai:1999880@2263626"
+      model_name: "Pixel_Resin x16 pixel art"
+      version_name: "V1_preprocess_20ep"
+      creator: "alavelasq415"
+      nsfw: false
+      tags: [pixel_art, minimalist, witch, simple, style, artist, blending]
+      trained_words: ["resin_style", "simple background", "blending"]
+      download_url: "https://civitai.com/api/download/models/2263626"
+    samples:
+      status: api_enriched
+      source: civitai
+      fetched_at: '2026-04-25'
+      model_id: 1999880
+      version_id: 2263626
+      count: 6
+    review:
+      status: api_enriched
+      missing: []
+      sample_status: api_enriched
+      sample_count: 6
+      nsfw_samples_present: false
+  pixelartspritediffusion_safetensors:
+    detail_file: sd_catalog_civitai/detail/pixelartspritediffusion_safetensors.yml
+    local_file: "pixelArtSpriteDiffusion_safetensors.safetensors"
+    catalog_type: checkpoint
+    base_model: sd1.5
+    base_model_raw: "SD 1.5"
+    civitai:
+      model_id: 129057
+      version_id: 141392
+      model_url: "https://civitai.com/models/129057/pixel-art-sprite-diffusion-safetensors"
+      air: "urn:air:sd1:checkpoint:civitai:129057@141392"
+      model_name: "Pixel Art Sprite Diffusion [Safetensors]"
+      version_name: "Safetensors"
+      creator: "GetAiKOFi"
+      nsfw: false
+      tags: [anime, pixel_art, female, pixel, style, woman, game_character, girls, video_game]
+      trained_words: ["PixelartFSS", "PixelartRSS", "PixelartBSS", "PixelartLSS"]
+      download_url: "https://civitai.com/api/download/models/141392"
+    samples:
+      status: api_enriched
+      source: civitai
+      fetched_at: '2026-04-25'
+      model_id: 129057
+      version_id: 141392
+      count: 6
+    review:
+      status: api_enriched
+      missing: []
+      sample_status: api_enriched
+      sample_count: 6
+      nsfw_samples_present: false
+  pixel-art-xl-v1.1:
+    detail_file: sd_catalog_civitai/detail/pixel-art-xl-v1.1.yml
+    local_file: "pixel-art-xl-v1.1.safetensors"
+    catalog_type: lora
+    base_model: sdxl
+    base_model_raw: "SDXL 1.0"
+    civitai:
+      model_id: 120096
+      version_id: 135931
+      model_url: "https://civitai.com/models/120096/pixel-art-xl"
+      air: "urn:air:sdxl:lora:civitai:120096@135931"
+      model_name: "Pixel Art XL"
+      version_name: "v1.1"
+      creator: "NeriJS"
+      nsfw: false
+      tags: [pixel_art, style, pixelart]
+      trained_words: []
+      download_url: "https://civitai.com/api/download/models/135931"
+    samples:
+      status: api_enriched
+      source: civitai
+      fetched_at: '2026-04-25'
+      model_id: 120096
+      version_id: 135931
+      count: 6
+    review:
+      status: api_enriched
+      missing: []
+      sample_status: api_enriched
+      sample_count: 6
+      nsfw_samples_present: false
+  pixel_art_flux_game_art_included:
+    detail_file: sd_catalog_civitai/detail/pixel_art_flux_game_art_included.yml
+    local_file: "Pixel Art FLUX_game_art_included.safetensors"
+    catalog_type: lora
+    base_model: flux
+    base_model_raw: "Flux.1 D"
+    civitai:
+      model_id: 683579
+      version_id: 773113
+      model_url: "https://civitai.com/models/683579?modelVersionId=796693"
+      air: "urn:air:flux1:lora:civitai:683579@773113"
+      model_name: "Pixel Art Illustrations FLUX"
+      version_name: "V1.1 With game art"
+      creator: "koronyx"
+      nsfw: false
+      tags: [pixel_art, style]
+      trained_words: ["pixel art"]
+      download_url: "https://civitai.com/api/download/models/773113"
+    samples:
+      status: api_enriched
+      source: civitai
+      fetched_at: '2026-04-25'
+      model_id: 683579
+      version_id: 773113
+      count: 6
+    review:
+      status: api_enriched
+      missing: []
+      sample_status: api_enriched
+      sample_count: 6
+      nsfw_samples_present: false
+  pixelart_up:
+    detail_file: sd_catalog_civitai/detail/pixelart_up.yml
+    local_file: "pixelart_up.safetensors"
+    catalog_type: lora
+    base_model: illustrious
+    base_model_raw: "Illustrious"
+    civitai:
+      model_id: 1288970
+      version_id: 1454408
+      model_url: "https://civitai.com/models/1288970/pixel-art-style-lora-or-illustrious"
+      air: "urn:air:sdxl:lora:civitai:1288970@1454408"
+      model_name: "Pixel art style LoRa | Illustrious"
+      version_name: "v1.0"
+      creator: "Oktaze"
+      nsfw: false
+      tags: [pixel_art, style]
+      trained_words: ["pixel art"]
+      download_url: "https://civitai.com/api/download/models/1454408"
+    samples:
+      status: api_enriched
+      source: civitai
+      fetched_at: '2026-04-25'
+      model_id: 1288970
+      version_id: 1454408
+      count: 6
+    review:
+      status: api_enriched
+      missing: []
+      sample_status: api_enriched
+      sample_count: 6
+      nsfw_samples_present: false
+  rdxlpixelart_pony2:
+    detail_file: sd_catalog_civitai/detail/rdxlpixelart_pony2.yml
+    local_file: "rdxlPixelArt_pony2.safetensors"
+    catalog_type: checkpoint
+    base_model: pony
+    base_model_raw: "Pony"
+    civitai:
+      model_id: 638637
+      version_id: 724915
+      model_url: "https://civitai.com/models/638637?modelVersionId=724915"
+      air: "urn:air:sdxl:checkpoint:civitai:638637@724915"
+      model_name: "RDXL Pixel Art"
+      version_name: "Pony 2"
+      creator: "sinatra"
+      nsfw: false
+      tags: [style]
+      trained_words: ["pixel art"]
+      download_url: "https://civitai.com/api/download/models/724915"
+    samples:
+      status: api_enriched
+      source: civitai
+      fetched_at: '2026-04-25'
+      model_id: 638637
+      version_id: 724915
+      count: 6
+    review:
+      status: api_enriched
+      missing: []
+      sample_status: api_enriched
+      sample_count: 6
+      nsfw_samples_present: false
+  dreamshaper_8:
+    detail_file: sd_catalog_civitai/detail/dreamshaper_8.yml
+    local_file: "dreamshaper_8.safetensors"
+    catalog_type: checkpoint
+    base_model: sd1.5
+    base_model_raw: "SD 1.5"
+    civitai:
+      model_id: 4384
+      version_id: 128713
+      model_url: "https://civitai.com/models/4384?modelVersionId=128713"
+      air: "urn:air:sd1:checkpoint:civitai:4384@128713"
+      model_name: "DreamShaper"
+      version_name: "8"
+      creator: "Lykon"
+      nsfw: false
+      tags: [anime, landscapes, 3d, photorealistic, inpainting, digital_art, scifi, base_model, fantasy_art, art_style, 
+            paintings, woman, illustration, 2d, digital_illustration, fantasy, girls, portraits, realistic, video_game]
+      trained_words: []
+      download_url: "https://civitai.com/api/download/models/128713"
+    samples:
+      status: api_enriched
+      source: civitai
+      fetched_at: '2026-04-25'
+      model_id: 4384
+      version_id: 128713
+      count: 6
+    review:
+      status: api_enriched
+      missing: []
+      sample_status: api_enriched
+      sample_count: 6
+      nsfw_samples_present: false
+  flux1devkontext_f1text2img45llm:
+    detail_file: sd_catalog_civitai/detail/flux1devkontext_f1text2img45llm.yml
+    local_file: "flux1DEVKontext_F1Text2img45LLM.zip"
+    catalog_type: workflow
+    base_model: flux
+    base_model_raw: "Flux.1 D"
+    civitai:
+      model_id: 618578
+      version_id: 783820
+      model_url: "https://civitai.com/models/618578?modelVersionId=783820"
+      air: "urn:air:flux1:unknown:civitai:618578@783820"
+      model_name: "FLUX.1-DEV & Kontext Workflows Megapack"
+      version_name: "F.1 text2img 4.5 LLM"
+      creator: "Daedalus_7"
+      nsfw: false
+      tags: [img2img, inpaint, comfyui, wildcards, tool, redux, highres, workflows, adetailer, text2img, outpaint, 
+            ultimate_sd_upscaler, flux1, kontext, inpaint_fill, rf_inversion]
+      trained_words: []
+      download_url: "https://civitai.com/api/download/models/783820"
+    samples:
+      status: api_enriched
+      source: civitai
+      fetched_at: '2026-04-25'
+      model_id: 618578
+      version_id: 783820
+      count: 6
+    review:
+      status: api_enriched
+      missing:
+        - civitai.files
+
+      sample_status: api_enriched
+      sample_count: 6
+      nsfw_samples_present: false
+  pixel_character_sprite_illustrious:
+    detail_file: sd_catalog_civitai/detail/pixel_character_sprite_illustrious.yml
+    local_file: "pixel_character_sprite_illustrious.safetensors"
+    catalog_type: lora
+    base_model: illustrious
+    base_model_raw: "Illustrious"
+    civitai:
+      model_id: 1936887
+      version_id: 2192164
+      model_url: "https://civitai.com/models/1936887/game-character-sprites-assets-generator-retro-rpg-video-game-dev-2d-pixel-art"
+      image_url: "https://civitai.com/images/98937502"
+      air: "urn:air:sdxl:lora:civitai:1936887@2192164"
+      model_name: "Game Character Sprites / Assets Generator / Retro / RPG / Video Game Dev / 2D / Pixel Art"
+      version_name: "v1.0"
+      creator: "news_v_com"
+      nsfw: false
+      tags: [pixel_art, concept, retro, asset, generator, pixel, 2d, rpg, video_game, game, sprite, game_dev]
+      trained_words:
+        - "pixel_character_sprite, pxlchrctrsprt, sprite, sprite sheet, sprite art, pixel, (pixel art:1.5), retro game, retro,
+          vibrant colors, pixelated, multiple views, concept art, (chibi:1.5), from side, looking away, from behind, back,
+          white background, <lora:pixel_character_sprite_illustrious:0.7>"
+      download_url: "https://civitai.com/api/download/models/2192164"
+    samples:
+      status: api_enriched
+      source: civitai
+      fetched_at: '2026-04-25'
+      model_id: 1936887
+      version_id: 2192164
+      count: 6
+    review:
+      status: api_enriched
+      missing: []
+
+      sample_status: api_enriched
+      sample_count: 6
+      nsfw_samples_present: false
+  fnaf_into_the_pit__style:
+    detail_file: sd_catalog_civitai/detail/fnaf_into_the_pit__style.yml
+    local_file: "Fnaf_into_the_Pit__Style.safetensors"
+    catalog_type: lora
+    base_model: pony
+    base_model_raw: "Pony"
+    civitai:
+      model_id: 945288
+      version_id: 1058340
+      model_url:
+      air: "urn:air:sdxl:lora:civitai:945288@1058340"
+      model_name: "Fnaf into the Pit / Style"
+      version_name: "V1"
+      creator: "HildasNumber1Simp"
+      nsfw: false
+      tags: [style]
+      trained_words: ["pixel art", "game assets", "overworld"]
+      download_url: "https://civitai.com/api/download/models/1058340"
+    samples:
+      status: api_enriched
+      source: civitai
+      fetched_at: '2026-04-25'
+      model_id: 945288
+      version_id: 1058340
+      count: 6
+    review:
+      status: api_enriched
+      missing:
+        - civitai.model_url
+
+      sample_status: api_enriched
+      sample_count: 6
+      nsfw_samples_present: true
+  prefectponyxl_v6:
+    detail_file: sd_catalog_civitai/detail/prefectponyxl_v6.yml
+    local_file: "prefectPonyXL_v6.safetensors"
+    catalog_type: checkpoint
+    base_model: pony
+    base_model_raw: "Pony"
+    civitai:
+      model_id: 439889
+      version_id: 2114187
+      model_url: "https://civitai.com/models/439889/prefect-pony-xl"
+      air: "urn:air:sdxl:checkpoint:civitai:439889@2114187"
+      model_name: "Prefect Pony XL"
+      version_name: "v6"
+      creator: "Goofy_Ai"
+      nsfw: false
+      tags: [anime, base_model, woman, girls, animagine, pony_xl]
+      trained_words: []
+      download_url: "https://civitai.com/api/download/models/2114187"
+    samples:
+      status: api_enriched
+      source: civitai
+      fetched_at: '2026-04-25'
+      model_id: 439889
+      version_id: 2114187
+      count: 6
+    review:
+      status: api_enriched
+      missing: []
+      sample_status: api_enriched
+      sample_count: 6
+      nsfw_samples_present: false
+  hyphoria_v002:
+    detail_file: sd_catalog_civitai/detail/hyphoria_v002.yml
+    local_file: "hyphoria_v002.safetensors"
+    catalog_type: checkpoint
+    base_model: illustrious
+    base_model_raw: "Illustrious"
+    civitai:
+      model_id: 1595884
+      version_id: 2862490
+      model_url: "https://civitai.com/models/1595884/hyphoria"
+      air: "urn:air:sdxl:checkpoint:civitai:1595884@2862490"
+      model_name: "Hyphoria"
+      version_name: "v0.02"
+      creator: "ecaj"
+      nsfw: false
+      tags: [base_model]
+      trained_words: []
+      download_url: "https://civitai.com/api/download/models/2862490"
+    samples:
+      status: api_enriched
+      source: civitai
+      fetched_at: '2026-04-25'
+      model_id: 1595884
+      version_id: 2862490
+      count: 6
+    review:
+      status: api_enriched
+      missing: []
+      sample_status: api_enriched
+      sample_count: 6
+      nsfw_samples_present: false
+  oxalisanimepixelart_oxalispixelart:
+    detail_file: sd_catalog_civitai/detail/oxalisanimepixelart_oxalispixelart.yml
+    local_file: "oxalisAnimePixelArt_oxalisPixelArt.safetensors"
+    catalog_type: checkpoint
+    base_model: sd1.5
+    base_model_raw: "SD 1.5"
+    civitai:
+      model_id: 362670
+      version_id: 405242
+      model_url: "https://civitai.com/models/362670/oxalis-anime-pixel-art-oap?modelVersionId=405242"
+      air: "urn:air:sd1:checkpoint:civitai:362670@405242"
+      model_name: "Oxalis Anime Pixel Art - OAP"
+      version_name: "Oxalis Pixel Art"
+      creator: "KorMode"
+      nsfw: false
+      tags: [anime, pixel_art, base_model, pixel, oxalis, oxalis_anime_model]
+      trained_words: ["pixel art"]
+      download_url: "https://civitai.com/api/download/models/405242"
+    samples:
+      status: api_enriched
+      source: civitai
+      fetched_at: '2026-04-25'
+      model_id: 362670
+      version_id: 405242
+      count: 6
+    review:
+      status: api_enriched
+      missing: []
+      sample_status: api_enriched
+      sample_count: 6
+      nsfw_samples_present: false
+  pixel_art_a3:
+    detail_file: sd_catalog_civitai/detail/pixel_art_a3.yml
+    local_file: "pixel_art_a3.safetensors"
+    catalog_type: lora
+    base_model: sdxl
+    base_model_raw: "SDXL 1.0"
+    civitai:
+      model_id: 373048
+      version_id: 499951
+      model_url:
+      air: "urn:air:sdxl:lora:civitai:373048@499951"
+      model_name: "Pixel Art 像素艺术 XL"
+      version_name: "v2.0"
+      creator: "Chenkin"
+      nsfw: false
+      tags: [anime, pixel, style]
+      trained_words: ["pixel_art"]
+      download_url: "https://civitai.com/api/download/models/499951"
+    samples:
+      status: api_enriched
+      source: civitai
+      fetched_at: '2026-04-25'
+      model_id: 373048
+      version_id: 499951
+      count: 6
+    review:
+      status: api_enriched
+      missing:
+        - civitai.model_url
+
+      sample_status: api_enriched
+      sample_count: 6
+      nsfw_samples_present: true
+  sdxl_pixel:
+    detail_file: sd_catalog_civitai/detail/sdxl_pixel.yml
+    local_file: "sdxl_pixel.safetensors"
+    catalog_type: lora
+    base_model: sdxl
+    base_model_raw: "SDXL 1.0"
+    civitai:
+      model_id: 133643
+      version_id: 147125
+      model_url: "https://civitai.com/models/133643/lah-pixel-art-or-sdxl"
+      air: "urn:air:sdxl:lora:civitai:133643@147125"
+      model_name: "[Lah] Pixel Art | SDXL"
+      version_name: "v1.0"
+      creator: "Lah_Inthe_Futureland"
+      nsfw: false
+      tags: [anime, pixel, style]
+      trained_words: ["pixel art", "pixel"]
+      download_url: "https://civitai.com/api/download/models/147125"
+    samples:
+      status: api_enriched
+      source: civitai
+      fetched_at: '2026-04-25'
+      model_id: 133643
+      version_id: 147125
+      count: 6
+    review:
+      status: api_enriched
+      missing: []
+      sample_status: api_enriched
+      sample_count: 6
+      nsfw_samples_present: false
+  pixelartfantasy_v30:
+    detail_file: sd_catalog_civitai/detail/pixelartfantasy_v30.yml
+    local_file:
+    catalog_type: checkpoint
+    base_model: illustrious
+    base_model_raw: "Illustrious"
+    civitai:
+      model_id: 2252830
+      version_id: 2858423
+      model_url: "https://civitai.com/models/2252830/pixelart-fantasy"
+      air:
+      model_name: "PixelArt Fantasy"
+      version_name: "v3.0"
+      creator: "Murex90707"
+      nsfw: false
+      tags: [style]
+      trained_words: []
+      download_url: "https://civitai.com/api/download/models/2858423"
+    samples:
+      status: api_enriched
+      source: civitai
+      fetched_at: '2026-04-25'
+      model_id: 2252830
+      version_id: 2858423
+      count: 6
+    review:
+      status: api_enriched
+      missing:
+        - local_file
+        - air
+
+      sample_status: api_enriched
+      sample_count: 6
+      nsfw_samples_present: false
+  animaginexl40opt_clear:
+    detail_file: sd_catalog_civitai/detail/animaginexl40opt_clear.yml
+    local_file: "animagineXL40Opt_clear.safetensors"
+    catalog_type: checkpoint
+    base_model: sdxl
+    base_model_raw: "SDXL 1.0"
+    civitai:
+      model_id: 2110148
+      version_id: 2387208
+      model_url: "https://civitai.com/models/2110148/animagine-xl40optclear"
+      air: "urn:air:sdxl:checkpoint:civitai:2110148@2387208"
+      model_name: "Animagine XL 4.0 Opt Clear"
+      version_name:
+      creator:
+      nsfw:
+      tags: []
+      trained_words: []
+      download_url:
+    samples:
+      status: local_curated
+      source: Stable-diffusion-info.md
+      fetched_at: '2026-04-25'
+      model_id: 2110148
+      version_id: 2387208
+      count: 1
+    review:
+      status: user_curated
+      missing:
+        - civitai.version_name
+        - civitai.creator
+        - civitai.nsfw
+        - civitai.tags
+        - civitai.download_url
+
+      sample_status: local_curated
+      sample_count: 1
+      nsfw_samples_present: false
+  meinamix_v12final:
+    detail_file: sd_catalog_civitai/detail/meinamix_v12final.yml
+    local_file: "meinamix_v12Final.safetensors"
+    catalog_type: checkpoint
+    base_model: sd1.5
+    base_model_raw: "SD 1.5"
+    civitai:
+      model_id:
+      version_id:
+      model_url:
+      air:
+      model_name: "MeinaMix"
+      version_name: "v12Final"
+      creator:
+      nsfw:
+      tags: []
+      trained_words: []
+      download_url:
+    samples:
+      status: missing_or_unavailable
+      source: civitai
+      fetched_at: '2026-04-25'
+      model_id:
+      version_id:
+      count: 0
+    review:
+      status: user_curated
+      missing:
+        - civitai.model_id
+        - civitai.model_url
+        - civitai.air
+        - civitai.creator
+        - civitai.download_url
+
+      sample_status: missing_or_unavailable
+      sample_count: 0
+      nsfw_samples_present: false
+  pixelartdiffusionxl_spriteshaper:
+    detail_file: sd_catalog_civitai/detail/pixelartdiffusionxl_spriteshaper.yml
+    local_file: "pixelArtDiffusionXL_spriteShaper.safetensors"
+    catalog_type: checkpoint
+    base_model: sdxl
+    base_model_raw: "SDXL 1.0"
+    civitai:
+      model_id: 277680
+      version_id:
+      model_url: "https://civitai.com/models/277680/pixel-art-diffusion-xl"
+      air:
+      model_name: "Pixel Art Diffusion XL"
+      version_name:
+      creator:
+      nsfw:
+      tags: []
+      trained_words: []
+      download_url:
+    samples:
+      status: local_curated
+      source: Stable-diffusion-info.md
+      fetched_at: '2026-04-25'
+      model_id: 277680
+      version_id:
+      count: 1
+    review:
+      status: user_curated
+      missing:
+        - civitai.air
+        - civitai.version_id
+        - civitai.version_name
+        - civitai.creator
+        - civitai.nsfw
+        - civitai.tags
+        - civitai.download_url
+      sample_status: local_curated
+      sample_count: 1
+      nsfw_samples_present: false

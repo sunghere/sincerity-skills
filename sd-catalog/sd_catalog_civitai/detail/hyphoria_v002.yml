@@ -1,0 +1,366 @@
+schema_version: 1
+kind: civitai_model_detail
+model_key: hyphoria_v002
+sources:
+  civitai_api: "https://civitai.com/api/v1/models/:modelId"
+  generated_at: "2026-04-25"
+  append_policy: "Append new entries under models using normalized local filename keys."
+
+model:
+  local_file: "hyphoria_v002.safetensors"
+  catalog_type: checkpoint
+  base_model: illustrious
+  base_model_raw: "Illustrious"
+
+  civitai:
+    model_id: 1595884
+    model_url: "https://civitai.com/models/1595884/hyphoria"
+    air: "urn:air:sdxl:checkpoint:civitai:1595884@2862490"
+    version_id: 2862490
+    model_name: "Hyphoria"
+    version_name: "v0.02"
+    creator: "ecaj"
+    nsfw: false
+    tags: [base_model]
+    trained_words: []
+    files:
+      - "hyphoria_v002.safetensors"
+    download_url: "https://civitai.com/api/download/models/2862490"
+
+  compatibility:
+    checkpoint_family: illustrious
+    lora_compatible_base_models: [illustrious]
+    recommended_for: [anime, illustration, high_resolution]
+    not_recommended_for: [sd1.5_lora, flux_lora]
+
+  generation:
+    sampler:
+      recommended: ["Euler a", "DPM++ 2M"]
+    steps:
+      recommended: [20, 35]
+    cfg_scale:
+      recommended: 3
+      range: [2.5, 6]
+    resolution:
+      recommended: "1mp to 1.5mp"
+      notes: "Portrait aspect ratios are more stable. Ultra-wide or high-resolution wide aspect ratios can duplicate or warp
+        anatomy."
+
+  prompting:
+    notes: "Less is more. Quality tags can make output glossier and less flexible; experiment."
+    negative_prompt:
+      recommended: ["worst quality", "low quality"]
+
+  raw_notes: |
+    v0.02 improves contrast and higher-resolution stability compared to v0.01.
+    Model card reports reliable 1.5 megapixel base generations with fewer anatomy issues in most cases.
+
+  review:
+    status: api_enriched
+    missing: []
+    sample_status: api_enriched
+    sample_count: 6
+    nsfw_samples_present: false
+  samples:
+    status: api_enriched
+    source: civitai
+    fetched_at: '2026-04-25'
+    model_id: 1595884
+    version_id: 2862490
+    count: 6
+    items:
+      - image_id: 127778445
+        image_url: 
+          https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/b41fd9e4-6878-476d-a71c-01b941c31cfa/original=true/b41fd9e4-6878-476d-a71c-01b941c31cfa.jpeg
+        page_url: https://civitai.com/posts/27452910
+        nsfw: false
+        width: 832
+        height: 1216
+        prompt: |-
+          concept art, horror \(theme\), gloom \(expression\), depressed \(theme\), dark theme, very complimentary colors, (m omoo), film grain, 1girl, Ninomae_Ina'nis /(hololive/), open arms, (foreshortening:1.5), temari, red eyes, slay smile, red and black color pallet, comming out of void, sadness, flying horizontally, taking action, in motion
+        negative_prompt: |-
+          ugly, deformed, noisy, low poly, blurry, bad quality, worst quality, multiple angle, split view
+        generation:
+          seed: 3168479928062921700
+          steps: 30
+          cfg_scale: 4
+          sampler: Euler a Karras
+          scheduler: karras
+          clip_skip: 2
+          size: 832x1216
+          model_hash: d463b3a7de
+        resources:
+          - type: lora
+            name: _XmutsixV2
+            model_id:
+            version_id:
+            weight:
+          - type: model
+            name: hyphoriaIlluNAI_v002
+            model_id:
+            version_id:
+            weight:
+        tags: []
+        raw_meta:
+          VAE: Default (model)
+          Model: hyphoriaIlluNAI_v002
+          width: 832
+          hashes:
+            model: d463b3a7de
+            lora:_XmutsixV2: 09d3e52fc3
+          height: 1216
+          Version: Fooocus v2.5.5
+          Scheduler: karras
+          Sharpness: '2'
+          Raw prompt:
+            (foreshortening: 1.5)
+          Performance: Speed
+          Lora weights:
+            _XmutsixV2: '0.71'
+        post:
+          username: Takah0x
+          created_at: '2026-04-17T07:52:03.608Z'
+      - image_id: 127877088
+        image_url: 
+          https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/45a4a8c9-ac2c-4837-b57f-5c0213fa919d/original=true/45a4a8c9-ac2c-4837-b57f-5c0213fa919d.jpeg
+        page_url: https://civitai.com/posts/28028066
+        nsfw: false
+        width: 832
+        height: 1216
+        prompt: |-
+          pixel art, isometric view. Abandoned lighthouse on a jagged outcrop. Stone tower in cold greys, windows dark. Sea stretches wide with subtle 2-frame shimmer. In the lighthouse window, one tiny red light blinks every 3 seconds — the only animation, the only color. Heavy cloud layer above, 1-bit dithering for the mist.
+        negative_prompt: |-
+          ugly, deformed, noisy, low poly, blurry, bad quality, worst quality, multiple angle, split view
+        generation:
+          seed: 1289547326
+          steps: 30
+          cfg_scale: 4
+          sampler: Euler a
+          scheduler:
+          clip_skip: 2
+          size: 832x1216
+          model_hash:
+        resources:
+          - type: checkpoint
+            name:
+            model_id:
+            version_id: 2862490
+            weight: 1
+        tags: []
+        raw_meta:
+          input: text
+          output: image
+          priority: low
+          quantity: 1
+          workflow: txt2img
+          ecosystem: Illustrious
+          aspectRatio:
+            value: 2:3
+            width: 832
+            height: 1216
+          outputFormat: jpeg
+          enhancedCompatibility: true
+        post:
+          username: lightyagami_
+          created_at: '2026-04-18T09:30:00.000Z'
+      - image_id: 127747153
+        image_url: 
+          https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/57818b9e-865a-449e-98ad-450e1474521d/original=true/57818b9e-865a-449e-98ad-450e1474521d.mp4
+        page_url: https://civitai.com/posts/28002207
+        nsfw: false
+        width: 1668
+        height: 2224
+        prompt: |-
+          (tabisumika:1.3, (kaneni \(old\):1.3, asagina gi:0.8, painterly, impressionism)
+
+          asteroid_ill, scenery, abstract background
+
+          from side, profile, blowing, blowing glowing particles, glowing smoke, glowing spores, lit face, spores, hand up, face focus, breath focus, hand focus, hat focus,
+          1girl, wizard, ginger hair, red hair, long hair, wizard hat, light blue hat, wizard robe, light blue robe, portrait,
+          abstract background, dark background, bokeh particles, high contrast, elden ring
+        negative_prompt: |-
+          worst quality, light particles, dust, signature, watermark, patreon username, artist name, artist logo, multiple views, asteroid, loli, shota
+        generation:
+          seed: 736140751916959
+          steps: 35
+          cfg_scale: 3
+          sampler: Euler a
+          scheduler:
+          clip_skip:
+          size: 1668x2224
+          model_hash:
+        resources: []
+        tags: []
+        post:
+          username: ecaj
+          created_at: '2026-04-16T23:50:12.690Z'
+      - image_id: 128116600
+        image_url: 
+          https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/eb0f39e6-d76e-47c7-857c-fc27a634ee82/original=true/eb0f39e6-d76e-47c7-857c-fc27a634ee82.jpeg
+        page_url: https://civitai.com/posts/28076799
+        nsfw: false
+        width: 1248
+        height: 1824
+        prompt: |-
+          masterpiece, best quality, very aesthetic, CivitAI BatouLaMenace, (flat color, no lineart:1.5), (Tsuaii:0), (Incase:0),(Sam Yang:0), (semi realistic),
+          (adult:2),
+          1girl, Tifa Lockhart(Final Fantasy), long black hair, red eyes, athletic build, white tank top, black skirt,
+
+          Sunshine, bright blue sky, forest, fantasy forest
+        negative_prompt: |-
+          bad quality, worst quality, worst detail, sketch, censor, signature, watermark, text, monochrome
+        generation:
+          seed: 1366300271
+          steps: 24
+          cfg_scale: 4
+          sampler: Euler a
+          scheduler:
+          clip_skip:
+          size: 1248x1824
+          model_hash:
+        resources:
+          - type: checkpoint
+            name:
+            model_id:
+            version_id: 2862490
+            weight:
+          - type: upscaler
+            name:
+            model_id:
+            version_id: 164821
+            weight:
+        tags: []
+        raw_meta:
+          Model: urn:air:sdxl:checkpoint:civitai:1595884@2862490
+          models:
+            - urn:air:sdxl:checkpoint:civitai:1595884@2862490
+          denoise: 0.25
+          upscalers:
+            - urn:air:other:upscaler:civitai:147759@164821
+        post:
+          username: BatouLaMenace
+          created_at: '2026-04-20T23:13:28.789Z'
+      - image_id: 127901079
+        image_url: 
+          https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/16600198-2065-4430-ba25-6fb05bbdb846/original=true/16600198-2065-4430-ba25-6fb05bbdb846.jpeg
+        page_url: https://civitai.com/posts/28033904
+        nsfw: false
+        width: 1248
+        height: 1824
+        prompt: |-
+          big long brushstrokes of deep black sumi-e turning into symbolic painting of shirabyoshi, yellow eboshi hat, katana on hip, white suikan robe, red hakama, holding folding fan horizontally, from side, on noh stage, divine, low ponytail, japanese traditional performing art, taking action, clothes flattering in action, dynamic motion, (ethereal:1.5). master level raw art. best quality, high resolution
+        negative_prompt: |-
+          photography, rendered. low quality, low resolution, ugly, deformed, noisy, low poly, blurry, bad quality, worst quality, multiple angle, split view
+        generation:
+          seed: 1938588845499532000
+          steps: 18
+          cfg_scale: 4
+          sampler: Euler a Karras
+          scheduler: karras
+          clip_skip: 2
+          size: 1248x1824
+          model_hash: d463b3a7de
+        resources:
+          - type: lora
+            name: shirabyousshi
+            model_id:
+            version_id:
+            weight:
+          - type: model
+            name: hyphoriaIlluNAI_v002
+            model_id:
+            version_id:
+            weight:
+        tags: []
+        raw_meta:
+          VAE: Default (model)
+          Model: hyphoriaIlluNAI_v002
+          width: 1248
+          hashes:
+            model: d463b3a7de
+            lora:shirabyousshi: ff4ff2c243
+          height: 1824
+          Version: Fooocus v2.5.5
+          Scheduler: karras
+          Sharpness: '2'
+          Raw prompt:
+            (ethereal: 1.5)
+          Performance: Speed
+          Lora weights:
+            shirabyousshi: '0.94'
+        post:
+          username: Takah0x
+          created_at: '2026-04-18T14:58:51.646Z'
+      - image_id: 127787845
+        image_url: 
+          https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/89e70d88-b79e-4169-ab03-3aac538e49ee/original=true/89e70d88-b79e-4169-ab03-3aac538e49ee.jpeg
+        page_url: https://civitai.com/posts/28010819
+        nsfw: false
+        width: 1880
+        height: 2072
+        prompt: |-
+          1girl, (solo:1.2), Purple hair, tail, teenage, barefoot, feet, hooded robe, sitting, leaning back, crossed legs, from above, third-quarter-view, glade, grass, Purple eyes, disgusted, tentacle girl, monster girl, sharp teeth, tentacle tail, colorful skin, tentacle hair, anime style, anime screencap, chiaroscuro lighting, young, petite, masterpiece, best quality, amazing quality, newest, in the style of cksc
+          <lora:ck-shadow-circuit-IL-000012:0.2> <lora:anime_screencap-IL-NOOB_v3:0.4> <lora:TrueScreencap_Ill_V1:0.4> <lora:TrendCraft_The_Peoples_Style_Detailer-v2:0.25> <lora:asou_:0.3> <lora:CuteIXL-style:0.4>
+        negative_prompt: |-
+          (bad quality, worst quality:1.2), worst detail, sketch, censor, watermark, logo, artist name, text, logo, subtitle, nose, sweat, monochrome, (dolls:1.1), red knee, detailed knee, knee blush, multiple view, simple background, light particles, wind
+        generation:
+          seed: 7610
+          steps: 30
+          cfg_scale: 5
+          sampler: Euler a
+          scheduler:
+          clip_skip:
+          size: 1880x2072
+          model_hash: d463b3a7de
+        resources:
+          - type: lora
+            name: ck-shadow-circuit-IL-000012
+            model_id:
+            version_id:
+            weight: 0.2
+          - type: lora
+            name: anime_screencap-IL-NOOB_v3
+            model_id:
+            version_id:
+            weight: 0.4
+          - type: lora
+            name: TrueScreencap_Ill_V1
+            model_id:
+            version_id:
+            weight: 0.4
+          - type: lora
+            name: TrendCraft_The_Peoples_Style_Detailer-v2
+            model_id:
+            version_id:
+            weight: 0.25
+          - type: lora
+            name: asou_
+            model_id:
+            version_id:
+            weight: 0.3
+          - type: lora
+            name: CuteIXL-style
+            model_id:
+            version_id:
+            weight: 0.4
+          - type: model
+            name: hyphoriaIlluNAI_v002
+            model_id:
+            version_id:
+            weight:
+        tags: []
+        raw_meta:
+          Model: hyphoriaIlluNAI_v002
+          width: 1216
+          hashes:
+            model: d463b3a7de
+            lora:asou_: 823eb1437e
+            lora:CuteIXL-style: bb02a4e7f5
+            lora:TrueScreencap_Ill_V1: b4567e04b2
+            lora:anime_screencap-IL-NOOB_v3: 98f877ac29
+            lora:ck-shadow-circuit-IL-000012: eaafd7d445
+          height: 1344
+        post:
+          username: Kalderas
+          created_at: '2026-04-17T22:54:09.334Z'
+

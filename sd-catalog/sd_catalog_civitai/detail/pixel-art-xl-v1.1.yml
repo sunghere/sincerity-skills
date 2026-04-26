@@ -1,0 +1,4732 @@
+schema_version: 1
+kind: civitai_model_detail
+model_key: pixel-art-xl-v1.1
+sources:
+  civitai_api: "https://civitai.com/api/v1/models/:modelId"
+  generated_at: "2026-04-25"
+  append_policy: "Append new entries under models using normalized local filename keys."
+
+model:
+  local_file: "pixel-art-xl-v1.1.safetensors"
+  catalog_type: lora
+  base_model: sdxl
+  base_model_raw: "SDXL 1.0"
+
+  civitai:
+    model_id: 120096
+    model_url: "https://civitai.com/models/120096/pixel-art-xl"
+    air: "urn:air:sdxl:lora:civitai:120096@135931"
+    version_id: 135931
+    model_name: "Pixel Art XL"
+    version_name: "v1.1"
+    creator: "NeriJS"
+    nsfw: false
+    tags: [pixel_art, style, pixelart]
+    trained_words: []
+    files:
+      - "pixel-art-xl-v1.1.safetensors"
+    download_url: "https://civitai.com/api/download/models/135931"
+
+  compatibility:
+    checkpoint_family: sdxl
+    lora_compatible_base_models: [sdxl]
+    recommended_for: [pixel_art, isometric, non_isometric]
+    not_recommended_for: [sd1.5, flux]
+
+  generation:
+    lora_weight:
+      recommended: 0.8
+      range: [0.5, 1.0]
+    vae:
+      recommended: "fixed VAE, 0.9 or fp16 fix"
+    refiner:
+      recommended: false
+    postprocess:
+      - "Downscale 8x with nearest-neighbor for pixel-perfect images."
+
+  prompting:
+    trigger_words: []
+    notes: "No style prompt or trigger keyword required; card says best results can happen without 'pixel art' in the prompt."
+
+  raw_notes: |
+    Works with SDXL 0.9 and 1.0.
+    Version v1.1 improves AUTOMATIC1111 compatibility, coherence, and flexibility.
+
+  review:
+    status: api_enriched
+    missing: []
+    sample_status: api_enriched
+    sample_count: 6
+    nsfw_samples_present: false
+  samples:
+    status: api_enriched
+    source: civitai
+    fetched_at: '2026-04-25'
+    model_id: 120096
+    version_id: 135931
+    count: 6
+    items:
+      - image_id: 1918193
+        image_url: 
+          https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/0770e5fc-4260-4e3c-a0ee-bf2253028e9f/original=true/0770e5fc-4260-4e3c-a0ee-bf2253028e9f.jpeg
+        page_url: https://civitai.com/posts/472224
+        nsfw: false
+        width: 1024
+        height: 1024
+        prompt: |-
+          a cute happy corgi, (flat shading:1.2), (minimalist:1.4)
+        negative_prompt: |-
+          text, watermark, blurry, deformed, depth of field, realistic, 3d render, outline
+        generation:
+          seed:
+          steps: 20
+          cfg_scale: 8
+          sampler: Euler a
+          scheduler: normal
+          clip_skip:
+          size: 1024x1024
+          model_hash:
+        resources: []
+        tags: []
+        raw_meta:
+          vaes:
+            - sdxl_vae.safetensors
+          Model: sd_xl_base_1.0
+          comfy:
+            prompt:
+              '5':
+                inputs:
+                  width: 1024
+                  height: 1024
+                  batch_size: 4
+                class_type: EmptyLatentImage
+              '6':
+                inputs:
+                  clip:
+                    inputs:
+                      clip:
+                        inputs:
+                          ckpt_name: sd_xl_base_1.0.safetensors
+                        class_type: CheckpointLoaderSimple
+                      model:
+                        inputs:
+                          ckpt_name: sd_xl_base_1.0.safetensors
+                        class_type: CheckpointLoaderSimple
+                      lora_name: pixel-art-xl-v1.1.safetensors
+                      strength_clip: 1
+                      strength_model: 1.0000000000000002
+                    class_type: LoraLoader
+                  text: a cute happy corgi, (flat shading:1.2), (minimalist:1.4)
+                class_type: CLIPTextEncode
+              '7':
+                inputs:
+                  clip:
+                    inputs:
+                      clip:
+                        inputs:
+                          ckpt_name: sd_xl_base_1.0.safetensors
+                        class_type: CheckpointLoaderSimple
+                      model:
+                        inputs:
+                          ckpt_name: sd_xl_base_1.0.safetensors
+                        class_type: CheckpointLoaderSimple
+                      lora_name: pixel-art-xl-v1.1.safetensors
+                      strength_clip: 1
+                      strength_model: 1.0000000000000002
+                    class_type: LoraLoader
+                  text: text, watermark, blurry, deformed, depth of field, realistic, 3d render, outline
+                class_type: CLIPTextEncode
+              '10':
+                inputs:
+                  cfg: 8
+                  model:
+                    inputs:
+                      clip:
+                        inputs:
+                          ckpt_name: sd_xl_base_1.0.safetensors
+                        class_type: CheckpointLoaderSimple
+                      model:
+                        inputs:
+                          ckpt_name: sd_xl_base_1.0.safetensors
+                        class_type: CheckpointLoaderSimple
+                      lora_name: pixel-art-xl-v1.1.safetensors
+                      strength_clip: 1
+                      strength_model: 1.0000000000000002
+                    class_type: LoraLoader
+                  steps: 20
+                  negative:
+                    inputs:
+                      clip:
+                        inputs:
+                          clip:
+                            inputs:
+                              ckpt_name: sd_xl_base_1.0.safetensors
+                            class_type: CheckpointLoaderSimple
+                          model:
+                            inputs:
+                              ckpt_name: sd_xl_base_1.0.safetensors
+                            class_type: CheckpointLoaderSimple
+                          lora_name: pixel-art-xl-v1.1.safetensors
+                          strength_clip: 1
+                          strength_model: 1.0000000000000002
+                        class_type: LoraLoader
+                      text: text, watermark, blurry, deformed, depth of field, realistic, 3d render, outline
+                    class_type: CLIPTextEncode
+                  positive:
+                    inputs:
+                      clip:
+                        inputs:
+                          clip:
+                            inputs:
+                              ckpt_name: sd_xl_base_1.0.safetensors
+                            class_type: CheckpointLoaderSimple
+                          model:
+                            inputs:
+                              ckpt_name: sd_xl_base_1.0.safetensors
+                            class_type: CheckpointLoaderSimple
+                          lora_name: pixel-art-xl-v1.1.safetensors
+                          strength_clip: 1
+                          strength_model: 1.0000000000000002
+                        class_type: LoraLoader
+                      text: a cute happy corgi, (flat shading:1.2), (minimalist:1.4)
+                    class_type: CLIPTextEncode
+                  add_noise: enable
+                  scheduler: normal
+                  noise_seed: 25468944332627
+                  end_at_step: 20
+                  latent_image:
+                    inputs:
+                      width: 1024
+                      height: 1024
+                      batch_size: 4
+                    class_type: EmptyLatentImage
+                  sampler_name: euler_ancestral
+                  start_at_step: 0
+                  return_with_leftover_noise: enable
+                class_type: KSamplerAdvanced
+              '17':
+                inputs:
+                  vae:
+                    inputs:
+                      vae_name: sdxl_vae.safetensors
+                    class_type: VAELoader
+                  samples:
+                    inputs:
+                      cfg: 8
+                      model:
+                        inputs:
+                          clip:
+                            inputs:
+                              ckpt_name: sd_xl_base_1.0.safetensors
+                            class_type: CheckpointLoaderSimple
+                          model:
+                            inputs:
+                              ckpt_name: sd_xl_base_1.0.safetensors
+                            class_type: CheckpointLoaderSimple
+                          lora_name: pixel-art-xl-v1.1.safetensors
+                          strength_clip: 1
+                          strength_model: 1.0000000000000002
+                        class_type: LoraLoader
+                      steps: 20
+                      negative:
+                        inputs:
+                          clip:
+                            inputs:
+                              clip:
+                                inputs:
+                                  ckpt_name: sd_xl_base_1.0.safetensors
+                                class_type: CheckpointLoaderSimple
+                              model:
+                                inputs:
+                                  ckpt_name: sd_xl_base_1.0.safetensors
+                                class_type: CheckpointLoaderSimple
+                              lora_name: pixel-art-xl-v1.1.safetensors
+                              strength_clip: 1
+                              strength_model: 1.0000000000000002
+                            class_type: LoraLoader
+                          text: text, watermark, blurry, deformed, depth of field, realistic, 3d render, outline
+                        class_type: CLIPTextEncode
+                      positive:
+                        inputs:
+                          clip:
+                            inputs:
+                              clip:
+                                inputs:
+                                  ckpt_name: sd_xl_base_1.0.safetensors
+                                class_type: CheckpointLoaderSimple
+                              model:
+                                inputs:
+                                  ckpt_name: sd_xl_base_1.0.safetensors
+                                class_type: CheckpointLoaderSimple
+                              lora_name: pixel-art-xl-v1.1.safetensors
+                              strength_clip: 1
+                              strength_model: 1.0000000000000002
+                            class_type: LoraLoader
+                          text: a cute happy corgi, (flat shading:1.2), (minimalist:1.4)
+                        class_type: CLIPTextEncode
+                      add_noise: enable
+                      scheduler: normal
+                      noise_seed: 25468944332627
+                      end_at_step: 20
+                      latent_image:
+                        inputs:
+                          width: 1024
+                          height: 1024
+                          batch_size: 4
+                        class_type: EmptyLatentImage
+                      sampler_name: euler_ancestral
+                      start_at_step: 0
+                      return_with_leftover_noise: enable
+                    class_type: KSamplerAdvanced
+                class_type: VAEDecode
+              '19':
+                inputs:
+                  images:
+                    inputs:
+                      vae:
+                        inputs:
+                          vae_name: sdxl_vae.safetensors
+                        class_type: VAELoader
+                      samples:
+                        inputs:
+                          cfg: 8
+                          model:
+                            inputs:
+                              clip:
+                                inputs:
+                                  ckpt_name: sd_xl_base_1.0.safetensors
+                                class_type: CheckpointLoaderSimple
+                              model:
+                                inputs:
+                                  ckpt_name: sd_xl_base_1.0.safetensors
+                                class_type: CheckpointLoaderSimple
+                              lora_name: pixel-art-xl-v1.1.safetensors
+                              strength_clip: 1
+                              strength_model: 1.0000000000000002
+                            class_type: LoraLoader
+                          steps: 20
+                          negative:
+                            inputs:
+                              clip:
+                                inputs:
+                                  clip:
+                                    inputs:
+                                      ckpt_name: sd_xl_base_1.0.safetensors
+                                    class_type: CheckpointLoaderSimple
+                                  model:
+                                    inputs:
+                                      ckpt_name: sd_xl_base_1.0.safetensors
+                                    class_type: CheckpointLoaderSimple
+                                  lora_name: pixel-art-xl-v1.1.safetensors
+                                  strength_clip: 1
+                                  strength_model: 1.0000000000000002
+                                class_type: LoraLoader
+                              text: text, watermark, blurry, deformed, depth of field, realistic, 3d render, outline
+                            class_type: CLIPTextEncode
+                          positive:
+                            inputs:
+                              clip:
+                                inputs:
+                                  clip:
+                                    inputs:
+                                      ckpt_name: sd_xl_base_1.0.safetensors
+                                    class_type: CheckpointLoaderSimple
+                                  model:
+                                    inputs:
+                                      ckpt_name: sd_xl_base_1.0.safetensors
+                                    class_type: CheckpointLoaderSimple
+                                  lora_name: pixel-art-xl-v1.1.safetensors
+                                  strength_clip: 1
+                                  strength_model: 1.0000000000000002
+                                class_type: LoraLoader
+                              text: a cute happy corgi, (flat shading:1.2), (minimalist:1.4)
+                            class_type: CLIPTextEncode
+                          add_noise: enable
+                          scheduler: normal
+                          noise_seed: 25468944332627
+                          end_at_step: 20
+                          latent_image:
+                            inputs:
+                              width: 1024
+                              height: 1024
+                              batch_size: 4
+                            class_type: EmptyLatentImage
+                          sampler_name: euler_ancestral
+                          start_at_step: 0
+                          return_with_leftover_noise: enable
+                        class_type: KSamplerAdvanced
+                    class_type: VAEDecode
+                  filename_prefix: ComfyUI
+                class_type: SaveImage
+              '48':
+                inputs:
+                  image:
+                    inputs:
+                      vae:
+                        inputs:
+                          vae_name: sdxl_vae.safetensors
+                        class_type: VAELoader
+                      samples:
+                        inputs:
+                          cfg: 8
+                          model:
+                            inputs:
+                              clip:
+                                inputs:
+                                  ckpt_name: sd_xl_base_1.0.safetensors
+                                class_type: CheckpointLoaderSimple
+                              model:
+                                inputs:
+                                  ckpt_name: sd_xl_base_1.0.safetensors
+                                class_type: CheckpointLoaderSimple
+                              lora_name: pixel-art-xl-v1.1.safetensors
+                              strength_clip: 1
+                              strength_model: 1.0000000000000002
+                            class_type: LoraLoader
+                          steps: 20
+                          negative:
+                            inputs:
+                              clip:
+                                inputs:
+                                  clip:
+                                    inputs:
+                                      ckpt_name: sd_xl_base_1.0.safetensors
+                                    class_type: CheckpointLoaderSimple
+                                  model:
+                                    inputs:
+                                      ckpt_name: sd_xl_base_1.0.safetensors
+                                    class_type: CheckpointLoaderSimple
+                                  lora_name: pixel-art-xl-v1.1.safetensors
+                                  strength_clip: 1
+                                  strength_model: 1.0000000000000002
+                                class_type: LoraLoader
+                              text: text, watermark, blurry, deformed, depth of field, realistic, 3d render, outline
+                            class_type: CLIPTextEncode
+                          positive:
+                            inputs:
+                              clip:
+                                inputs:
+                                  clip:
+                                    inputs:
+                                      ckpt_name: sd_xl_base_1.0.safetensors
+                                    class_type: CheckpointLoaderSimple
+                                  model:
+                                    inputs:
+                                      ckpt_name: sd_xl_base_1.0.safetensors
+                                    class_type: CheckpointLoaderSimple
+                                  lora_name: pixel-art-xl-v1.1.safetensors
+                                  strength_clip: 1
+                                  strength_model: 1.0000000000000002
+                                class_type: LoraLoader
+                              text: a cute happy corgi, (flat shading:1.2), (minimalist:1.4)
+                            class_type: CLIPTextEncode
+                          add_noise: enable
+                          scheduler: normal
+                          noise_seed: 25468944332627
+                          end_at_step: 20
+                          latent_image:
+                            inputs:
+                              width: 1024
+                              height: 1024
+                              batch_size: 4
+                            class_type: EmptyLatentImage
+                          sampler_name: euler_ancestral
+                          start_at_step: 0
+                          return_with_leftover_noise: enable
+                        class_type: KSamplerAdvanced
+                    class_type: VAEDecode
+                  scale_by: 0.125
+                  upscale_method: nearest-exact
+                class_type: ImageScaleBy
+              '49':
+                inputs:
+                  images:
+                    inputs:
+                      image:
+                        inputs:
+                          vae:
+                            inputs:
+                              vae_name: sdxl_vae.safetensors
+                            class_type: VAELoader
+                          samples:
+                            inputs:
+                              cfg: 8
+                              model:
+                                inputs:
+                                  clip:
+                                    inputs:
+                                      ckpt_name: sd_xl_base_1.0.safetensors
+                                    class_type: CheckpointLoaderSimple
+                                  model:
+                                    inputs:
+                                      ckpt_name: sd_xl_base_1.0.safetensors
+                                    class_type: CheckpointLoaderSimple
+                                  lora_name: pixel-art-xl-v1.1.safetensors
+                                  strength_clip: 1
+                                  strength_model: 1.0000000000000002
+                                class_type: LoraLoader
+                              steps: 20
+                              negative:
+                                inputs:
+                                  clip:
+                                    inputs:
+                                      clip:
+                                        inputs:
+                                          ckpt_name: sd_xl_base_1.0.safetensors
+                                        class_type: CheckpointLoaderSimple
+                                      model:
+                                        inputs:
+                                          ckpt_name: sd_xl_base_1.0.safetensors
+                                        class_type: CheckpointLoaderSimple
+                                      lora_name: pixel-art-xl-v1.1.safetensors
+                                      strength_clip: 1
+                                      strength_model: 1.0000000000000002
+                                    class_type: LoraLoader
+                                  text: text, watermark, blurry, deformed, depth of field, realistic, 3d render, outline
+                                class_type: CLIPTextEncode
+                              positive:
+                                inputs:
+                                  clip:
+                                    inputs:
+                                      clip:
+                                        inputs:
+                                          ckpt_name: sd_xl_base_1.0.safetensors
+                                        class_type: CheckpointLoaderSimple
+                                      model:
+                                        inputs:
+                                          ckpt_name: sd_xl_base_1.0.safetensors
+                                        class_type: CheckpointLoaderSimple
+                                      lora_name: pixel-art-xl-v1.1.safetensors
+                                      strength_clip: 1
+                                      strength_model: 1.0000000000000002
+                                    class_type: LoraLoader
+                                  text: a cute happy corgi, (flat shading:1.2), (minimalist:1.4)
+                                class_type: CLIPTextEncode
+                              add_noise: enable
+                              scheduler: normal
+                              noise_seed: 25468944332627
+                              end_at_step: 20
+                              latent_image:
+                                inputs:
+                                  width: 1024
+                                  height: 1024
+                                  batch_size: 4
+                                class_type: EmptyLatentImage
+                              sampler_name: euler_ancestral
+                              start_at_step: 0
+                              return_with_leftover_noise: enable
+                            class_type: KSamplerAdvanced
+                        class_type: VAEDecode
+                      scale_by: 0.125
+                      upscale_method: nearest-exact
+                    class_type: ImageScaleBy
+                class_type: PreviewImage
+              '51':
+                inputs:
+                  image:
+                    inputs:
+                      image:
+                        inputs:
+                          vae:
+                            inputs:
+                              vae_name: sdxl_vae.safetensors
+                            class_type: VAELoader
+                          samples:
+                            inputs:
+                              cfg: 8
+                              model:
+                                inputs:
+                                  clip:
+                                    inputs:
+                                      ckpt_name: sd_xl_base_1.0.safetensors
+                                    class_type: CheckpointLoaderSimple
+                                  model:
+                                    inputs:
+                                      ckpt_name: sd_xl_base_1.0.safetensors
+                                    class_type: CheckpointLoaderSimple
+                                  lora_name: pixel-art-xl-v1.1.safetensors
+                                  strength_clip: 1
+                                  strength_model: 1.0000000000000002
+                                class_type: LoraLoader
+                              steps: 20
+                              negative:
+                                inputs:
+                                  clip:
+                                    inputs:
+                                      clip:
+                                        inputs:
+                                          ckpt_name: sd_xl_base_1.0.safetensors
+                                        class_type: CheckpointLoaderSimple
+                                      model:
+                                        inputs:
+                                          ckpt_name: sd_xl_base_1.0.safetensors
+                                        class_type: CheckpointLoaderSimple
+                                      lora_name: pixel-art-xl-v1.1.safetensors
+                                      strength_clip: 1
+                                      strength_model: 1.0000000000000002
+                                    class_type: LoraLoader
+                                  text: text, watermark, blurry, deformed, depth of field, realistic, 3d render, outline
+                                class_type: CLIPTextEncode
+                              positive:
+                                inputs:
+                                  clip:
+                                    inputs:
+                                      clip:
+                                        inputs:
+                                          ckpt_name: sd_xl_base_1.0.safetensors
+                                        class_type: CheckpointLoaderSimple
+                                      model:
+                                        inputs:
+                                          ckpt_name: sd_xl_base_1.0.safetensors
+                                        class_type: CheckpointLoaderSimple
+                                      lora_name: pixel-art-xl-v1.1.safetensors
+                                      strength_clip: 1
+                                      strength_model: 1.0000000000000002
+                                    class_type: LoraLoader
+                                  text: a cute happy corgi, (flat shading:1.2), (minimalist:1.4)
+                                class_type: CLIPTextEncode
+                              add_noise: enable
+                              scheduler: normal
+                              noise_seed: 25468944332627
+                              end_at_step: 20
+                              latent_image:
+                                inputs:
+                                  width: 1024
+                                  height: 1024
+                                  batch_size: 4
+                                class_type: EmptyLatentImage
+                              sampler_name: euler_ancestral
+                              start_at_step: 0
+                              return_with_leftover_noise: enable
+                            class_type: KSamplerAdvanced
+                        class_type: VAEDecode
+                      scale_by: 0.125
+                      upscale_method: nearest-exact
+                    class_type: ImageScaleBy
+                  scale_by: 8
+                  upscale_method: nearest-exact
+                class_type: ImageScaleBy
+              '52':
+                inputs:
+                  images:
+                    inputs:
+                      image:
+                        inputs:
+                          image:
+                            inputs:
+                              vae:
+                                inputs:
+                                  vae_name: sdxl_vae.safetensors
+                                class_type: VAELoader
+                              samples:
+                                inputs:
+                                  cfg: 8
+                                  model:
+                                    inputs:
+                                      clip:
+                                        inputs:
+                                          ckpt_name: sd_xl_base_1.0.safetensors
+                                        class_type: CheckpointLoaderSimple
+                                      model:
+                                        inputs:
+                                          ckpt_name: sd_xl_base_1.0.safetensors
+                                        class_type: CheckpointLoaderSimple
+                                      lora_name: pixel-art-xl-v1.1.safetensors
+                                      strength_clip: 1
+                                      strength_model: 1.0000000000000002
+                                    class_type: LoraLoader
+                                  steps: 20
+                                  negative:
+                                    inputs:
+                                      clip:
+                                        inputs:
+                                          clip:
+                                            inputs:
+                                              ckpt_name: sd_xl_base_1.0.safetensors
+                                            class_type: CheckpointLoaderSimple
+                                          model:
+                                            inputs:
+                                              ckpt_name: sd_xl_base_1.0.safetensors
+                                            class_type: CheckpointLoaderSimple
+                                          lora_name: pixel-art-xl-v1.1.safetensors
+                                          strength_clip: 1
+                                          strength_model: 1.0000000000000002
+                                        class_type: LoraLoader
+                                      text: text, watermark, blurry, deformed, depth of field, realistic, 3d render, 
+                                        outline
+                                    class_type: CLIPTextEncode
+                                  positive:
+                                    inputs:
+                                      clip:
+                                        inputs:
+                                          clip:
+                                            inputs:
+                                              ckpt_name: sd_xl_base_1.0.safetensors
+                                            class_type: CheckpointLoaderSimple
+                                          model:
+                                            inputs:
+                                              ckpt_name: sd_xl_base_1.0.safetensors
+                                            class_type: CheckpointLoaderSimple
+                                          lora_name: pixel-art-xl-v1.1.safetensors
+                                          strength_clip: 1
+                                          strength_model: 1.0000000000000002
+                                        class_type: LoraLoader
+                                      text: a cute happy corgi, (flat shading:1.2), (minimalist:1.4)
+                                    class_type: CLIPTextEncode
+                                  add_noise: enable
+                                  scheduler: normal
+                                  noise_seed: 25468944332627
+                                  end_at_step: 20
+                                  latent_image:
+                                    inputs:
+                                      width: 1024
+                                      height: 1024
+                                      batch_size: 4
+                                    class_type: EmptyLatentImage
+                                  sampler_name: euler_ancestral
+                                  start_at_step: 0
+                                  return_with_leftover_noise: enable
+                                class_type: KSamplerAdvanced
+                            class_type: VAEDecode
+                          scale_by: 0.125
+                          upscale_method: nearest-exact
+                        class_type: ImageScaleBy
+                      scale_by: 8
+                      upscale_method: nearest-exact
+                    class_type: ImageScaleBy
+                class_type: PreviewImage
+              '53':
+                inputs:
+                  clip:
+                    inputs:
+                      ckpt_name: sd_xl_base_1.0.safetensors
+                    class_type: CheckpointLoaderSimple
+                  model:
+                    inputs:
+                      ckpt_name: sd_xl_base_1.0.safetensors
+                    class_type: CheckpointLoaderSimple
+                  lora_name: pixel-art-xl-v1.1.safetensors
+                  strength_clip: 1
+                  strength_model: 1.0000000000000002
+                class_type: LoraLoader
+              '55':
+                inputs:
+                  vae_name: sdxl_vae.safetensors
+                class_type: VAELoader
+              '57':
+                inputs:
+                  ckpt_name: sd_xl_base_1.0.safetensors
+                class_type: CheckpointLoaderSimple
+              '58':
+                inputs:
+                  images:
+                    inputs:
+                      image:
+                        inputs:
+                          image:
+                            inputs:
+                              vae:
+                                inputs:
+                                  vae_name: sdxl_vae.safetensors
+                                class_type: VAELoader
+                              samples:
+                                inputs:
+                                  cfg: 8
+                                  model:
+                                    inputs:
+                                      clip:
+                                        inputs:
+                                          ckpt_name: sd_xl_base_1.0.safetensors
+                                        class_type: CheckpointLoaderSimple
+                                      model:
+                                        inputs:
+                                          ckpt_name: sd_xl_base_1.0.safetensors
+                                        class_type: CheckpointLoaderSimple
+                                      lora_name: pixel-art-xl-v1.1.safetensors
+                                      strength_clip: 1
+                                      strength_model: 1.0000000000000002
+                                    class_type: LoraLoader
+                                  steps: 20
+                                  negative:
+                                    inputs:
+                                      clip:
+                                        inputs:
+                                          clip:
+                                            inputs:
+                                              ckpt_name: sd_xl_base_1.0.safetensors
+                                            class_type: CheckpointLoaderSimple
+                                          model:
+                                            inputs:
+                                              ckpt_name: sd_xl_base_1.0.safetensors
+                                            class_type: CheckpointLoaderSimple
+                                          lora_name: pixel-art-xl-v1.1.safetensors
+                                          strength_clip: 1
+                                          strength_model: 1.0000000000000002
+                                        class_type: LoraLoader
+                                      text: text, watermark, blurry, deformed, depth of field, realistic, 3d render, 
+                                        outline
+                                    class_type: CLIPTextEncode
+                                  positive:
+                                    inputs:
+                                      clip:
+                                        inputs:
+                                          clip:
+                                            inputs:
+                                              ckpt_name: sd_xl_base_1.0.safetensors
+                                            class_type: CheckpointLoaderSimple
+                                          model:
+                                            inputs:
+                                              ckpt_name: sd_xl_base_1.0.safetensors
+                                            class_type: CheckpointLoaderSimple
+                                          lora_name: pixel-art-xl-v1.1.safetensors
+                                          strength_clip: 1
+                                          strength_model: 1.0000000000000002
+                                        class_type: LoraLoader
+                                      text: a cute happy corgi, (flat shading:1.2), (minimalist:1.4)
+                                    class_type: CLIPTextEncode
+                                  add_noise: enable
+                                  scheduler: normal
+                                  noise_seed: 25468944332627
+                                  end_at_step: 20
+                                  latent_image:
+                                    inputs:
+                                      width: 1024
+                                      height: 1024
+                                      batch_size: 4
+                                    class_type: EmptyLatentImage
+                                  sampler_name: euler_ancestral
+                                  start_at_step: 0
+                                  return_with_leftover_noise: enable
+                                class_type: KSamplerAdvanced
+                            class_type: VAEDecode
+                          scale_by: 0.125
+                          upscale_method: nearest-exact
+                        class_type: ImageScaleBy
+                      scale_by: 8
+                      upscale_method: nearest-exact
+                    class_type: ImageScaleBy
+                  filename_prefix: x8_upscaled_
+                class_type: SaveImage
+              '59':
+                inputs:
+                  images:
+                    inputs:
+                      image:
+                        inputs:
+                          vae:
+                            inputs:
+                              vae_name: sdxl_vae.safetensors
+                            class_type: VAELoader
+                          samples:
+                            inputs:
+                              cfg: 8
+                              model:
+                                inputs:
+                                  clip:
+                                    inputs:
+                                      ckpt_name: sd_xl_base_1.0.safetensors
+                                    class_type: CheckpointLoaderSimple
+                                  model:
+                                    inputs:
+                                      ckpt_name: sd_xl_base_1.0.safetensors
+                                    class_type: CheckpointLoaderSimple
+                                  lora_name: pixel-art-xl-v1.1.safetensors
+                                  strength_clip: 1
+                                  strength_model: 1.0000000000000002
+                                class_type: LoraLoader
+                              steps: 20
+                              negative:
+                                inputs:
+                                  clip:
+                                    inputs:
+                                      clip:
+                                        inputs:
+                                          ckpt_name: sd_xl_base_1.0.safetensors
+                                        class_type: CheckpointLoaderSimple
+                                      model:
+                                        inputs:
+                                          ckpt_name: sd_xl_base_1.0.safetensors
+                                        class_type: CheckpointLoaderSimple
+                                      lora_name: pixel-art-xl-v1.1.safetensors
+                                      strength_clip: 1
+                                      strength_model: 1.0000000000000002
+                                    class_type: LoraLoader
+                                  text: text, watermark, blurry, deformed, depth of field, realistic, 3d render, outline
+                                class_type: CLIPTextEncode
+                              positive:
+                                inputs:
+                                  clip:
+                                    inputs:
+                                      clip:
+                                        inputs:
+                                          ckpt_name: sd_xl_base_1.0.safetensors
+                                        class_type: CheckpointLoaderSimple
+                                      model:
+                                        inputs:
+                                          ckpt_name: sd_xl_base_1.0.safetensors
+                                        class_type: CheckpointLoaderSimple
+                                      lora_name: pixel-art-xl-v1.1.safetensors
+                                      strength_clip: 1
+                                      strength_model: 1.0000000000000002
+                                    class_type: LoraLoader
+                                  text: a cute happy corgi, (flat shading:1.2), (minimalist:1.4)
+                                class_type: CLIPTextEncode
+                              add_noise: enable
+                              scheduler: normal
+                              noise_seed: 25468944332627
+                              end_at_step: 20
+                              latent_image:
+                                inputs:
+                                  width: 1024
+                                  height: 1024
+                                  batch_size: 4
+                                class_type: EmptyLatentImage
+                              sampler_name: euler_ancestral
+                              start_at_step: 0
+                              return_with_leftover_noise: enable
+                            class_type: KSamplerAdvanced
+                        class_type: VAEDecode
+                      scale_by: 0.125
+                      upscale_method: nearest-exact
+                    class_type: ImageScaleBy
+                  filename_prefix: nn_downscaled_
+                class_type: SaveImage
+            workflow:
+              extra: {}
+              links:
+                -   - 11
+                    - 6
+                    - 0
+                    - 10
+                    - 1
+                    - CONDITIONING
+                -   - 12
+                    - 7
+                    - 0
+                    - 10
+                    - 2
+                    - CONDITIONING
+                -   - 16
+                    - 13
+                    - 0
+                    - 6
+                    - 1
+                    - STRING
+                -   - 18
+                    - 14
+                    - 0
+                    - 7
+                    - 1
+                    - STRING
+                -   - 27
+                    - 5
+                    - 0
+                    - 10
+                    - 3
+                    - LATENT
+                -   - 28
+                    - 17
+                    - 0
+                    - 19
+                    - 0
+                    - IMAGE
+                -   - 41
+                    - 45
+                    - 0
+                    - 10
+                    - 4
+                    - INT
+                -   - 43
+                    - 47
+                    - 0
+                    - 10
+                    - 5
+                    - INT
+                -   - 45
+                    - 17
+                    - 0
+                    - 48
+                    - 0
+                    - IMAGE
+                -   - 46
+                    - 48
+                    - 0
+                    - 49
+                    - 0
+                    - IMAGE
+                -   - 47
+                    - 48
+                    - 0
+                    - 51
+                    - 0
+                    - IMAGE
+                -   - 48
+                    - 51
+                    - 0
+                    - 52
+                    - 0
+                    - IMAGE
+                -   - 52
+                    - 53
+                    - 1
+                    - 6
+                    - 0
+                    - CLIP
+                -   - 53
+                    - 53
+                    - 1
+                    - 7
+                    - 0
+                    - CLIP
+                -   - 54
+                    - 53
+                    - 0
+                    - 10
+                    - 0
+                    - MODEL
+                -   - 56
+                    - 10
+                    - 0
+                    - 17
+                    - 0
+                    - LATENT
+                -   - 57
+                    - 55
+                    - 0
+                    - 17
+                    - 1
+                    - VAE
+                -   - 58
+                    - 57
+                    - 0
+                    - 53
+                    - 0
+                    - MODEL
+                -   - 59
+                    - 57
+                    - 1
+                    - 53
+                    - 1
+                    - CLIP
+                -   - 60
+                    - 51
+                    - 0
+                    - 58
+                    - 0
+                    - IMAGE
+                -   - 61
+                    - 48
+                    - 0
+                    - 59
+                    - 0
+                    - IMAGE
+              nodes:
+                - id: 14
+                  pos:
+                    - 3587.205062483223
+                    - 681.3654430100763
+                  mode: 0
+                  size:
+                    '0': 300
+                    '1': 160
+                  type: PrimitiveNode
+                  color: '#322'
+                  flags: {}
+                  order: 0
+                  title: Negative Prompt (Text)
+                  bgcolor: '#533'
+                  outputs:
+                    - name: STRING
+                      type: STRING
+                      links:
+                        - 18
+                      widget:
+                        name: text
+                        config:
+                          - STRING
+                          - multiline: true
+                      slot_index: 0
+                  properties: {}
+                  widgets_values:
+                    - text, watermark, blurry, deformed, depth of field, realistic, 3d render, outline
+                - id: 6
+                  pos:
+                    - 613.8337091823432
+                    - 76.76253406667381
+                  mode: 0
+                  size:
+                    '0': 210
+                    '1': 54
+                  type: CLIPTextEncode
+                  color: '#232'
+                  flags: {}
+                  order: 9
+                  inputs:
+                    - link: 52
+                      name: clip
+                      type: CLIP
+                    - link: 16
+                      name: text
+                      type: STRING
+                      widget:
+                        name: text
+                        config:
+                          - STRING
+                          - multiline: true
+                      slot_index: 1
+                  bgcolor: '#353'
+                  outputs:
+                    - name: CONDITIONING
+                      type: CONDITIONING
+                      links:
+                        - 11
+                      slot_index: 0
+                  properties:
+                    Node name for S&R: CLIPTextEncode
+                  widgets_values:
+                    - a cute happy corgi, (flat shading:1.2), (minimalist:1.4)
+                - id: 45
+                  pos:
+                    - 1004
+                    - 624
+                  mode: 0
+                  size:
+                    '0': 210
+                    '1': 82
+                  type: PrimitiveNode
+                  color: '#432'
+                  flags: {}
+                  order: 1
+                  title: steps
+                  bgcolor: '#653'
+                  outputs:
+                    - name: INT
+                      type: INT
+                      links:
+                        - 41
+                      widget:
+                        name: steps
+                        config:
+                          - INT
+                          - max: 10000
+                            min: 1
+                            default: 20
+                  properties: {}
+                  widgets_values:
+                    - 20
+                    - fixed
+                - id: 17
+                  pos:
+                    - 1533.2421162516673
+                    - 124.62247729681123
+                  mode: 0
+                  size:
+                    '0': 200
+                    '1': 50
+                  type: VAEDecode
+                  color: '#332922'
+                  flags: {}
+                  order: 12
+                  inputs:
+                    - link: 56
+                      name: samples
+                      type: LATENT
+                    - link: 57
+                      name: vae
+                      type: VAE
+                  bgcolor: '#593930'
+                  outputs:
+                    - name: IMAGE
+                      type: IMAGE
+                      links:
+                        - 28
+                        - 45
+                      shape: 3
+                      slot_index: 0
+                  properties:
+                    Node name for S&R: VAEDecode
+                - id: 42
+                  pos:
+                    - 565
+                    - 801
+                  mode: 0
+                  size:
+                    '0': 260
+                    '1': 210
+                  type: Note
+                  color: '#323'
+                  flags: {}
+                  order: 2
+                  title: Note - Empty Latent Image
+                  bgcolor: '#535'
+                  properties:
+                    text: ''
+                  widgets_values:
+                    - "This node sets the image's resolution in Width and Height.\n\nNOTE: For SDXL, it is recommended to
+                      use trained values listed below:\n - 1024 x 1024\n - 1152 x 896\n - 896  x 1152\n - 1216 x 832\n - 832\
+                      \  x 1216\n - 1344 x 768\n - 768  x 1344\n - 1536 x 640\n - 640  x 1536"
+                - id: 7
+                  pos:
+                    - 611.3369181870398
+                    - 211.28450994264554
+                  mode: 0
+                  size:
+                    '0': 210
+                    '1': 54
+                  type: CLIPTextEncode
+                  color: '#322'
+                  flags: {}
+                  order: 10
+                  inputs:
+                    - link: 53
+                      name: clip
+                      type: CLIP
+                    - link: 18
+                      name: text
+                      type: STRING
+                      widget:
+                        name: text
+                        config:
+                          - STRING
+                          - multiline: true
+                      slot_index: 1
+                  bgcolor: '#533'
+                  outputs:
+                    - name: CONDITIONING
+                      type: CONDITIONING
+                      links:
+                        - 12
+                      slot_index: 0
+                  properties:
+                    Node name for S&R: CLIPTextEncode
+                  widgets_values:
+                    - text, watermark, blurry, deformed, depth of field, realistic, 3d render, outline
+                - id: 57
+                  pos:
+                    - -92
+                    - -573
+                  mode: 0
+                  size:
+                    '0': 315
+                    '1': 98
+                  type: CheckpointLoaderSimple
+                  flags: {}
+                  order: 3
+                  outputs:
+                    - name: MODEL
+                      type: MODEL
+                      links:
+                        - 58
+                      shape: 3
+                      slot_index: 0
+                    - name: CLIP
+                      type: CLIP
+                      links:
+                        - 59
+                      shape: 3
+                      slot_index: 1
+                    - name: VAE
+                      type: VAE
+                      links:
+                      shape: 3
+                  properties:
+                    Node name for S&R: CheckpointLoaderSimple
+                  widgets_values:
+                    - sd_xl_base_1.0.safetensors
+                - id: 19
+                  pos:
+                    - 1502
+                    - 352
+                  mode: 0
+                  size:
+                    '0': 701.2393188476562
+                    '1': 745.6878051757812
+                  type: SaveImage
+                  color: '#222'
+                  flags: {}
+                  order: 13
+                  inputs:
+                    - link: 28
+                      name: images
+                      type: IMAGE
+                  bgcolor: '#000'
+                  properties: {}
+                  widgets_values:
+                    - ComfyUI
+                - id: 13
+                  pos:
+                    - 3587
+                    - 481
+                  mode: 0
+                  size:
+                    '0': 300
+                    '1': 160
+                  type: PrimitiveNode
+                  color: '#232'
+                  flags: {}
+                  order: 4
+                  title: Positive Prompt (Text)
+                  bgcolor: '#353'
+                  outputs:
+                    - name: STRING
+                      type: STRING
+                      links:
+                        - 16
+                      widget:
+                        name: text
+                        config:
+                          - STRING
+                          - multiline: true
+                      slot_index: 0
+                  properties: {}
+                  widgets_values:
+                    - a cute happy corgi, (flat shading:1.2), (minimalist:1.4)
+                - id: 49
+                  pos:
+                    - 2293
+                    - 404
+                  mode: 0
+                  size:
+                    '0': 301.1867370605469
+                    '1': 246
+                  type: PreviewImage
+                  flags: {}
+                  order: 15
+                  inputs:
+                    - link: 46
+                      name: images
+                      type: IMAGE
+                  properties:
+                    Node name for S&R: PreviewImage
+                - id: 48
+                  pos:
+                    - 1898
+                    - 192
+                  mode: 0
+                  size:
+                    '0': 315
+                    '1': 82
+                  type: ImageScaleBy
+                  flags: {}
+                  order: 14
+                  inputs:
+                    - link: 45
+                      name: image
+                      type: IMAGE
+                  outputs:
+                    - name: IMAGE
+                      type: IMAGE
+                      links:
+                        - 46
+                        - 47
+                        - 61
+                      shape: 3
+                      slot_index: 0
+                  properties:
+                    Node name for S&R: ImageScaleBy
+                  widgets_values:
+                    - nearest-exact
+                    - 0.125
+                - id: 59
+                  pos:
+                    - 1918
+                    - -160
+                  mode: 0
+                  size:
+                    '0': 315
+                    '1': 270
+                  type: SaveImage
+                  flags: {}
+                  order: 17
+                  inputs:
+                    - link: 61
+                      name: images
+                      type: IMAGE
+                  properties: {}
+                  widgets_values:
+                    - nn_downscaled_
+                - id: 58
+                  pos:
+                    - 2264
+                    - -212
+                  mode: 0
+                  size:
+                    '0': 315
+                    '1': 270
+                  type: SaveImage
+                  flags: {}
+                  order: 19
+                  inputs:
+                    - link: 60
+                      name: images
+                      type: IMAGE
+                  properties: {}
+                  widgets_values:
+                    - x8_upscaled_
+                - id: 51
+                  pos:
+                    - 2262
+                    - 185
+                  mode: 0
+                  size:
+                    '0': 315
+                    '1': 82
+                  type: ImageScaleBy
+                  flags: {}
+                  order: 16
+                  inputs:
+                    - link: 47
+                      name: image
+                      type: IMAGE
+                  outputs:
+                    - name: IMAGE
+                      type: IMAGE
+                      links:
+                        - 48
+                        - 60
+                      shape: 3
+                      slot_index: 0
+                  properties:
+                    Node name for S&R: ImageScaleBy
+                  widgets_values:
+                    - nearest-exact
+                    - 8
+                - id: 10
+                  pos:
+                    - 1044
+                    - -82
+                  mode: 0
+                  size:
+                    '0': 343.2493896484375
+                    '1': 595.7294921875
+                  type: KSamplerAdvanced
+                  color: '#223'
+                  flags: {}
+                  order: 11
+                  title: KSampler (Advanced) - BASE
+                  inputs:
+                    - link: 54
+                      name: model
+                      type: MODEL
+                    - link: 11
+                      name: positive
+                      type: CONDITIONING
+                    - link: 12
+                      name: negative
+                      type: CONDITIONING
+                    - link: 27
+                      name: latent_image
+                      type: LATENT
+                    - link: 41
+                      name: steps
+                      type: INT
+                      widget:
+                        name: steps
+                        config:
+                          - INT
+                          - max: 10000
+                            min: 1
+                            default: 20
+                      slot_index: 4
+                    - link: 43
+                      name: end_at_step
+                      type: INT
+                      widget:
+                        name: end_at_step
+                        config:
+                          - INT
+                          - max: 10000
+                            min: 0
+                            default: 10000
+                      slot_index: 5
+                  bgcolor: '#335'
+                  outputs:
+                    - name: LATENT
+                      type: LATENT
+                      links:
+                        - 56
+                      shape: 3
+                      slot_index: 0
+                  properties:
+                    Node name for S&R: KSamplerAdvanced
+                  widgets_values:
+                    - enable
+                    - 25468944332627
+                    - randomize
+                    - 20
+                    - 8
+                    - euler_ancestral
+                    - normal
+                    - 0
+                    - 20
+                    - enable
+                - id: 47
+                  pos:
+                    - 1002
+                    - 765
+                  mode: 0
+                  size:
+                    '0': 210
+                    '1': 82
+                  type: PrimitiveNode
+                  color: '#432'
+                  flags: {}
+                  order: 5
+                  title: end_at_step
+                  bgcolor: '#653'
+                  outputs:
+                    - name: INT
+                      type: INT
+                      links:
+                        - 43
+                      widget:
+                        name: end_at_step
+                        config:
+                          - INT
+                          - max: 10000
+                            min: 0
+                            default: 10000
+                      slot_index: 0
+                  properties: {}
+                  widgets_values:
+                    - 20
+                    - fixed
+                - id: 55
+                  pos:
+                    - 343
+                    - -470
+                  mode: 0
+                  size:
+                    '0': 315
+                    '1': 58
+                  type: VAELoader
+                  flags: {}
+                  order: 6
+                  outputs:
+                    - name: VAE
+                      type: VAE
+                      links:
+                        - 57
+                      shape: 3
+                      slot_index: 0
+                  properties:
+                    Node name for S&R: VAELoader
+                  widgets_values:
+                    - sdxl_vae.safetensors
+                - id: 53
+                  pos:
+                    - 352
+                    - -344
+                  mode: 0
+                  size:
+                    '0': 315
+                    '1': 126
+                  type: LoraLoader
+                  flags: {}
+                  order: 8
+                  inputs:
+                    - link: 58
+                      name: model
+                      type: MODEL
+                    - link: 59
+                      name: clip
+                      type: CLIP
+                  outputs:
+                    - name: MODEL
+                      type: MODEL
+                      links:
+                        - 54
+                      shape: 3
+                      slot_index: 0
+                    - name: CLIP
+                      type: CLIP
+                      links:
+                        - 52
+                        - 53
+                      shape: 3
+                      slot_index: 1
+                  properties:
+                    Node name for S&R: LoraLoader
+                  widgets_values:
+                    - pixel-art-xl-v1.1.safetensors
+                    - 1.0000000000000002
+                    - 1
+                - id: 52
+                  pos:
+                    - 2656
+                    - 358
+                  mode: 0
+                  size:
+                    '0': 808.3607177734375
+                    '1': 777.3040771484375
+                  type: PreviewImage
+                  flags: {}
+                  order: 18
+                  inputs:
+                    - link: 48
+                      name: images
+                      type: IMAGE
+                  properties:
+                    Node name for S&R: PreviewImage
+                - id: 5
+                  pos:
+                    - 544.5041024540301
+                    - 651.1200708259006
+                  mode: 0
+                  size:
+                    '0': 300
+                    '1': 110
+                  type: EmptyLatentImage
+                  color: '#323'
+                  flags: {}
+                  order: 7
+                  bgcolor: '#535'
+                  outputs:
+                    - name: LATENT
+                      type: LATENT
+                      links:
+                        - 27
+                      slot_index: 0
+                  properties:
+                    Node name for S&R: EmptyLatentImage
+                  widgets_values:
+                    - 1024
+                    - 1024
+                    - 4
+              config: {}
+              groups:
+                - color: '#3f789e'
+                  title: Base Prompt
+                  bounding:
+                    - 593
+                    - -4
+                    - 252
+                    - 361
+                - color: '#3f789e'
+                  title: Text Prompts
+                  bounding:
+                    - 3567
+                    - 398
+                    - 364
+                    - 487
+                - color: '#a1309b'
+                  title: Load in BASE SDXL Model
+                  bounding:
+                    - -108
+                    - -812
+                    - 369
+                    - 399
+                - color: '#a1309b'
+                  title: Empty Latent Image
+                  bounding:
+                    - 524
+                    - 577
+                    - 339
+                    - 443
+                - color: '#b06634'
+                  title: VAE Decoder
+                  bounding:
+                    - 1454
+                    - 46
+                    - 336
+                    - 157
+              version: 0.4
+              last_link_id: 61
+              last_node_id: 60
+          width: 1024
+          height: 1024
+          models:
+            - sd_xl_base_1.0.safetensors
+          additionalResources:
+            - name: pixel-art-xl-v1.1.safetensors
+              type: lora
+              strength: 1.0000000000000002
+              strengthClip: 1
+        post:
+          username: NeriJS
+          created_at: '2024-02-13T14:20:36.531Z'
+      - image_id: 44298544
+        image_url: 
+          https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/3bf554da-607c-4bc6-be8f-3a74ae37ff3f/original=true/3bf554da-607c-4bc6-be8f-3a74ae37ff3f.jpeg
+        page_url: https://civitai.com/posts/10051859
+        nsfw: false
+        width: 1024
+        height: 1024
+        prompt: |-
+          Pixel art, man holding sign that says "Need Buzz", videogame, dialogue options, gui,  <lora:pixelbuildings128-v2:1>  <lora:texta:0.9>, (anime, masterpiece, intricate:1.3), (best quality, hires textures, high detail:1.2), (4k),(incredibly detailed:1.4),UHD, 8K, ultra detailed
+        negative_prompt: |-
+          (worst quality, low quality:1.4), (illustration, 3d, 3d render, painting1.2),
+        generation:
+          seed: 2470802686
+          steps: 40
+          cfg_scale: 8.5
+          sampler: Euler a
+          scheduler:
+          clip_skip: 2
+          size: 1024x1024
+          model_hash: 8e63cc2df1
+        resources:
+          - type: lora
+            name: pixelbuildings128-v2
+            model_id:
+            version_id:
+            weight: 1
+          - type: lora
+            name: texta
+            model_id:
+            version_id:
+            weight: 0.9
+          - type: model
+            name: fenrisxl_SDXLLightning
+            model_id:
+            version_id:
+            weight:
+        tags: []
+        raw_meta:
+          Model: fenrisxl_SDXLLightning
+          hashes:
+            model: 8e63cc2df1
+            lora:texta: 11edce6ef2b4
+            lora:pixelbuildings128-v2: dbe5cdf5f8f4
+          Version: v1.9.4
+          Schedule type: Karras
+        post:
+          username: abigfavour
+          created_at: '2024-12-08T03:33:16.342Z'
+      - image_id: 1918242
+        image_url: 
+          https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/684efffb-c290-4e5b-b0be-90b3e7234a89/original=true/684efffb-c290-4e5b-b0be-90b3e7234a89.jpeg
+        page_url: https://civitai.com/posts/472224
+        nsfw: false
+        width: 1024
+        height: 1024
+        prompt: |-
+          a cute shiba inu, minimalist, (pixel:0.8), flat
+        negative_prompt: |-
+          text, watermark, blurry, deformed, depth of field, realistic, 3d render
+        generation:
+          seed:
+          steps: 20
+          cfg_scale: 8
+          sampler: Euler a
+          scheduler: normal
+          clip_skip:
+          size: 1024x1024
+          model_hash:
+        resources: []
+        tags: []
+        raw_meta:
+          vaes:
+            - sdxl_vae.safetensors
+          Model: sd_xl_base_1.0
+          comfy:
+            prompt:
+              '5':
+                inputs:
+                  width: 1024
+                  height: 1024
+                  batch_size: 1
+                class_type: EmptyLatentImage
+              '6':
+                inputs:
+                  clip:
+                    inputs:
+                      clip:
+                        inputs:
+                          ckpt_name: sd_xl_base_1.0.safetensors
+                        class_type: CheckpointLoaderSimple
+                      model:
+                        inputs:
+                          ckpt_name: sd_xl_base_1.0.safetensors
+                        class_type: CheckpointLoaderSimple
+                      lora_name: pixel-art-xl-v1.1.safetensors
+                      strength_clip: 1
+                      strength_model: 1.0000000000000002
+                    class_type: LoraLoader
+                  text: a cute shiba inu, minimalist, (pixel:0.8), flat
+                class_type: CLIPTextEncode
+              '7':
+                inputs:
+                  clip:
+                    inputs:
+                      clip:
+                        inputs:
+                          ckpt_name: sd_xl_base_1.0.safetensors
+                        class_type: CheckpointLoaderSimple
+                      model:
+                        inputs:
+                          ckpt_name: sd_xl_base_1.0.safetensors
+                        class_type: CheckpointLoaderSimple
+                      lora_name: pixel-art-xl-v1.1.safetensors
+                      strength_clip: 1
+                      strength_model: 1.0000000000000002
+                    class_type: LoraLoader
+                  text: text, watermark, blurry, deformed, depth of field, realistic, 3d render
+                class_type: CLIPTextEncode
+              '10':
+                inputs:
+                  cfg: 8
+                  model:
+                    inputs:
+                      clip:
+                        inputs:
+                          ckpt_name: sd_xl_base_1.0.safetensors
+                        class_type: CheckpointLoaderSimple
+                      model:
+                        inputs:
+                          ckpt_name: sd_xl_base_1.0.safetensors
+                        class_type: CheckpointLoaderSimple
+                      lora_name: pixel-art-xl-v1.1.safetensors
+                      strength_clip: 1
+                      strength_model: 1.0000000000000002
+                    class_type: LoraLoader
+                  steps: 20
+                  negative:
+                    inputs:
+                      clip:
+                        inputs:
+                          clip:
+                            inputs:
+                              ckpt_name: sd_xl_base_1.0.safetensors
+                            class_type: CheckpointLoaderSimple
+                          model:
+                            inputs:
+                              ckpt_name: sd_xl_base_1.0.safetensors
+                            class_type: CheckpointLoaderSimple
+                          lora_name: pixel-art-xl-v1.1.safetensors
+                          strength_clip: 1
+                          strength_model: 1.0000000000000002
+                        class_type: LoraLoader
+                      text: text, watermark, blurry, deformed, depth of field, realistic, 3d render
+                    class_type: CLIPTextEncode
+                  positive:
+                    inputs:
+                      clip:
+                        inputs:
+                          clip:
+                            inputs:
+                              ckpt_name: sd_xl_base_1.0.safetensors
+                            class_type: CheckpointLoaderSimple
+                          model:
+                            inputs:
+                              ckpt_name: sd_xl_base_1.0.safetensors
+                            class_type: CheckpointLoaderSimple
+                          lora_name: pixel-art-xl-v1.1.safetensors
+                          strength_clip: 1
+                          strength_model: 1.0000000000000002
+                        class_type: LoraLoader
+                      text: a cute shiba inu, minimalist, (pixel:0.8), flat
+                    class_type: CLIPTextEncode
+                  add_noise: enable
+                  scheduler: normal
+                  noise_seed: 937731538949123
+                  end_at_step: 20
+                  latent_image:
+                    inputs:
+                      width: 1024
+                      height: 1024
+                      batch_size: 1
+                    class_type: EmptyLatentImage
+                  sampler_name: euler_ancestral
+                  start_at_step: 0
+                  return_with_leftover_noise: enable
+                class_type: KSamplerAdvanced
+              '17':
+                inputs:
+                  vae:
+                    inputs:
+                      vae_name: sdxl_vae.safetensors
+                    class_type: VAELoader
+                  samples:
+                    inputs:
+                      cfg: 8
+                      model:
+                        inputs:
+                          clip:
+                            inputs:
+                              ckpt_name: sd_xl_base_1.0.safetensors
+                            class_type: CheckpointLoaderSimple
+                          model:
+                            inputs:
+                              ckpt_name: sd_xl_base_1.0.safetensors
+                            class_type: CheckpointLoaderSimple
+                          lora_name: pixel-art-xl-v1.1.safetensors
+                          strength_clip: 1
+                          strength_model: 1.0000000000000002
+                        class_type: LoraLoader
+                      steps: 20
+                      negative:
+                        inputs:
+                          clip:
+                            inputs:
+                              clip:
+                                inputs:
+                                  ckpt_name: sd_xl_base_1.0.safetensors
+                                class_type: CheckpointLoaderSimple
+                              model:
+                                inputs:
+                                  ckpt_name: sd_xl_base_1.0.safetensors
+                                class_type: CheckpointLoaderSimple
+                              lora_name: pixel-art-xl-v1.1.safetensors
+                              strength_clip: 1
+                              strength_model: 1.0000000000000002
+                            class_type: LoraLoader
+                          text: text, watermark, blurry, deformed, depth of field, realistic, 3d render
+                        class_type: CLIPTextEncode
+                      positive:
+                        inputs:
+                          clip:
+                            inputs:
+                              clip:
+                                inputs:
+                                  ckpt_name: sd_xl_base_1.0.safetensors
+                                class_type: CheckpointLoaderSimple
+                              model:
+                                inputs:
+                                  ckpt_name: sd_xl_base_1.0.safetensors
+                                class_type: CheckpointLoaderSimple
+                              lora_name: pixel-art-xl-v1.1.safetensors
+                              strength_clip: 1
+                              strength_model: 1.0000000000000002
+                            class_type: LoraLoader
+                          text: a cute shiba inu, minimalist, (pixel:0.8), flat
+                        class_type: CLIPTextEncode
+                      add_noise: enable
+                      scheduler: normal
+                      noise_seed: 937731538949123
+                      end_at_step: 20
+                      latent_image:
+                        inputs:
+                          width: 1024
+                          height: 1024
+                          batch_size: 1
+                        class_type: EmptyLatentImage
+                      sampler_name: euler_ancestral
+                      start_at_step: 0
+                      return_with_leftover_noise: enable
+                    class_type: KSamplerAdvanced
+                class_type: VAEDecode
+              '19':
+                inputs:
+                  images:
+                    inputs:
+                      vae:
+                        inputs:
+                          vae_name: sdxl_vae.safetensors
+                        class_type: VAELoader
+                      samples:
+                        inputs:
+                          cfg: 8
+                          model:
+                            inputs:
+                              clip:
+                                inputs:
+                                  ckpt_name: sd_xl_base_1.0.safetensors
+                                class_type: CheckpointLoaderSimple
+                              model:
+                                inputs:
+                                  ckpt_name: sd_xl_base_1.0.safetensors
+                                class_type: CheckpointLoaderSimple
+                              lora_name: pixel-art-xl-v1.1.safetensors
+                              strength_clip: 1
+                              strength_model: 1.0000000000000002
+                            class_type: LoraLoader
+                          steps: 20
+                          negative:
+                            inputs:
+                              clip:
+                                inputs:
+                                  clip:
+                                    inputs:
+                                      ckpt_name: sd_xl_base_1.0.safetensors
+                                    class_type: CheckpointLoaderSimple
+                                  model:
+                                    inputs:
+                                      ckpt_name: sd_xl_base_1.0.safetensors
+                                    class_type: CheckpointLoaderSimple
+                                  lora_name: pixel-art-xl-v1.1.safetensors
+                                  strength_clip: 1
+                                  strength_model: 1.0000000000000002
+                                class_type: LoraLoader
+                              text: text, watermark, blurry, deformed, depth of field, realistic, 3d render
+                            class_type: CLIPTextEncode
+                          positive:
+                            inputs:
+                              clip:
+                                inputs:
+                                  clip:
+                                    inputs:
+                                      ckpt_name: sd_xl_base_1.0.safetensors
+                                    class_type: CheckpointLoaderSimple
+                                  model:
+                                    inputs:
+                                      ckpt_name: sd_xl_base_1.0.safetensors
+                                    class_type: CheckpointLoaderSimple
+                                  lora_name: pixel-art-xl-v1.1.safetensors
+                                  strength_clip: 1
+                                  strength_model: 1.0000000000000002
+                                class_type: LoraLoader
+                              text: a cute shiba inu, minimalist, (pixel:0.8), flat
+                            class_type: CLIPTextEncode
+                          add_noise: enable
+                          scheduler: normal
+                          noise_seed: 937731538949123
+                          end_at_step: 20
+                          latent_image:
+                            inputs:
+                              width: 1024
+                              height: 1024
+                              batch_size: 1
+                            class_type: EmptyLatentImage
+                          sampler_name: euler_ancestral
+                          start_at_step: 0
+                          return_with_leftover_noise: enable
+                        class_type: KSamplerAdvanced
+                    class_type: VAEDecode
+                  filename_prefix: ComfyUI
+                class_type: SaveImage
+              '48':
+                inputs:
+                  image:
+                    inputs:
+                      vae:
+                        inputs:
+                          vae_name: sdxl_vae.safetensors
+                        class_type: VAELoader
+                      samples:
+                        inputs:
+                          cfg: 8
+                          model:
+                            inputs:
+                              clip:
+                                inputs:
+                                  ckpt_name: sd_xl_base_1.0.safetensors
+                                class_type: CheckpointLoaderSimple
+                              model:
+                                inputs:
+                                  ckpt_name: sd_xl_base_1.0.safetensors
+                                class_type: CheckpointLoaderSimple
+                              lora_name: pixel-art-xl-v1.1.safetensors
+                              strength_clip: 1
+                              strength_model: 1.0000000000000002
+                            class_type: LoraLoader
+                          steps: 20
+                          negative:
+                            inputs:
+                              clip:
+                                inputs:
+                                  clip:
+                                    inputs:
+                                      ckpt_name: sd_xl_base_1.0.safetensors
+                                    class_type: CheckpointLoaderSimple
+                                  model:
+                                    inputs:
+                                      ckpt_name: sd_xl_base_1.0.safetensors
+                                    class_type: CheckpointLoaderSimple
+                                  lora_name: pixel-art-xl-v1.1.safetensors
+                                  strength_clip: 1
+                                  strength_model: 1.0000000000000002
+                                class_type: LoraLoader
+                              text: text, watermark, blurry, deformed, depth of field, realistic, 3d render
+                            class_type: CLIPTextEncode
+                          positive:
+                            inputs:
+                              clip:
+                                inputs:
+                                  clip:
+                                    inputs:
+                                      ckpt_name: sd_xl_base_1.0.safetensors
+                                    class_type: CheckpointLoaderSimple
+                                  model:
+                                    inputs:
+                                      ckpt_name: sd_xl_base_1.0.safetensors
+                                    class_type: CheckpointLoaderSimple
+                                  lora_name: pixel-art-xl-v1.1.safetensors
+                                  strength_clip: 1
+                                  strength_model: 1.0000000000000002
+                                class_type: LoraLoader
+                              text: a cute shiba inu, minimalist, (pixel:0.8), flat
+                            class_type: CLIPTextEncode
+                          add_noise: enable
+                          scheduler: normal
+                          noise_seed: 937731538949123
+                          end_at_step: 20
+                          latent_image:
+                            inputs:
+                              width: 1024
+                              height: 1024
+                              batch_size: 1
+                            class_type: EmptyLatentImage
+                          sampler_name: euler_ancestral
+                          start_at_step: 0
+                          return_with_leftover_noise: enable
+                        class_type: KSamplerAdvanced
+                    class_type: VAEDecode
+                  scale_by: 0.125
+                  upscale_method: nearest-exact
+                class_type: ImageScaleBy
+              '49':
+                inputs:
+                  images:
+                    inputs:
+                      image:
+                        inputs:
+                          vae:
+                            inputs:
+                              vae_name: sdxl_vae.safetensors
+                            class_type: VAELoader
+                          samples:
+                            inputs:
+                              cfg: 8
+                              model:
+                                inputs:
+                                  clip:
+                                    inputs:
+                                      ckpt_name: sd_xl_base_1.0.safetensors
+                                    class_type: CheckpointLoaderSimple
+                                  model:
+                                    inputs:
+                                      ckpt_name: sd_xl_base_1.0.safetensors
+                                    class_type: CheckpointLoaderSimple
+                                  lora_name: pixel-art-xl-v1.1.safetensors
+                                  strength_clip: 1
+                                  strength_model: 1.0000000000000002
+                                class_type: LoraLoader
+                              steps: 20
+                              negative:
+                                inputs:
+                                  clip:
+                                    inputs:
+                                      clip:
+                                        inputs:
+                                          ckpt_name: sd_xl_base_1.0.safetensors
+                                        class_type: CheckpointLoaderSimple
+                                      model:
+                                        inputs:
+                                          ckpt_name: sd_xl_base_1.0.safetensors
+                                        class_type: CheckpointLoaderSimple
+                                      lora_name: pixel-art-xl-v1.1.safetensors
+                                      strength_clip: 1
+                                      strength_model: 1.0000000000000002
+                                    class_type: LoraLoader
+                                  text: text, watermark, blurry, deformed, depth of field, realistic, 3d render
+                                class_type: CLIPTextEncode
+                              positive:
+                                inputs:
+                                  clip:
+                                    inputs:
+                                      clip:
+                                        inputs:
+                                          ckpt_name: sd_xl_base_1.0.safetensors
+                                        class_type: CheckpointLoaderSimple
+                                      model:
+                                        inputs:
+                                          ckpt_name: sd_xl_base_1.0.safetensors
+                                        class_type: CheckpointLoaderSimple
+                                      lora_name: pixel-art-xl-v1.1.safetensors
+                                      strength_clip: 1
+                                      strength_model: 1.0000000000000002
+                                    class_type: LoraLoader
+                                  text: a cute shiba inu, minimalist, (pixel:0.8), flat
+                                class_type: CLIPTextEncode
+                              add_noise: enable
+                              scheduler: normal
+                              noise_seed: 937731538949123
+                              end_at_step: 20
+                              latent_image:
+                                inputs:
+                                  width: 1024
+                                  height: 1024
+                                  batch_size: 1
+                                class_type: EmptyLatentImage
+                              sampler_name: euler_ancestral
+                              start_at_step: 0
+                              return_with_leftover_noise: enable
+                            class_type: KSamplerAdvanced
+                        class_type: VAEDecode
+                      scale_by: 0.125
+                      upscale_method: nearest-exact
+                    class_type: ImageScaleBy
+                class_type: PreviewImage
+              '51':
+                inputs:
+                  image:
+                    inputs:
+                      image:
+                        inputs:
+                          vae:
+                            inputs:
+                              vae_name: sdxl_vae.safetensors
+                            class_type: VAELoader
+                          samples:
+                            inputs:
+                              cfg: 8
+                              model:
+                                inputs:
+                                  clip:
+                                    inputs:
+                                      ckpt_name: sd_xl_base_1.0.safetensors
+                                    class_type: CheckpointLoaderSimple
+                                  model:
+                                    inputs:
+                                      ckpt_name: sd_xl_base_1.0.safetensors
+                                    class_type: CheckpointLoaderSimple
+                                  lora_name: pixel-art-xl-v1.1.safetensors
+                                  strength_clip: 1
+                                  strength_model: 1.0000000000000002
+                                class_type: LoraLoader
+                              steps: 20
+                              negative:
+                                inputs:
+                                  clip:
+                                    inputs:
+                                      clip:
+                                        inputs:
+                                          ckpt_name: sd_xl_base_1.0.safetensors
+                                        class_type: CheckpointLoaderSimple
+                                      model:
+                                        inputs:
+                                          ckpt_name: sd_xl_base_1.0.safetensors
+                                        class_type: CheckpointLoaderSimple
+                                      lora_name: pixel-art-xl-v1.1.safetensors
+                                      strength_clip: 1
+                                      strength_model: 1.0000000000000002
+                                    class_type: LoraLoader
+                                  text: text, watermark, blurry, deformed, depth of field, realistic, 3d render
+                                class_type: CLIPTextEncode
+                              positive:
+                                inputs:
+                                  clip:
+                                    inputs:
+                                      clip:
+                                        inputs:
+                                          ckpt_name: sd_xl_base_1.0.safetensors
+                                        class_type: CheckpointLoaderSimple
+                                      model:
+                                        inputs:
+                                          ckpt_name: sd_xl_base_1.0.safetensors
+                                        class_type: CheckpointLoaderSimple
+                                      lora_name: pixel-art-xl-v1.1.safetensors
+                                      strength_clip: 1
+                                      strength_model: 1.0000000000000002
+                                    class_type: LoraLoader
+                                  text: a cute shiba inu, minimalist, (pixel:0.8), flat
+                                class_type: CLIPTextEncode
+                              add_noise: enable
+                              scheduler: normal
+                              noise_seed: 937731538949123
+                              end_at_step: 20
+                              latent_image:
+                                inputs:
+                                  width: 1024
+                                  height: 1024
+                                  batch_size: 1
+                                class_type: EmptyLatentImage
+                              sampler_name: euler_ancestral
+                              start_at_step: 0
+                              return_with_leftover_noise: enable
+                            class_type: KSamplerAdvanced
+                        class_type: VAEDecode
+                      scale_by: 0.125
+                      upscale_method: nearest-exact
+                    class_type: ImageScaleBy
+                  scale_by: 8
+                  upscale_method: nearest-exact
+                class_type: ImageScaleBy
+              '52':
+                inputs:
+                  images:
+                    inputs:
+                      image:
+                        inputs:
+                          image:
+                            inputs:
+                              vae:
+                                inputs:
+                                  vae_name: sdxl_vae.safetensors
+                                class_type: VAELoader
+                              samples:
+                                inputs:
+                                  cfg: 8
+                                  model:
+                                    inputs:
+                                      clip:
+                                        inputs:
+                                          ckpt_name: sd_xl_base_1.0.safetensors
+                                        class_type: CheckpointLoaderSimple
+                                      model:
+                                        inputs:
+                                          ckpt_name: sd_xl_base_1.0.safetensors
+                                        class_type: CheckpointLoaderSimple
+                                      lora_name: pixel-art-xl-v1.1.safetensors
+                                      strength_clip: 1
+                                      strength_model: 1.0000000000000002
+                                    class_type: LoraLoader
+                                  steps: 20
+                                  negative:
+                                    inputs:
+                                      clip:
+                                        inputs:
+                                          clip:
+                                            inputs:
+                                              ckpt_name: sd_xl_base_1.0.safetensors
+                                            class_type: CheckpointLoaderSimple
+                                          model:
+                                            inputs:
+                                              ckpt_name: sd_xl_base_1.0.safetensors
+                                            class_type: CheckpointLoaderSimple
+                                          lora_name: pixel-art-xl-v1.1.safetensors
+                                          strength_clip: 1
+                                          strength_model: 1.0000000000000002
+                                        class_type: LoraLoader
+                                      text: text, watermark, blurry, deformed, depth of field, realistic, 3d render
+                                    class_type: CLIPTextEncode
+                                  positive:
+                                    inputs:
+                                      clip:
+                                        inputs:
+                                          clip:
+                                            inputs:
+                                              ckpt_name: sd_xl_base_1.0.safetensors
+                                            class_type: CheckpointLoaderSimple
+                                          model:
+                                            inputs:
+                                              ckpt_name: sd_xl_base_1.0.safetensors
+                                            class_type: CheckpointLoaderSimple
+                                          lora_name: pixel-art-xl-v1.1.safetensors
+                                          strength_clip: 1
+                                          strength_model: 1.0000000000000002
+                                        class_type: LoraLoader
+                                      text: a cute shiba inu, minimalist, (pixel:0.8), flat
+                                    class_type: CLIPTextEncode
+                                  add_noise: enable
+                                  scheduler: normal
+                                  noise_seed: 937731538949123
+                                  end_at_step: 20
+                                  latent_image:
+                                    inputs:
+                                      width: 1024
+                                      height: 1024
+                                      batch_size: 1
+                                    class_type: EmptyLatentImage
+                                  sampler_name: euler_ancestral
+                                  start_at_step: 0
+                                  return_with_leftover_noise: enable
+                                class_type: KSamplerAdvanced
+                            class_type: VAEDecode
+                          scale_by: 0.125
+                          upscale_method: nearest-exact
+                        class_type: ImageScaleBy
+                      scale_by: 8
+                      upscale_method: nearest-exact
+                    class_type: ImageScaleBy
+                class_type: PreviewImage
+              '53':
+                inputs:
+                  clip:
+                    inputs:
+                      ckpt_name: sd_xl_base_1.0.safetensors
+                    class_type: CheckpointLoaderSimple
+                  model:
+                    inputs:
+                      ckpt_name: sd_xl_base_1.0.safetensors
+                    class_type: CheckpointLoaderSimple
+                  lora_name: pixel-art-xl-v1.1.safetensors
+                  strength_clip: 1
+                  strength_model: 1.0000000000000002
+                class_type: LoraLoader
+              '55':
+                inputs:
+                  vae_name: sdxl_vae.safetensors
+                class_type: VAELoader
+              '57':
+                inputs:
+                  ckpt_name: sd_xl_base_1.0.safetensors
+                class_type: CheckpointLoaderSimple
+              '58':
+                inputs:
+                  images:
+                    inputs:
+                      image:
+                        inputs:
+                          image:
+                            inputs:
+                              vae:
+                                inputs:
+                                  vae_name: sdxl_vae.safetensors
+                                class_type: VAELoader
+                              samples:
+                                inputs:
+                                  cfg: 8
+                                  model:
+                                    inputs:
+                                      clip:
+                                        inputs:
+                                          ckpt_name: sd_xl_base_1.0.safetensors
+                                        class_type: CheckpointLoaderSimple
+                                      model:
+                                        inputs:
+                                          ckpt_name: sd_xl_base_1.0.safetensors
+                                        class_type: CheckpointLoaderSimple
+                                      lora_name: pixel-art-xl-v1.1.safetensors
+                                      strength_clip: 1
+                                      strength_model: 1.0000000000000002
+                                    class_type: LoraLoader
+                                  steps: 20
+                                  negative:
+                                    inputs:
+                                      clip:
+                                        inputs:
+                                          clip:
+                                            inputs:
+                                              ckpt_name: sd_xl_base_1.0.safetensors
+                                            class_type: CheckpointLoaderSimple
+                                          model:
+                                            inputs:
+                                              ckpt_name: sd_xl_base_1.0.safetensors
+                                            class_type: CheckpointLoaderSimple
+                                          lora_name: pixel-art-xl-v1.1.safetensors
+                                          strength_clip: 1
+                                          strength_model: 1.0000000000000002
+                                        class_type: LoraLoader
+                                      text: text, watermark, blurry, deformed, depth of field, realistic, 3d render
+                                    class_type: CLIPTextEncode
+                                  positive:
+                                    inputs:
+                                      clip:
+                                        inputs:
+                                          clip:
+                                            inputs:
+                                              ckpt_name: sd_xl_base_1.0.safetensors
+                                            class_type: CheckpointLoaderSimple
+                                          model:
+                                            inputs:
+                                              ckpt_name: sd_xl_base_1.0.safetensors
+                                            class_type: CheckpointLoaderSimple
+                                          lora_name: pixel-art-xl-v1.1.safetensors
+                                          strength_clip: 1
+                                          strength_model: 1.0000000000000002
+                                        class_type: LoraLoader
+                                      text: a cute shiba inu, minimalist, (pixel:0.8), flat
+                                    class_type: CLIPTextEncode
+                                  add_noise: enable
+                                  scheduler: normal
+                                  noise_seed: 937731538949123
+                                  end_at_step: 20
+                                  latent_image:
+                                    inputs:
+                                      width: 1024
+                                      height: 1024
+                                      batch_size: 1
+                                    class_type: EmptyLatentImage
+                                  sampler_name: euler_ancestral
+                                  start_at_step: 0
+                                  return_with_leftover_noise: enable
+                                class_type: KSamplerAdvanced
+                            class_type: VAEDecode
+                          scale_by: 0.125
+                          upscale_method: nearest-exact
+                        class_type: ImageScaleBy
+                      scale_by: 8
+                      upscale_method: nearest-exact
+                    class_type: ImageScaleBy
+                  filename_prefix: x8_upscaled_
+                class_type: SaveImage
+              '59':
+                inputs:
+                  images:
+                    inputs:
+                      image:
+                        inputs:
+                          vae:
+                            inputs:
+                              vae_name: sdxl_vae.safetensors
+                            class_type: VAELoader
+                          samples:
+                            inputs:
+                              cfg: 8
+                              model:
+                                inputs:
+                                  clip:
+                                    inputs:
+                                      ckpt_name: sd_xl_base_1.0.safetensors
+                                    class_type: CheckpointLoaderSimple
+                                  model:
+                                    inputs:
+                                      ckpt_name: sd_xl_base_1.0.safetensors
+                                    class_type: CheckpointLoaderSimple
+                                  lora_name: pixel-art-xl-v1.1.safetensors
+                                  strength_clip: 1
+                                  strength_model: 1.0000000000000002
+                                class_type: LoraLoader
+                              steps: 20
+                              negative:
+                                inputs:
+                                  clip:
+                                    inputs:
+                                      clip:
+                                        inputs:
+                                          ckpt_name: sd_xl_base_1.0.safetensors
+                                        class_type: CheckpointLoaderSimple
+                                      model:
+                                        inputs:
+                                          ckpt_name: sd_xl_base_1.0.safetensors
+                                        class_type: CheckpointLoaderSimple
+                                      lora_name: pixel-art-xl-v1.1.safetensors
+                                      strength_clip: 1
+                                      strength_model: 1.0000000000000002
+                                    class_type: LoraLoader
+                                  text: text, watermark, blurry, deformed, depth of field, realistic, 3d render
+                                class_type: CLIPTextEncode
+                              positive:
+                                inputs:
+                                  clip:
+                                    inputs:
+                                      clip:
+                                        inputs:
+                                          ckpt_name: sd_xl_base_1.0.safetensors
+                                        class_type: CheckpointLoaderSimple
+                                      model:
+                                        inputs:
+                                          ckpt_name: sd_xl_base_1.0.safetensors
+                                        class_type: CheckpointLoaderSimple
+                                      lora_name: pixel-art-xl-v1.1.safetensors
+                                      strength_clip: 1
+                                      strength_model: 1.0000000000000002
+                                    class_type: LoraLoader
+                                  text: a cute shiba inu, minimalist, (pixel:0.8), flat
+                                class_type: CLIPTextEncode
+                              add_noise: enable
+                              scheduler: normal
+                              noise_seed: 937731538949123
+                              end_at_step: 20
+                              latent_image:
+                                inputs:
+                                  width: 1024
+                                  height: 1024
+                                  batch_size: 1
+                                class_type: EmptyLatentImage
+                              sampler_name: euler_ancestral
+                              start_at_step: 0
+                              return_with_leftover_noise: enable
+                            class_type: KSamplerAdvanced
+                        class_type: VAEDecode
+                      scale_by: 0.125
+                      upscale_method: nearest-exact
+                    class_type: ImageScaleBy
+                  filename_prefix: nn_downscaled_
+                class_type: SaveImage
+            workflow:
+              extra: {}
+              links:
+                -   - 11
+                    - 6
+                    - 0
+                    - 10
+                    - 1
+                    - CONDITIONING
+                -   - 12
+                    - 7
+                    - 0
+                    - 10
+                    - 2
+                    - CONDITIONING
+                -   - 16
+                    - 13
+                    - 0
+                    - 6
+                    - 1
+                    - STRING
+                -   - 18
+                    - 14
+                    - 0
+                    - 7
+                    - 1
+                    - STRING
+                -   - 27
+                    - 5
+                    - 0
+                    - 10
+                    - 3
+                    - LATENT
+                -   - 28
+                    - 17
+                    - 0
+                    - 19
+                    - 0
+                    - IMAGE
+                -   - 41
+                    - 45
+                    - 0
+                    - 10
+                    - 4
+                    - INT
+                -   - 43
+                    - 47
+                    - 0
+                    - 10
+                    - 5
+                    - INT
+                -   - 45
+                    - 17
+                    - 0
+                    - 48
+                    - 0
+                    - IMAGE
+                -   - 46
+                    - 48
+                    - 0
+                    - 49
+                    - 0
+                    - IMAGE
+                -   - 47
+                    - 48
+                    - 0
+                    - 51
+                    - 0
+                    - IMAGE
+                -   - 48
+                    - 51
+                    - 0
+                    - 52
+                    - 0
+                    - IMAGE
+                -   - 52
+                    - 53
+                    - 1
+                    - 6
+                    - 0
+                    - CLIP
+                -   - 53
+                    - 53
+                    - 1
+                    - 7
+                    - 0
+                    - CLIP
+                -   - 54
+                    - 53
+                    - 0
+                    - 10
+                    - 0
+                    - MODEL
+                -   - 56
+                    - 10
+                    - 0
+                    - 17
+                    - 0
+                    - LATENT
+                -   - 57
+                    - 55
+                    - 0
+                    - 17
+                    - 1
+                    - VAE
+                -   - 58
+                    - 57
+                    - 0
+                    - 53
+                    - 0
+                    - MODEL
+                -   - 59
+                    - 57
+                    - 1
+                    - 53
+                    - 1
+                    - CLIP
+                -   - 60
+                    - 51
+                    - 0
+                    - 58
+                    - 0
+                    - IMAGE
+                -   - 61
+                    - 48
+                    - 0
+                    - 59
+                    - 0
+                    - IMAGE
+              nodes:
+                - id: 14
+                  pos:
+                    - 3587.205062483223
+                    - 681.3654430100763
+                  mode: 0
+                  size:
+                    '0': 300
+                    '1': 160
+                  type: PrimitiveNode
+                  color: '#322'
+                  flags: {}
+                  order: 0
+                  title: Negative Prompt (Text)
+                  bgcolor: '#533'
+                  outputs:
+                    - name: STRING
+                      type: STRING
+                      links:
+                        - 18
+                      widget:
+                        name: text
+                        config:
+                          - STRING
+                          - multiline: true
+                      slot_index: 0
+                  properties: {}
+                  widgets_values:
+                    - text, watermark, blurry, deformed, depth of field, realistic, 3d render
+                - id: 6
+                  pos:
+                    - 613.8337091823432
+                    - 76.76253406667381
+                  mode: 0
+                  size:
+                    '0': 210
+                    '1': 54
+                  type: CLIPTextEncode
+                  color: '#232'
+                  flags: {}
+                  order: 9
+                  inputs:
+                    - link: 52
+                      name: clip
+                      type: CLIP
+                    - link: 16
+                      name: text
+                      type: STRING
+                      widget:
+                        name: text
+                        config:
+                          - STRING
+                          - multiline: true
+                      slot_index: 1
+                  bgcolor: '#353'
+                  outputs:
+                    - name: CONDITIONING
+                      type: CONDITIONING
+                      links:
+                        - 11
+                      slot_index: 0
+                  properties:
+                    Node name for S&R: CLIPTextEncode
+                  widgets_values:
+                    - a cute shiba inu, minimalist, (pixel:0.8)
+                - id: 45
+                  pos:
+                    - 1004
+                    - 624
+                  mode: 0
+                  size:
+                    '0': 210
+                    '1': 82
+                  type: PrimitiveNode
+                  color: '#432'
+                  flags: {}
+                  order: 1
+                  title: steps
+                  bgcolor: '#653'
+                  outputs:
+                    - name: INT
+                      type: INT
+                      links:
+                        - 41
+                      widget:
+                        name: steps
+                        config:
+                          - INT
+                          - max: 10000
+                            min: 1
+                            default: 20
+                  properties: {}
+                  widgets_values:
+                    - 20
+                    - fixed
+                - id: 17
+                  pos:
+                    - 1533.2421162516673
+                    - 124.62247729681123
+                  mode: 0
+                  size:
+                    '0': 200
+                    '1': 50
+                  type: VAEDecode
+                  color: '#332922'
+                  flags: {}
+                  order: 12
+                  inputs:
+                    - link: 56
+                      name: samples
+                      type: LATENT
+                    - link: 57
+                      name: vae
+                      type: VAE
+                  bgcolor: '#593930'
+                  outputs:
+                    - name: IMAGE
+                      type: IMAGE
+                      links:
+                        - 28
+                        - 45
+                      shape: 3
+                      slot_index: 0
+                  properties:
+                    Node name for S&R: VAEDecode
+                - id: 42
+                  pos:
+                    - 2310.769893066405
+                    - 912.6079321899413
+                  mode: 0
+                  size:
+                    '0': 260
+                    '1': 210
+                  type: Note
+                  color: '#323'
+                  flags: {}
+                  order: 2
+                  title: Note - Empty Latent Image
+                  bgcolor: '#535'
+                  properties:
+                    text: ''
+                  widgets_values:
+                    - "This node sets the image's resolution in Width and Height.\n\nNOTE: For SDXL, it is recommended to
+                      use trained values listed below:\n - 1024 x 1024\n - 1152 x 896\n - 896  x 1152\n - 1216 x 832\n - 832\
+                      \  x 1216\n - 1344 x 768\n - 768  x 1344\n - 1536 x 640\n - 640  x 1536"
+                - id: 7
+                  pos:
+                    - 611.3369181870398
+                    - 211.28450994264554
+                  mode: 0
+                  size:
+                    '0': 210
+                    '1': 54
+                  type: CLIPTextEncode
+                  color: '#322'
+                  flags: {}
+                  order: 10
+                  inputs:
+                    - link: 53
+                      name: clip
+                      type: CLIP
+                    - link: 18
+                      name: text
+                      type: STRING
+                      widget:
+                        name: text
+                        config:
+                          - STRING
+                          - multiline: true
+                      slot_index: 1
+                  bgcolor: '#533'
+                  outputs:
+                    - name: CONDITIONING
+                      type: CONDITIONING
+                      links:
+                        - 12
+                      slot_index: 0
+                  properties:
+                    Node name for S&R: CLIPTextEncode
+                  widgets_values:
+                    - text, watermark, blurry, deformed, depth of field, realistic, 3d render
+                - id: 57
+                  pos:
+                    - -92
+                    - -573
+                  mode: 0
+                  size:
+                    '0': 315
+                    '1': 98
+                  type: CheckpointLoaderSimple
+                  flags: {}
+                  order: 3
+                  outputs:
+                    - name: MODEL
+                      type: MODEL
+                      links:
+                        - 58
+                      shape: 3
+                      slot_index: 0
+                    - name: CLIP
+                      type: CLIP
+                      links:
+                        - 59
+                      shape: 3
+                      slot_index: 1
+                    - name: VAE
+                      type: VAE
+                      links:
+                      shape: 3
+                  properties:
+                    Node name for S&R: CheckpointLoaderSimple
+                  widgets_values:
+                    - sd_xl_base_1.0.safetensors
+                - id: 19
+                  pos:
+                    - 1502
+                    - 352
+                  mode: 0
+                  size:
+                    '0': 701.2393188476562
+                    '1': 745.6878051757812
+                  type: SaveImage
+                  color: '#222'
+                  flags: {}
+                  order: 13
+                  inputs:
+                    - link: 28
+                      name: images
+                      type: IMAGE
+                  bgcolor: '#000'
+                  properties: {}
+                  widgets_values:
+                    - ComfyUI
+                - id: 13
+                  pos:
+                    - 3587
+                    - 481
+                  mode: 0
+                  size:
+                    '0': 300
+                    '1': 160
+                  type: PrimitiveNode
+                  color: '#232'
+                  flags: {}
+                  order: 4
+                  title: Positive Prompt (Text)
+                  bgcolor: '#353'
+                  outputs:
+                    - name: STRING
+                      type: STRING
+                      links:
+                        - 16
+                      widget:
+                        name: text
+                        config:
+                          - STRING
+                          - multiline: true
+                      slot_index: 0
+                  properties: {}
+                  widgets_values:
+                    - a cute shiba inu, minimalist, (pixel:0.8), flat
+                - id: 49
+                  pos:
+                    - 2293
+                    - 404
+                  mode: 0
+                  size:
+                    '0': 301.1867370605469
+                    '1': 246
+                  type: PreviewImage
+                  flags: {}
+                  order: 15
+                  inputs:
+                    - link: 46
+                      name: images
+                      type: IMAGE
+                  properties:
+                    Node name for S&R: PreviewImage
+                - id: 48
+                  pos:
+                    - 1898
+                    - 192
+                  mode: 0
+                  size:
+                    '0': 315
+                    '1': 82
+                  type: ImageScaleBy
+                  flags: {}
+                  order: 14
+                  inputs:
+                    - link: 45
+                      name: image
+                      type: IMAGE
+                  outputs:
+                    - name: IMAGE
+                      type: IMAGE
+                      links:
+                        - 46
+                        - 47
+                        - 61
+                      shape: 3
+                      slot_index: 0
+                  properties:
+                    Node name for S&R: ImageScaleBy
+                  widgets_values:
+                    - nearest-exact
+                    - 0.125
+                - id: 59
+                  pos:
+                    - 1918
+                    - -160
+                  mode: 0
+                  size:
+                    '0': 315
+                    '1': 270
+                  type: SaveImage
+                  flags: {}
+                  order: 17
+                  inputs:
+                    - link: 61
+                      name: images
+                      type: IMAGE
+                  properties: {}
+                  widgets_values:
+                    - nn_downscaled_
+                - id: 58
+                  pos:
+                    - 2264
+                    - -212
+                  mode: 0
+                  size:
+                    '0': 315
+                    '1': 270
+                  type: SaveImage
+                  flags: {}
+                  order: 19
+                  inputs:
+                    - link: 60
+                      name: images
+                      type: IMAGE
+                  properties: {}
+                  widgets_values:
+                    - x8_upscaled_
+                - id: 51
+                  pos:
+                    - 2262
+                    - 185
+                  mode: 0
+                  size:
+                    '0': 315
+                    '1': 82
+                  type: ImageScaleBy
+                  flags: {}
+                  order: 16
+                  inputs:
+                    - link: 47
+                      name: image
+                      type: IMAGE
+                  outputs:
+                    - name: IMAGE
+                      type: IMAGE
+                      links:
+                        - 48
+                        - 60
+                      shape: 3
+                      slot_index: 0
+                  properties:
+                    Node name for S&R: ImageScaleBy
+                  widgets_values:
+                    - nearest-exact
+                    - 8
+                - id: 10
+                  pos:
+                    - 1044
+                    - -82
+                  mode: 0
+                  size:
+                    '0': 343.2493896484375
+                    '1': 595.7294921875
+                  type: KSamplerAdvanced
+                  color: '#223'
+                  flags: {}
+                  order: 11
+                  title: KSampler (Advanced) - BASE
+                  inputs:
+                    - link: 54
+                      name: model
+                      type: MODEL
+                    - link: 11
+                      name: positive
+                      type: CONDITIONING
+                    - link: 12
+                      name: negative
+                      type: CONDITIONING
+                    - link: 27
+                      name: latent_image
+                      type: LATENT
+                    - link: 41
+                      name: steps
+                      type: INT
+                      widget:
+                        name: steps
+                        config:
+                          - INT
+                          - max: 10000
+                            min: 1
+                            default: 20
+                      slot_index: 4
+                    - link: 43
+                      name: end_at_step
+                      type: INT
+                      widget:
+                        name: end_at_step
+                        config:
+                          - INT
+                          - max: 10000
+                            min: 0
+                            default: 10000
+                      slot_index: 5
+                  bgcolor: '#335'
+                  outputs:
+                    - name: LATENT
+                      type: LATENT
+                      links:
+                        - 56
+                      shape: 3
+                      slot_index: 0
+                  properties:
+                    Node name for S&R: KSamplerAdvanced
+                  widgets_values:
+                    - enable
+                    - 937731538949123
+                    - randomize
+                    - 20
+                    - 8
+                    - euler_ancestral
+                    - normal
+                    - 0
+                    - 20
+                    - enable
+                - id: 47
+                  pos:
+                    - 1002
+                    - 765
+                  mode: 0
+                  size:
+                    '0': 210
+                    '1': 82
+                  type: PrimitiveNode
+                  color: '#432'
+                  flags: {}
+                  order: 5
+                  title: end_at_step
+                  bgcolor: '#653'
+                  outputs:
+                    - name: INT
+                      type: INT
+                      links:
+                        - 43
+                      widget:
+                        name: end_at_step
+                        config:
+                          - INT
+                          - max: 10000
+                            min: 0
+                            default: 10000
+                      slot_index: 0
+                  properties: {}
+                  widgets_values:
+                    - 20
+                    - fixed
+                - id: 55
+                  pos:
+                    - 343
+                    - -470
+                  mode: 0
+                  size:
+                    '0': 315
+                    '1': 58
+                  type: VAELoader
+                  flags: {}
+                  order: 6
+                  outputs:
+                    - name: VAE
+                      type: VAE
+                      links:
+                        - 57
+                      shape: 3
+                      slot_index: 0
+                  properties:
+                    Node name for S&R: VAELoader
+                  widgets_values:
+                    - sdxl_vae.safetensors
+                - id: 53
+                  pos:
+                    - 352
+                    - -344
+                  mode: 0
+                  size:
+                    '0': 315
+                    '1': 126
+                  type: LoraLoader
+                  flags: {}
+                  order: 8
+                  inputs:
+                    - link: 58
+                      name: model
+                      type: MODEL
+                    - link: 59
+                      name: clip
+                      type: CLIP
+                  outputs:
+                    - name: MODEL
+                      type: MODEL
+                      links:
+                        - 54
+                      shape: 3
+                      slot_index: 0
+                    - name: CLIP
+                      type: CLIP
+                      links:
+                        - 52
+                        - 53
+                      shape: 3
+                      slot_index: 1
+                  properties:
+                    Node name for S&R: LoraLoader
+                  widgets_values:
+                    - pixel-art-xl-v1.1.safetensors
+                    - 1.0000000000000002
+                    - 1
+                - id: 52
+                  pos:
+                    - 2654
+                    - 451
+                  mode: 0
+                  size:
+                    '0': 808.3607177734375
+                    '1': 777.3040771484375
+                  type: PreviewImage
+                  flags: {}
+                  order: 18
+                  inputs:
+                    - link: 48
+                      name: images
+                      type: IMAGE
+                  properties:
+                    Node name for S&R: PreviewImage
+                - id: 5
+                  pos:
+                    - 2289.322656127929
+                    - 762.2985609054565
+                  mode: 0
+                  size:
+                    '0': 300
+                    '1': 110
+                  type: EmptyLatentImage
+                  color: '#323'
+                  flags: {}
+                  order: 7
+                  bgcolor: '#535'
+                  outputs:
+                    - name: LATENT
+                      type: LATENT
+                      links:
+                        - 27
+                      slot_index: 0
+                  properties:
+                    Node name for S&R: EmptyLatentImage
+                  widgets_values:
+                    - 1024
+                    - 1024
+                    - 1
+              config: {}
+              groups:
+                - color: '#3f789e'
+                  title: Base Prompt
+                  bounding:
+                    - 593
+                    - -4
+                    - 252
+                    - 361
+                - color: '#3f789e'
+                  title: Text Prompts
+                  bounding:
+                    - 3567
+                    - 398
+                    - 364
+                    - 487
+                - color: '#a1309b'
+                  title: Load in BASE SDXL Model
+                  bounding:
+                    - -108
+                    - -812
+                    - 369
+                    - 399
+                - color: '#a1309b'
+                  title: Empty Latent Image
+                  bounding:
+                    - 2270
+                    - 688
+                    - 339
+                    - 443
+                - color: '#b06634'
+                  title: VAE Decoder
+                  bounding:
+                    - 1454
+                    - 46
+                    - 336
+                    - 157
+              version: 0.4
+              last_link_id: 61
+              last_node_id: 60
+          width: 1024
+          height: 1024
+          models:
+            - sd_xl_base_1.0.safetensors
+          additionalResources:
+            - name: pixel-art-xl-v1.1.safetensors
+              type: lora
+              strength: 1.0000000000000002
+              strengthClip: 1
+        post:
+          username: NeriJS
+          created_at: '2024-02-11T06:12:32.890Z'
+      - image_id: 2864348
+        image_url: 
+          https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/01481376-7618-4a83-b1e4-de630618301a/original=true/01481376-7618-4a83-b1e4-de630618301a.mp4
+        page_url: https://civitai.com/posts/670597
+        nsfw: false
+        width: 710
+        height: 1080
+        prompt:
+        negative_prompt:
+        generation:
+          seed:
+          steps:
+          cfg_scale:
+          sampler:
+          scheduler:
+          clip_skip:
+          size: 710x1080
+          model_hash:
+        resources: []
+        tags: []
+        post:
+          username: mynameisjeff327
+          created_at: '2023-10-09T10:14:41.046Z'
+      - image_id: 9610164
+        image_url: 
+          https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/8a509ee7-b5ee-46e0-9dfe-b916d66b6835/original=true/8a509ee7-b5ee-46e0-9dfe-b916d66b6835.jpeg
+        page_url: https://civitai.com/posts/2081800
+        nsfw: false
+        width: 1024
+        height: 1024
+        prompt: |-
+          pixel-art score_9,score_8_up,score_7_up,score_6_up,score_5_up,score_4_up, solo anthro, RalseiWhite, upper body, boy, (Pink eyes), green robe, pink scarf, pink horns, White fur, ((round glasses, Green glasses)), (happy, dancing),  <lora:Ralsei B-W-000016:1>, forest background <lora:pixelbuildings128-v2:0.85> . low-res, blocky, pixel art style, 8-bit graphics
+        negative_prompt: |-
+          sloppy, messy, blurry, noisy, highly detailed, ultra textured, photo, realistic, double tail, bad hand, bad anatomy, missing thumb, nfsw, nipples, long neck, lowres, big mouth, blurry, dof
+        generation:
+          seed: 82629975
+          steps: 40
+          cfg_scale: 5
+          sampler: DPM++ 2M Karras
+          scheduler:
+          clip_skip: 2
+          size: 1024x1024
+          model_hash: 67ab2fd8ec
+        resources:
+          - type: lora
+            name: pixelbuildings128-v2
+            model_id:
+            version_id:
+            weight: 0.85
+          - type: lora
+            name: Ralsei B-W-000016
+            model_id:
+            version_id:
+            weight:
+          - type: model
+            name: ponyDiffusionV6XL_v6StartWithThisOne
+            model_id:
+            version_id:
+            weight:
+        tags: []
+        raw_meta:
+          VAE: sdxl_vae.safetensors
+          Model: ponyDiffusionV6XL_v6StartWithThisOne
+          hashes:
+            vae: 235745af8d
+            model: 67ab2fd8ec
+            lora:Ralsei B-W-000016: 73e09f1b63c8
+            lora:pixelbuildings128-v2: dbe5cdf5f8f4
+          Version: f0.0.17v1.8.0rc-latest-276-g29be1da7
+          Style Selector Style: Pixel Art
+          Style Selector Enabled: 'True'
+          Style Selector Randomize: 'False'
+        post:
+          username: YumeReborn
+          created_at: '2024-04-10T21:54:11.893Z'
+      - image_id: 2030701
+        image_url: 
+          https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/024146c4-fb7d-401e-ac4a-053d3f367f2f/original=true/024146c4-fb7d-401e-ac4a-053d3f367f2f.jpeg
+        page_url: https://civitai.com/posts/499150
+        nsfw: false
+        width: 128
+        height: 128
+        prompt: |-
+          duck with a gun in each hand, minimalist, flat
+        negative_prompt: |-
+          low quality, blurry, deformed, watermark, text, signature, depth of field, photoreal, shadow
+        generation:
+          seed: 1105676806645955
+          steps: 20
+          cfg_scale: 7
+          sampler: Euler a
+          scheduler: karras
+          clip_skip:
+          size: 128x128
+          model_hash:
+        resources: []
+        tags: []
+        raw_meta:
+          Model: sd_xl_base_1.0
+          comfy:
+            prompt:
+              '3':
+                inputs:
+                  cfg: 7
+                  seed: 1105676806645955
+                  model:
+                    inputs:
+                      clip:
+                        inputs:
+                          ckpt_name: sd_xl_base_1.0.safetensors
+                        class_type: CheckpointLoaderSimple
+                      model:
+                        inputs:
+                          ckpt_name: sd_xl_base_1.0.safetensors
+                        class_type: CheckpointLoaderSimple
+                      lora_name: pixel-art-xl-v1.1.safetensors
+                      strength_clip: 1
+                      strength_model: 1
+                    class_type: LoraLoader
+                  steps: 20
+                  denoise: 1
+                  negative:
+                    inputs:
+                      clip:
+                        inputs:
+                          clip:
+                            inputs:
+                              ckpt_name: sd_xl_base_1.0.safetensors
+                            class_type: CheckpointLoaderSimple
+                          model:
+                            inputs:
+                              ckpt_name: sd_xl_base_1.0.safetensors
+                            class_type: CheckpointLoaderSimple
+                          lora_name: pixel-art-xl-v1.1.safetensors
+                          strength_clip: 1
+                          strength_model: 1
+                        class_type: LoraLoader
+                      text: low quality, blurry, deformed, watermark, text, signature, depth of field, photoreal, shadow
+                    class_type: CLIPTextEncode
+                  positive:
+                    inputs:
+                      clip:
+                        inputs:
+                          clip:
+                            inputs:
+                              ckpt_name: sd_xl_base_1.0.safetensors
+                            class_type: CheckpointLoaderSimple
+                          model:
+                            inputs:
+                              ckpt_name: sd_xl_base_1.0.safetensors
+                            class_type: CheckpointLoaderSimple
+                          lora_name: pixel-art-xl-v1.1.safetensors
+                          strength_clip: 1
+                          strength_model: 1
+                        class_type: LoraLoader
+                      text: duck with a gun in each hand, minimalist, flat
+                    class_type: CLIPTextEncode
+                  scheduler: karras
+                  latent_image:
+                    inputs:
+                      width: 1024
+                      height: 1024
+                      batch_size: 1
+                    class_type: EmptyLatentImage
+                  sampler_name: euler_ancestral
+                class_type: KSampler
+              '4':
+                inputs:
+                  ckpt_name: sd_xl_base_1.0.safetensors
+                class_type: CheckpointLoaderSimple
+              '6':
+                inputs:
+                  clip:
+                    inputs:
+                      clip:
+                        inputs:
+                          ckpt_name: sd_xl_base_1.0.safetensors
+                        class_type: CheckpointLoaderSimple
+                      model:
+                        inputs:
+                          ckpt_name: sd_xl_base_1.0.safetensors
+                        class_type: CheckpointLoaderSimple
+                      lora_name: pixel-art-xl-v1.1.safetensors
+                      strength_clip: 1
+                      strength_model: 1
+                    class_type: LoraLoader
+                  text: duck with a gun in each hand, minimalist, flat
+                class_type: CLIPTextEncode
+              '7':
+                inputs:
+                  clip:
+                    inputs:
+                      clip:
+                        inputs:
+                          ckpt_name: sd_xl_base_1.0.safetensors
+                        class_type: CheckpointLoaderSimple
+                      model:
+                        inputs:
+                          ckpt_name: sd_xl_base_1.0.safetensors
+                        class_type: CheckpointLoaderSimple
+                      lora_name: pixel-art-xl-v1.1.safetensors
+                      strength_clip: 1
+                      strength_model: 1
+                    class_type: LoraLoader
+                  text: low quality, blurry, deformed, watermark, text, signature, depth of field, photoreal, shadow
+                class_type: CLIPTextEncode
+              '25':
+                inputs:
+                  vae:
+                    inputs:
+                      ckpt_name: sd_xl_base_1.0.safetensors
+                    class_type: CheckpointLoaderSimple
+                  samples:
+                    inputs:
+                      cfg: 7
+                      seed: 1105676806645955
+                      model:
+                        inputs:
+                          clip:
+                            inputs:
+                              ckpt_name: sd_xl_base_1.0.safetensors
+                            class_type: CheckpointLoaderSimple
+                          model:
+                            inputs:
+                              ckpt_name: sd_xl_base_1.0.safetensors
+                            class_type: CheckpointLoaderSimple
+                          lora_name: pixel-art-xl-v1.1.safetensors
+                          strength_clip: 1
+                          strength_model: 1
+                        class_type: LoraLoader
+                      steps: 20
+                      denoise: 1
+                      negative:
+                        inputs:
+                          clip:
+                            inputs:
+                              clip:
+                                inputs:
+                                  ckpt_name: sd_xl_base_1.0.safetensors
+                                class_type: CheckpointLoaderSimple
+                              model:
+                                inputs:
+                                  ckpt_name: sd_xl_base_1.0.safetensors
+                                class_type: CheckpointLoaderSimple
+                              lora_name: pixel-art-xl-v1.1.safetensors
+                              strength_clip: 1
+                              strength_model: 1
+                            class_type: LoraLoader
+                          text: low quality, blurry, deformed, watermark, text, signature, depth of field, photoreal, 
+                            shadow
+                        class_type: CLIPTextEncode
+                      positive:
+                        inputs:
+                          clip:
+                            inputs:
+                              clip:
+                                inputs:
+                                  ckpt_name: sd_xl_base_1.0.safetensors
+                                class_type: CheckpointLoaderSimple
+                              model:
+                                inputs:
+                                  ckpt_name: sd_xl_base_1.0.safetensors
+                                class_type: CheckpointLoaderSimple
+                              lora_name: pixel-art-xl-v1.1.safetensors
+                              strength_clip: 1
+                              strength_model: 1
+                            class_type: LoraLoader
+                          text: duck with a gun in each hand, minimalist, flat
+                        class_type: CLIPTextEncode
+                      scheduler: karras
+                      latent_image:
+                        inputs:
+                          width: 1024
+                          height: 1024
+                          batch_size: 1
+                        class_type: EmptyLatentImage
+                      sampler_name: euler_ancestral
+                    class_type: KSampler
+                class_type: VAEDecode
+              '26':
+                inputs:
+                  images:
+                    inputs:
+                      vae:
+                        inputs:
+                          ckpt_name: sd_xl_base_1.0.safetensors
+                        class_type: CheckpointLoaderSimple
+                      samples:
+                        inputs:
+                          cfg: 7
+                          seed: 1105676806645955
+                          model:
+                            inputs:
+                              clip:
+                                inputs:
+                                  ckpt_name: sd_xl_base_1.0.safetensors
+                                class_type: CheckpointLoaderSimple
+                              model:
+                                inputs:
+                                  ckpt_name: sd_xl_base_1.0.safetensors
+                                class_type: CheckpointLoaderSimple
+                              lora_name: pixel-art-xl-v1.1.safetensors
+                              strength_clip: 1
+                              strength_model: 1
+                            class_type: LoraLoader
+                          steps: 20
+                          denoise: 1
+                          negative:
+                            inputs:
+                              clip:
+                                inputs:
+                                  clip:
+                                    inputs:
+                                      ckpt_name: sd_xl_base_1.0.safetensors
+                                    class_type: CheckpointLoaderSimple
+                                  model:
+                                    inputs:
+                                      ckpt_name: sd_xl_base_1.0.safetensors
+                                    class_type: CheckpointLoaderSimple
+                                  lora_name: pixel-art-xl-v1.1.safetensors
+                                  strength_clip: 1
+                                  strength_model: 1
+                                class_type: LoraLoader
+                              text: low quality, blurry, deformed, watermark, text, signature, depth of field, 
+                                photoreal, shadow
+                            class_type: CLIPTextEncode
+                          positive:
+                            inputs:
+                              clip:
+                                inputs:
+                                  clip:
+                                    inputs:
+                                      ckpt_name: sd_xl_base_1.0.safetensors
+                                    class_type: CheckpointLoaderSimple
+                                  model:
+                                    inputs:
+                                      ckpt_name: sd_xl_base_1.0.safetensors
+                                    class_type: CheckpointLoaderSimple
+                                  lora_name: pixel-art-xl-v1.1.safetensors
+                                  strength_clip: 1
+                                  strength_model: 1
+                                class_type: LoraLoader
+                              text: duck with a gun in each hand, minimalist, flat
+                            class_type: CLIPTextEncode
+                          scheduler: karras
+                          latent_image:
+                            inputs:
+                              width: 1024
+                              height: 1024
+                              batch_size: 1
+                            class_type: EmptyLatentImage
+                          sampler_name: euler_ancestral
+                        class_type: KSampler
+                    class_type: VAEDecode
+                class_type: PreviewImage
+              '38':
+                inputs:
+                  images:
+                    inputs:
+                      vae:
+                        inputs:
+                          ckpt_name: sd_xl_base_1.0.safetensors
+                        class_type: CheckpointLoaderSimple
+                      samples:
+                        inputs:
+                          cfg: 7
+                          seed: 1105676806645955
+                          model:
+                            inputs:
+                              clip:
+                                inputs:
+                                  ckpt_name: sd_xl_base_1.0.safetensors
+                                class_type: CheckpointLoaderSimple
+                              model:
+                                inputs:
+                                  ckpt_name: sd_xl_base_1.0.safetensors
+                                class_type: CheckpointLoaderSimple
+                              lora_name: pixel-art-xl-v1.1.safetensors
+                              strength_clip: 1
+                              strength_model: 1
+                            class_type: LoraLoader
+                          steps: 20
+                          denoise: 1
+                          negative:
+                            inputs:
+                              clip:
+                                inputs:
+                                  clip:
+                                    inputs:
+                                      ckpt_name: sd_xl_base_1.0.safetensors
+                                    class_type: CheckpointLoaderSimple
+                                  model:
+                                    inputs:
+                                      ckpt_name: sd_xl_base_1.0.safetensors
+                                    class_type: CheckpointLoaderSimple
+                                  lora_name: pixel-art-xl-v1.1.safetensors
+                                  strength_clip: 1
+                                  strength_model: 1
+                                class_type: LoraLoader
+                              text: low quality, blurry, deformed, watermark, text, signature, depth of field, 
+                                photoreal, shadow
+                            class_type: CLIPTextEncode
+                          positive:
+                            inputs:
+                              clip:
+                                inputs:
+                                  clip:
+                                    inputs:
+                                      ckpt_name: sd_xl_base_1.0.safetensors
+                                    class_type: CheckpointLoaderSimple
+                                  model:
+                                    inputs:
+                                      ckpt_name: sd_xl_base_1.0.safetensors
+                                    class_type: CheckpointLoaderSimple
+                                  lora_name: pixel-art-xl-v1.1.safetensors
+                                  strength_clip: 1
+                                  strength_model: 1
+                                class_type: LoraLoader
+                              text: duck with a gun in each hand, minimalist, flat
+                            class_type: CLIPTextEncode
+                          scheduler: karras
+                          latent_image:
+                            inputs:
+                              width: 1024
+                              height: 1024
+                              batch_size: 1
+                            class_type: EmptyLatentImage
+                          sampler_name: euler_ancestral
+                        class_type: KSampler
+                    class_type: VAEDecode
+                  filename_prefix: pixelbuildings128-v1-raw-
+                class_type: SaveImage
+              '39':
+                inputs:
+                  clip:
+                    inputs:
+                      ckpt_name: sd_xl_base_1.0.safetensors
+                    class_type: CheckpointLoaderSimple
+                  model:
+                    inputs:
+                      ckpt_name: sd_xl_base_1.0.safetensors
+                    class_type: CheckpointLoaderSimple
+                  lora_name: pixel-art-xl-v1.1.safetensors
+                  strength_clip: 1
+                  strength_model: 1
+                class_type: LoraLoader
+              '40':
+                inputs:
+                  width: 1024
+                  height: 1024
+                  batch_size: 1
+                class_type: EmptyLatentImage
+              '42':
+                inputs:
+                  image:
+                    inputs:
+                      vae:
+                        inputs:
+                          ckpt_name: sd_xl_base_1.0.safetensors
+                        class_type: CheckpointLoaderSimple
+                      samples:
+                        inputs:
+                          cfg: 7
+                          seed: 1105676806645955
+                          model:
+                            inputs:
+                              clip:
+                                inputs:
+                                  ckpt_name: sd_xl_base_1.0.safetensors
+                                class_type: CheckpointLoaderSimple
+                              model:
+                                inputs:
+                                  ckpt_name: sd_xl_base_1.0.safetensors
+                                class_type: CheckpointLoaderSimple
+                              lora_name: pixel-art-xl-v1.1.safetensors
+                              strength_clip: 1
+                              strength_model: 1
+                            class_type: LoraLoader
+                          steps: 20
+                          denoise: 1
+                          negative:
+                            inputs:
+                              clip:
+                                inputs:
+                                  clip:
+                                    inputs:
+                                      ckpt_name: sd_xl_base_1.0.safetensors
+                                    class_type: CheckpointLoaderSimple
+                                  model:
+                                    inputs:
+                                      ckpt_name: sd_xl_base_1.0.safetensors
+                                    class_type: CheckpointLoaderSimple
+                                  lora_name: pixel-art-xl-v1.1.safetensors
+                                  strength_clip: 1
+                                  strength_model: 1
+                                class_type: LoraLoader
+                              text: low quality, blurry, deformed, watermark, text, signature, depth of field, 
+                                photoreal, shadow
+                            class_type: CLIPTextEncode
+                          positive:
+                            inputs:
+                              clip:
+                                inputs:
+                                  clip:
+                                    inputs:
+                                      ckpt_name: sd_xl_base_1.0.safetensors
+                                    class_type: CheckpointLoaderSimple
+                                  model:
+                                    inputs:
+                                      ckpt_name: sd_xl_base_1.0.safetensors
+                                    class_type: CheckpointLoaderSimple
+                                  lora_name: pixel-art-xl-v1.1.safetensors
+                                  strength_clip: 1
+                                  strength_model: 1
+                                class_type: LoraLoader
+                              text: duck with a gun in each hand, minimalist, flat
+                            class_type: CLIPTextEncode
+                          scheduler: karras
+                          latent_image:
+                            inputs:
+                              width: 1024
+                              height: 1024
+                              batch_size: 1
+                            class_type: EmptyLatentImage
+                          sampler_name: euler_ancestral
+                        class_type: KSampler
+                    class_type: VAEDecode
+                  scale_by: 0.125
+                  upscale_method: nearest-exact
+                class_type: ImageScaleBy
+              '43':
+                inputs:
+                  images:
+                    inputs:
+                      image:
+                        inputs:
+                          vae:
+                            inputs:
+                              ckpt_name: sd_xl_base_1.0.safetensors
+                            class_type: CheckpointLoaderSimple
+                          samples:
+                            inputs:
+                              cfg: 7
+                              seed: 1105676806645955
+                              model:
+                                inputs:
+                                  clip:
+                                    inputs:
+                                      ckpt_name: sd_xl_base_1.0.safetensors
+                                    class_type: CheckpointLoaderSimple
+                                  model:
+                                    inputs:
+                                      ckpt_name: sd_xl_base_1.0.safetensors
+                                    class_type: CheckpointLoaderSimple
+                                  lora_name: pixel-art-xl-v1.1.safetensors
+                                  strength_clip: 1
+                                  strength_model: 1
+                                class_type: LoraLoader
+                              steps: 20
+                              denoise: 1
+                              negative:
+                                inputs:
+                                  clip:
+                                    inputs:
+                                      clip:
+                                        inputs:
+                                          ckpt_name: sd_xl_base_1.0.safetensors
+                                        class_type: CheckpointLoaderSimple
+                                      model:
+                                        inputs:
+                                          ckpt_name: sd_xl_base_1.0.safetensors
+                                        class_type: CheckpointLoaderSimple
+                                      lora_name: pixel-art-xl-v1.1.safetensors
+                                      strength_clip: 1
+                                      strength_model: 1
+                                    class_type: LoraLoader
+                                  text: low quality, blurry, deformed, watermark, text, signature, depth of field, 
+                                    photoreal, shadow
+                                class_type: CLIPTextEncode
+                              positive:
+                                inputs:
+                                  clip:
+                                    inputs:
+                                      clip:
+                                        inputs:
+                                          ckpt_name: sd_xl_base_1.0.safetensors
+                                        class_type: CheckpointLoaderSimple
+                                      model:
+                                        inputs:
+                                          ckpt_name: sd_xl_base_1.0.safetensors
+                                        class_type: CheckpointLoaderSimple
+                                      lora_name: pixel-art-xl-v1.1.safetensors
+                                      strength_clip: 1
+                                      strength_model: 1
+                                    class_type: LoraLoader
+                                  text: duck with a gun in each hand, minimalist, flat
+                                class_type: CLIPTextEncode
+                              scheduler: karras
+                              latent_image:
+                                inputs:
+                                  width: 1024
+                                  height: 1024
+                                  batch_size: 1
+                                class_type: EmptyLatentImage
+                              sampler_name: euler_ancestral
+                            class_type: KSampler
+                        class_type: VAEDecode
+                      scale_by: 0.125
+                      upscale_method: nearest-exact
+                    class_type: ImageScaleBy
+                class_type: PreviewImage
+              '44':
+                inputs:
+                  images:
+                    inputs:
+                      image:
+                        inputs:
+                          vae:
+                            inputs:
+                              ckpt_name: sd_xl_base_1.0.safetensors
+                            class_type: CheckpointLoaderSimple
+                          samples:
+                            inputs:
+                              cfg: 7
+                              seed: 1105676806645955
+                              model:
+                                inputs:
+                                  clip:
+                                    inputs:
+                                      ckpt_name: sd_xl_base_1.0.safetensors
+                                    class_type: CheckpointLoaderSimple
+                                  model:
+                                    inputs:
+                                      ckpt_name: sd_xl_base_1.0.safetensors
+                                    class_type: CheckpointLoaderSimple
+                                  lora_name: pixel-art-xl-v1.1.safetensors
+                                  strength_clip: 1
+                                  strength_model: 1
+                                class_type: LoraLoader
+                              steps: 20
+                              denoise: 1
+                              negative:
+                                inputs:
+                                  clip:
+                                    inputs:
+                                      clip:
+                                        inputs:
+                                          ckpt_name: sd_xl_base_1.0.safetensors
+                                        class_type: CheckpointLoaderSimple
+                                      model:
+                                        inputs:
+                                          ckpt_name: sd_xl_base_1.0.safetensors
+                                        class_type: CheckpointLoaderSimple
+                                      lora_name: pixel-art-xl-v1.1.safetensors
+                                      strength_clip: 1
+                                      strength_model: 1
+                                    class_type: LoraLoader
+                                  text: low quality, blurry, deformed, watermark, text, signature, depth of field, 
+                                    photoreal, shadow
+                                class_type: CLIPTextEncode
+                              positive:
+                                inputs:
+                                  clip:
+                                    inputs:
+                                      clip:
+                                        inputs:
+                                          ckpt_name: sd_xl_base_1.0.safetensors
+                                        class_type: CheckpointLoaderSimple
+                                      model:
+                                        inputs:
+                                          ckpt_name: sd_xl_base_1.0.safetensors
+                                        class_type: CheckpointLoaderSimple
+                                      lora_name: pixel-art-xl-v1.1.safetensors
+                                      strength_clip: 1
+                                      strength_model: 1
+                                    class_type: LoraLoader
+                                  text: duck with a gun in each hand, minimalist, flat
+                                class_type: CLIPTextEncode
+                              scheduler: karras
+                              latent_image:
+                                inputs:
+                                  width: 1024
+                                  height: 1024
+                                  batch_size: 1
+                                class_type: EmptyLatentImage
+                              sampler_name: euler_ancestral
+                            class_type: KSampler
+                        class_type: VAEDecode
+                      scale_by: 0.125
+                      upscale_method: nearest-exact
+                    class_type: ImageScaleBy
+                  filename_prefix: pixelbuildings128-v1-downscale-x8-
+                class_type: SaveImage
+              '45':
+                inputs:
+                  image:
+                    inputs:
+                      image:
+                        inputs:
+                          vae:
+                            inputs:
+                              ckpt_name: sd_xl_base_1.0.safetensors
+                            class_type: CheckpointLoaderSimple
+                          samples:
+                            inputs:
+                              cfg: 7
+                              seed: 1105676806645955
+                              model:
+                                inputs:
+                                  clip:
+                                    inputs:
+                                      ckpt_name: sd_xl_base_1.0.safetensors
+                                    class_type: CheckpointLoaderSimple
+                                  model:
+                                    inputs:
+                                      ckpt_name: sd_xl_base_1.0.safetensors
+                                    class_type: CheckpointLoaderSimple
+                                  lora_name: pixel-art-xl-v1.1.safetensors
+                                  strength_clip: 1
+                                  strength_model: 1
+                                class_type: LoraLoader
+                              steps: 20
+                              denoise: 1
+                              negative:
+                                inputs:
+                                  clip:
+                                    inputs:
+                                      clip:
+                                        inputs:
+                                          ckpt_name: sd_xl_base_1.0.safetensors
+                                        class_type: CheckpointLoaderSimple
+                                      model:
+                                        inputs:
+                                          ckpt_name: sd_xl_base_1.0.safetensors
+                                        class_type: CheckpointLoaderSimple
+                                      lora_name: pixel-art-xl-v1.1.safetensors
+                                      strength_clip: 1
+                                      strength_model: 1
+                                    class_type: LoraLoader
+                                  text: low quality, blurry, deformed, watermark, text, signature, depth of field, 
+                                    photoreal, shadow
+                                class_type: CLIPTextEncode
+                              positive:
+                                inputs:
+                                  clip:
+                                    inputs:
+                                      clip:
+                                        inputs:
+                                          ckpt_name: sd_xl_base_1.0.safetensors
+                                        class_type: CheckpointLoaderSimple
+                                      model:
+                                        inputs:
+                                          ckpt_name: sd_xl_base_1.0.safetensors
+                                        class_type: CheckpointLoaderSimple
+                                      lora_name: pixel-art-xl-v1.1.safetensors
+                                      strength_clip: 1
+                                      strength_model: 1
+                                    class_type: LoraLoader
+                                  text: duck with a gun in each hand, minimalist, flat
+                                class_type: CLIPTextEncode
+                              scheduler: karras
+                              latent_image:
+                                inputs:
+                                  width: 1024
+                                  height: 1024
+                                  batch_size: 1
+                                class_type: EmptyLatentImage
+                              sampler_name: euler_ancestral
+                            class_type: KSampler
+                        class_type: VAEDecode
+                      scale_by: 0.125
+                      upscale_method: nearest-exact
+                    class_type: ImageScaleBy
+                  scale_by: 8
+                  upscale_method: nearest-exact
+                class_type: ImageScaleBy
+              '46':
+                inputs:
+                  images:
+                    inputs:
+                      image:
+                        inputs:
+                          image:
+                            inputs:
+                              vae:
+                                inputs:
+                                  ckpt_name: sd_xl_base_1.0.safetensors
+                                class_type: CheckpointLoaderSimple
+                              samples:
+                                inputs:
+                                  cfg: 7
+                                  seed: 1105676806645955
+                                  model:
+                                    inputs:
+                                      clip:
+                                        inputs:
+                                          ckpt_name: sd_xl_base_1.0.safetensors
+                                        class_type: CheckpointLoaderSimple
+                                      model:
+                                        inputs:
+                                          ckpt_name: sd_xl_base_1.0.safetensors
+                                        class_type: CheckpointLoaderSimple
+                                      lora_name: pixel-art-xl-v1.1.safetensors
+                                      strength_clip: 1
+                                      strength_model: 1
+                                    class_type: LoraLoader
+                                  steps: 20
+                                  denoise: 1
+                                  negative:
+                                    inputs:
+                                      clip:
+                                        inputs:
+                                          clip:
+                                            inputs:
+                                              ckpt_name: sd_xl_base_1.0.safetensors
+                                            class_type: CheckpointLoaderSimple
+                                          model:
+                                            inputs:
+                                              ckpt_name: sd_xl_base_1.0.safetensors
+                                            class_type: CheckpointLoaderSimple
+                                          lora_name: pixel-art-xl-v1.1.safetensors
+                                          strength_clip: 1
+                                          strength_model: 1
+                                        class_type: LoraLoader
+                                      text: low quality, blurry, deformed, watermark, text, signature, depth of field, 
+                                        photoreal, shadow
+                                    class_type: CLIPTextEncode
+                                  positive:
+                                    inputs:
+                                      clip:
+                                        inputs:
+                                          clip:
+                                            inputs:
+                                              ckpt_name: sd_xl_base_1.0.safetensors
+                                            class_type: CheckpointLoaderSimple
+                                          model:
+                                            inputs:
+                                              ckpt_name: sd_xl_base_1.0.safetensors
+                                            class_type: CheckpointLoaderSimple
+                                          lora_name: pixel-art-xl-v1.1.safetensors
+                                          strength_clip: 1
+                                          strength_model: 1
+                                        class_type: LoraLoader
+                                      text: duck with a gun in each hand, minimalist, flat
+                                    class_type: CLIPTextEncode
+                                  scheduler: karras
+                                  latent_image:
+                                    inputs:
+                                      width: 1024
+                                      height: 1024
+                                      batch_size: 1
+                                    class_type: EmptyLatentImage
+                                  sampler_name: euler_ancestral
+                                class_type: KSampler
+                            class_type: VAEDecode
+                          scale_by: 0.125
+                          upscale_method: nearest-exact
+                        class_type: ImageScaleBy
+                      scale_by: 8
+                      upscale_method: nearest-exact
+                    class_type: ImageScaleBy
+                class_type: PreviewImage
+              '47':
+                inputs:
+                  images:
+                    inputs:
+                      image:
+                        inputs:
+                          image:
+                            inputs:
+                              vae:
+                                inputs:
+                                  ckpt_name: sd_xl_base_1.0.safetensors
+                                class_type: CheckpointLoaderSimple
+                              samples:
+                                inputs:
+                                  cfg: 7
+                                  seed: 1105676806645955
+                                  model:
+                                    inputs:
+                                      clip:
+                                        inputs:
+                                          ckpt_name: sd_xl_base_1.0.safetensors
+                                        class_type: CheckpointLoaderSimple
+                                      model:
+                                        inputs:
+                                          ckpt_name: sd_xl_base_1.0.safetensors
+                                        class_type: CheckpointLoaderSimple
+                                      lora_name: pixel-art-xl-v1.1.safetensors
+                                      strength_clip: 1
+                                      strength_model: 1
+                                    class_type: LoraLoader
+                                  steps: 20
+                                  denoise: 1
+                                  negative:
+                                    inputs:
+                                      clip:
+                                        inputs:
+                                          clip:
+                                            inputs:
+                                              ckpt_name: sd_xl_base_1.0.safetensors
+                                            class_type: CheckpointLoaderSimple
+                                          model:
+                                            inputs:
+                                              ckpt_name: sd_xl_base_1.0.safetensors
+                                            class_type: CheckpointLoaderSimple
+                                          lora_name: pixel-art-xl-v1.1.safetensors
+                                          strength_clip: 1
+                                          strength_model: 1
+                                        class_type: LoraLoader
+                                      text: low quality, blurry, deformed, watermark, text, signature, depth of field, 
+                                        photoreal, shadow
+                                    class_type: CLIPTextEncode
+                                  positive:
+                                    inputs:
+                                      clip:
+                                        inputs:
+                                          clip:
+                                            inputs:
+                                              ckpt_name: sd_xl_base_1.0.safetensors
+                                            class_type: CheckpointLoaderSimple
+                                          model:
+                                            inputs:
+                                              ckpt_name: sd_xl_base_1.0.safetensors
+                                            class_type: CheckpointLoaderSimple
+                                          lora_name: pixel-art-xl-v1.1.safetensors
+                                          strength_clip: 1
+                                          strength_model: 1
+                                        class_type: LoraLoader
+                                      text: duck with a gun in each hand, minimalist, flat
+                                    class_type: CLIPTextEncode
+                                  scheduler: karras
+                                  latent_image:
+                                    inputs:
+                                      width: 1024
+                                      height: 1024
+                                      batch_size: 1
+                                    class_type: EmptyLatentImage
+                                  sampler_name: euler_ancestral
+                                class_type: KSampler
+                            class_type: VAEDecode
+                          scale_by: 0.125
+                          upscale_method: nearest-exact
+                        class_type: ImageScaleBy
+                      scale_by: 8
+                      upscale_method: nearest-exact
+                    class_type: ImageScaleBy
+                  filename_prefix: pixelbuildings128-v1-upscale-x8-
+                class_type: SaveImage
+            workflow:
+              extra: {}
+              links:
+                -   - 4
+                    - 6
+                    - 0
+                    - 3
+                    - 1
+                    - CONDITIONING
+                -   - 6
+                    - 7
+                    - 0
+                    - 3
+                    - 2
+                    - CONDITIONING
+                -   - 29
+                    - 3
+                    - 0
+                    - 25
+                    - 0
+                    - LATENT
+                -   - 46
+                    - 4
+                    - 2
+                    - 25
+                    - 1
+                    - VAE
+                -   - 50
+                    - 4
+                    - 0
+                    - 39
+                    - 0
+                    - MODEL
+                -   - 51
+                    - 4
+                    - 1
+                    - 39
+                    - 1
+                    - CLIP
+                -   - 52
+                    - 39
+                    - 1
+                    - 6
+                    - 0
+                    - CLIP
+                -   - 53
+                    - 39
+                    - 1
+                    - 7
+                    - 0
+                    - CLIP
+                -   - 54
+                    - 39
+                    - 0
+                    - 3
+                    - 0
+                    - MODEL
+                -   - 55
+                    - 40
+                    - 0
+                    - 3
+                    - 3
+                    - LATENT
+                -   - 56
+                    - 25
+                    - 0
+                    - 26
+                    - 0
+                    - IMAGE
+                -   - 57
+                    - 25
+                    - 0
+                    - 42
+                    - 0
+                    - IMAGE
+                -   - 58
+                    - 42
+                    - 0
+                    - 43
+                    - 0
+                    - IMAGE
+                -   - 59
+                    - 25
+                    - 0
+                    - 38
+                    - 0
+                    - IMAGE
+                -   - 60
+                    - 42
+                    - 0
+                    - 44
+                    - 0
+                    - IMAGE
+                -   - 61
+                    - 42
+                    - 0
+                    - 45
+                    - 0
+                    - IMAGE
+                -   - 62
+                    - 45
+                    - 0
+                    - 46
+                    - 0
+                    - IMAGE
+                -   - 63
+                    - 45
+                    - 0
+                    - 47
+                    - 0
+                    - IMAGE
+              nodes:
+                - id: 25
+                  pos:
+                    - 1238
+                    - 189
+                  mode: 0
+                  size:
+                    '0': 210
+                    '1': 46
+                  type: VAEDecode
+                  flags: {}
+                  order: 6
+                  inputs:
+                    - link: 29
+                      name: samples
+                      type: LATENT
+                    - link: 46
+                      name: vae
+                      type: VAE
+                      slot_index: 1
+                  outputs:
+                    - name: IMAGE
+                      type: IMAGE
+                      links:
+                        - 56
+                        - 57
+                        - 59
+                      shape: 3
+                      slot_index: 0
+                  properties:
+                    Node name for S&R: VAEDecode
+                - id: 38
+                  pos:
+                    - 1405
+                    - -187
+                  mode: 0
+                  size:
+                    '0': 315
+                    '1': 270
+                  type: SaveImage
+                  flags: {}
+                  order: 9
+                  inputs:
+                    - link: 59
+                      name: images
+                      type: IMAGE
+                  properties: {}
+                  widgets_values:
+                    - pixelbuildings128-v1-raw-
+                - id: 44
+                  pos:
+                    - 1826
+                    - -188
+                  mode: 0
+                  size:
+                    '0': 315
+                    '1': 270
+                  type: SaveImage
+                  flags: {}
+                  order: 11
+                  inputs:
+                    - link: 60
+                      name: images
+                      type: IMAGE
+                  properties: {}
+                  widgets_values:
+                    - pixelbuildings128-v1-downscale-x8-
+                - id: 47
+                  pos:
+                    - 2235
+                    - -199
+                  mode: 0
+                  size:
+                    '0': 315
+                    '1': 270
+                  type: SaveImage
+                  flags: {}
+                  order: 14
+                  inputs:
+                    - link: 63
+                      name: images
+                      type: IMAGE
+                  properties: {}
+                  widgets_values:
+                    - pixelbuildings128-v1-upscale-x8-
+                - id: 26
+                  pos:
+                    - 1289
+                    - 353
+                  mode: 0
+                  size:
+                    '0': 439.6647644042969
+                    '1': 465.1236267089844
+                  type: PreviewImage
+                  flags: {}
+                  order: 7
+                  title: Preview Raw Image
+                  inputs:
+                    - link: 56
+                      name: images
+                      type: IMAGE
+                  properties:
+                    Node name for S&R: PreviewImage
+                - id: 40
+                  pos:
+                    - 275
+                    - 669
+                  mode: 0
+                  size:
+                    '0': 315
+                    '1': 106
+                  type: EmptyLatentImage
+                  flags: {}
+                  order: 0
+                  outputs:
+                    - name: LATENT
+                      type: LATENT
+                      links:
+                        - 55
+                      shape: 3
+                      slot_index: 0
+                  properties:
+                    Node name for S&R: EmptyLatentImage
+                  widgets_values:
+                    - 1024
+                    - 1024
+                    - 1
+                - id: 4
+                  pos:
+                    - -449
+                    - 344
+                  mode: 0
+                  size:
+                    '0': 315
+                    '1': 98
+                  type: CheckpointLoaderSimple
+                  flags: {}
+                  order: 1
+                  title: Load Base Safetensors
+                  outputs:
+                    - name: MODEL
+                      type: MODEL
+                      links:
+                        - 50
+                      slot_index: 0
+                    - name: CLIP
+                      type: CLIP
+                      links:
+                        - 51
+                      slot_index: 1
+                    - name: VAE
+                      type: VAE
+                      links:
+                        - 46
+                      slot_index: 2
+                  properties:
+                    Node name for S&R: CheckpointLoaderSimple
+                  widgets_values:
+                    - sd_xl_base_1.0.safetensors
+                - id: 39
+                  pos:
+                    - -64
+                    - 191
+                  mode: 0
+                  size:
+                    '0': 315
+                    '1': 126
+                  type: LoraLoader
+                  flags: {}
+                  order: 2
+                  inputs:
+                    - link: 50
+                      name: model
+                      type: MODEL
+                    - link: 51
+                      name: clip
+                      type: CLIP
+                  outputs:
+                    - name: MODEL
+                      type: MODEL
+                      links:
+                        - 54
+                      shape: 3
+                      slot_index: 0
+                    - name: CLIP
+                      type: CLIP
+                      links:
+                        - 52
+                        - 53
+                      shape: 3
+                      slot_index: 1
+                  properties:
+                    Node name for S&R: LoraLoader
+                  widgets_values:
+                    - pixel-art-xl-v1.1.safetensors
+                    - 1
+                    - 1
+                - id: 42
+                  pos:
+                    - 722
+                    - -292
+                  mode: 0
+                  size:
+                    '0': 315
+                    '1': 82
+                  type: ImageScaleBy
+                  flags: {}
+                  order: 8
+                  inputs:
+                    - link: 57
+                      name: image
+                      type: IMAGE
+                  outputs:
+                    - name: IMAGE
+                      type: IMAGE
+                      links:
+                        - 58
+                        - 60
+                        - 61
+                      shape: 3
+                      slot_index: 0
+                  properties:
+                    Node name for S&R: ImageScaleBy
+                  widgets_values:
+                    - nearest-exact
+                    - 0.125
+                - id: 45
+                  pos:
+                    - 732
+                    - -148
+                  mode: 0
+                  size:
+                    '0': 315
+                    '1': 82
+                  type: ImageScaleBy
+                  flags: {}
+                  order: 12
+                  inputs:
+                    - link: 61
+                      name: image
+                      type: IMAGE
+                  outputs:
+                    - name: IMAGE
+                      type: IMAGE
+                      links:
+                        - 62
+                        - 63
+                      shape: 3
+                      slot_index: 0
+                  properties:
+                    Node name for S&R: ImageScaleBy
+                  widgets_values:
+                    - nearest-exact
+                    - 8
+                - id: 43
+                  pos:
+                    - 2093
+                    - 111
+                  mode: 0
+                  size:
+                    '0': 218.78794860839844
+                    '1': 246
+                  type: PreviewImage
+                  flags: {}
+                  order: 10
+                  inputs:
+                    - link: 58
+                      name: images
+                      type: IMAGE
+                  properties:
+                    Node name for S&R: Downscale
+                - id: 6
+                  pos:
+                    - 1795
+                    - 345
+                  mode: 0
+                  size:
+                    '0': 422.84503173828125
+                    '1': 164.31304931640625
+                  type: CLIPTextEncode
+                  flags: {}
+                  order: 3
+                  title: Prompt Positive
+                  inputs:
+                    - link: 52
+                      name: clip
+                      type: CLIP
+                  outputs:
+                    - name: CONDITIONING
+                      type: CONDITIONING
+                      links:
+                        - 4
+                      slot_index: 0
+                  properties:
+                    Node name for S&R: CLIPTextEncode
+                  widgets_values:
+                    - duck with a gun in each hand, minimalist, flat
+                - id: 7
+                  pos:
+                    - 1795
+                    - 561
+                  mode: 0
+                  size:
+                    '0': 425.27801513671875
+                    '1': 180.6060791015625
+                  type: CLIPTextEncode
+                  flags: {}
+                  order: 4
+                  title: Prompt Negative
+                  inputs:
+                    - link: 53
+                      name: clip
+                      type: CLIP
+                  outputs:
+                    - name: CONDITIONING
+                      type: CONDITIONING
+                      links:
+                        - 6
+                      slot_index: 0
+                  properties:
+                    Node name for S&R: CLIPTextEncode
+                  widgets_values:
+                    - low quality, blurry, deformed, watermark, text, signature, depth of field, photoreal, shadow
+                - id: 3
+                  pos:
+                    - 869
+                    - 153
+                  mode: 0
+                  size:
+                    '0': 315
+                    '1': 262
+                  type: KSampler
+                  flags: {}
+                  order: 5
+                  title: Base KSampler
+                  inputs:
+                    - link: 54
+                      name: model
+                      type: MODEL
+                    - link: 4
+                      name: positive
+                      type: CONDITIONING
+                    - link: 6
+                      name: negative
+                      type: CONDITIONING
+                    - link: 55
+                      name: latent_image
+                      type: LATENT
+                  outputs:
+                    - name: LATENT
+                      type: LATENT
+                      links:
+                        - 29
+                      slot_index: 0
+                  properties:
+                    Node name for S&R: KSampler
+                  widgets_values:
+                    - 1105676806645955
+                    - randomize
+                    - 20
+                    - 7
+                    - euler_ancestral
+                    - karras
+                    - 1
+                - id: 46
+                  pos:
+                    - 2348
+                    - 377
+                  mode: 0
+                  size:
+                    '0': 410.6667175292969
+                    '1': 473
+                  type: PreviewImage
+                  flags: {}
+                  order: 13
+                  inputs:
+                    - link: 62
+                      name: images
+                      type: IMAGE
+                  properties:
+                    Node name for S&R: PreviewImage
+              config: {}
+              groups: []
+              version: 0.4
+              last_link_id: 63
+              last_node_id: 47
+          width: 1024
+          height: 1024
+          models:
+            - sd_xl_base_1.0.safetensors
+          denoise: 1
+          additionalResources:
+            - name: pixel-art-xl-v1.1.safetensors
+              type: lora
+              strength: 1
+              strengthClip: 1
+        post:
+          username: CaveJohns0n
+          created_at: '2023-08-14T19:45:58.302Z'
+

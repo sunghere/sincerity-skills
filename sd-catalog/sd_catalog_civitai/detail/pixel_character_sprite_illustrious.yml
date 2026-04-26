@@ -1,0 +1,336 @@
+schema_version: 1
+kind: civitai_model_detail
+model_key: pixel_character_sprite_illustrious
+sources:
+  civitai_api: "https://civitai.com/api/v1/models/:modelId"
+  generated_at: "2026-04-25"
+  append_policy: "Append new entries under models using normalized local filename keys."
+
+model:
+  local_file: "pixel_character_sprite_illustrious.safetensors"
+  catalog_type: lora
+  base_model: illustrious
+  base_model_raw: "Illustrious"
+
+  civitai:
+    model_id: 1936887
+    model_url: "https://civitai.com/models/1936887/game-character-sprites-assets-generator-retro-rpg-video-game-dev-2d-pixel-art"
+    air:
+    version_id: 2192164
+    model_name: "Game Character Sprites / Assets Generator / Retro / RPG / Video Game Dev / 2D / Pixel Art"
+    version_name: "v1.0"
+    creator: "news_v_com"
+    nsfw: false
+    tags: [pixel_art, concept, retro, asset, generator, pixel, 2d, rpg, video_game, game, sprite, game_dev]
+    trained_words:
+      - "pixel_character_sprite, pxlchrctrsprt, sprite, sprite sheet, sprite art, pixel, (pixel art:1.5), retro game, retro,
+        vibrant colors, pixelated, multiple views, concept art, (chibi:1.5), from side, looking away, from behind, back, white
+        background, <lora:pixel_character_sprite_illustrious:0.7>"
+    files:
+      - "pixel_character_sprite_illustrious.safetensors"
+    download_url: "https://civitai.com/api/download/models/2192164"
+
+  compatibility:
+    checkpoint_family: illustrious
+    lora_compatible_base_models: [illustrious]
+    recommended_for: [sprite, sprite_sheet, game_asset, pixel_art, rpg]
+    not_recommended_for: [sd1.5, flux]
+
+  generation:
+    lora_weight:
+      recommended: 0.7
+      range: [0.5, 0.9]
+
+  prompting:
+    trigger_words:
+      - pixel_character_sprite
+      - pxlchrctrsprt
+      - sprite
+      - sprite sheet
+      - sprite art
+    helpful_tags:
+      - pixel
+      - pixel art:1.5
+      - retro game
+      - vibrant colors
+      - multiple views
+      - concept art
+      - chibi:1.5
+      - white background
+
+  raw_notes: |
+    Prompt from card includes <lora:pixel_character_sprite_illustrious:0.7>.
+    Strongly oriented toward multiple-view game character sprite sheets and retro RPG assets.
+
+  review:
+    status: api_enriched
+    missing:
+      - air
+
+    sample_status: api_enriched
+    sample_count: 6
+    nsfw_samples_present: false
+  samples:
+    status: api_enriched
+    source: civitai
+    fetched_at: '2026-04-25'
+    model_id: 1936887
+    version_id: 2192164
+    count: 6
+    items:
+      - image_id: 98937064
+        image_url: 
+          https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/c58a7dd8-898f-4ca0-9e7a-18103a726db3/original=true/c58a7dd8-898f-4ca0-9e7a-18103a726db3.mp4
+        page_url: https://civitai.com/posts/21952546
+        nsfw: false
+        width: 600
+        height: 600
+        prompt:
+        negative_prompt:
+        generation:
+          seed:
+          steps:
+          cfg_scale:
+          sampler:
+          scheduler:
+          clip_skip:
+          size: 600x600
+          model_hash:
+        resources: []
+        tags: []
+        post:
+          username: news_v_com
+          created_at: '2025-09-07T15:21:05.124Z'
+      - image_id: 98937758
+        image_url: 
+          https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/c81ba54d-68b5-44aa-ae56-a002a3f2e684/original=true/c81ba54d-68b5-44aa-ae56-a002a3f2e684.jpeg
+        page_url: https://civitai.com/posts/21952492
+        nsfw: false
+        width: 2048
+        height: 2048
+        prompt: |-
+          pixel_character_sprite, pxlchrctrsprt, sprite, sprite sheet, sprite art, pixel, (pixel art:1.5), retro game, retro, vibrant colors, pixelated, multiple views, concept art, (chibi:1.5), from side, looking away, from behind, back, 1girl, 
+          white background, 
+          asuna \(blue archive\), white shirt, skirt, 
+          <lora:pixel_character_sprite_illustrious:0.7>
+        negative_prompt:
+        generation:
+          seed: 1351907165
+          steps: 100
+          cfg_scale: 5
+          sampler: Euler a
+          scheduler:
+          clip_skip: 2
+          size: 2048x2048
+          model_hash: 1a66b7e7f5
+        resources:
+          - type: lora
+            name: pixel_character_sprite_illustrious
+            model_id:
+            version_id:
+            weight: 0.7
+          - type: model
+            name: prefectIllustriousXL_v3
+            model_id:
+            version_id:
+            weight:
+        tags: []
+        raw_meta:
+          Model: prefectIllustriousXL_v3
+          hashes:
+            model: 1a66b7e7f5
+            lora:pixel_character_sprite_illustrious: c3a5919a7312
+          Version: f1.1.5-v1.10.1RC-latest-881-ga7fec33d
+          Mask blur: '8'
+          Inpaint area: Only masked
+          Schedule type: Automatic
+          Denoising strength: '0.15'
+          Masked area padding: '32'
+          Ultimate SD upscale padding: '32'
+          Ultimate SD upscale upscaler: R-ESRGAN 4x+
+          Ultimate SD upscale mask_blur: '8'
+          Ultimate SD upscale tile_width: '1024'
+          Ultimate SD upscale tile_height: '1024'
+        post:
+          username: news_v_com
+          created_at: '2025-09-07T15:27:04.995Z'
+      - image_id: 98937252
+        image_url: 
+          https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/065394f5-4edb-48e1-b014-d0cf97a7a6af/original=true/065394f5-4edb-48e1-b014-d0cf97a7a6af.jpeg
+        page_url: https://civitai.com/posts/21952595
+        nsfw: false
+        width: 1024
+        height: 1024
+        prompt: |-
+          pixel_character_sprite, pxlchrctrsprt, sprite, sprite sheet, sprite art, pixel, (pixel art:1.5), retro game, retro, vibrant colors, pixelated, multiple views, concept art, (chibi:1.5), from side, looking away, from behind, back, 1girl, 
+          white background, 
+          lumine \(genshin impact\), 
+          <lora:pixel_character_sprite_illustrious:0.7>
+        negative_prompt:
+        generation:
+          seed: 3721704040
+          steps: 15
+          cfg_scale: 5
+          sampler: Euler a
+          scheduler:
+          clip_skip: 2
+          size: 1024x1024
+          model_hash: 1a66b7e7f5
+        resources:
+          - type: lora
+            name: pixel_character_sprite_illustrious
+            model_id:
+            version_id:
+            weight: 0.7
+          - type: model
+            name: prefectIllustriousXL_v3
+            model_id:
+            version_id:
+            weight:
+        tags: []
+        raw_meta:
+          Model: prefectIllustriousXL_v3
+          hashes:
+            model: 1a66b7e7f5
+            lora:pixel_character_sprite_illustrious: c3a5919a7312
+          Version: f1.1.5-v1.10.1RC-latest-881-ga7fec33d
+          Schedule type: Automatic
+        post:
+          username: news_v_com
+          created_at: '2025-09-07T15:22:51.907Z'
+      - image_id: 98937551
+        image_url: 
+          https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/c25ee112-87db-4fdc-a8c6-fd5415239826/original=true/c25ee112-87db-4fdc-a8c6-fd5415239826.jpeg
+        page_url: https://civitai.com/posts/21952679
+        nsfw: false
+        width: 1024
+        height: 1024
+        prompt: |-
+          pixel_character_sprite, pxlchrctrsprt, sprite, sprite sheet, sprite art, pixel, (pixel art:1.5), retro game, retro, vibrant colors, pixelated, multiple views, concept art, (chibi:1.5), from side, looking away, from behind, back, 1girl, 
+          white background, 
+          hu tao \(genshin impact\), 
+          <lora:pixel_character_sprite_illustrious:0.7>
+        negative_prompt:
+        generation:
+          seed: 3809825424
+          steps: 15
+          cfg_scale: 5
+          sampler: Euler a
+          scheduler:
+          clip_skip: 2
+          size: 1024x1024
+          model_hash: 1a66b7e7f5
+        resources:
+          - type: lora
+            name: pixel_character_sprite_illustrious
+            model_id:
+            version_id:
+            weight: 0.7
+          - type: model
+            name: prefectIllustriousXL_v3
+            model_id:
+            version_id:
+            weight:
+        tags: []
+        raw_meta:
+          Model: prefectIllustriousXL_v3
+          hashes:
+            model: 1a66b7e7f5
+            lora:pixel_character_sprite_illustrious: c3a5919a7312
+          Version: f1.1.5-v1.10.1RC-latest-881-ga7fec33d
+          Schedule type: Automatic
+        post:
+          username: news_v_com
+          created_at: '2025-09-07T15:25:06.945Z'
+      - image_id: 98937108
+        image_url: 
+          https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/0c778161-c018-471b-905c-eedcc24ebd3c/original=true/0c778161-c018-471b-905c-eedcc24ebd3c.jpeg
+        page_url: https://civitai.com/posts/21952568
+        nsfw: false
+        width: 2048
+        height: 1222
+        prompt: |-
+          pixel_character_sprite, pxlchrctrsprt, sprite, sprite sheet, sprite art, pixel, (pixel art:1.5), retro game, retro, vibrant colors, pixelated, multiple views, concept art, (chibi:1.5), from side, looking away, from behind, back, 1girl, 
+          white background, 
+          asuna \(blue archive\), white shirt, skirt, 
+          <lora:pixel_character_sprite_illustrious:0>
+        negative_prompt:
+        generation:
+          seed: 1682560818
+          steps: 15
+          cfg_scale: 5
+          sampler: Euler a
+          scheduler:
+          clip_skip: 2
+          size: 1024x1024
+          model_hash: 1a66b7e7f5
+        resources:
+          - type: lora
+            name: pixel_character_sprite_illustrious
+            model_id:
+            version_id:
+            weight: 0
+          - type: model
+            name: prefectIllustriousXL_v3
+            model_id:
+            version_id:
+            weight:
+        tags: []
+        raw_meta:
+          Model: prefectIllustriousXL_v3
+          Script: X/Y/Z plot
+          X Type: Prompt S/R
+          hashes:
+            model: 1a66b7e7f5
+            lora:pixel_character_sprite_illustrious: c3a5919a7312
+          Version: f1.1.5-v1.10.1RC-latest-881-ga7fec33d
+          X Values:
+            pixel_character_sprite_illustrious: 0.7>
+          Schedule type: Automatic
+        post:
+          username: news_v_com
+          created_at: '2025-09-07T15:21:55.174Z'
+      - image_id: 98937294
+        image_url: 
+          https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/8f4cd4ae-31ff-4d01-9fef-363accbf17b8/original=true/8f4cd4ae-31ff-4d01-9fef-363accbf17b8.jpeg
+        page_url: https://civitai.com/posts/21952609
+        nsfw: false
+        width: 1024
+        height: 1024
+        prompt: |-
+          pixel_character_sprite, pxlchrctrsprt, sprite, sprite sheet, sprite art, pixel, (pixel art:1.5), retro game, retro, vibrant colors, pixelated, multiple views, concept art, (chibi:1.5), from side, looking away, from behind, back, 1girl, 
+          white background, 
+          creature, no humans, goblin,  
+          <lora:pixel_character_sprite_illustrious:0.7>
+        negative_prompt:
+        generation:
+          seed: 501964202
+          steps: 15
+          cfg_scale: 5
+          sampler: Euler a
+          scheduler:
+          clip_skip: 2
+          size: 1024x1024
+          model_hash: 1a66b7e7f5
+        resources:
+          - type: lora
+            name: pixel_character_sprite_illustrious
+            model_id:
+            version_id:
+            weight: 0.7
+          - type: model
+            name: prefectIllustriousXL_v3
+            model_id:
+            version_id:
+            weight:
+        tags: []
+        raw_meta:
+          Model: prefectIllustriousXL_v3
+          hashes:
+            model: 1a66b7e7f5
+            lora:pixel_character_sprite_illustrious: c3a5919a7312
+          Version: f1.1.5-v1.10.1RC-latest-881-ga7fec33d
+          Schedule type: Automatic
+        post:
+          username: news_v_com
+          created_at: '2025-09-07T15:23:23.329Z'

@@ -1,0 +1,155 @@
+schema_version: 1
+kind: civitai_model_detail
+model_key: pixelartdiffusionxl_spriteshaper
+sources:
+  civitai_api: "https://civitai.com/api/v1/models/:modelId"
+  generated_at: "2026-04-25"
+  append_policy: "Append new entries under models using normalized local filename keys."
+
+model:
+  local_file: "pixelArtDiffusionXL_spriteShaper.safetensors"
+  catalog_type: checkpoint
+  base_model: sdxl
+  base_model_raw: "SDXL 1.0"
+
+  civitai:
+    model_id: 277680
+    model_url: "https://civitai.com/models/277680/pixel-art-diffusion-xl"
+    air:
+    version_id:
+    model_name: "Pixel Art Diffusion XL"
+    version_name:
+    creator:
+    nsfw:
+    tags: []
+    trained_words: []
+    files:
+      - "pixelArtDiffusionXL_spriteShaper.safetensors"
+    download_url:
+
+  compatibility:
+    checkpoint_family: sdxl
+    lora_compatible_base_models: [sdxl]
+    recommended_for: [pixel_art, game_design, sprites, profile_picture, animation, commercial_inspiration]
+    not_recommended_for: [sd1.5_lora, flux_lora]
+
+  generation:
+    sampler:
+      examples_seen: ["DPM++ 2M SDE"]
+    steps:
+      recommended: [30, 50]
+      examples_seen: [20]
+    cfg_scale:
+      recommended: [4, 12]
+      examples_seen: [4]
+    resolution:
+      recommended:
+        - "1024x1024"
+        - "768x1024"
+      aspect_ratios:
+        - "16:9"
+        - "4:3"
+        - "6:13"
+    hires_fix:
+      recommended: true
+      upscalers:
+        - "4x_foolhardy_Remacri"
+        - "4xUltraSharp"
+      denoising_strength:
+        max: 0.25
+      notes: "Use very low denoise while upscaling; values above 0.25 may distort the image."
+    vae:
+      recommended: "XL_VAE_C (xlVAEC_g102.safetensors)"
+
+  prompting:
+    notes:
+      - "Keep prompts simple and focused."
+      - "Use 'Pixel Art' at the start or near the beginning of the prompt."
+      - "Use words such as 16 bit, 32 bit, and 64 bit to reinforce the style."
+      - "Avoid style words that conflict with pixel art, especially early in the prompt."
+      - "Some LoRAs may remove the pixel-art style."
+    helpful_tags:
+      - Pixel Art
+      - 16 bit
+      - 32 bit
+      - 64 bit
+    avoid_early_prompt_tags:
+      - realistic
+      - Photography
+      - hyper detailed
+    quality_tags:
+      positive:
+        - masterpiece
+        - high score
+        - great score
+        - absurdres
+    negative_prompt:
+      recommended:
+        - lowres
+        - bad anatomy
+        - bad hands
+        - text
+        - error
+        - missing finger
+        - extra digits
+        - fewer digits
+        - cropped
+        - worst quality
+        - low quality
+        - low score
+        - bad score
+        - average score
+        - signature
+        - watermark
+        - username
+        - blurry
+
+  samples:
+    status: local_curated
+    source: Stable-diffusion-info.md
+    fetched_at: '2026-04-25'
+    model_id: 277680
+    version_id:
+    count: 1
+    items:
+      - image_id: local-pixelartdiffusionxl_spriteshaper-1
+        image_url:
+        page_url: "https://civitai.com/models/277680/pixel-art-diffusion-xl"
+        nsfw: false
+        width:
+        height:
+        prompt: |-
+          drawing of a boy and girl holding hands under an umbrella, pixel art style, black background, simple background, white shirts, black hair, red bowtie, holding hands, boy on the left, girl on the right, dutch angle, dynamic angle, close up, upper body, small breasts, burgundy, rouge, alizarin, royal purple, indigo, deep blue, masterpiece, high score, great score, absurdres
+        negative_prompt: |-
+          lowres, bad anatomy, bad hands, text, error, missing finger, extra digits, fewer digits, cropped, worst quality, low quality, low score, bad score, average score, signature, watermark, username, blurry
+        generation:
+          seed:
+          steps: 20
+          cfg_scale: 4
+          sampler: "DPM++ 2M SDE"
+          scheduler:
+          clip_skip:
+          size:
+          model_hash:
+        resources: []
+        tags:
+          - "PIXEL ART"
+  raw_notes: |
+    Base Model: SDXL 1.0.
+    This checkpoint can be hard to use without following its prompting and upscaling guidance.
+    It is not a perfect pixel-art image creator; generated pixels may vary slightly in size.
+    Best uses include game design inspiration, profile pictures, learning pixel art, animations, and experimentation.
+
+  review:
+    status: user_curated
+    missing:
+      - civitai.air
+      - civitai.version_id
+      - civitai.version_name
+      - civitai.creator
+      - civitai.nsfw
+      - civitai.tags
+      - civitai.download_url
+    sample_status: local_curated
+    sample_count: 1
+    nsfw_samples_present: false
