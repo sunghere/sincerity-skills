@@ -133,6 +133,70 @@ af workflow gen ... --dry-run
 
 ---
 
+## 디스커버리 메타 — task → variant 결정
+
+`/api/workflows/catalog` 응답의 각 변형에는 다음 메타가 포함된다 (rule-based
+의사결정에 충분):
+
+```jsonc
+// af workflow describe sprite/pixel_alpha 의 응답 일부
+{
+  "use_cases":  ["게임 엔진용 캐릭터 sprite ...", ...],
+  "not_for":    ["단일 view 일러스트 → illustration/* 사용", ...],
+  "tags": {
+    "kind": "character",
+    "style": "pixel-art",
+    "format": "multi-view-1x3",
+    "output": "alpha-pixel",
+    "model_family": "illustrious"
+  },
+  "character_proportions": { "head_ratio": 2.5, "view_count": 3, "chibi": true },
+  "prompt_template": {
+    "skeleton": "{gender_count}, {hair_features}, ...",
+    "model_triggers":  ["pixel_character_sprite, sprite, ..."],
+    "required_tokens": [{ "placeholder": "{gender_count}", "examples": ["1girl", "1boy"] }, ...],
+    "forbidden_tokens":[{ "token": "(chibi:1.4)", "reason": "ControlNet 충돌 ..." }, ...],
+    "examples":        [{ "prompt": "1girl, ...", "seed": 42, "note": "검증된 prompt" }]
+  },
+  "cost":     { "est_seconds": 45, "vram_gb": 12 },
+  "pitfalls": ["검 든 캐릭터: ...", ...],
+  "related":  { "sibling": ["sprite/hires", ...], "upstream": ["sprite/v36_pro_stage1"] }
+}
+```
+
+### 의사결정 흐름
+
+1. **task 받음** → 의도 파싱 (예: "우리 게임 캐릭터 도트")
+2. **tag 매핑** → `kind=character, style=pixel-art`
+3. **추천 호출**:
+   ```bash
+   af workflow recommend --kind character --style pixel-art --output alpha-pixel
+   # → score 1.0 변형 리스트 (primary 우선). LLM 이 즉시 결정 가능.
+   ```
+4. **prompt 채우기** — `prompt_template.skeleton` 의 placeholder 를 `required_tokens.examples` 참고해 채움. `model_triggers` 가 있으면 prompt 앞에 prepend (예: Pony 의 `score_9, score_8_up, score_7_up`).
+5. **forbidden_tokens 회피** — `(chibi:1.4)` 같은 충돌 토큰은 prompt 에 넣지 않음 (워크플로우와 충돌).
+6. **cost / pitfalls** — 배치 ETA 계산, 사용자에게 함정 미리 안내.
+
+### tag 어휘 (현재 매니페스트 기준)
+
+| 축 | 값 |
+|---|---|
+| `kind` | `character` / `background` / `icon` / `illustration` / `utility` |
+| `style` | `pixel-art` / `anime` / `flat` |
+| `format` | `single` / `multi-view-1x3` / `tile` |
+| `output` | `alpha-pixel` / `alpha-rembg` / `raw` / `hires` / `pose` |
+| `model_family` | `illustrious` / `sdxl-anime` / `pony` / `sd1.5` / `sdxl-pixel` / `pony-pixel` |
+
+새로운 변형이 추가되면 어휘가 확장될 수 있음 — `recommend` 호출 결과를 그대로 신뢰.
+
+### 모델별 트리거 주의
+
+- **Pony** (`illustration/pony_*`, `pixel_bg/pony_*`): `score_9, score_8_up, score_7_up` prefix 필수. `prompt_template.model_triggers` 에 명시됨.
+- **sprite LoRA** (`sprite/*`): `pixel_character_sprite, sprite, sprite sheet, (pixel art:1.5), white background` 트리거. **`<lora:...:0.7>` syntax 는 박지 말 것** — LoRA 노드가 워크플로우에 박혀있어 이중 로드.
+- **sprite chibi 가중치 금지**: `(chibi:1.4)` / `(chibi:1.5)` 강조는 ControlNet stick figure 와 충돌 — `chibi` 단어 자체만 (가중치 없이).
+
+---
+
 ## 동적 입력 (PoseExtract / ControlNet) — 사용법
 
 특정 변형은 사용자 이미지를 입력으로 받는다 (예: `sprite/pose_extract`, ControlNet 변형).
