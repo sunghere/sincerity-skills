@@ -1,15 +1,96 @@
-# 프롬프트 노하우 (v4 — ComfyUI 워크플로우 시대)
+# 프롬프트 작성 노하우 — Reference
 
-> SKILL.md 본문은 핵심만 다룬다. 이 파일은 까다로운 케이스 (다인원·속성 보호·시리즈 통일 등) 대응용.
+> §1.B (PR #42) 머지 후 *서버가 자동으로 base_positive / base_negative 합성*. 사용자/에이전트는 `subject` (캐릭터 묘사만) 입력하면 됨.
 >
-> ⚠️ v4 의 변화: 모델·LoRA·step·cfg 같은 SD 파라미터는 **에이전트가 만지지 않는다**. 변형(variant) 이 다 박고 있다. 이 문서는 **prompt 본문 작성** 노하우만 다룬다.
+> 이 파일은 **subject 작성 디테일** + **legacy 모드 호출 시 직접 작성** + **시리즈 통일성/속성 보호/다인원 같은 까다로운 케이스** 노하우 모음.
+>
+> SKILL.md 본문의 변형 선택 4-step + Pitfalls 만으로 충분한 일반 케이스에는 안 본다.
 
-## 1. 카테고리별 prompt 문법 (변형이 자동 처리하는 것 vs 에이전트가 적는 것)
+---
 
-### sprite/* (V38 / V37 라인업)
-- 워크플로우가 자동 prepend: `pixel art, sprite, three views, ...`
-- 등신·layout 은 **pose grid 가 결정** (prompt 영향 X)
-- 에이전트가 적는 본문: 캐릭터 묘사 + 의상 + 장비 + 표정/포즈 의도
+## 1. `subject` 입력 가이드 (subject 모드 — 권장)
+
+### 1.1 어떻게 쓰나
+
+`meta.prompt_template.user_slot.examples` 1개 복사 → 변형 → `--subject` 인자.
+
+```bash
+# catalog 의 examples 보기
+af workflow describe sprite/pixel_alpha
+# → user_slot.examples: ["1girl, silver hair...", "1boy, brown spiky hair...", ...]
+
+# 그대로 변형
+af workflow gen sprite/pixel_alpha proj test \
+   --subject "1girl, (black hair:1.2), long hair, blue knight armor, (holding silver sword:1.3), red cape, fantasy warrior" \
+   --wait
+```
+
+### 1.2 규칙
+
+- **캐릭터 묘사만** — 외형 (성별/머리/눈/체형) + 복장 + 무기 + 액션 + 표정
+- **금지** — 스타일 (`pixel art`), 구도 (`full body`), 배경 (`white background`), 레이아웃 (`1x3 grid`). 이 모두 `base_positive` 가 처리.
+- **금지** — `(chibi:1.4)` 같은 chibi 가중치 강조. ControlNet stick figure 가 등신 결정 → 충돌.
+- **금지** — `<lora:xxx:0.7>` syntax. 워크플로우 JSON 의 LoRA 노드와 이중 로드.
+
+### 1.3 Pony 변형 — score 자동
+
+`illustration/pony_*`, `pixel_bg/pony_*` 변형은 `base_positive` 에 `score_9, score_8_up, score_7_up` 자동 prepend. **사용자가 직접 박을 필요 없음** (legacy 모드에서만 필요).
+
+### 1.4 검 들기 trick
+
+검 든 캐릭터 호출 시 동사 묶기:
+
+```
+(holding silver sword:1.3), sword in right hand, gripping sword tightly
+```
+
+`base_negative` 에 `floating sword, detached weapon, levitating sword, weapon hovering` 등 8개 이미 박혀있어도 prompt 가 약하면 검 떠다님.
+
+---
+
+## 2. 속성 보호 (시리즈 통일성)
+
+### 2.1 머리 색 유지
+
+같은 캐릭터를 N장 뽑을 때, 머리 색이 변하면 시리즈 통일성 깨짐.
+
+```bash
+# subject 에 명시
+--subject "1girl, (silver hair:1.3), long hair, ..."
+
+# negative 에 경쟁 색 명시 — 유지율 +20~30%
+--negative-prompt "pink hair, gold hair, brown hair, blonde hair, red hair, green hair, blue hair"
+```
+
+→ `negative_prompt` 는 `base_negative` 에 *append* 됨 (override 아님).
+
+### 2.2 시리즈에서 캐릭터 일관성
+
+```bash
+# seed 고정 + candidates=1 반복
+SEED=42
+for pose in idle walk run attack; do
+  af workflow gen sprite/pixel_alpha proj_series ${pose} \
+     --subject "1girl, silver hair twin tails, school uniform, ${pose}" \
+     --seed $SEED --candidates 1 --wait
+done
+```
+
+> 매번 다른 seed 면 미세 변화 누적 → 캐릭터 다른 사람으로 보임. seed 고정 + subject 만 미세 조정.
+
+### 2.3 LoRA 트리거가 약할 때
+
+`base_positive` 의 LoRA 트리거 (e.g. `pixel_character_sprite`) 가 약해 보이면 — **prompt 에서 강화하지 마라**. 트리거가 강도가 정해져 있고 (워크플로우 JSON 의 노드), prompt 에 중복 적어도 효과 거의 없음.
+
+→ 강화 필요하면 워크플로우 JSON 의 LoRA 노드 strength 변경 (asset-factory 개발자 PR 단위).
+
+---
+
+## 3. legacy 모드 (직접 prompt 작성)
+
+`prompt_template == null` 인 utility 변형 (`pose_extract`) 또는 `prompt_mode: legacy` 강제 시.
+
+### 3.1 sprite/* (V38 legacy)
 
 ```
 1girl, (black hair:1.2), (side ponytail:1.3), long hair,
@@ -17,142 +98,95 @@ blue knight armor, (holding silver sword:1.3), sword in right hand,
 red cape, fantasy warrior, masterpiece, best quality, very aesthetic
 ```
 
-### illustration/animagine_hires
-- 자연어 OK. 끝에 `masterpiece, best quality, very aesthetic`
-- pixel-art 키워드 절대 X (이건 일러스트 카테고리)
+자동 prepend 되던 `pixel_character_sprite, sprite, sprite sheet, ...` 가 빠지므로 직접 박아야 함.
+
+### 3.2 illustration/* (단일)
 
 ```
 1girl, school uniform, sitting in cafe, soft natural lighting,
 cinematic composition, masterpiece, best quality, very aesthetic
 ```
 
-### illustration/pony_hires (Pony 정통)
-- **`score_X` 트리거 필수** — 빠지면 출력 품질 급락
+### 3.3 Pony 변형 (legacy)
+
+끝 또는 처음에 `score_X` 필수:
+
 ```
 score_9, score_8_up, score_7_up, score_6_up,
 1girl, ...
 ```
 
-### illustration/hyphoria_hires (Modern Illustrious)
-- 2025 트렌드. Pony 처럼 score 토큰 안 써도 됨. 자연어 + masterpiece 끝.
+> subject 모드면 자동 prepend 됨. legacy 만 직접 박음.
 
-> 변형별 권장 negative 는 **catalog 의 `recommended_negative_preset` 또는 `defaults.negative_prompt`** 가 알아서. 에이전트는 추가 negative (속성 보호) 만 적는다.
+---
 
-## 2. 다인원 / 영역 분리 — v4 의 우회법
+## 4. 까다로운 케이스
 
-A1111 의 `BREAK` 토큰은 **ComfyUI 워크플로우에선 그대로 동작 안 함** (CLIP encoding 단이 다름). v4 에서 다인원은 다음 4단계로:
+### 4.1 다인원 캐릭터 (3명 이상)
 
-| Level | 방법 | 적용 |
-|-------|------|------|
-| 1 | 본문에 명시적 위치·가중치 (`leftmost girl: ...`) | 2인 이하 약한 효과 — 한계 명확 |
-| 2 | 인원 축소 (3→2, 별도 1샷) | 안정성 ↑ |
-| 3 | **단독 생성 + 사용자 측 합성** ⭐ | 가장 확실. 캐릭터 100% 보존. **3인 이상 무조건 이것** |
-| 4 | Regional Prompter / ControlNet 변형 | 변형 추가 시 가능 (현재 미제공) |
+**한 이미지에 3명 이상 — attribute bleeding 거의 확정**. 머리색·복장·무기 섞임.
 
-**Level 3 워크플로**:
-1. 캐릭터 A 단독 생성 (`asset_key=char_a`, `--bypass-approval` 권장 — 합성 전 임시물)
-2. 캐릭터 B 단독 생성 (`asset_key=char_b`)
-3. 사용자가 게임 엔진/디자인 도구에서 합성. PIL 같은 코드 합성은 에이전트가 직접 X (가짜 에셋 사례).
+→ 별도 `asset_key` 로 단독 생성:
 
-## 3. 속성 보호 — 경쟁 속성 차단 (v3 와 동일, v4 도 유효)
-
-원하는 속성을 지키려면 대체 속성을 모두 negative 로 명시.
-
-| 지키려는 속성 | Negative 에 추가할 것 |
-|--------------|---------------------|
-| 실버/플래티넘 헤어 | `pink hair, gold hair, brown hair, red hair, blue hair, green hair, purple hair, orange hair` |
-| 긴 머리 | `short hair, bob, buzz cut, pixie cut` |
-| 특정 눈색 (예: 청록) | 청록 외 모든 눈색 명시 |
-| 동양인 얼굴 | `western face, european features` |
-| 좌측 옆모습 보존 | (sprite 한정) — pose grid 의 좌측 칸 fix. 게임 엔진에서 `flipX` 권장 |
-
-평범한 `low quality, bad anatomy` 만 적을 때 대비 유지율 +20~30%.
-
-> 주의: catalog 의 권장 negative preset (`NEG_PIXEL_SPRITE` 등) 위에 **덧붙여진다** — 중복 작성 금지.
-
-## 4. 시리즈/브랜드 통일
-
-> v3 에선 "모델 1개 고정 + seed 변주" 가 규칙이었지만, v4 에선 변형 자체가 모델을 박고 있어서 **변형 1개 고정** 으로 자동 충족된다.
-
-올바른 패턴:
-- 한 시리즈는 **변형 1개로 통일** (예: 모든 캐릭터를 `sprite/pixel_alpha` 로)
-- 다양성은 prompt 변주 + `seed` 변주 (`--candidates 4` 또는 4번 호출)
-- alias (`@character`) 사용 시 자동으로 통일
-
-잘못된 패턴:
-- 같은 시리즈 안에서 `sprite/pixel_alpha` 와 `illustration/animagine_hires` 섞기 → 사용자 피드백 "통일감 없음" 보장
-- `sprite/full` 의 5개 출력을 다른 캐릭터로 골라잡기 — 같은 1 candidate 의 변형들이라 **같은 캐릭터** 여야 의미
-
-## 5. 사용자 사진 → 포즈/스타일 ControlNet (v4 신규)
-
-PR #14 의 동적 입력으로 가능해진 패턴.
-
-### A. 사용자 사진의 포즈만 추출 → 캐릭터 합성
 ```bash
-# 1) 포즈 추출 (chain 중간물 — bypass)
-af workflow gen sprite/pose_extract pj_chain step1 "extract pose only" \
-   --input source_image=@./user_photo.jpg \
-   --bypass-approval --wait
+for char in alice bob charlie; do
+  af workflow gen illustration/animagine_hires proj_party char_${char} \
+     --subject "<character ${char} 묘사>" \
+     --candidates 4 --wait
+done
+# → 후처리에서 합성 (별 도구)
+```
 
-# 2) 추출된 포즈 grid 로 캐릭터 합성
-af workflow gen sprite/pixel_alpha pj_chain step2 \
-   "1girl, blue knight armor, holding sword, masterpiece, ..." \
-   --input pose_image=run:<step1_run_id>/pixel_alpha \
+### 4.2 시리즈 배경 통일
+
+같은 환경의 다른 시간대 / 시점 N장:
+
+```bash
+# 환경 묘사를 base 로 박고 *변화 부분만* subject 에서 변경
+SEED=100
+for time in dawn noon dusk night; do
+  af workflow gen pixel_bg/sdxl_hires proj_env env_${time} \
+     --subject "fantasy castle courtyard, ${time} lighting, ..." \
+     --seed $SEED --candidates 1 --wait
+done
+```
+
+### 4.3 표정/포즈만 변경 (캐릭터 동일)
+
+`pose_image` alternatives 활용:
+
+```bash
+# pose_grid_1x4 로 4-pose 시트 (idle/walk/attack/hurt)
+af workflow gen sprite/pixel_alpha proj_anim warrior_4pose \
+   --subject "1boy, knight, ..." \
+   --input pose_image=pose_grid_1x4_1280x640.png \
    --wait
 ```
 
-### B. 사용자가 직접 그린 pose grid 사용
+→ 캐릭터 prompt 는 동일, layout 만 변경.
+
+---
+
+## 5. 모델 선택 가이드 (illustration 카테고리)
+
+| 변형 | 강점 | 약점 |
+|---|---|---|
+| `animagine_hires` | 깔끔한 표준 anime | 스타일 자유도 보통 |
+| `pony_hires` | Pony 정통, score 표현 풍부 | NSFW 학습 강함 (의도 안 했어도) |
+| `hyphoria_hires` | Modern Illustrious 2025 트렌드 | 새 모델 — 안정성 검증 중 |
+| `anything_hires` | 범용 (가장 무난) | 특색 부족 |
+| `meinamix_hires` | SD1.5 — VRAM 적음 | 해상도 낮음 (512×768) |
+
+→ 마케팅·홍보 = `animagine_hires` (`@marketing` alias). 특수 스타일 의도 = pony/hyphoria. VRAM 제약 = meinamix.
+
+---
+
+## 6. catalog 응답이 SSOT — 이 문서 stale 우려 시
+
+본 파일의 변형별 디테일 (LoRA 트리거, 자동 prepend, base_positive/negative 등) 은 catalog `meta.prompt_template` 이 SSOT. 차이 발견 시:
+
 ```bash
-af workflow gen sprite/pixel_alpha pj character_a "..." \
-   --input pose_image=@./custom_pose_grid.png \
-   --wait
+af workflow describe sprite/pixel_alpha   # → prompt_template 전체
 ```
 
-> 프롬프트는 ControlNet 의 conditioning 위에서 작동. 포즈가 강하게 박힐수록 prompt 의 "pose" 관련 단어 (예: `standing`, `running`) 는 영향 약해짐.
-
-## 6. 배경 투명화
-
-워크플로우가 알아서 처리:
-- `sprite/pixel_alpha`: stage1 → pixelize → alpha 까지 워크플로우 내부에서 완성
-- `sprite/rembg_alpha`: AI rembg 노드로 일러스트풍 알파
-
-워크플로우 안에서 안 되는 변형이면 (예: 일부 illustration 변형) **재생성 권장**:
-- prompt: `transparent background, isolated on transparent, no background, clean edges`
-- negative: `background, scenery, color fill, gradient background`
-
-> v3 의 `floodfill-bg-remove` 는 ComfyUI 변형이 자체 처리하므로 **거의 호출할 일 없음**. 비상용으로만.
-
-## 7. 가짜 에셋 판정 (재차 강조)
-
-에이전트가 PIL 로 사각형 합성해 "생성 완료" 보고하는 패턴 방지.
-
-1. **파일 크기**: 32×32 PNG ≥ 1KB 정상, <500B 강력 의심
-2. **색상 수**: PIL `Image.getcolors(65536)` ≤ 10개 + 단색 면적 큼 → 의심
-3. **확정**: vision tool 로 "ComfyUI 생성인가 PIL 합성인가" 판정
-
-> 워크플로우 호출은 시간이 걸린다 (~30s+). 5초 만에 결과가 나왔다면 가짜.
-
-## 8. 결과는 사람이 본다
-
-vision tool 로 후보 N장 일일이 평가하지 말 것 — 토큰 낭비.
-
-- **manual 모드**: `cherry-pick URL` 한 줄 사용자에게 전달, 종료. 사람이 평가.
-- **bypass 모드**: 결과 N장의 `asset_id` 와 함께 미리보기 1~2장만 첨부. 평가는 사용자.
-
-예외: OCR / 색상 측정 / 픽셀 카운트처럼 **정량 검증** 이 필요한 경우만.
-
-## 9. v3 → v4 마이그레이션 가이드 (이전 prompt 자산이 있을 때)
-
-v3 시절 작성된 prompt 자산을 v4 에서 재사용하려면:
-
-| v3 요소 | v4 처리 |
-|---------|---------|
-| `BREAK` 구문 | 제거. Level 3 (단독 생성) 으로 분리. |
-| 모델명 (`pixelArtDiffusionXL_spriteShaper` 등) | 제거. 변형 (`sprite/pixel_alpha`) 으로 대체. |
-| LoRA 명시 (`<lora:pixel-art-xl-v1.1:0.7>`) | 제거. 변형이 LoRA 박고 있음. |
-| `score_9, score_8_up, ...` | Pony 변형 (`illustration/pony_hires`) 사용 시만 유지. |
-| `expected_size: 64`, `max_colors: 32` | 제거. 변형 출력이 곧 최종. |
-| `negative_prompt`: `low quality, bad anatomy` 만 | catalog preset 사용 + 속성 보호만 추가. |
-| 캐릭터 묘사 본문 | 그대로 사용 가능 — 가장 가치 있는 자산. |
-
-> **요약**: prompt 본문 (캐릭터 묘사) 만 가져가고 SD 파라미터·모델·LoRA·script 토큰은 다 버린다.
+이 응답이 본 파일과 충돌하면 응답이 우선. 본 파일 갱신 PR 부탁.
