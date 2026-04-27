@@ -117,6 +117,10 @@ af workflow gen ... --dry-run
 
 ## 카테고리 결정 트리 (가장 자주 쓰는 매핑)
 
+> 🟢 빠른 cheat-sheet. 정확한 변형 의도/출력 형태/prompt 합성은 **아래 `## 디스커버리
+> 메타`** 의 catalog 응답 (`meta.intent` / `meta.output_layout` / `meta.prompt_template`)
+> 이 SSOT — 표와 catalog 가 충돌하면 catalog 우선.
+
 | 의도 | 카테고리/변형 | alias |
 |---|---|---|
 | 게임용 픽셀 캐릭터 (즉시 사용) | `sprite/pixel_alpha` ⭐ | `@character` |
@@ -135,65 +139,314 @@ af workflow gen ... --dry-run
 
 ## 디스커버리 메타 — task → variant 결정
 
-`/api/workflows/catalog` 응답의 각 변형에는 다음 메타가 포함된다 (rule-based
-의사결정에 충분):
+`/api/workflows/catalog` 응답 (`version: 2`) 의 각 변형에 디스커버리 메타가
+포함된다. 변형 선택·prompt 합성에 필요한 의사결정 정보의 **SSOT**.
+
+> 출처: [`asset-factory/docs/NEXT.md §1.A`](https://github.com/sunghere/asset-factory/blob/main/docs/NEXT.md) (PR #21 spec) + 구현 PR #30.
+> 마이그레이션은 변형 단위로 점진적 — `meta` 가 빈 객체인 변형은 *legacy* (메타 미등록).
+
+### 응답 schema (실 catalog 기준)
 
 ```jsonc
-// af workflow describe sprite/pixel_alpha 의 응답 일부
+// GET /api/workflows/catalog — sprite/pixel_alpha (메타 마이그레이션 완료 변형)
 {
-  "use_cases":  ["게임 엔진용 캐릭터 sprite ...", ...],
-  "not_for":    ["단일 view 일러스트 → illustration/* 사용", ...],
-  "tags": {
-    "kind": "character",
-    "style": "pixel-art",
-    "format": "multi-view-1x3",
-    "output": "alpha-pixel",
-    "model_family": "illustrious"
-  },
-  "character_proportions": { "head_ratio": 2.5, "view_count": 3, "chibi": true },
-  "prompt_template": {
-    "skeleton": "{gender_count}, {hair_features}, ...",
-    "model_triggers":  ["pixel_character_sprite, sprite, ..."],
-    "required_tokens": [{ "placeholder": "{gender_count}", "examples": ["1girl", "1boy"] }, ...],
-    "forbidden_tokens":[{ "token": "(chibi:1.4)", "reason": "ControlNet 충돌 ..." }, ...],
-    "examples":        [{ "prompt": "1girl, ...", "seed": 42, "note": "검증된 prompt" }]
-  },
-  "cost":     { "est_seconds": 45, "vram_gb": 12 },
-  "pitfalls": ["검 든 캐릭터: ...", ...],
-  "related":  { "sibling": ["sprite/hires", ...], "upstream": ["sprite/v36_pro_stage1"] }
+  "version": 2,                                 // ← schema bump (legacy 자동 감지 신호)
+  "categories": {
+    "sprite": {
+      "variants": {
+        "pixel_alpha": {
+          // ─── 기존 호출 메타 (변동 없음) ────────────
+          "description": "픽셀 그리드 + 투명배경 (게임 엔진용) ⭐",
+          "available": true, "status": "ready", "primary": true,
+          "outputs": [...], "defaults": {...},
+          "input_labels": [
+            {
+              "label": "pose_image",
+              "required": false,
+              "default": "pose_grid_1x3_mini_2.5h_1280x640.png",
+              "description": "ControlNet 포즈 가이드. 1×3 그리드 PNG. ...",
+              "alternatives": [                  // ← §1.A 신규 (사이드카 yaml)
+                "pose_grid_1x3_5h_1280x640.png",
+                "pose_grid_1x4_1280x640.png",
+                "pose_grid_3x3_1280x896.png"
+              ]
+            }
+          ],
+
+          // ─── 신규 디스커버리 메타 (§1.A) ────────────
+          "meta": {
+            "intent": "3-pose character sheet (1×3 grid, transparent BG) for 2D game engine import.",
+            "use_cases": ["RPG character with idle / walk-side / walk-front 3-pose set", ...],
+            "not_for":   ["single character portrait — use illustration/animagine_hires", ...],
+            "output_layout": {
+              "kind": "pose_grid",               // single | pose_grid | tile_grid | character_sheet
+              "rows": 1, "cols": 3,
+              "per_cell_size": [426, 640],
+              "alpha": true,
+              "notes": "..."
+            },
+            "tags": [                            // list[str], 영문/한국어 혼용 OK
+              "pixel-art", "transparent-bg", "pose-sheet", "controlnet-pose",
+              "1x3-grid", "rpg-character", "2d-game-asset", "chibi", "illustrious",
+              "게임-스프라이트", "픽셀-캐릭터"
+            ],
+            "prompt_template": {                 // null 이면 §B 미마이그 변형 (legacy)
+              "base_positive": "pixel_character_sprite, sprite, sprite sheet, (pixel art:1.5), ...",
+              "base_negative": "(worst quality, low quality:1.4), blurry, ...",
+              "user_slot": {
+                "label": "subject",
+                "description": "캐릭터 묘사만 (외형/복장/무기). 스타일·구도·배경 묘사 금지 ...",
+                "examples": [
+                  "1girl, silver hair twin tails, navy school uniform, holding a notebook",
+                  "1boy, brown spiky hair, blue tunic, leather belt with sword",
+                  ...
+                ],
+                "required": true, "min_chars": 8, "max_chars": 400
+              },
+              "injection_rule": "{base_positive}, {subject}"
+            }
+          }
+        },
+
+        "hires": {
+          // 메타 마이그레이션 안 된 변형 (legacy) ─────
+          "description": "1920×960 디테일 보강 (흰배경)",
+          ...
+          "meta": {
+            "intent": "",                        // ← 빈 문자열 = legacy
+            "use_cases": [], "not_for": [], "tags": [],
+            "output_layout": { "kind": "single", "rows": 1, "cols": 1,
+                               "per_cell_size": null, "alpha": false, "notes": "" },
+            "prompt_template": null              // ← null = §B 미마이그
+          }
+        }
+      }
+    }
+  }
 }
 ```
 
-### 의사결정 흐름
+### 변형 선택 4-step
 
-1. **task 받음** → 의도 파싱 (예: "우리 게임 캐릭터 도트")
-2. **tag 매핑** → `kind=character, style=pixel-art`
-3. **추천 호출**:
-   ```bash
-   af workflow recommend --kind character --style pixel-art --output alpha-pixel
-   # → score 1.0 변형 리스트 (primary 우선). LLM 이 즉시 결정 가능.
-   ```
-4. **prompt 채우기** — `prompt_template.skeleton` 의 placeholder 를 `required_tokens.examples` 참고해 채움. `model_triggers` 가 있으면 prompt 앞에 prepend (예: Pony 의 `score_9, score_8_up, score_7_up`).
-5. **forbidden_tokens 회피** — `(chibi:1.4)` 같은 충돌 토큰은 prompt 에 넣지 않음 (워크플로우와 충돌).
-6. **cost / pitfalls** — 배치 ETA 계산, 사용자에게 함정 미리 안내.
+1. **catalog 호출** — `af workflow catalog` 또는 `GET /api/workflows/catalog`. `version: 2` 확인.
+2. **`meta.intent` 한 줄로 변형 후보 인식**:
+   - 비어있으면 (`""`) legacy 변형 — 본문 `description` + `defaults.width/height/pose_image` 로 추론 fallback (Pitfalls #12 휴리스틱)
+   - 있으면 *그 한 줄 그대로* 가 변형의 본질
+3. **`meta.use_cases` / `meta.not_for` 로 적합성 검증**:
+   - `use_cases` 에 task 의도가 매칭되면 OK
+   - `not_for` 에 *대체 변형 힌트* 가 박혀있음 (예: `"single view 일러스트 → illustration/* 사용"`) — 잘못 골랐으면 그 힌트 따라 점프
+4. **`meta.output_layout` 으로 출력 형태 *확정***:
+   - `kind` 가 `single` / `pose_grid` / `tile_grid` / `character_sheet` 중 하나
+   - `rows × cols × per_cell_size` 가 *최종 이미지의 그림 구성* — 사용자가 원하는 형태와 일치하는지 *반드시* 셀프체크 (Pitfalls #12 의 사고 사례 — `pose_grid` 인데 single 로 오인하면 학교 복도 씬 같은 결과)
 
-### tag 어휘 (현재 매니페스트 기준)
+### prompt 합성 — `meta.prompt_template` (§1.B 자동)
 
-| 축 | 값 |
+서버가 변형의 `meta.prompt_template.base_positive` / `base_negative` 를 **자동으로
+합성**한다. 사용자/에이전트는 *캐릭터 묘사만* (`subject`) 넣으면 됨.
+
+#### 두 입력 모드 — `subject` (권장) vs `prompt` (legacy)
+
+`POST /api/workflows/generate` 가 받는 두 입력 필드:
+
+| 필드 | 모드 | 동작 |
+|---|---|---|
+| `subject` (str, optional) | **subject** | 변형의 `base_positive` + `injection_rule` 로 자동 합성. 사용자는 *캐릭터 묘사만*. |
+| `prompt` (str) | **legacy** 또는 자동 | 통째 입력 — 변형의 `base_positive` 무시. 기존 사용자/스크립트 호환. |
+| `prompt_mode` (`auto` / `subject` / `legacy`) | 강제 | `auto`(default) — 자동 감지. `subject`/`legacy` — 강제. |
+
+**자동 감지 규칙** (`prompt_mode: auto`, `subject` 미지정, `prompt` 만 있을 때):
+
+1. `prompt` 길이가 `user_slot.max_chars` 초과 → **legacy**
+2. `base_positive` 의 첫 4 토큰 (시그니처) 이 `prompt` 에 *이미 있음* → **legacy** (사용자가 통째 작성)
+3. 변형에 `prompt_template == null` (legacy 변형) → **legacy** 자동
+4. 그 외 → **subject** (기본)
+
+#### `subject` 모드 호출 (권장)
+
+```python
+POST /api/workflows/generate
+{
+  "workflow_category": "sprite",
+  "workflow_variant":  "pixel_alpha",
+  "subject": "1girl, silver hair twin tails, navy school uniform, holding a notebook",
+  "project": "demo", "asset_key": "test_001",
+  "candidates_total": 1
+}
+```
+
+CLI:
+```bash
+af workflow gen sprite/pixel_alpha demo test_001 --subject "1girl, silver hair twin tails, navy school uniform, holding a notebook" --wait
+```
+
+`base_positive` (`pixel_character_sprite, sprite, sprite sheet, ...`) + `, ` + `subject` 가
+서버에서 자동 합성. `base_negative` 는 자동 prepend (override 불가).
+
+#### 응답의 `prompt_resolution`
+
+generate 응답에 *항상* `prompt_resolution` 객체 동봉 (spec §B.4 Response):
+
+```jsonc
+{
+  "run_id": "...",
+  "prompt_resolution": {
+    "mode": "subject",                // "subject" | "legacy"
+    "user_slot": "subject",            // subject 모드면 슬롯명, legacy 면 null
+    "user_input": "1girl, silver hair...",   // subject or prompt 원본
+    "final_positive": "pixel_character_sprite, sprite, sprite sheet, ..., 1girl, silver hair...",
+    "final_negative": "(worst quality, low quality:1.4), blurry, ..."
+  },
+  ...
+}
+```
+
+→ **debug 시 `final_positive` 로 ComfyUI 에 실제 보낸 값 확인 가능**. 디자인이
+이상하면 여기를 먼저 본다 (subject 가 base_positive 에 묶여서 어떻게 나갔나).
+
+#### subject 입력 가이드
+
+`meta.prompt_template.user_slot` 의 안내 따른다:
+
+- `user_slot.description` — *"캐릭터 묘사만 (외형/복장/무기). 스타일·구도·배경 묘사 금지"*
+- `user_slot.examples` — 변형마다 검증된 예시 prompt 들 (그대로 복사 가능)
+- `user_slot.min_chars` / `max_chars` — 길이 검증. 위반 시 HTTP 400 + 에러 코드
+
+**스타일/배경/레이아웃 묘사는 base_positive 가 이미 처리** — subject 에 *중복 묘사하지 마라*. (chibi:1.4) 같은 강조도 금지 (ControlNet stick figure 와 충돌).
+
+#### legacy 모드 (기존 사용자/스크립트)
+
+`prompt` 통째 입력은 그대로 동작:
+```python
+POST /api/workflows/generate
+{
+  "workflow_variant": "pixel_alpha",
+  "prompt": "pixel art, sprite sheet, 1girl, silver hair, ...",   // 통째 입력
+  ...
+}
+```
+
+자동 감지가 *legacy* 로 분기 (시그니처 토큰 매칭). 결과 동일 — 기존 워크플로우 호환.
+
+#### `base_negative` override 금지
+
+사용자 `negative_prompt` 는 변형의 `base_negative` 에 **append 만**. 변형이 박은
+필수 negative (예: `floating sword, detached weapon` — sprite/pixel_alpha) 는
+*override 불가* 가 안전 정책 (spec §B.3).
+
+### 변형 추천 (자연어 / tag 검색) — §1.C 자동
+
+서버가 **자연어 query** + **tag filter** 두 endpoint 를 노출. catalog 응답을 직접
+파싱하지 말고 이걸 호출.
+
+#### `POST /api/workflows/recommend` — 자연어 query (rule-based scoring)
+
+```jsonc
+POST /api/workflows/recommend
+{
+  "query": "RPG 픽셀 캐릭터 정면 측면 뒷면 시트",
+  "top": 3,
+  "include_unavailable": false   // optional, default false
+}
+
+→ 200 OK
+{
+  "query": "...",
+  "candidates": [
+    {
+      "variant": "sprite/pixel_alpha",
+      "score": 0.92,
+      "intent": "3-pose character sheet (1×3 grid, transparent BG) for 2D game engine import.",
+      "use_cases_hit":   ["RPG character with idle / walk-side / walk-front 3-pose set", ...],
+      "tags_hit":        ["rpg-character", "픽셀-캐릭터"],
+      "not_for_warnings":[]   // ← 사용자 query 가 이 변형의 not_for 와 매칭되면 경고
+    },
+    ...
+  ],
+  "scoring_method": "rule"   // 현재 룰 기반. 미래: "embedding" / "llm"
+}
+```
+
+CLI: `af workflow recommend "RPG 픽셀 캐릭터 정면 측면 뒷면 시트" --top 3`
+
+**스코어링 (Phase 1 — 룰 기반)**:
+- `intent` / `use_cases` / `tags` 에 query 키워드 매칭 → 가산점
+- `not_for` 에 query 매칭 → 페널티 + `not_for_warnings` 에 동봉
+
+**한국어/영어 혼용 OK** — `meta.intent` 가 영문, `meta.tags` 에 한국어 들어있는
+변형도 정확히 매칭.
+
+#### `GET /api/workflows/search` — tag filter (정확 매칭)
+
+```jsonc
+GET /api/workflows/search?tag=transparent-bg&tag=pose-sheet&not=scenery
+
+→ 200 OK
+{
+  "filters": { "tag": ["transparent-bg", "pose-sheet"], "not": ["scenery"] },
+  "matches": [
+    { "variant": "sprite/pixel_alpha",
+      "intent":  "3-pose character sheet (1×3 grid, ...)",
+      "tags_hit":["pose-sheet", "transparent-bg"] }
+  ]
+}
+```
+
+- `?tag=X&tag=Y` — 모든 tag 일치 (AND)
+- `?not=Z` — 그 tag 가진 변형 제외 (negative filter)
+- 0 매칭이면 `matches: []`
+
+CLI: `af workflow search --tag transparent-bg --tag pose-sheet --not scenery`
+
+#### 둘 중 어느 걸 쓰나?
+
+| 상황 | 추천 endpoint |
 |---|---|
-| `kind` | `character` / `background` / `icon` / `illustration` / `utility` |
-| `style` | `pixel-art` / `anime` / `flat` |
-| `format` | `single` / `multi-view-1x3` / `tile` |
-| `output` | `alpha-pixel` / `alpha-rembg` / `raw` / `hires` / `pose` |
-| `model_family` | `illustrious` / `sdxl-anime` / `pony` / `sd1.5` / `sdxl-pixel` / `pony-pixel` |
+| 사용자가 **자연어 task 묘사** (e.g. "게임 캐릭터 도트") | `/recommend` |
+| **알려진 tag 조합** 으로 정확 매칭 (e.g. `transparent-bg` + `pose-sheet`) | `/search` |
+| **부정 필터** 필요 (e.g. *"pixel-art 인데 pose-sheet 아닌 것"*) | `/search` |
+| 후보 *순위* + 점수 + 경고 필요 | `/recommend` |
 
-새로운 변형이 추가되면 어휘가 확장될 수 있음 — `recommend` 호출 결과를 그대로 신뢰.
+#### 조합 패턴 (Paperclip Asset Relay 시)
 
-### 모델별 트리거 주의
+```python
+# 1) 자연어로 후보 좁히기
+POST /api/workflows/recommend
+  → top 3 후보 받음
 
-- **Pony** (`illustration/pony_*`, `pixel_bg/pony_*`): `score_9, score_8_up, score_7_up` prefix 필수. `prompt_template.model_triggers` 에 명시됨.
-- **sprite LoRA** (`sprite/*`): `pixel_character_sprite, sprite, sprite sheet, (pixel art:1.5), white background` 트리거. **`<lora:...:0.7>` syntax 는 박지 말 것** — LoRA 노드가 워크플로우에 박혀있어 이중 로드.
-- **sprite chibi 가중치 금지**: `(chibi:1.4)` / `(chibi:1.5)` 강조는 ControlNet stick figure 와 충돌 — `chibi` 단어 자체만 (가중치 없이).
+# 2) `not_for_warnings` 비어있는 첫 후보 채택
+candidate = next(c for c in res["candidates"] if not c["not_for_warnings"])
+
+# 3) catalog 의 `meta.output_layout` 으로 형태 최종 검증
+# 4) `subject` 모드로 generate 호출
+```
+
+### tags — 자유 태그 (closed enum 아님)
+
+`tags` 는 **list[str]**. 변형마다 영문/한국어 혼용 자유. 추천 컨벤션:
+
+| 카테고리 | 자주 쓰는 tag (참고용 — 강제 아님) |
+|---|---|
+| 출력 형태 | `transparent-bg` / `alpha-pixel` / `alpha-rembg` / `1x3-grid` / `1x4-grid` / `3x3-grid` / `tile-grid` |
+| 스타일 | `pixel-art` / `chibi` / `flat` / `anime` |
+| 용도 | `rpg-character` / `2d-game-asset` / `marketing` / `tile-map` |
+| 모델 | `illustrious` / `pony` / `sdxl-anime` / `sd1.5` |
+| 입력 | `controlnet-pose` / `pose-sheet` / `face-detailer` |
+
+새 변형 작성 시 *기존 변형의 tags* 를 보고 동일 어휘 재사용 권장 (검색 매칭 정합성).
+어휘 폐쇄형 enum 은 §1.C 머지 시점에 결정 (현재는 자유 list).
+
+### 매니페스트 마이그레이션 진행 상태
+
+**25/25 변형 메타 마이그 완료** (PR #38–#41). 모든 변형이 `meta.intent` / `output_layout` / `tags` / `prompt_template` 노출.
+
+| 카테고리 | 변형 수 | 상태 |
+|---|---|---|
+| sprite | 10 | ✅ 모두 (pixel_alpha / hires / rembg_alpha / stage1 / full / v37_pixel / v37_full / v36_pro_stage1 / v36_pro_full / pose_extract) |
+| illustration | 10 | ✅ 모두 (animagine / pony / hyphoria / anything / meinamix × {hires, stage1}) |
+| pixel_bg | 4 | ✅ 모두 (sdxl_stage1 / sdxl_hires / pony_stage1 / pony_hires) |
+| icon | 1 | ✅ flat |
+
+`pose_extract` 만 `prompt_template == null` (utility 변형 — pose 추출, prompt 무관).
 
 ---
 
@@ -264,6 +517,11 @@ af workflow gen sprite/pixel_alpha pj_chain step2 "knight, blue armor, ..." \
 
 > 변형이 모델/LoRA/preset 을 박고 있어 **세부 SD 파라미터는 만지지 않는다**. 에이전트가
 > 신경쓸 건 prompt 본문과 negative 의 **속성 보호** 뿐.
+
+> 🟢 **모든 변형의 prompt 합성은 서버 자동** (§1.B). 사용자/에이전트는 `subject`
+> (캐릭터 묘사만) 입력 — `meta.prompt_template.user_slot.examples` 가 SSOT.
+> 아래 §1~§4 cheat-sheet 는 *빠른 reference* (legacy 모드 직접 호출 또는
+> 디버깅 시 base_positive 가 어떻게 생긴지 감 잡기 용).
 
 ### 1. Prefix는 카테고리 워크플로우가 자동 추가
 - `sprite/*`: `pixel art, sprite, three views, ...` 자동 prepend
@@ -347,22 +605,34 @@ score_9, score_8_up, score_7_up, score_6_up,
 
 ---
 
-## ⚠️ Skill freshness — 미충족 P0 항목
+## ⚠️ Skill freshness — 미충족 항목
 
-이 스킬은 [`asset-factory/docs/TODOS_for_SKILL.md`](https://github.com/sunghere/asset-factory/blob/main/docs/TODOS_for_SKILL.md) 의 P0 가
-**모두 채워졌다는 가정** 으로 작성됐다. 미충족 항목이 있으면 아래 우회법으로 동작:
+이 스킬은 [`asset-factory/docs/NEXT.md`](https://github.com/sunghere/asset-factory/blob/main/docs/NEXT.md)
+의 §1.A/§1.B/§1.C **모두 채워졌다는 가정** 으로 작성됐다 (PR #30, #38-43 머지본).
+미충족 항목이 있으면 아래 우회법으로 동작:
 
-| P0/P1 항목 | 상태 | 미충족 시 우회 |
+| 항목 | 상태 | 비고 |
 |---|---|---|
 | `--bypass-approval` 플래그 | ✅ 채워짐 (PR #18) | — |
 | catalog `input_labels` | ✅ 채워짐 (PR #18) | — |
 | `af workflow upload` CLI | ✅ 채워짐 (PR #18, Python `python -m cli workflow upload`) | — |
 | `--input <label>=...` 통합 호출 | ✅ 채워짐 (PR #18, Python CLI) | — |
-| `--dry-run` | ⏳ 미충족 | 직접 enqueue 후 작은 변형 (`sprite/pixel_alpha`, candidates=1) 으로 실 호출. `--input` 라벨 오타는 응답의 `report.skipped` 로 확인. |
-| `aliases` (`@character` 등) | ⏳ 미충족 | full path (`sprite/pixel_alpha`) 로 호출. |
-| `run:<run_id>/<output>` syntax | ⏳ 부분 충족 | `--input source_image=asset:<id>` 로 chain. 특정 output label 참조 (`run:.../pixel_alpha`) 는 asset_id 직접 룩업 (`af list <project>` → metadata 매칭). |
+| **§1.A `meta.intent` / `output_layout` / `use_cases` / `not_for` / `tags(list)`** | ✅ 채워짐 (PR #30, #38-41) — 25/25 변형 마이그 완료 | — |
+| **§1.A `input_labels.alternatives`** | ✅ 채워짐 (PR #30) | — |
+| **catalog `version: 2` bump** | ✅ 채워짐 (PR #30) | — |
+| **§1.A `meta.prompt_template`** | ✅ 채워짐 (PR #30, #38-41) — `pose_extract` (utility 변형) 제외 모두 | — |
+| **§1.B 서버측 `subject` 자동 주입** (`resolve_prompt`, `WorkflowGenerateRequest.subject`, `prompt_resolution` 응답) | ✅ 채워짐 (PR #42) | `prompt_mode: auto/subject/legacy` 자동 감지 |
+| **§1.C `POST /api/workflows/recommend`** (자연어 query + weighted-rule score) | ✅ 채워짐 (PR #43) | `candidates[].score`, `use_cases_hit`, `tags_hit`, `not_for_warnings`, `scoring_method` |
+| **§1.C `GET /api/workflows/search`** (tag filter + negative filter) | ✅ 채워짐 (PR #43) | `?tag=X&tag=Y&not=Z` |
+| `--dry-run` | ⏳ 미충족 | 직접 enqueue 후 작은 변형 (`sprite/pixel_alpha`, candidates=1) 으로 실 호출. `--input` 라벨 오타는 응답의 `report.skipped` 로 확인 |
+| `aliases` (`@character` 등) | ⏳ 미충족 | full path (`sprite/pixel_alpha`) 로 호출 |
+| `run:<run_id>/<output>` syntax | ⏳ 부분 충족 | `--input source_image=asset:<id>` 로 chain. 특정 output label 참조 (`run:.../pixel_alpha`) 는 asset_id 직접 룩업 (`af list <project>` → metadata 매칭) |
 
 **갭이 채워질 때마다 이 표에서 한 줄씩 지운다** (skill 유지보수자).
+
+> §1.A/§1.B/§1.C 모두 채워졌으므로 본문에 *임시 우회* 안내 (manual prompt 합성,
+> Python catalog 파싱) 는 **제거됨**. 대신 *서버 자동 동작* + *응답 검증* 패턴으로
+> 전환됨 (위 `## 디스커버리 메타 — prompt 합성` / `## 디스커버리 메타 — 변형 추천`).
 
 ---
 
