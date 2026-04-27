@@ -14,7 +14,7 @@
   - Tailscale: `http://yoons-macmini.tailbff496.ts.net:47823` 또는 `http://100.72.190.122:47823`
 - **API Key**: `.env` 의 `API_KEY`. 변경 계열에 `x-api-key` 헤더 필수. 인증은 항상 살아있음 — bypass 모드도 인증은 우회 안 함.
 - **백엔드**: ComfyUI (Asset Factory 가 알아서 호출. 직접 두드리면 안 됨.)
-- **Web UI**: `/app/`, **Cherry-pick UI**: `/cherry-pick?run=<run_id>`
+- **Web UI**: `/app/`, **Cherry-pick UI**: `/cherry-pick` (구체 query 파라미터는 SPA 가 자체 라우팅 — 직접 `?run=...` 보다 `af status`/`af list` 로 접근 권장)
 - **데이터**: `~/workspace/asset-factory/data/`
 - **Export 기본**: `~/workspace/assets/<project>/<category>/<asset_key>.png`
 - **OpenAPI**: `GET /openapi.json` (FastAPI 자동 생성)
@@ -33,7 +33,7 @@
 | **동적 입력 업로드** (멀티파트) | `POST /api/workflows/inputs` 🔑 | `af workflow upload` |
 | 동적 입력 (기존 에셋) | `POST /api/workflows/inputs/from-asset` 🔑 | `af workflow upload --from-asset` |
 | **생성** | `POST /api/workflows/generate` 🔑 ⭐ | `af workflow gen` |
-| 잡/run 상태 polling | `GET /api/runs/{run_id}/status` | `af status`, `af wait` |
+| 잡/run 상태 polling | `GET /api/jobs/{job_id}` | `af status`, `af wait` |
 | SSE 이벤트 스트림 | `GET /api/events` | — |
 | 에셋 목록 | `GET /api/assets` (project 필터) | `af list` |
 | 에셋 단건/이미지 | `GET /api/assets/{id}/{detail,image}` | `af get` |
@@ -189,8 +189,12 @@ curl -X POST http://localhost:47823/api/workflows/generate \
 
 ```jsonc
 {
-  "run_id": "...",
-  "task_ids": ["..."],
+  "job_id": "...",
+  "workflow_category": "sprite",
+  "workflow_variant": "pixel_alpha",
+  "candidates_total": 4,
+  "primary_output": "pixel_alpha",
+  "approval_mode": "manual",
   "prompt_resolution": {
     "mode": "subject",                     // "subject" | "legacy"
     "user_slot": "subject",                 // legacy 면 null
@@ -220,7 +224,7 @@ curl -X POST http://localhost:47823/api/workflows/generate \
 }
 ```
 
-또는 chain 시 (이전 run 결과 참조):
+또는 chain 시 (이전 run 결과 참조 — ⚠️ server-side 미구현, `--input source_image=asset:<id>` 로 우회):
 ```jsonc
 "load_images": {
   "pose_image": { "run_id": "run_xxx", "output_label": "pixel_alpha" }
@@ -229,34 +233,36 @@ curl -X POST http://localhost:47823/api/workflows/generate \
 
 ---
 
-## `GET /api/runs/{run_id}/status` — 상태 polling
+## `GET /api/jobs/{job_id}` — 잡 상태 polling
 
 ```bash
-curl http://localhost:47823/api/runs/run_xxx/status | jq
+curl http://localhost:47823/api/jobs/<job_id> | jq
 ```
 
 응답:
 ```jsonc
 {
-  "run_id": "run_xxx",
-  "status": "completed",   // queued | running | completed | failed | completed_with_errors
-  "progress": { "completed": 4, "total": 4 },
-  "assets": [
-    {
-      "asset_id": "uuid-...",
-      "candidate_index": 0,
-      "label": "pixel_alpha",
-      "image_path": "..."
-    },
-    ...
-  ],
-  "cherry_pick_url": "/cherry-pick?run=run_xxx",   // manual 모드만
-  "error_message": null,
-  "first_task_prompt_resolution": { ... }   // 첫 task 의 prompt_resolution (디버깅)
+  "id": "26de32c7-...",                    // ⚠️ 응답에선 "id" (생성 응답의 "job_id" 와 같은 값)
+  "job_type": "workflow_single",            // workflow_single | workflow_design | ...
+  "status": "completed",                    // queued | running | completed | failed | completed_with_errors
+  "total_count": 4,
+  "completed_count": 4,
+  "failed_count": 0,
+  "error_message": null,                    // 문자열이면 그게 실패 원인
+  "created_at": "2026-04-27T16:00:25+00:00",
+  "updated_at": "2026-04-27T16:00:47+00:00",
+  "prompt_resolution": { ... }              // 첫 task 의 resolution (디버깅)
 }
 ```
 
-**`completed_with_errors` + `error_message: null` + 빈 `assets`** — 변형 회귀. SKILL.md 본문의 회귀·실패 진단 섹션 참고.
+⚠️ **`assets`/`progress`/`cherry_pick_url` 필드 *없음***. 결과 에셋은 별도 endpoint:
+
+```bash
+# 잡의 결과 에셋 회수 — job_id 로 필터
+curl "http://localhost:47823/api/assets?project=<project>&include_bypassed=true" | jq '[.[] | select(.job_id == "<job_id>")]'
+```
+
+**`completed_with_errors` + `error_message: null` + 0 에셋** — 변형 회귀. SKILL.md 본문의 회귀·실패 진단 섹션 참고.
 
 ---
 

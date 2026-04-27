@@ -167,7 +167,7 @@ generate 응답에 *항상* 동봉:
 
 ```jsonc
 {
-  "run_id": "...",
+  "job_id": "...",
   "prompt_resolution": {
     "mode": "subject",                                          // "subject" | "legacy"
     "user_slot": "subject",                                      // legacy 면 null

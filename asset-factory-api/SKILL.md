@@ -90,7 +90,7 @@ af get <asset_id> -o output.png
 af export <project> --manifest               # 승인본만
 ```
 
-`--wait` 빼면 `run_id` 받고 종료. 나중에 `af status <run_id>` 또는 `af wait <run_id>`.
+`--wait` 빼면 `job_id` 받고 종료. 나중에 `af status <job_id>` 또는 `af wait <job_id>`. (서버 응답 식별자는 `job_id` — polling endpoint `GET /api/jobs/{job_id}`)
 
 ---
 
@@ -181,7 +181,7 @@ recommend → 후보 → not_for_warnings 비어있는 첫 후보 채택
 7. **변형 사용 가능 여부**: catalog 의 `available: false` 는 호출 불가 (registry 의 `status: needs_api_conversion`).
 8. **multi-output 의 cherry-pick**: `sprite/full` 같은 변형은 1 candidate slot 에 N장. UI 는 **primary** 만 보여주고 나머지는 metadata 동봉.
 9. **`--input` 라벨 오타**: catalog 에 없는 라벨 박으면 `report.skipped` 에 기록되고 *조용히* 무시. `--dry-run` 으로 사전 점검 (⏳ 미구현 시 작은 변형 candidates=1 실 호출).
-10. **chain 의 `run_id` 보관**: `gen` 응답의 `run_id` 잡아둬야 다음 단계에서 `run:<run_id>/<output>` 참조 가능.
+10. **chain 의 `job_id` 보관**: `gen` 응답의 `job_id` 잡아둬야 cherry-pick / 후속 추적 가능. (참고: chain *입력* 식별자 syntax `run:<run_id>/<output>` 은 server-side 미구현 — 현재는 `--input source_image=asset:<id>` 로 우회. 자세한 건 `references/dynamic-inputs.md`.)
 11. **변형별 회귀 격리**: 한 변형이 1~2초만에 fail + `error_message: null` + 빈 `assets` → *다른 변형으로 즉시 회귀 격리*. `sprite/pixel_alpha` 정상 동작이면 서버 OK. 깨진 변형은 PR/이슈로 보고. 진단에 5분 이상 소진 금지.
 12. **변형 의도(layout) 무시 금지** — 호출 전 *반드시* `meta.output_layout.kind` 확인. `pose_grid` 인데 단일 일러스트 의도면 결과 안 나옴 (실 사고 사례: `sprite/pixel_alpha` 를 *학교 복도 씬* 1장 의도로 잘못 호출 → 캐릭터 2명 그려진 학교 복도). **회피 휴리스틱**: 변형 호출 전 1초 셀프체크 — *"이 변형이 만드는 최종 이미지 구성이 사용자가 원하는 것과 일치하나? 단일 vs 그리드, 캐릭터 수, 배경 유무?"*
 13. **`subject` 모드 가이드** — `meta.prompt_template.user_slot.description` 따른다 (캐릭터 묘사만, 스타일/배경 묘사 금지, `(chibi:1.4)` 같은 가중치 금지). 변형이 박은 base_positive 와 *중복 묘사* 하지 마라 (영향 거의 없고 토큰 낭비).

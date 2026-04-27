@@ -54,9 +54,10 @@ af workflow gen <variant> <project> <asset_key> \
 ### 5. 결과 전달
 
 ```bash
-# manual 모드 — cherry-pick URL 코멘트
-af status <run_id>   # 응답에 cherry-pick URL 포함
-# → Paperclip 이슈 코멘트로 전달
+# manual 모드 — Web UI cherry-pick 안내 코멘트
+af status <job_id>   # 잡 상태 + completed_count 확인
+# → 후보 이미지는 Web UI (/cherry-pick) 에서 사용자가 직접 선택
+# → Paperclip 이슈 코멘트로 안내 ("후보 N장 준비됨 — http://...:47823/cherry-pick 에서 선택 부탁")
 
 # bypass 모드 — 결과 직접 첨부
 af get <asset_id> -o output.png
@@ -108,7 +109,7 @@ af workflow gen sprite/pose_extract tmp_chain step1 \
    --subject "extract pose" \
    --input source_image=@./user_pose.jpg \
    --bypass-approval --wait
-# → run_id="run_xxx..."
+# → job_id="..." (응답에서 capture). chain 입력은 asset_id 로 우회 (`run:<id>` syntax 미구현)
 
 # 2) 추출된 포즈로 캐릭터 합성
 af workflow gen sprite/pixel_alpha proj_user_chain final \
