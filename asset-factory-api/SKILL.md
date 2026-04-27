@@ -1,7 +1,7 @@
 ---
 name: asset-factory-api
-version: 4
-description: "Asset Factory(ComfyUI 워크플로우 기반) 로 게임/일러스트 에셋 생성. 변형 선택 → 호출 → 결과 회수. 모델·LoRA·step·cfg 같은 SD 파라미터는 사용자가 만지지 않는다. SD 서버 직접 호출 절대 금지."
+version: 5
+description: "Asset Factory(ComfyUI 워크플로우 기반) 로 게임/일러스트 에셋 생성. catalog → recommend → subject 모드 generate. 모델·LoRA·step·cfg 같은 SD 파라미터는 사용자가 만지지 않는다. SD 서버 직접 호출 절대 금지."
 triggers:
   - asset factory
   - asset-factory
@@ -19,103 +19,106 @@ triggers:
   - comfyui 워크플로우
 ---
 
-# Asset Factory (v4 — ComfyUI 워크플로우 시대)
+# Asset Factory (v4 — ComfyUI 워크플로우)
 
-게임/일러스트 에셋 생성 파이프라인. **`af` CLI 한 줄로 ComfyUI 워크플로우 변형을 호출**한다.
+게임/일러스트 에셋 생성 파이프라인. **`af` CLI 한 줄 또는 REST API 호출**로 ComfyUI 워크플로우 변형을 호출한다.
 
-## 🚨 v4 의 패러다임 전환 (이전과 다름)
-
-이전(v3) 멘탈모델은 폐기됐다:
+## 🚨 v4 패러다임 (이전과 다름)
 
 | 항목 | v3 (구) | v4 (지금) |
 |---|---|---|
 | 백엔드 | A1111 직접 호출 | **ComfyUI 워크플로우 호출** |
-| 모델 선택 | 에이전트가 `af catalog models` 보고 결정 | **변형(variant)이 모델을 내장** — 에이전트 관여 X |
+| 모델 선택 | 에이전트가 결정 | **변형(variant)이 모델을 내장** — 에이전트 관여 X |
 | LoRA/weight | 에이전트가 `--lora xxx:0.8` 지정 | 변형 내부에 박혀 있음 |
 | step/cfg/sampler | 에이전트가 결정 | 변형 `defaults` 가 알아서 |
+| prompt 작성 | 에이전트가 통째 작성 | **`subject` (캐릭터 묘사만) 입력 → 서버 자동 합성** (§1.B) |
+| 변형 선택 | description 한 줄 보고 추측 | **`/api/workflows/recommend` 자연어 query** (§1.C) |
 | 카테고리 | 약함 | **명시적**: `sprite` / `illustration` / `pixel_bg` / `icon` |
 | 결과 형태 | 1장 | **multi-output** (변형마다 다름; e.g. `sprite/pixel_alpha` = 3장) |
-| 동적 입력 | 없음 | **PoseExtract / ControlNet chain** 가능 (이미지 업로드) |
-| 승인 | 항상 cherry-pick 큐 | `--bypass-approval` 플래그로 우회 가능 |
-
-→ **에이전트의 인지 부담은 줄었고, 핵심 역량은 "카탈로그 탐색 + 변형 선택"** 이다.
+| 동적 입력 | 없음 | **PoseExtract / ControlNet chain** 가능 |
+| 승인 | 항상 cherry-pick | `--bypass-approval` 플래그로 우회 가능 |
 
 ## When to use
 
-- 게임 캐릭터 스프라이트, 마케팅 일러스트, 픽셀 배경, UI 아이콘 — 어떤 종류든.
-- 사람이 cherry-pick 할 후보 N장이 필요할 때.
-- 임시 시뮬/스캐치 1장 — `--bypass-approval` 로 즉시 회수.
-- 다른 에이전트의 입력으로 흘릴 chain 중간물.
+- 게임/일러스트 에셋(픽셀 캐릭터, 스프라이트 시트, 일러스트, 픽셀 배경, UI 아이콘) 생성 요청
+- *"캐릭터 도트로 만들어줘"* / *"마케팅 일러스트 1장"* / *"NPC 스프라이트 시트"* 같은 task
+- 사용자 사진에서 포즈 추출 → 캐릭터 합성 chain
+- 시뮬레이션·스캐치 같은 임시물 빠른 iteration (bypass 모드)
 
 ## When NOT to use
 
-- 비-에셋 1회성 이미지 (예: 슬라이드 1장 mockup) — 이미지 생성 자체가 목표가 아니고
-  에셋 파이프라인에 들어갈 필요 없는 거면 다른 도구.
-- ComfyUI 직접 두드리기 — 절대 금지. asset-factory 가 입출력·이력·승인을 일관되게 관리한다.
+- 일반 텍스트→이미지 (스타일/모델 자유) — 별 도구
+- 비-에셋 이미지 처리 (사진 보정, 배경 제거 단독) — 별 도구
+- 고해상도 사진 합성, 실사 — Asset Factory 는 *게임/일러스트 에셋* 전용
 
 ---
 
 ## CLI: `af`
 
-설치 위치: `~/.local/bin/af` (NodeJS, deps 없음). 자세한 옵션은 `af --help`.
-
-> **백엔드 분기 (v4.1)**: `workflow` 서브트리(`catalog`, `describe`, `gen`, `upload`)는
-> asset-factory 레포의 **Python typer CLI** 로도 동일 동작한다 — `python -m cli workflow ...`
-> (PR #18에서 채택). `af workflow ...` 와 결과는 같다. `health` / `list` / `get` /
-> `export` / `batch` (A1111 호환) 등 그 외 명령은 당분간 `af` (Node.js) 에만 있다.
-> 일반 사용자는 `af` 그대로 쓰면 된다 — 분기는 운영자만 알면 충분.
-
 ```bash
-# 1. 점검
-af health                                 # ComfyUI 연결, registry 로드 상태
+# 1. 카탈로그 — 사용 가능한 카테고리/변형/입력 라벨 + 디스커버리 메타
+af workflow catalog
+af workflow describe sprite/pixel_alpha   # 한 변형의 full meta
 
-# 2. 카탈로그 탐색 (가장 먼저 — 어떤 변형을 쓸지 결정)
-af workflow catalog                       # 카테고리 → 변형 트리 + input_labels + aliases
-af workflow describe sprite/pixel_alpha   # 단일 변형 상세 (defaults, outputs, 권장 negative)
+# 2. 변형 추천 — 자연어 의도로 후보 받기 (§1.C)
+af workflow recommend "RPG 픽셀 캐릭터 정면 측면 뒷면 시트" --top 3
 
-# 3. 생성 — 텍스트만으로
-af workflow gen sprite/pixel_alpha <project> <asset_key> "<prompt>" --wait
+# 3. tag 검색 — 정확 tag 매칭
+af workflow search --tag transparent-bg --tag pose-sheet --not scenery
 
-# 4. cherry-pick 후보 N장
-af workflow gen sprite/pixel_alpha <project> <asset_key> "<prompt>" \
+# 4. 생성 (subject 모드 — 권장, §1.B)
+af workflow gen sprite/pixel_alpha <project> <asset_key> \
+   --subject "1girl, silver hair twin tails, school uniform, holding a notebook" \
    --candidates 4 --wait
 
-# 5. 동적 입력 (PoseExtract / ControlNet)
-af workflow upload ./pose.png                       # 로컬 파일 업로드
-af workflow upload --from-asset <asset_id>          # 기존 에셋 → 입력으로 chain
-af workflow upload --from-run <run_id> --output pixel_alpha  # 이전 run 의 특정 출력
+# 5. 생성 (legacy 모드 — 기존 호환)
+af workflow gen sprite/pixel_alpha <project> <asset_key> "<prompt 통째>" \
+   --candidates 4 --wait
 
-# 또는 generate 한 번에 (가장 자주 쓰는 패턴)
-af workflow gen sprite/pose_extract <project> <asset_key> "<prompt>" \
-   --input source_image=@./pose.png \
-   --input pose_image=run:<run_id>/pixel_alpha \
-   --wait
+# 6. 동적 입력 (PoseExtract / ControlNet) — references/dynamic-inputs.md
+af workflow upload ./pose.png
+af workflow gen sprite/pose_extract pj step1 \
+   --input source_image=@./pose.png --bypass-approval --wait
 
-# 6. Bypass 모드 (사람 승인 우회 — 시뮬/스캐치/chain 중간물)
-af workflow gen sprite/pixel_alpha tmp_sim sim_001 "..." \
-   --bypass-approval --wait
-# → 결과 즉시 다운로드 가능, 승인 큐 거치지 않음. tmp_* project 권장.
-
-# 7. Aliases (의도 기반 단축 — 매핑은 catalog 에 노출됨)
-af workflow gen @character <project> <key> "..." --wait   # = sprite/pixel_alpha
-af workflow gen @marketing <project> <key> "..." --wait   # = illustration/animagine_hires
-af workflow gen @sketch <project> <key> "..." --wait      # = sprite/pixel_alpha + bypass
+# 7. Bypass 모드 (시뮬·스캐치·chain 중간물)
+af workflow gen sprite/pixel_alpha tmp_sim sim_001 \
+   --subject "..." --bypass-approval --wait
 
 # 8. 결과 회수
 af list <project> [--include-bypassed]
 af get <asset_id> -o output.png
-af export <project> --manifest               # 승인본만 묶음. bypass 자산 자동 제외.
-
-# 9. dry-run (patch 점검만, ComfyUI 호출 X)
-af workflow gen ... --dry-run
-# → 어떤 노드에 어떤 값이 패치되는지 PatchReport 만 반환. 라벨 매칭 사전 점검용.
+af export <project> --manifest               # 승인본만
 ```
 
-**폴링**: `--wait` 빼면 enqueue 후 즉시 종료. 응답의 `run_id` 로 나중에 `af status <run_id>` 또는 `af wait <run_id>`.
+`--wait` 빼면 `run_id` 받고 종료. 나중에 `af status <run_id>` 또는 `af wait <run_id>`.
 
 ---
 
-## 카테고리 결정 트리 (가장 자주 쓰는 매핑)
+## 의사결정 — 변형 선택 4-step
+
+매 호출 전 다음 4-step 으로 변형 선택. catalog 응답이 SSOT.
+
+1. **`af workflow recommend "<task 자연어>"`** → top 3 후보 + score + `not_for_warnings`
+2. **첫 후보의 `meta.intent` 한 줄 + `use_cases`/`not_for`** 으로 적합성 검증
+3. **`meta.output_layout.kind`** (`single` / `pose_grid` / `tile_grid` / `character_sheet`) 확인 — *최종 이미지의 그림 구성* 이 사용자가 원하는 형태인가?
+4. **`meta.prompt_template.user_slot.examples`** 1개 복사해 *캐릭터 묘사로 변형* → `--subject` 인자로 호출
+
+조합 패턴:
+```
+recommend → 후보 → not_for_warnings 비어있는 첫 후보 채택
+         → catalog meta.output_layout 형태 검증
+         → subject 모드 generate 호출
+         → 응답의 prompt_resolution.final_positive 로 실 prompt 확인
+```
+
+> 자세한 catalog 응답 schema, recommend/search API 디테일, prompt 합성 모드는
+> `buck(file_path="references/catalog-and-meta.md")` (한 파일에 통합).
+
+---
+
+## 카테고리 결정 트리 (cheat-sheet)
+
+> 🟢 빠른 reference. 정확한 의도/형태/prompt 는 `recommend` 응답이 SSOT.
 
 | 의도 | 카테고리/변형 | alias |
 |---|---|---|
@@ -123,117 +126,13 @@ af workflow gen ... --dry-run
 | 게임 캐릭터 디테일 보강 | `sprite/hires` | — |
 | 일러스트풍 캐릭터 (배경 알파) | `sprite/rembg_alpha` | — |
 | 비교용 (5장 한 번에) | `sprite/full` | — |
-| 마케팅·표지 일러스트 | `illustration/animagine_hires` | `@marketing` |
+| 마케팅·표지 일러스트 (단일) | `illustration/animagine_hires` | `@marketing` |
 | Pony 스타일 일러스트 | `illustration/pony_hires` | — |
 | 픽셀 타일/배경 | `pixel_bg/*` | — |
-| UI 아이콘 (flat) | `icon/*` | — |
-| 임시 스캐치 1장 | `@sketch` (bypass 자동 적용) | `@sketch` |
+| UI 아이콘 (flat) | `icon/flat` | — |
+| 임시 스캐치 1장 | `@sketch` (bypass 자동) | `@sketch` |
 
-**규칙**: 카테고리·변형 직접 지정과 alias 둘 다 OK. 새 alias 등장 여부는 `af workflow catalog` 의 `aliases` 필드로 확인.
-
----
-
-## 디스커버리 메타 — task → variant 결정
-
-`/api/workflows/catalog` 응답의 각 변형에는 다음 메타가 포함된다 (rule-based
-의사결정에 충분):
-
-```jsonc
-// af workflow describe sprite/pixel_alpha 의 응답 일부
-{
-  "use_cases":  ["게임 엔진용 캐릭터 sprite ...", ...],
-  "not_for":    ["단일 view 일러스트 → illustration/* 사용", ...],
-  "tags": {
-    "kind": "character",
-    "style": "pixel-art",
-    "format": "multi-view-1x3",
-    "output": "alpha-pixel",
-    "model_family": "illustrious"
-  },
-  "character_proportions": { "head_ratio": 2.5, "view_count": 3, "chibi": true },
-  "prompt_template": {
-    "skeleton": "{gender_count}, {hair_features}, ...",
-    "model_triggers":  ["pixel_character_sprite, sprite, ..."],
-    "required_tokens": [{ "placeholder": "{gender_count}", "examples": ["1girl", "1boy"] }, ...],
-    "forbidden_tokens":[{ "token": "(chibi:1.4)", "reason": "ControlNet 충돌 ..." }, ...],
-    "examples":        [{ "prompt": "1girl, ...", "seed": 42, "note": "검증된 prompt" }]
-  },
-  "cost":     { "est_seconds": 45, "vram_gb": 12 },
-  "pitfalls": ["검 든 캐릭터: ...", ...],
-  "related":  { "sibling": ["sprite/hires", ...], "upstream": ["sprite/v36_pro_stage1"] }
-}
-```
-
-### 의사결정 흐름
-
-1. **task 받음** → 의도 파싱 (예: "우리 게임 캐릭터 도트")
-2. **tag 매핑** → `kind=character, style=pixel-art`
-3. **추천 호출**:
-   ```bash
-   af workflow recommend --kind character --style pixel-art --output alpha-pixel
-   # → score 1.0 변형 리스트 (primary 우선). LLM 이 즉시 결정 가능.
-   ```
-4. **prompt 채우기** — `prompt_template.skeleton` 의 placeholder 를 `required_tokens.examples` 참고해 채움. `model_triggers` 가 있으면 prompt 앞에 prepend (예: Pony 의 `score_9, score_8_up, score_7_up`).
-5. **forbidden_tokens 회피** — `(chibi:1.4)` 같은 충돌 토큰은 prompt 에 넣지 않음 (워크플로우와 충돌).
-6. **cost / pitfalls** — 배치 ETA 계산, 사용자에게 함정 미리 안내.
-
-### tag 어휘 (현재 매니페스트 기준)
-
-| 축 | 값 |
-|---|---|
-| `kind` | `character` / `background` / `icon` / `illustration` / `utility` |
-| `style` | `pixel-art` / `anime` / `flat` |
-| `format` | `single` / `multi-view-1x3` / `tile` |
-| `output` | `alpha-pixel` / `alpha-rembg` / `raw` / `hires` / `pose` |
-| `model_family` | `illustrious` / `sdxl-anime` / `pony` / `sd1.5` / `sdxl-pixel` / `pony-pixel` |
-
-새로운 변형이 추가되면 어휘가 확장될 수 있음 — `recommend` 호출 결과를 그대로 신뢰.
-
-### 모델별 트리거 주의
-
-- **Pony** (`illustration/pony_*`, `pixel_bg/pony_*`): `score_9, score_8_up, score_7_up` prefix 필수. `prompt_template.model_triggers` 에 명시됨.
-- **sprite LoRA** (`sprite/*`): `pixel_character_sprite, sprite, sprite sheet, (pixel art:1.5), white background` 트리거. **`<lora:...:0.7>` syntax 는 박지 말 것** — LoRA 노드가 워크플로우에 박혀있어 이중 로드.
-- **sprite chibi 가중치 금지**: `(chibi:1.4)` / `(chibi:1.5)` 강조는 ControlNet stick figure 와 충돌 — `chibi` 단어 자체만 (가중치 없이).
-
----
-
-## 동적 입력 (PoseExtract / ControlNet) — 사용법
-
-특정 변형은 사용자 이미지를 입력으로 받는다 (예: `sprite/pose_extract`, ControlNet 변형).
-어떤 변형이 어떤 라벨을 받는지는 catalog 응답의 `input_labels` 에 명시된다:
-
-```jsonc
-// af workflow describe sprite/pose_extract
-{
-  "input_labels": [
-    { "label": "source_image", "required": true,  "description": "Pose 추출할 원본 이미지" },
-    { "label": "pose_image",   "required": false, "default": "pose_grid_1x3_mini_2.5h_1280x640.png" }
-  ]
-}
-```
-
-→ `--input <label>=<source>` 형식으로 박아 넣는다. `<source>` 는 3가지:
-
-| 형식 | 의미 |
-|---|---|
-| `@./local.png` | 로컬 파일 — 자동 업로드 |
-| `<asset_id>` | 기존 에셋 (UUID 직접) |
-| `run:<run_id>/<output_label>` | 이전 run 의 특정 출력 (chain 의 표준 형태) |
-
-**chain 의 표준 패턴** (사용자 이미지 → 포즈 추출 → 캐릭터 합성):
-
-```bash
-# 1) 포즈 추출
-af workflow gen sprite/pose_extract pj_chain step1 "extract pose" \
-   --input source_image=@./user_pose.jpg --bypass-approval --wait
-# → run_id="run_aaa..."
-
-# 2) 추출된 포즈로 캐릭터 합성
-af workflow gen sprite/pixel_alpha pj_chain step2 "knight, blue armor, ..." \
-   --input pose_image=run:run_aaa.../pixel_alpha --wait
-```
-
-> chain 중간물(`step1`)은 `--bypass-approval` 권장 — 검수 가치가 없는 변환물.
+> sprite/* 모두 1×3 multi-pose 시트 — 단일 이미지 필요하면 `illustration/*`. 자세한 변형 비교는 `buck(file_path="references/variant-quick-table.md")`.
 
 ---
 
@@ -241,144 +140,103 @@ af workflow gen sprite/pixel_alpha pj_chain step2 "knight, blue armor, ..." \
 
 | 모드 | 호출 | 용도 |
 |---|---|---|
-| `manual` (default) | 플래그 없음 | 사람이 cherry-pick UI 에서 승인. 게임 자산·로고 등 *실제로 들어갈* 에셋. |
-| `bypass` | `--bypass-approval` | 사람 승인 무의미한 임시물. 시뮬·스캐치·chain 중간물. |
+| `manual` (default) | 플래그 없음 | 사람 cherry-pick 승인. 게임 자산·로고 등 *실제로 들어갈* 에셋 |
+| `bypass` | `--bypass-approval` | 사람 승인 무의미한 임시물. 시뮬·스캐치·chain 중간물 |
 | `auto` (예약) | `--auto-approve` | (서버가 신뢰 점수로 자동 승인 — 향후) |
 
 **Bypass 사용 규칙**:
-- project 명을 `tmp_*` 또는 `sim_*` 로 — namespace 격리.
-- `af list <project>` 에 안 보임. `--include-bypassed` 로만 노출.
-- `af export --manifest` 에 안 묶임 (승인본 아님).
-- 보존 기간: `af health` 의 `bypass_retention_days` 참고. 그 후 GC.
-- **인증은 동일** — 승인 우회지 인증 우회 아님.
+- project 명을 `tmp_*` 또는 `sim_*` 로 (namespace 격리)
+- `af list <project>` 에 안 보임. `--include-bypassed` 로만 노출
+- `af export --manifest` 에 안 묶임 (승인본 아님)
+- 보존 기간: `af health` 의 `bypass_retention_days`. 그 후 GC
+- **인증은 동일** — 승인 우회지 인증 우회 아님
 
-**선택 가이드**:
-- 로고 8장 → cherry-pick 의미 있음 → `manual`
-- 캐릭터 시뮬 100장 → 검수 무의미 → `bypass`
-- chain 중간물 → 항상 `bypass`
-- 게임에 들어갈 sprite → `manual`
+선택 가이드: 게임 자산 → `manual` / 시뮬 100장 → `bypass` / chain 중간물 → 항상 `bypass`
 
 ---
 
-## 프롬프팅 핵심
+## 동적 입력 / 프롬프트 디테일 / Paperclip 워크플로
 
-> 변형이 모델/LoRA/preset 을 박고 있어 **세부 SD 파라미터는 만지지 않는다**. 에이전트가
-> 신경쓸 건 prompt 본문과 negative 의 **속성 보호** 뿐.
+본 SKILL 의 핵심은 *변형 선택 + subject 모드 호출* 만 다룬다. 아래는 케이스별 reference:
 
-### 1. Prefix는 카테고리 워크플로우가 자동 추가
-- `sprite/*`: `pixel art, sprite, three views, ...` 자동 prepend
-- 에이전트 입력은 **캐릭터 묘사 본문만**. `pixel art,` 같은 prefix 직접 안 적어도 됨.
-
-### 2. 권장 negative 는 catalog 에서 제공
-`af workflow describe <variant>` 의 `recommended_negative_preset` 또는 `defaults.negative_prompt`
-가 이미 채워져 있다 (예: `NEG_PIXEL_SPRITE`, `NEG_ILLUSTRATION`). **추가 negative 만**
-적기 — preset 위에 덧붙여진다.
-
-### 3. 속성 보호 (캐릭터 일관성)
-원치 않는 경쟁 속성을 negative 에 명시. 실버 헤어 유지 시:
-```
-negative: pink hair, gold hair, brown hair, blonde hair, ...
-```
-유지율 +20~30%.
-
-### 4. 카테고리별 prompt 템플릿
-
-**sprite (V38)**:
-```
-1girl, (black hair:1.2), (side ponytail:1.3), long hair,
-blue knight armor, (holding silver sword:1.3), sword in right hand,
-red cape, fantasy warrior, masterpiece, best quality, very aesthetic
-```
-
-**illustration**:
-```
-1girl, school uniform, sitting in cafe, soft natural lighting,
-cinematic composition, masterpiece, best quality, very aesthetic
-```
-
-**Pony 변형**: 끝에 `score_X` 필수
-```
-score_9, score_8_up, score_7_up, score_6_up,
-1girl, ...
-```
-
----
-
-## 상세 가이드
-
-### sprite 변형 빠른 표
-
-| 변형 | 출력 수 | 언제 |
-|---|---|---|
-| `sprite/pixel_alpha` ⭐ | 3 (Stage1·Pixelized·**PixelAlpha**) | **메인** — 게임 엔진 즉시 사용 |
-| `sprite/hires` | 2 (Stage1·**HiRes**) | 1920×960 디테일 |
-| `sprite/rembg_alpha` | 2 | AI rembg 알파 — 일러스트풍 캐릭터 |
-| `sprite/full` | 5 | 한 번에 다 — 비교용 |
-| `sprite/pose_extract` | 1 | 사용자 사진에서 OpenPose 추출 |
-
-**sprite 핵심 메모**:
-- 1×3 layout (front/right_side/back) — 좌측 옆모습은 게임 엔진에서 `flipX` 권장 (SDXL/Illustrious 학습 약함).
-- 등신 비율은 prompt 가 아니라 **pose grid** 가 결정. 다른 grid 쓰려면 `--input pose_image=@your_grid.png`.
-- 검 들기 trick: `(holding silver sword:1.3), sword in right hand, gripping sword tightly`. negative 에 `floating sword, detached weapon` (NEG_PIXEL_SPRITE 에 이미 포함).
-
-### illustration 변형 선택
-
-| 변형 | 특징 |
+| 필요 | 파일 |
 |---|---|
-| `illustration/animagine_hires` | 깔끔한 표준 — 첫 시도 추천 (`@marketing` alias) |
-| `illustration/pony_hires` | Pony 정통 — `score_X` 트리거 권장 |
-| `illustration/hyphoria_hires` | Modern Illustrious — 2025 트렌드 |
-| `illustration/anything_hires` | 범용 (Anything XL) |
+| catalog 응답 schema 전체 jsonc / recommend·search API 상세 / prompt_template 합성 디테일 / tag 컨벤션 | `buck(file_path="references/catalog-and-meta.md")` |
+| 모든 REST endpoint + curl 예제 + OpenAPI | `buck(file_path="references/api.md")` |
+| PoseExtract / ControlNet chain (사용자 사진 → 포즈 추출 → 캐릭터 합성) | `buck(file_path="references/dynamic-inputs.md")` |
+| 변형별 cheat-sheet (sprite 10종, illustration 10종 비교) | `buck(file_path="references/variant-quick-table.md")` |
+| 프롬프트 작성 노하우 (속성 보호, 시리즈 통일, 다인원, legacy 모드) | `buck(file_path="references/prompt-craft.md")` |
+| Paperclip 이슈 받았을 때 워크플로 | `buck(file_path="references/paperclip-flow.md")` |
 
 ---
 
 ## Pitfalls
 
-1. **SD/ComfyUI 직접 호출 절대 금지**. A1111(`192.168.50.225:7860`) / ComfyUI(`192.168.50.225:8188`) URL 을 알고 있어도 손대지 않음. 모든 호출은 `af` 만. 카탈로그·이력·승인·GC 일관성 유지.
+1. **SD/ComfyUI 직접 호출 절대 금지**. A1111(`192.168.50.225:7860`) / ComfyUI(`192.168.50.225:8188`) URL 알아도 손대지 않음. 모든 호출은 `af` 만. 카탈로그·이력·승인·GC 일관성 유지.
 2. **PIL 로 이미지 직접 생성 금지** — 가짜 에셋. 과거 HoD 해고 사례.
 3. **Vision tool 로 후보 N장 평가 금지** — 토큰 낭비. 사람 cherry-pick UI 가 표준.
 4. **다인원 캐릭터는 별도 asset_key 로 단독 생성** — 한 이미지에 3명 이상은 attribute bleeding 거의 확정.
-5. **`--bypass-approval` 을 게임 자산에 쓰지 마라** — 승인 큐를 우회하면 정식 export 에 안 묶인다. 사람 검수 가치가 *없는* 케이스에만 (시뮬/스캐치/chain 중간물).
-6. **chain 중간물의 `tmp_*` 격리** — bypass 자산은 `tmp_*` / `sim_*` project 로 모은다. 정식 project 에 섞으면 `af list` 가 지저분해진다.
-7. **변형 사용 가능 여부**: `af workflow catalog` 의 `available: false` 는 호출 불가 (registry 의 `status: needs_api_conversion` — 사용자가 ComfyUI UI 에서 API 포맷 export 필요).
-8. **multi-output 의 cherry-pick**: `sprite/full` 같은 변형은 1 candidate slot 에 N장이 묶여 있다. cherry-pick UI 는 **primary** (`pixel_alpha`) 만 보여주고, 나머지는 metadata 에 동봉.
-9. **`--input` 라벨 오타**: catalog 에 없는 라벨을 박으면 `report.skipped` 에 기록되고 *조용히* 무시된다. `--dry-run` 으로 사전 점검 권장.
-10. **chain 의 run_id 보관**: `af workflow gen` 응답의 `run_id` 를 잡아둬야 다음 단계에서 `run:<run_id>/<output>` 으로 참조 가능.
+5. **`--bypass-approval` 을 게임 자산에 쓰지 마라** — 정식 export 에 안 묶임. 시뮬/스캐치/chain 중간물에만.
+6. **chain 중간물의 `tmp_*` 격리** — bypass 자산은 `tmp_*` / `sim_*` project 로. 정식 project 에 섞으면 `af list` 가 지저분.
+7. **변형 사용 가능 여부**: catalog 의 `available: false` 는 호출 불가 (registry 의 `status: needs_api_conversion`).
+8. **multi-output 의 cherry-pick**: `sprite/full` 같은 변형은 1 candidate slot 에 N장. UI 는 **primary** 만 보여주고 나머지는 metadata 동봉.
+9. **`--input` 라벨 오타**: catalog 에 없는 라벨 박으면 `report.skipped` 에 기록되고 *조용히* 무시. `--dry-run` 으로 사전 점검 (⏳ 미구현 시 작은 변형 candidates=1 실 호출).
+10. **chain 의 `run_id` 보관**: `gen` 응답의 `run_id` 잡아둬야 다음 단계에서 `run:<run_id>/<output>` 참조 가능.
+11. **변형별 회귀 격리**: 한 변형이 1~2초만에 fail + `error_message: null` + 빈 `assets` → *다른 변형으로 즉시 회귀 격리*. `sprite/pixel_alpha` 정상 동작이면 서버 OK. 깨진 변형은 PR/이슈로 보고. 진단에 5분 이상 소진 금지.
+12. **변형 의도(layout) 무시 금지** — 호출 전 *반드시* `meta.output_layout.kind` 확인. `pose_grid` 인데 단일 일러스트 의도면 결과 안 나옴 (실 사고 사례: `sprite/pixel_alpha` 를 *학교 복도 씬* 1장 의도로 잘못 호출 → 캐릭터 2명 그려진 학교 복도). **회피 휴리스틱**: 변형 호출 전 1초 셀프체크 — *"이 변형이 만드는 최종 이미지 구성이 사용자가 원하는 것과 일치하나? 단일 vs 그리드, 캐릭터 수, 배경 유무?"*
+13. **`subject` 모드 가이드** — `meta.prompt_template.user_slot.description` 따른다 (캐릭터 묘사만, 스타일/배경 묘사 금지, `(chibi:1.4)` 같은 가중치 금지). 변형이 박은 base_positive 와 *중복 묘사* 하지 마라 (영향 거의 없고 토큰 낭비).
+14. **`base_negative` override 금지** — 사용자 `negative_prompt` 는 *append 만*. 변형이 박은 필수 negative (예: `floating sword, detached weapon` — sprite/pixel_alpha) 는 안전 정책상 override 불가.
 
 ---
 
-## ⚠️ Skill freshness — 미충족 P0 항목
+## 회귀·실패 진단
 
-이 스킬은 [`asset-factory/docs/TODOS_for_SKILL.md`](https://github.com/sunghere/asset-factory/blob/main/docs/TODOS_for_SKILL.md) 의 P0 가
-**모두 채워졌다는 가정** 으로 작성됐다. 미충족 항목이 있으면 아래 우회법으로 동작:
+```
+af workflow gen X/Y ... --wait   →  failed_count=1, error_message=null
+                                          │
+                                          ▼
+[1] 다른 변형으로 회귀 격리 (1분, decisive)
+    af workflow gen sprite/pixel_alpha tmp_diag diag1 \
+        --subject "1girl, ..." --candidates 1 --bypass-approval --wait
+    - 성공 → 서버 OK, *해당 변형* 만 깨짐 → 별도 이슈로 보고하고 동작하는 변형으로 진행
+    - 실패 → 서버/ComfyUI 연결 의심 → [2]
+                                          │
+                                          ▼
+[2] ComfyUI 까지 prompt 가 도달했나?
+    curl -s 'http://192.168.50.225:8188/history?max_items=20' -o /tmp/h.json
+    - 있다 → ComfyUI 측 점검 (ckpt? object_info?)
+    - 없다 → asset-factory 가 patch/build/dispatch 단계서 조용히 실패
+                                          │
+                                          ▼
+[3] 추가 단서 — `~/workspace/asset-factory/data/server.log` (uvicorn access 만, 백그라운드 task 의 stderr 는 안 잡힘)
+    + `curl http://192.168.50.225:8188/object_info` 로 노드 클래스 등록 확인
+```
 
-| P0/P1 항목 | 상태 | 미충족 시 우회 |
+핵심: [1]만으로 *서버 살았는지 / 특정 변형만 깨진 건지* 거의 확정. 회귀 격리 → 보고 → 동작 변형으로 시연 진행. **시연/smoke 가 막히면 안 된다**.
+
+---
+
+## ⚠️ Skill freshness — 미충족 항목
+
+asset-factory NEXT.md §1.A/§1.B/§1.C **모두 채워짐** (PR #30, #38-43 머지본). 미충족은 ⏳ 만:
+
+| 항목 | 상태 | 미충족 시 우회 |
 |---|---|---|
-| `--bypass-approval` 플래그 | ✅ 채워짐 (PR #18) | — |
-| catalog `input_labels` | ✅ 채워짐 (PR #18) | — |
-| `af workflow upload` CLI | ✅ 채워짐 (PR #18, Python `python -m cli workflow upload`) | — |
-| `--input <label>=...` 통합 호출 | ✅ 채워짐 (PR #18, Python CLI) | — |
-| `--dry-run` | ⏳ 미충족 | 직접 enqueue 후 작은 변형 (`sprite/pixel_alpha`, candidates=1) 으로 실 호출. `--input` 라벨 오타는 응답의 `report.skipped` 로 확인. |
-| `aliases` (`@character` 등) | ⏳ 미충족 | full path (`sprite/pixel_alpha`) 로 호출. |
-| `run:<run_id>/<output>` syntax | ⏳ 부분 충족 | `--input source_image=asset:<id>` 로 chain. 특정 output label 참조 (`run:.../pixel_alpha`) 는 asset_id 직접 룩업 (`af list <project>` → metadata 매칭). |
-
-**갭이 채워질 때마다 이 표에서 한 줄씩 지운다** (skill 유지보수자).
-
----
-
-## Paperclip 워크플로
-
-페이퍼클립 이슈가 "에셋 N장 만들어줘" 형태일 때:
-
-1. **카탈로그 확인**: `af workflow catalog` → 카테고리·변형 결정. 의도 명확하면 alias (`@character` 등) 사용.
-2. **dry-run 으로 사전 점검**: `af workflow gen <variant> ... --dry-run` 으로 패치 결과·라벨 매칭 OK 인지.
-3. **본 호출**: `af workflow gen <variant> <project> <asset_key> "<prompt>" --candidates N --wait`.
-4. **bypass 결정**: 시뮬/스캐치/chain 중간물이면 `--bypass-approval`. 정식 자산이면 빼고 cherry-pick 큐로.
-5. **결과 전달**: 출력의 `cherry-pick URL` 을 이슈 코멘트로. bypass 면 `af get <asset_id>` 결과 직접 첨부.
-6. **승인 후**: 필요 시 `af export <project> --manifest`.
+| §1.A meta (intent / output_layout / use_cases / not_for / tags) | ✅ 25/25 변형 (PR #30, #38-41) | — |
+| §1.A `meta.prompt_template` | ✅ 24/25 (`pose_extract` 제외 — utility) | — |
+| §1.A `input_labels.alternatives` | ✅ (PR #30) | — |
+| catalog `version: 2` | ✅ (PR #30) | — |
+| §1.B 서버 자동 주입 (`subject`, `prompt_resolution`, `prompt_mode: auto/subject/legacy`) | ✅ (PR #42) | — |
+| §1.C `POST /api/workflows/recommend` (자연어 + score + warnings) | ✅ (PR #43) | — |
+| §1.C `GET /api/workflows/search` (tag + not filter) | ✅ (PR #43) | — |
+| `--bypass-approval` / `input_labels` / `af workflow upload` / `--input` 통합 | ✅ (PR #18) | — |
+| `--dry-run` | ⏳ 미충족 | 작은 변형 candidates=1 실 호출. 라벨 오타는 `report.skipped` 로 확인 |
+| `aliases` (`@character` 등) | ⏳ 미충족 | full path (`sprite/pixel_alpha`) 로 호출 |
+| `run:<run_id>/<output>` syntax | ⏳ 부분 충족 | `--input source_image=asset:<id>` 로 chain. 특정 output 참조는 `af list <project>` → metadata 매칭 |
 
 ---
 
 ## Related skills
 
-- (없음 — `stable-diffusion-api` 는 v3 의 흔적. v4 부터 SD 직접 호출은 정책상 금지.)
+- `paperclip-api` — Paperclip 이슈 컨텍스트로 호출될 때 같이 로드
+- `aseprite-build` — 생성된 sprite 시트를 Aseprite 에서 후처리 (split, palette 조정)
