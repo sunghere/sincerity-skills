@@ -1,6 +1,6 @@
 ---
 name: asset-factory-api
-version: 5
+version: 6
 description: "Asset Factory(ComfyUI 워크플로우 기반) 로 게임/일러스트 에셋 생성. catalog → recommend → subject 모드 generate. 모델·LoRA·step·cfg 같은 SD 파라미터는 사용자가 만지지 않는다. SD 서버 직접 호출 절대 금지."
 triggers:
   - asset factory
@@ -27,7 +27,7 @@ triggers:
 
 | 항목 | v3 (구) | v4 (지금) |
 |---|---|---|
-| 백엔드 | A1111 직접 호출 | **ComfyUI 워크플로우 호출** |
+| 백엔드 | (구) SD 직접 호출 | **ComfyUI 워크플로우 호출** |
 | 모델 선택 | 에이전트가 결정 | **변형(variant)이 모델을 내장** — 에이전트 관여 X |
 | LoRA/weight | 에이전트가 `--lora xxx:0.8` 지정 | 변형 내부에 박혀 있음 |
 | step/cfg/sampler | 에이전트가 결정 | 변형 `defaults` 가 알아서 |
@@ -172,7 +172,7 @@ recommend → 후보 → not_for_warnings 비어있는 첫 후보 채택
 
 ## Pitfalls
 
-1. **SD/ComfyUI 직접 호출 절대 금지**. A1111(`192.168.50.225:7860`) / ComfyUI(`192.168.50.225:8188`) URL 알아도 손대지 않음. 모든 호출은 `af` 만. 카탈로그·이력·승인·GC 일관성 유지.
+1. **SD/ComfyUI 직접 호출 절대 금지**. ComfyUI(`192.168.50.225:8188`) URL 알아도 손대지 않음 — 모든 호출은 `af` 만. 카탈로그·이력·승인·GC 일관성 유지. 진단 시 `/api/comfyui/health` / `/api/comfyui/catalog` curl 은 OK (`references/api.md` 참고).
 2. **PIL 로 이미지 직접 생성 금지** — 가짜 에셋. 과거 HoD 해고 사례.
 3. **Vision tool 로 후보 N장 평가 금지** — 토큰 낭비. 사람 cherry-pick UI 가 표준.
 4. **다인원 캐릭터는 별도 asset_key 로 단독 생성** — 한 이미지에 3명 이상은 attribute bleeding 거의 확정.
