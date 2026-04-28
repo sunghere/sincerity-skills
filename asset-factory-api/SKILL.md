@@ -98,7 +98,7 @@ af export <project> --manifest               # 승인본만
 
 매 호출 전 다음 4-step 으로 변형 선택. catalog 응답이 SSOT.
 
-1. **`af workflow recommend "<task 자연어>"`** → top 3 후보 + score + `not_for_warnings`
+1. **`af workflow recommend "<task 자연어>"`** → top 3 후보 + score + `not_for_warnings`. ⚠️ **`score` 만 믿지 마라** — 룰 기반이라 한국어/짧은 query 에서 엉뚱한 후보가 #1 로 올라오는 사고 사례 다수 (예: "픽셀 배경 ..." 에 `sprite/hires` 가 #1, "UI 앱 아이콘 flat" 에 `sprite/stage1` 이 #1). 반드시 step 2~3 의 `meta.intent` + `output_layout` 로 검증.
 2. **첫 후보의 `meta.intent` 한 줄 + `use_cases`/`not_for`** 으로 적합성 검증
 3. **`meta.output_layout.kind`** (`single` / `pose_grid` / `tile_grid` / `character_sheet`) 확인 — *최종 이미지의 그림 구성* 이 사용자가 원하는 형태인가?
 4. **`meta.prompt_template.user_slot.examples`** 1개 복사해 *캐릭터 묘사로 변형* → `--subject` 인자로 호출
