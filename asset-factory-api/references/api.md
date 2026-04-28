@@ -3,7 +3,7 @@
 > 일반 사용은 `af` CLI 또는 `references/catalog-and-meta.md` 의 메타 사용 패턴으로 충분.
 > 이 문서는 모든 REST endpoint 의 **호출 디테일** + curl 예제 + 응답 형식을 다룬다.
 >
-> ⚠️ v4 부터 A1111 직접 호출 / 모델·LoRA·step·cfg 수동 지정은 **폐기**. 이 문서는 ComfyUI 워크플로우 호출 인터페이스만 다룬다.
+> ⚠️ v4 부터 모델·LoRA·step·cfg 수동 지정은 **폐기**. 이 문서는 ComfyUI 워크플로우 호출 인터페이스만 다룬다.
 
 ---
 
@@ -26,6 +26,9 @@
 | 용도 | Method · Path | `af` 대응 |
 |---|---|---|
 | 헬스 / ComfyUI 연결 | `GET /api/health` | `af health` |
+| ComfyUI 단독 헬스 + 큐 상태 ⭐ | `GET /api/comfyui/health` | — |
+| ComfyUI 모델/LoRA/VAE/ControlNet/Workflow 카탈로그 ⭐ | `GET /api/comfyui/catalog` | — |
+| ComfyUI 큐 (running/pending) | `GET /api/comfyui/queue` | — |
 | **워크플로우 카탈로그** | `GET /api/workflows/catalog` | `af workflow catalog` |
 | 워크플로우 상세 | `GET /api/workflows/catalog` (variant 필터링) | `af workflow describe <cat>/<v>` |
 | **변형 추천 (자연어)** ⭐ | `POST /api/workflows/recommend` | `af workflow recommend` |
@@ -311,6 +314,110 @@ curl http://localhost:47823/api/system/gc/status | jq
 ```
 
 bypass 자산은 `bypass_retention_days` 후 자동 GC. `tmp_*` / `sim_*` project 는 격리되어 정식 자산과 섞이지 않음.
+
+---
+
+## ComfyUI 카탈로그 / 헬스 / 큐
+
+ComfyUI 가 1차 데이터 소스. Catalog/System 화면 + 진단용.
+`af` 대응 명령은 없음 — 운영자가 curl 로 직접 진단할 때 사용.
+
+### `GET /api/comfyui/health` — ComfyUI 단독 헬스 + 큐
+
+```bash
+curl -s http://localhost:47823/api/comfyui/health | jq
+```
+
+응답:
+```jsonc
+{
+  "ok": true,
+  "host": "http://192.168.50.225:8188",
+  "fetched_at": "2026-04-29T01:30:00Z",
+  "comfyui_version": "0.19.3",
+  "python_version": "3.10.11",
+  "device_count": 1,
+  "device_names": ["cuda:0 NVIDIA GeForce RTX 4080 SUPER"],
+  "queue": {"running": 0, "pending": 0},
+  "workflows_available": 25
+}
+```
+
+**실패 시** (timeout/예외 — 항상 200 + `ok: false`):
+```jsonc
+{"ok": false, "host": "...", "fetched_at": "...", "error": "timeout: ComfyUI did not respond within 5.0s"}
+```
+
+응답이 항상 200 + 본문 `ok` 필드로 분기 — 프론트 배너가 status code 분기 안 타게.
+timeout 기본 5초 (`COMFYUI_HEALTH_TIMEOUT_SECONDS` env override).
+
+### `GET /api/comfyui/catalog` — 모델/LoRA/VAE/ControlNet/Workflow 합본
+
+```bash
+curl -s http://localhost:47823/api/comfyui/catalog | jq '{
+  checkpoints: (.checkpoints | length),
+  loras: (.loras | length),
+  vaes: (.vaes | length),
+  controlnets: (.controlnets | length),
+  upscalers: (.upscalers | length),
+  workflows: (.workflows | length),
+  fetched_at, stale
+}'
+```
+
+응답:
+```jsonc
+{
+  "fetched_at": "2026-04-29T01:30:00Z",
+  "stale": false,
+  "checkpoints": [
+    {"name": "AnythingXL_xl.safetensors", "family": "sdxl", "used_by_workflows": ["illustration:anything_hires", ...]}
+  ],
+  "loras": [{"name": "Pixel_Resin_x16.safetensors", "used_by_workflows": [...]}],
+  "vaes": [{"name": "xlVAEC_g102.safetensors", "used_by_workflows": []}],
+  "controlnets": [{"name": "control-lora-openposeXL2-rank256.safetensors", "used_by_workflows": []}],
+  "upscalers": [],
+  "workflows": [
+    {
+      "id": "sprite:pixel_alpha",
+      "category": "sprite",
+      "label": "...",
+      "variants": 1,
+      "uses_models": ["AnythingXL_xl.safetensors"],
+      "uses_loras": ["pixel-art-xl-v1.1.safetensors"]
+    }
+  ]
+}
+```
+
+**캐시**: 60초 in-memory (`COMFYUI_CATALOG_TTL_SECONDS` env override). 응답 1.94MB
+원본을 ComfyUI 에서 가져와 변환 → 두 번째 호출은 < 100ms.
+
+**실패 시 (캐시 있음)**: 마지막 성공 페이로드 + `stale: true` + `error` 첨부.
+**실패 시 (캐시 없음)**: `{"ok": false, "error": "...", "host": "...", "fetched_at": "..."}`.
+
+`family` 필드: checkpoint name 으로 추론 (`xl` 토큰 → `sdxl`, `pony` 토큰 → `pony`,
+나머지 → `unknown`). `used_by_workflows` 는 변형 api.json 의 정적 분석 결과 —
+동적 patch 는 추적 불가 (PLAN_comfyui_catalog.md §8 위험 항목).
+
+### `GET /api/comfyui/queue` — running list + pending count
+
+```bash
+curl -s http://localhost:47823/api/comfyui/queue | jq
+```
+
+응답:
+```jsonc
+{
+  "ok": true,
+  "running": [{"prompt_id": "abc-123", "number": 0}],
+  "pending": 2,
+  "host": "http://192.168.50.225:8188",
+  "fetched_at": "..."
+}
+```
+
+5초 timeout (`COMFYUI_QUEUE_TIMEOUT_SECONDS`). 항상 200 + `ok` 분기.
 
 ---
 
