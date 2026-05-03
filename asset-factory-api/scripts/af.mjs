@@ -6,9 +6,8 @@
 //     Python typer CLI (`python -m cli workflow ...`) 가 정식 채택됐다.
 //     동일 동작이며, 신규 기능(--input, --bypass-approval 등)은 Python 쪽에 먼저 들어간다.
 //     스크립트/스킬 신규 작성 시 `python -m cli workflow ...` 사용 권장.
-//   - `af health` / `af list` / `af get` / `af export` / `af catalog` (A1111) /
-//     `af gen` (A1111 단발) / `af batch` 는 Python 포팅 전이라 본 스크립트가
-//     계속 운영용 유일 진입점이다.
+//   - `af health` / `af list` / `af get` / `af export` 는 Python 포팅 전이라
+//     본 스크립트가 계속 운영용 유일 진입점이다.
 //   완전 제거 시점은 위 명령들이 Python CLI 로 포팅된 이후.
 //
 // Why this exists:
@@ -17,9 +16,6 @@
 //
 // Usage:
 //   af health
-//   af catalog [models|loras]
-//   af gen <project> <asset_key> <prompt> [--category sprite] [--size 64] [--negative "..."] [--wait]
-//   af batch <project> <asset_key> --prompts "p1" "p2" --models m1 [--seeds 4] [--category character]
 //   af workflow catalog
 //   af workflow gen <category>/<variant> <project> <asset_key> "prompt"
 //                   [--seed 42] [--candidates 4] [--workflow-params '{"pose_image":"..."}']
@@ -88,14 +84,7 @@ function parseArgs(argv) {
 // ── Commands ─────────────────────────────────────────────
 async function cmdHealth() {
   const h = await http("GET", "/api/health");
-  const sd = await http("GET", "/api/health/sd");
-  out({ service: h, sd });
-}
-
-async function cmdCatalog(kind = "models") {
-  if (!["models", "loras"].includes(kind)) die("catalog: kind must be 'models' or 'loras'");
-  const data = await http("GET", `/api/sd/catalog/${kind}`);
-  out(data);
+  out(h);
 }
 
 async function pollJob(jobId, timeoutSec = 300) {
@@ -109,80 +98,6 @@ async function pollJob(jobId, timeoutSec = 300) {
     await new Promise(r => setTimeout(r, 3000));
   }
   die(`poll timeout after ${timeoutSec}s for job ${jobId}`, 3);
-}
-
-async function cmdGen(args) {
-  const { positional, flags } = args;
-  const [project, asset_key, ...promptParts] = positional;
-  const prompt = promptParts.join(" ");
-  if (!project || !asset_key || !prompt) die("usage: af gen <project> <asset_key> <prompt> [--negative ...] [--size N] [--wait]");
-  const body = {
-    project,
-    asset_key,
-    category: flags.category || "sprite",
-    prompt,
-    negative_prompt: flags.negative || null,
-    expected_size: flags.size ? Number(flags.size) : 64,
-    max_colors: flags["max-colors"] ? Number(flags["max-colors"]) : 32,
-  };
-  if (flags.model) body.model_name = flags.model;
-  if (flags.steps) body.steps = Number(flags.steps);
-  if (flags.cfg) body.cfg = Number(flags.cfg);
-  const r = await http("POST", "/api/generate", { body });
-  log(`enqueued job_id=${r.job_id}`);
-  if (flags.wait || flags.w) {
-    const final = await pollJob(r.job_id, Number(flags.timeout) || 300);
-    out(final);
-  } else {
-    out(r);
-  }
-}
-
-async function cmdBatch(args) {
-  const { positional, flags } = args;
-  const [project, asset_key] = positional;
-  if (!project || !asset_key) die("usage: af batch <project> <asset_key> --prompts \"p1\" \"p2\" --models m1 [--seeds 4] [--category character]");
-  const prompts = flags.prompts;
-  if (!prompts) die("--prompts required (one or more strings)");
-  const promptsArr = Array.isArray(prompts) ? prompts : [prompts];
-  const models = flags.models ? (Array.isArray(flags.models) ? flags.models : [flags.models]) : [];
-  if (models.length === 0) die("--models required (one or more model names from `af catalog models`)");
-  const lorasArg = flags.loras; // simple: comma-separated "name:weight,name:weight"
-  let lorasMatrix = [];
-  if (lorasArg) {
-    const groups = (Array.isArray(lorasArg) ? lorasArg : [lorasArg]);
-    lorasMatrix = groups.map(g => g.split(",").map(item => {
-      const [name, w] = item.split(":");
-      return { name, weight: w ? Number(w) : 0.7 };
-    }));
-  }
-  const body = {
-    project,
-    asset_key,
-    category: flags.category || "character",
-    prompts: promptsArr,
-    models,
-    loras: lorasMatrix,
-    seeds_per_combo: flags.seeds ? Number(flags.seeds) : 4,
-    common: {
-      steps: flags.steps ? Number(flags.steps) : 28,
-      cfg: flags.cfg ? Number(flags.cfg) : 7.0,
-      sampler: flags.sampler || "DPM++ 2M",
-      expected_size: flags.size ? Number(flags.size) : 64,
-      max_colors: flags["max-colors"] ? Number(flags["max-colors"]) : 32,
-      max_retries: 3,
-    },
-  };
-  if (flags.negative) body.common.negative_prompt = flags.negative;
-  const r = await http("POST", "/api/mcp/design_asset", { body });
-  log(`enqueued batch_id=${r.batch_id} job_id=${r.job_id} expanded=${r.expanded_count} eta=${r.estimated_eta_seconds}s`);
-  log(`cherry-pick UI: ${HOST}/cherry-pick?batch=${r.batch_id}`);
-  if (flags.wait || flags.w) {
-    const final = await pollJob(r.job_id, Number(flags.timeout) || (r.expanded_count * 15));
-    out({ ...final, batch_id: r.batch_id, cherry_pick_url: `${HOST}/cherry-pick?batch=${r.batch_id}` });
-  } else {
-    out(r);
-  }
 }
 
 async function cmdStatus(args) {
@@ -407,13 +322,7 @@ function usage() {
   console.error(`af — Asset Factory CLI (host: ${HOST})
 
 Commands:
-  af health                            # 서버 + SD/ComfyUI 연결 점검 (양 백엔드)
-  af catalog [models|loras]            # A1111 모델/LoRA 목록
-  af gen <project> <key> <prompt> [--size 64] [--negative "..."] [--model m] [--wait]
-                                       # A1111 단일 에셋 생성
-  af batch <project> <key> --prompts "p1" ["p2"...] --models m1 [m2...] [--seeds 4]
-           [--loras "name:w,name:w" "..."] [--size 64] [--wait]
-                                       # A1111 디자인 배치 (cherry-pick)
+  af health                            # 서버 + ComfyUI 연결 점검
 
   af workflow catalog                  # ComfyUI 워크플로우 카탈로그 (sprite/illustration/...)
   af workflow gen <category>/<variant> <project> <key> "prompt"
@@ -453,9 +362,6 @@ const args = parseArgs(rest);
 
 const handlers = {
   health: cmdHealth,
-  catalog: () => cmdCatalog(args.positional[0] || "models"),
-  gen: () => cmdGen(args),
-  batch: () => cmdBatch(args),
   workflow: () => cmdWorkflow(args),
   status: () => cmdStatus(args),
   wait: () => cmdWait(args),

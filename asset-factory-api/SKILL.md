@@ -1,6 +1,6 @@
 ---
 name: asset-factory-api
-version: 7
+version: 8
 description: "Asset Factory(ComfyUI 워크플로우 기반) 로 게임/일러스트 에셋 생성. catalog → recommend → subject 모드 generate. 모델·LoRA·step·cfg 같은 SD 파라미터는 사용자가 만지지 않는다. SD 서버 직접 호출 절대 금지."
 triggers:
   - asset factory
@@ -19,24 +19,19 @@ triggers:
   - comfyui 워크플로우
 ---
 
-# Asset Factory (v4 — ComfyUI 워크플로우)
+# Asset Factory
 
 게임/일러스트 에셋 생성 파이프라인. **`af` CLI 한 줄 또는 REST API 호출**로 ComfyUI 워크플로우 변형을 호출한다.
 
-## 🚨 v4 패러다임 (이전과 다름)
+## 핵심 원칙
 
-| 항목 | v3 (구) | v4 (지금) |
-|---|---|---|
-| 백엔드 | (구) SD 직접 호출 | **ComfyUI 워크플로우 호출** |
-| 모델 선택 | 에이전트가 결정 | **변형(variant)이 모델을 내장** — 에이전트 관여 X |
-| LoRA/weight | 에이전트가 `--lora xxx:0.8` 지정 | 변형 내부에 박혀 있음 |
-| step/cfg/sampler | 에이전트가 결정 | 변형 `defaults` 가 알아서 |
-| prompt 작성 | 에이전트가 통째 작성 | **`subject` (캐릭터 묘사만) 입력 → 서버 자동 합성** (§1.B) |
-| 변형 선택 | description 한 줄 보고 추측 | **`/api/workflows/recommend` 자연어 query** (§1.C) |
-| 카테고리 | 약함 | **명시적**: `sprite` / `illustration` / `pixel_bg` / `icon` |
-| 결과 형태 | 1장 | **multi-output** (변형마다 다름; e.g. `sprite/pixel_alpha` = 3장) |
-| 동적 입력 | 없음 | **PoseExtract / ControlNet chain** 가능 |
-| 승인 | 항상 cherry-pick | `--bypass-approval` 플래그로 우회 가능 |
+- **변형(variant)이 모델·LoRA·step·cfg·sampler 를 내장** — 에이전트는 SD 파라미터 안 만진다 (SD 서버 직접 호출 절대 금지).
+- **카테고리 명시적**: `sprite` / `illustration` / `pixel_bg` / `icon`.
+- **`subject` 모드**: 캐릭터 묘사만 입력 → 서버가 base prompt 와 자동 합성 (§1.B).
+- **`/api/workflows/recommend`**: 자연어 query 로 변형 추천 (§1.C).
+- **multi-output**: 변형마다 산출물 개수 다름 (e.g. `sprite/pixel_alpha` = 3장).
+- **승인 모드**: `manual` (cherry-pick) / `bypass` (시뮬·스캐치).
+- **동적 입력**: PoseExtract / ControlNet chain 가능.
 
 ## When to use
 
@@ -283,15 +278,14 @@ asset-factory NEXT.md §1.A/§1.B/§1.C **모두 채워짐** (PR #30, #38-43 머
 - `DELETE /api/asset-candidates/{id}` — 단일 후보 영구 삭제 (파일 unlink +
   row). AssetDetail UI 의 inline 정리 버튼 backend.
 
-### Deprecated → 410 Gone (PR #48)
-- `POST /api/generate` → **410 Gone** + `Deprecation: true` + `Sunset` +
-  `Link: </api/workflows/generate>; rel="successor-version"`.
-  successor: `WorkflowGenerateRequest` 로 교체.
-- `POST /api/generate/batch` → **410 Gone**, successor: `/api/batches`
-  (`DesignBatchRequest`).
+### 제거된 endpoint (역사적 호환)
 
-`/api/sd/catalog/{models,loras}` 도 `Deprecation: true` 헤더만 달려 있고
-**v0.4.0 메이저에서 제거 예정** — 새 코드는 `/api/comfyui/catalog` 만.
+옛 클라이언트가 다음 endpoint 를 호출하면 **410 Gone** + `Deprecation: true` + `Link: rel="successor-version"` 헤더로 응답한다. 새 코드는 successor 만 쓴다.
+
+| 옛 endpoint | successor |
+|---|---|
+| `POST /api/generate` | `POST /api/workflows/generate` |
+| `POST /api/generate/batch` | `POST /api/batches` |
 
 ### Cherry-pick 응답 schema (PR #51)
 `GET /api/batches/{id}/candidates` 와 `GET /api/assets/{id}/candidates` 둘 다
