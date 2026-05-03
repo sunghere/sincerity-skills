@@ -236,6 +236,53 @@ asset-factory NEXT.md §1.A/§1.B/§1.C **모두 채워짐** (PR #30, #38-43 머
 
 ---
 
+## REST API — 직접 호출 reference (asset-factory PR #48~#55 기준)
+
+`af` CLI 가 1차 인터페이스. 외부 에이전트가 HTTP 직접 부르는 케이스용 정리.
+
+### 워크플로우 / 배치 (현행)
+- `POST /api/workflows/generate` — 단일/N 회 ComfyUI 변형 호출
+  (`WorkflowGenerateRequest`). 응답에 `batch_id` 포함 (PR #51) — `/api/batches`
+  와 `/cherry-pick` 양쪽에서 같은 history 노출. `candidates_total > 1` 이면
+  cherry-pick 슬롯 N 개.
+- `POST /api/batches` — 곱집합 배치 (`DesignBatchRequest`).
+  매트릭스 = `prompts × workflow_variants × workflow_params_overrides × seeds`.
+  `seeds_per_combo` 상한 256. cross-category 배치 금지 (variant params schema
+  가 카테고리 단위로 일관).
+- `GET /api/batches?limit=N` — 응답에 `workflow_category`,
+  `workflow_variants[]`, `backend` 노출 (PR #48).
+
+### 배치 운영 (PR #52)
+- `POST /api/batches/{batch_id}/cancel` — queued/processing → cancelled,
+  done/failed 와 candidate 는 보존.
+- `DELETE /api/batches/{batch_id}?force=bool` — task + candidate row + 파일
+  영구 삭제. active 태스크 있으면 409 (`force=true` 로 우회).
+
+### 후보 정리 (PR #52, #53)
+- `POST /api/system/gc/orphan-candidates?dry_run=bool` — `image_path` 가 disk
+  에 없는 candidate row 일괄 정리. dry_run 기본 true (카운트만), false 면 실
+  삭제. NFS/권한으로 stat 실패한 path 는 false-positive 우려로 건너뜀.
+- `DELETE /api/asset-candidates/{id}` — 단일 후보 영구 삭제 (파일 unlink +
+  row). AssetDetail UI 의 inline 정리 버튼 backend.
+
+### Deprecated → 410 Gone (PR #48)
+- `POST /api/generate` → **410 Gone** + `Deprecation: true` + `Sunset` +
+  `Link: </api/workflows/generate>; rel="successor-version"`.
+  successor: `WorkflowGenerateRequest` 로 교체.
+- `POST /api/generate/batch` → **410 Gone**, successor: `/api/batches`
+  (`DesignBatchRequest`).
+
+`/api/sd/catalog/{models,loras}` 도 `Deprecation: true` 헤더만 달려 있고
+**v0.4.0 메이저에서 제거 예정** — 새 코드는 `/api/comfyui/catalog` 만.
+
+### Cherry-pick 응답 schema (PR #51)
+`GET /api/batches/{id}/candidates` 와 `GET /api/assets/{id}/candidates` 둘 다
+응답 row 에 `status: 'pending' | 'rejected' | 'approved'` 파생 필드 포함.
+클라이언트는 `status` 만 읽으면 충분 (`is_rejected` / `picked_at` 직접 비교
+불필요). 회귀: status 가 빠지면 SSE reload 후 같은 후보 무한 재반려 버그 재발.
+
+---
+
 ## Related skills
 
 - `paperclip-api` — Paperclip 이슈 컨텍스트로 호출될 때 같이 로드
