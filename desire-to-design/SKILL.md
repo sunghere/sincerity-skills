@@ -1,19 +1,18 @@
 ---
 name: desire-to-design
-version: 1
-description: "Shape a vague creative desire (\"I want to make a game/app/business\") into a one-page concept document via a 7-stage dialogue covering motivation, taste, scope, and tradeoffs. Saves to CONCEPT.md. Use when the user wants to create something but lacks concrete direction; do NOT use when they already have a well-scoped spec or just need a small defined task done."
+version: 2
+description: 'Shape a vague creative desire ("I want to make a game/app/business") into a one-page concept document via a 7-stage dialogue covering motivation, taste, scope, and tradeoffs.'
 triggers:
   - desire to design
+  - shape vague idea
   - shape an idea
   - vague creative desire
   - I want to make a game
   - I want to build something
-  - concept document
   - 만들고 싶어
   - 사업 아이템
   - 게임 만들고 싶어
   - 아이디어 구체화
-  - 컨셉 문서
   - 욕망을 스펙으로
 ---
 
@@ -59,6 +58,8 @@ This skill addresses each of these in sequence.
 ## The 7-stage flow
 
 Don't rush through stages. Each stage builds on the previous one. Some users will need extended dialogue at one stage; others will move quickly. **Read the user's energy and depth of response** to gauge pacing.
+
+For an annotated end-to-end run of these stages on a real session, see `references/example-session-flow.md`.
 
 ### Stage 0: Calibrate entry point
 
@@ -178,7 +179,7 @@ Common scope reductions to suggest:
 - Cut secondary features → ship core, expand later
 - Use existing assets/tools where possible
 
-End this stage with a realistic project size statement: "This is roughly an X-month project for a solo developer."
+End this stage with a realistic project size statement in units that fit the domain — months of FTE for software/games, total word count and weekly writing cadence for books, episodes per quarter for podcasts, output volume per month for art/music, runway in months for businesses.
 
 ## Producing the final concept document
 
@@ -222,24 +223,13 @@ If the user explicitly says "don't write a file, just summarize," respect that �
 ## Anti-patterns to avoid
 
 - ❌ Generating a long list of "trending product ideas" when asked for direction
-- ❌ Asking 10 questions at once
-- ❌ Validating every idea equally without honest assessment
+- ❌ Validating every idea equally without honest assessment (sycophancy)
 - ❌ Skipping taste analysis to get to "the real work"
 - ❌ Letting the user stay in vague space because pushing feels rude
-- ❌ Producing a polished spec for an idea that won't survive contact with reality
-- ❌ Treating this as a standard product management exercise — it's part therapy, part design
 
 ## Domain adaptation
 
-The 7-stage flow works for many creative domains, but adapt vocabulary:
-
-- **Games**: taste → fun DNA, mechanics, art assets, scope = playtime + content
-- **Apps/SaaS**: taste → user pain DNA, core workflow, scope = features + integrations
-- **Books/Content**: taste → reading DNA, narrative voice, scope = length + research
-- **Businesses**: taste → problem DNA, customer profile, scope = market + ops
-- **Music/Art**: taste → aesthetic DNA, voice/style, scope = output volume
-
-Use `references/domain-prompts.md` for domain-specific question banks.
+The 7-stage flow works across creative domains. For per-domain vocabulary mapping (taste → fun DNA / pain DNA / reading DNA / etc.) and question banks, see `references/domain-prompts.md`.
 
 ## Reference files
 

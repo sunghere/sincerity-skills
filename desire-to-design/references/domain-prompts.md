@@ -2,6 +2,20 @@
 
 Question banks for the taste analysis (Stage 3) and beyond, tailored per domain.
 
+## Vocabulary adaptation
+
+The 7-stage flow uses generic terms ("taste DNA", "core mechanic", "scope"). Translate them to the user's domain so the conversation feels native, not theoretical:
+
+| Domain | "Taste DNA" becomes | Core unit | Scope axis |
+|---|---|---|---|
+| Games | fun DNA | mechanic | playtime + content |
+| Apps / SaaS | user pain DNA | core workflow | features + integrations |
+| Books / Content | reading DNA | narrative voice | length + research |
+| Businesses | problem DNA | customer profile | market + ops |
+| Music / Art | aesthetic DNA | voice / style | output volume |
+
+Use the section for the user's domain below for question wording, probing categories, and common scope traps.
+
 ## Games
 
 ### Taste analysis questions
