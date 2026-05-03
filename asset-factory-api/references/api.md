@@ -1,9 +1,9 @@
-# Asset Factory API 레퍼런스 (v4 — ComfyUI 워크플로우)
+# Asset Factory API 레퍼런스
 
 > 일반 사용은 `af` CLI 또는 `references/catalog-and-meta.md` 의 메타 사용 패턴으로 충분.
 > 이 문서는 모든 REST endpoint 의 **호출 디테일** + curl 예제 + 응답 형식을 다룬다.
 >
-> ⚠️ v4 부터 모델·LoRA·step·cfg 수동 지정은 **폐기**. 이 문서는 ComfyUI 워크플로우 호출 인터페이스만 다룬다.
+> ⚠️ 모델·LoRA·step·cfg 수동 지정은 지원하지 않는다 (변형이 내장). 본 문서는 ComfyUI 워크플로우 호출 인터페이스만 다룬다.
 
 ---
 
