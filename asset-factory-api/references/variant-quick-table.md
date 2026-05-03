@@ -91,6 +91,11 @@
 "게임 캐릭터 마케팅 컷"             →  sprite           →  hires (흰배경) 또는 rembg_alpha (알파)
 "3방향 캐릭터 시트 한 번에"         →  sprite           →  full (5장 비교용)
 "단일 일러스트 (캐릭터 1장)"        →  illustration     →  animagine_hires 또는 hyphoria_hires
+"단일 픽셀 *오브젝트* (작물·아이템·소품) + 알파"
+                                    →  ⚠️ 카탈로그 빈 칸  →  차선: sprite/v36_pro_stage1 (알파 X)
+                                                              또는 icon/flat (flat 톤). SKILL §cheat-sheet
+                                                              하단 ⚠️ 박스 결정 트리 참고. *sprite/* 7종
+                                                              에는 절대 보내지 말 것* — 1×3 캐릭터 시트 강제.
 "Pony 스타일 / score_X 표현"       →  illustration     →  pony_hires
 "고정밀 SDXL 일러스트"              →  illustration     →  hyphoria_hires (Modern) 또는 anything_hires (범용)
 "VRAM 제한 / 빠른 iteration"        →  illustration     →  meinamix_hires (SD1.5)

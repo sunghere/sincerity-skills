@@ -1,6 +1,6 @@
 ---
 name: asset-factory-api
-version: 6
+version: 7
 description: "Asset Factory(ComfyUI 워크플로우 기반) 로 게임/일러스트 에셋 생성. catalog → recommend → subject 모드 generate. 모델·LoRA·step·cfg 같은 SD 파라미터는 사용자가 만지지 않는다. SD 서버 직접 호출 절대 금지."
 triggers:
   - asset factory
@@ -69,11 +69,11 @@ af workflow search --tag transparent-bg --tag pose-sheet --not scenery
 # 4. 생성 (subject 모드 — 권장, §1.B)
 af workflow gen sprite/pixel_alpha <project> <asset_key> \
    --subject "1girl, silver hair twin tails, school uniform, holding a notebook" \
-   --candidates 4 --wait
+   --candidates 8 --wait
 
 # 5. 생성 (legacy 모드 — 기존 호환)
 af workflow gen sprite/pixel_alpha <project> <asset_key> "<prompt 통째>" \
-   --candidates 4 --wait
+   --candidates 8 --wait
 
 # 6. 동적 입력 (PoseExtract / ControlNet) — references/dynamic-inputs.md
 af workflow upload ./pose.png
@@ -100,7 +100,7 @@ af export <project> --manifest               # 승인본만
 
 1. **`af workflow recommend "<task 자연어>"`** → top 3 후보 + score + `not_for_warnings`. ⚠️ **`score` 만 믿지 마라** — 룰 기반이라 한국어/짧은 query 에서 엉뚱한 후보가 #1 로 올라오는 사고 사례 다수 (예: "픽셀 배경 ..." 에 `sprite/hires` 가 #1, "UI 앱 아이콘 flat" 에 `sprite/stage1` 이 #1). 반드시 step 2~3 의 `meta.intent` + `output_layout` 로 검증.
 2. **첫 후보의 `meta.intent` 한 줄 + `use_cases`/`not_for`** 으로 적합성 검증
-3. **`meta.output_layout.kind`** (`single` / `pose_grid` / `tile_grid` / `character_sheet`) 확인 — *최종 이미지의 그림 구성* 이 사용자가 원하는 형태인가?
+3. **`meta.output_layout.kind`** (`single` / `pose_grid` / `tile_grid` / `character_sheet`) 확인 — *최종 이미지의 그림 구성* 이 사용자가 원하는 형태인가? 1초 셀프체크 4축: **(a) 단일 vs 그리드, (b) 캐릭터 수 0 / 1 / N, (c) 배경 유무, (d) 알파 유무**. 특히 **캐릭터 수 0** (작물·아이템·소품 같은 비-캐릭터 오브젝트) 케이스를 놓치지 마라 — `sprite/*` 메인 라인업 7종 (`pixel_alpha`/`hires`/`rembg_alpha`/`stage1`/`full`/`v37_pixel`/`v37_full`) 은 *모두* `pose_grid 1x3` + ControlNet 포즈 강제라 비-캐릭터 의도에 사용 시 100% 엇나간다 (Pitfall #15 회고).
 4. **`meta.prompt_template.user_slot.examples`** 1개 복사해 *캐릭터 묘사로 변형* → `--subject` 인자로 호출
 
 조합 패턴:
@@ -133,6 +133,21 @@ recommend → 후보 → not_for_warnings 비어있는 첫 후보 채택
 | 임시 스캐치 1장 | `@sketch` (bypass 자동) | `@sketch` |
 
 > sprite/* 모두 1×3 multi-pose 시트 — 단일 이미지 필요하면 `illustration/*`. 자세한 변형 비교는 `buck(file_path="references/variant-quick-table.md")`.
+
+> ⚠️ **카탈로그 빈 칸 — 단일 픽셀 *오브젝트* (작물·아이템·소품·식물·음식·무기 단품) + 알파**:
+> 정확히 매칭되는 변형이 **현재 없다**. `sprite/*` 메인 라인업은 *캐릭터 1×3 시트* 강제,
+> `icon/flat` 은 flat/벡터 톤(픽셀아트 X), `pixel_bg/*` 는 배경(알파 X), `sprite/v36_pro_stage1`
+> 은 단일 layout 이지만 알파 X + 캐릭터 의도. **차선 결정 트리**:
+>
+> 1. *알파가 협상 가능* → `sprite/v36_pro_stage1` (단일 1280×896, 후처리로 알파 추출)
+> 2. *알파 필수 + flat 톤 OK* → `icon/flat` (UI 아이콘이지만 단일 알파)
+> 3. *알파 + 픽셀 톤 둘 다 필수* → 카탈로그 빈 칸. asset-factory upstream 에 새 변형
+>    (가칭 `sprite/pixel_item` — single layout, ControlNet 미사용, 알파, no-character 키워드)
+>    추가 트래킹. 그 전까지는 HoD/PM 단계에서 의뢰서 변경 (캐릭터 시트로 재정의 또는
+>    Aseprite 수작업 핸드오프) 가 정답이지, *형태가 안 맞는 변형으로 호출하지 말 것*.
+>
+> 회피 휴리스틱: 의뢰서 본문에 *"캐릭터" / "1girl/1boy" 가 없고 "작물/소품/아이템/배경
+> 오브젝트" 가 있다* → `sprite/*` 7종 *전부 차단*, 위 결정 트리로.
 
 ---
 
@@ -183,9 +198,12 @@ recommend → 후보 → not_for_warnings 비어있는 첫 후보 채택
 9. **`--input` 라벨 오타**: catalog 에 없는 라벨 박으면 `report.skipped` 에 기록되고 *조용히* 무시. `--dry-run` 으로 사전 점검 (⏳ 미구현 시 작은 변형 candidates=1 실 호출).
 10. **chain 의 `run_id` 보관**: `gen` 응답의 `run_id` 잡아둬야 다음 단계에서 `run:<run_id>/<output>` 참조 가능.
 11. **변형별 회귀 격리**: 한 변형이 1~2초만에 fail + `error_message: null` + 빈 `assets` → *다른 변형으로 즉시 회귀 격리*. `sprite/pixel_alpha` 정상 동작이면 서버 OK. 깨진 변형은 PR/이슈로 보고. 진단에 5분 이상 소진 금지.
-12. **변형 의도(layout) 무시 금지** — 호출 전 *반드시* `meta.output_layout.kind` 확인. `pose_grid` 인데 단일 일러스트 의도면 결과 안 나옴 (실 사고 사례: `sprite/pixel_alpha` 를 *학교 복도 씬* 1장 의도로 잘못 호출 → 캐릭터 2명 그려진 학교 복도). **회피 휴리스틱**: 변형 호출 전 1초 셀프체크 — *"이 변형이 만드는 최종 이미지 구성이 사용자가 원하는 것과 일치하나? 단일 vs 그리드, 캐릭터 수, 배경 유무?"*
+12. **변형 의도(layout) 무시 금지** — 호출 전 *반드시* `meta.output_layout.kind` 확인. `pose_grid` 인데 단일 일러스트 의도면 결과 안 나옴 (실 사고 사례 ①: `sprite/pixel_alpha` 를 *학교 복도 씬* 1장 의도로 잘못 호출 → 캐릭터 2명 그려진 학교 복도. 사례 ② GGU-663: *64×64 단일 픽셀 berry bush* (캐릭터 아닌 식물 오브젝트) 의뢰에 `sprite/pixel_alpha` 호출 → 1280×640 1×3 캐릭터 시트 4장 생성. recommend top hit 가 score 0.65 + `not_for_warnings: ["scene/background"]` 만 붙어서 *Asset Relay 가 합리적으로 채택* — 카탈로그 자체에 단일 픽셀 오브젝트 + 알파 변형이 없는 게 진짜 결함). **회피 휴리스틱**: 변형 호출 전 1초 셀프체크 4축 — *(a) 단일 vs 그리드 (b) 캐릭터 수 0 / 1 / N (c) 배경 유무 (d) 알파 유무*.
 13. **`subject` 모드 가이드** — `meta.prompt_template.user_slot.description` 따른다 (캐릭터 묘사만, 스타일/배경 묘사 금지, `(chibi:1.4)` 같은 가중치 금지). 변형이 박은 base_positive 와 *중복 묘사* 하지 마라 (영향 거의 없고 토큰 낭비).
 14. **`base_negative` override 금지** — 사용자 `negative_prompt` 는 *append 만*. 변형이 박은 필수 negative (예: `floating sword, detached weapon` — sprite/pixel_alpha) 는 안전 정책상 override 불가.
+15. **단일 *오브젝트* (캐릭터 아닌 작물·아이템·소품) → `sprite/*` 절대 금지**. GGU-663 회고. `sprite/*` 메인 라인업 7종 (`pixel_alpha`/`hires`/`rembg_alpha`/`stage1`/`full`/`v37_pixel`/`v37_full`) 은 ControlNet 의 `pose_grid_1x3_*` PNG 를 강제로 박아 두기 때문에 *입력 prompt 가 식물/아이템/배경 오브젝트라도* 무조건 *세 자세 캐릭터 시트* 가 나온다. 의뢰서에 `1girl/1boy/character` 키워드가 없으면 `sprite/*` 7종 *전부 차단*. 차선은 cheat-sheet 하단 ⚠️ 박스의 결정 트리 (`sprite/v36_pro_stage1` / `icon/flat` / 의뢰서 재정의). *"recommend 가 sprite/pixel_alpha 를 #1 로 줬다"* 는 채택 근거가 안 됨 (#16 참조).
+16. **recommend 의 `not_for_warnings` 빈 게 적합 보증 아님**. recommend 는 *전체 카탈로그 중 최고점* 을 주는 룰 기반 분류기지, *의도 적합성* 을 검증하지 않는다. score 0.65 같은 낮은 신호 + warnings 1개 이상이면 채택 보류 후 step 2~3 (intent/output_layout) 직접 매칭 필수. **임계**: score ≥ 0.8 + `not_for_warnings == []` + `output_layout` 4축 일치 — 셋 다 충족해야 즉시 채택. 하나라도 모자라면 `meta.use_cases` 본문을 사람 눈으로 읽고 비교.
+17. **`--candidates` 최소 8 권장** (구 권장: 4). cherry-pick 의 의미는 *N장 중 최선 1장 선택* 인데 N=4 면 시리즈 톤·seed 가족 · 손가락/얼굴 결함을 흡수할 풀이 부족. 8장이면 cherry-pick UI 그리드(2×4)와 자연스럽게 맞고, 시리즈 5장 같은 seed 가족에서 톤 일관성 확보 여유가 생김. 단발 디자인 탐색은 4 도 OK 지만, *납품용 자산* 은 8 이상.
 
 ---
 
