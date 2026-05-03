@@ -7,6 +7,8 @@ Sincerity (sunghere) 컴퍼니용 Claude/Hermes 스킬 모음. Paperclip GitHub 
 | Slug | 한 줄 요약 |
 |------|-----------|
 | `asset-factory-api` | Asset Factory REST API로 게임 픽셀아트 에셋 생성. JSON 스펙만 제출하고 polling. |
+| `improve-codebase-architecture` | 코드베이스에서 deepening 기회를 찾아 모듈을 깊게 만드는 리팩터 제안. (mattpocock/skills v1) |
+| `ubiquitous-language` | 대화에서 DDD 유비쿼터스 언어 글로서리를 추출해 UBIQUITOUS_LANGUAGE.md 로 저장. (mattpocock/skills v1) |
 
 ## 구조 규약
 
