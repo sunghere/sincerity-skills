@@ -42,11 +42,73 @@ triggers:
 3. 등록 후 회사의 모든 스킬에 `sunghere/sincerity-skills/<slug>` 키로 노출
 4. `paperclip-skill-update` 스킬로 capability 매핑 추가하고 직원에게 배포
 
-## 로컬 hermes에 동기화
+## 로컬 배포 — `skillctl`
+
+`scripts/skillctl.py` — Python stdlib only (의존성 0). Claude Code, Codex, Hermes(다중 프로파일)에 symlink 기반으로 배포한다. `git pull` 만 하면 모든 타겟이 자동으로 최신 상태가 된다.
+
+### 빠른 시작
 
 ```bash
-# 단일 스킬을 hermes로 복사
-ln -sf ~/workspace/sincerity-skills/asset-factory-api ~/.hermes/skills/devops/asset-factory-api
+# 어떤 타겟이 감지됐는지 확인
+python3 scripts/skillctl.py targets
+
+# 어떤 스킬이 어디에 있는지 매트릭스로 확인
+python3 scripts/skillctl.py status
+
+# 한 스킬을 한 Hermes 프로파일에 배포
+python3 scripts/skillctl.py deploy improve-codebase-architecture --target hermes:deepkkumi
+
+# 모든 스킬을 모든 Hermes 프로파일 + Claude + Codex 에 일괄 배포
+python3 scripts/skillctl.py deploy --all -t hermes:* -t claude -t codex
+
+# 제거
+python3 scripts/skillctl.py undeploy ubiquitous-language -t hermes:paperclip
+
+# 깨진 symlink 진단
+python3 scripts/skillctl.py doctor
+
+# SKILL.md frontmatter 검증
+python3 scripts/skillctl.py validate
 ```
 
-또는 hermes 쪽에서 `skill_create`로 별도 작성. 양쪽이 갈라지지 않도록 주의.
+### 타겟 슬러그
+
+| Slug | 배포 위치 |
+|---|---|
+| `claude` | `~/.claude/skills/<skill>` |
+| `codex`  | `~/.codex/skills/<skill>` |
+| `hermes:default` | `~/.hermes/skills/<skill>` |
+| `hermes:<profile>` | `~/.hermes/profiles/<profile>/skills/<skill>` |
+| `hermes:*` | 위 default 포함 모든 감지된 Hermes 프로파일 |
+
+bare `hermes` 는 거부 — 어느 프로파일에 배포할지 호출자가 명시 선택해야 한다 (`hermes:default` 또는 `hermes:<profile>` 또는 `hermes:*`). 잘못된 프로파일에 배포하는 사고를 방지.
+
+`-t` (=`--target`) 는 반복 사용 가능. 여러 타겟에 한번에 배포하려면 `-t claude -t codex` 처럼 나열한다.
+
+### 안전성
+
+- 타겟에 같은 이름의 **실 디렉토리** 가 있으면 **에러로 중단**. 자동 덮어쓰기 절대 없음.
+- 다른 곳을 가리키는 symlink 가 있으면 `--force` 없이는 교체 안 함.
+- 깨진 symlink 는 `deploy` 시 자동 교체. `doctor` 로도 진단 가능.
+- 같은 명령 재실행 OK (idempotent — 이미 올바른 symlink면 "already linked" 출력).
+
+### 짧은 별칭으로 쓰기 (선택)
+
+```bash
+# 한 번만 실행: ~/.local/bin/skillctl 에 launcher 설치
+bash scripts/install.sh
+
+# 그 다음부터는 어디서든
+skillctl status
+skillctl deploy --all -t hermes:*
+```
+
+`install.sh` 는 `~/.local/bin/skillctl` 에 launcher 스크립트만 만든다 (실제 로직은 `scripts/skillctl.py` 그대로). `~/.local/bin` 이 PATH 에 없으면 안내 메시지를 출력한다. 제거는 `rm ~/.local/bin/skillctl`.
+
+### 테스트
+
+```bash
+python3 -m unittest tests.test_skillctl
+```
+
+stdlib `unittest` 만 사용. 모든 경로는 `SKILLCTL_CLAUDE_HOME` / `SKILLCTL_CODEX_HOME` / `SKILLCTL_HERMES_HOME` env 로 override 가능 → 테스트가 hermetic.
