@@ -205,7 +205,7 @@ async function cmdWorkflowGen(args) {
   log(`enqueued job_id=${r.job_id} variant=${r.workflow_category}/${r.workflow_variant} ` +
       `candidates=${r.candidates_total} primary=${r.primary_output ?? "?"}`);
   if (r.candidates_total > 1) {
-    log(`(cherry-pick UI 는 나중에 GET /api/jobs/${r.job_id} 의 batch_id 를 통해)`);
+    log(`cherry-pick UI: ${r.cherry_pick_url ?? `${HOST}/cherry-pick?run=${r.job_id}`}`);
   }
   if (flags.wait || flags.w) {
     const timeoutSec = Number(flags.timeout) || Math.max(120, r.candidates_total * 60);
