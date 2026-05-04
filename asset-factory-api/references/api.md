@@ -9,9 +9,10 @@
 
 ## 서버 정보
 
-- **Base URL**: `http://localhost:47823` (Asset Factory 기본 포트)
-  - LAN: `http://192.168.50.250:47823` (Mac mini IP)
-  - Tailscale: `http://yoons-macmini.tailbff496.ts.net:47823` 또는 `http://100.72.190.122:47823`
+- **Base URL**: `http://localhost:47823` (Asset Factory 운영 메인 — loopback. `af` CLI default)
+  - LAN 다른 기기에서 호출: 운영 호스트의 LAN IP — DHCP 로 가변하므로 *항상 동일 IP 보장 안 됨*. 운영 서버는 `0.0.0.0:47823` 으로 binding 되어 있어 어떤 IP 든 받음. 안 닿으면 `ipconfig getifaddr en0` 로 현재 IP 재확인.
+  - 원격 / 영구 고정: Tailscale `http://100.72.190.122:47823` 또는 `http://yoons-macmini.tailbff496.ts.net:47823`. Tailscale IP 는 DHCP 영향 받지 않음.
+  - **테스트 인스턴스**: `http://localhost:8000` (`run-dev.sh` 의 `AF_PORT=8000` override 시) — 운영 DB / 큐 와 분리.
 - **API Key**: `.env` 의 `API_KEY`. 변경 계열에 `x-api-key` 헤더 필수. 인증은 항상 살아있음 — bypass 모드도 인증은 우회 안 함.
 - **백엔드**: ComfyUI (Asset Factory 가 알아서 호출. 직접 두드리면 안 됨.)
 - **Web UI**: `/app/`, **Cherry-pick UI**: `/app/cherry-pick/<batch_id>` (canonical deep-link)
