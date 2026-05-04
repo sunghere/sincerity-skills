@@ -1,6 +1,6 @@
 ---
 name: asset-factory-api
-version: 9
+version: 10
 description: "Asset Factory(ComfyUI 워크플로우 기반) 로 게임/일러스트 에셋 생성. catalog → recommend → subject 모드 generate. 모델·LoRA·step·cfg 같은 SD 파라미터는 사용자가 만지지 않는다. SD 서버 직접 호출 절대 금지."
 triggers:
   - asset factory
@@ -263,6 +263,15 @@ asset-factory NEXT.md §1.A/§1.B/§1.C **모두 채워짐** (PR #30, #38-43 머
 ## REST API — 직접 호출 reference (asset-factory PR #48~#55 기준)
 
 `af` CLI 가 1차 인터페이스. 외부 에이전트가 HTTP 직접 부르는 케이스용 정리.
+
+### Base URL — 운영 vs 테스트 분리
+
+| 용도 | 호스트 | 비고 |
+|---|---|---|
+| **운영 메인** | `http://localhost:47823` (LAN: `http://192.168.50.250:47823`, Tailscale: `http://100.72.190.122:47823`) | 멍멍 / 에이전트 / Paperclip 의 실 호출. `af` CLI default |
+| **테스트** | `http://localhost:8000` | dev / 단발 실험 / `run-dev.sh start` default. 운영 DB·큐와 분리 |
+
+🔴 에이전트가 `af` CLI 의 default 를 그대로 썼는데 *테스트 인스턴스 (8000)* 로 가서 메인 DB / 큐와 다른 곳에 작업하는 사고를 막기 위해, `af` CLI 의 `AF_HOST` default 는 **운영 47823** 으로 박혀있다. 테스트 호출이 필요하면 명시적으로 `AF_HOST=http://localhost:8000 af ...` 로 override.
 
 ### 워크플로우 / 배치 (현행)
 - `POST /api/workflows/generate` — 단일/N 회 ComfyUI 변형 호출

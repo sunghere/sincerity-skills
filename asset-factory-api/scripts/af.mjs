@@ -27,13 +27,16 @@
 //   af export <project> [--manifest]
 //
 // Env:
-//   AF_HOST     base URL (default http://localhost:8000)
+//   AF_HOST     base URL (default http://localhost:47823 — Asset Factory 운영 메인)
+//                기본값을 운영 포트로 박은 이유: 에이전트가 default 호출 시 dev
+//                인스턴스 (8000) 로 가서 메인 DB / 큐와 다른 곳에 작업하는 사고
+//                방지. 테스트 인스턴스 호출은 명시적으로 AF_HOST=http://localhost:8000
 //   AF_API_KEY  x-api-key header (optional; required if server has API_KEY set)
 //   AF_QUIET    suppress progress lines (output only final result)
 
 import { writeFileSync } from "node:fs";
 
-const HOST = process.env.AF_HOST || "http://localhost:8000";
+const HOST = process.env.AF_HOST || "http://localhost:47823";
 const API_KEY = process.env.AF_API_KEY || "";
 const QUIET = !!process.env.AF_QUIET;
 
@@ -350,7 +353,7 @@ Examples:
   af workflow gen sprite/pixel_alpha myproj knight "1girl, blue armor, ..." \\
       --workflow-params "{\\"load_images\\":{\\"pose_image\\":\\"$POSE_NAME\\"}}" --wait
 
-Env: AF_HOST (default http://localhost:8000), AF_API_KEY, AF_QUIET=1
+Env: AF_HOST (default http://localhost:47823 — 운영 메인. 테스트는 :8000), AF_API_KEY, AF_QUIET=1
 `);
   process.exit(0);
 }
