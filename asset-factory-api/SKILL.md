@@ -1,6 +1,6 @@
 ---
 name: asset-factory-api
-version: 8
+version: 9
 description: "Asset Factory(ComfyUI 워크플로우 기반) 로 게임/일러스트 에셋 생성. catalog → recommend → subject 모드 generate. 모델·LoRA·step·cfg 같은 SD 파라미터는 사용자가 만지지 않는다. SD 서버 직접 호출 절대 금지."
 triggers:
   - asset factory

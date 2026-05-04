@@ -14,7 +14,8 @@
   - Tailscale: `http://yoons-macmini.tailbff496.ts.net:47823` 또는 `http://100.72.190.122:47823`
 - **API Key**: `.env` 의 `API_KEY`. 변경 계열에 `x-api-key` 헤더 필수. 인증은 항상 살아있음 — bypass 모드도 인증은 우회 안 함.
 - **백엔드**: ComfyUI (Asset Factory 가 알아서 호출. 직접 두드리면 안 됨.)
-- **Web UI**: `/app/`, **Cherry-pick UI**: `/cherry-pick?run=<run_id>`
+- **Web UI**: `/app/`, **Cherry-pick UI**: `/app/cherry-pick/<batch_id>` (canonical deep-link)
+  - 호환 진입점: `/cherry-pick?batch_id=<batch_id>` 또는 `/cherry-pick?run=<job_id>` (server 가 batch_id 룩업 후 redirect — sunghere/asset-factory#64)
 - **데이터**: `~/workspace/asset-factory/data/`
 - **Export 기본**: `~/workspace/assets/<project>/<category>/<asset_key>.png`
 - **OpenAPI**: `GET /openapi.json` (FastAPI 자동 생성)
@@ -253,7 +254,8 @@ curl http://localhost:47823/api/runs/run_xxx/status | jq
     },
     ...
   ],
-  "cherry_pick_url": "/cherry-pick?run=run_xxx",   // manual 모드만
+  "batch_id": "btc_xxxxxxxxxxxxxxxx",          // cherry-pick UI 가 후보를 묶는 키
+  "cherry_pick_url": "/app/cherry-pick/btc_xxxxxxxxxxxxxxxx",   // manual 모드만, bypass 면 null. SSOT — 직접 합성 금지.
   "error_message": null,
   "first_task_prompt_resolution": { ... }   // 첫 task 의 prompt_resolution (디버깅)
 }
