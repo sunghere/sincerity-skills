@@ -5,19 +5,21 @@
 
 ---
 
-## sprite 카테고리 (10 변형)
+## sprite 카테고리 (12 변형)
 
-| 변형 | 출력 수 | 1×3 layout | 알파 | 해상도 | 언제 |
+| 변형 | 출력 수 | layout | 알파 | 해상도 | 언제 |
 |---|---|---|---|---|---|
-| `pixel_alpha` ⭐ | 3 (Stage1·Pixelized·**PixelAlpha**) | ✅ | ✅ | 1280×640 | **메인** — 게임 엔진 즉시 사용 |
-| `hires` | 2 (Stage1·**HiRes**) | ✅ | ❌ | 1920×960 | 디테일 보강 (마케팅·홍보) |
-| `rembg_alpha` | 2 | ✅ | ✅ (AI rembg) | 1280×640 | 일러스트풍 캐릭터 (반투명 디테일 보존) |
-| `stage1` | 1 | ✅ | ❌ | 1280×640 | 빠른 디자인 탐색 (raw, 흰배경) |
-| `full` | 5 | ✅ | (변형마다) | 1280×640 | 한 번에 다 — 비교용 |
-| `v37_pixel` | 1 | ✅ | ❌ | 1280×640 | [V37] alpha 단계 우회, 픽셀 정렬만 |
-| `v37_full` | 3 | ✅ | (변형마다) | 1280×640 | [V37] Stage1 + HiRes + Pixelized |
-| `v36_pro_stage1` | 1 | ❌ (free layout) | ❌ | 1024×1024 | [V36 Pro] 컨셉 디자인 탐색 (ControlNet 없음) |
-| `v36_pro_full` | 3 | ❌ (free layout) | (변형마다) | 1024×1024 | [V36 Pro] 컨셉 풀 파이프라인 |
+| `pixel_alpha` ⭐ | 3 (Stage1·Pixelized·**PixelAlpha**) | 1×3 | ✅ | 1280×640 | **메인** — 게임 엔진 즉시 사용 (캐릭터 3-pose 시트) |
+| `hires` | 2 (Stage1·**HiRes**) | 1×3 | ❌ | 1920×960 | 디테일 보강 (마케팅·홍보) |
+| `rembg_alpha` | 2 | 1×3 | ✅ (AI rembg) | 1280×640 | 일러스트풍 캐릭터 (반투명 디테일 보존) |
+| `stage1` | 1 | 1×3 | ❌ | 1280×640 | 빠른 디자인 탐색 (raw, 흰배경) |
+| `full` | 5 | 1×3 | (변형마다) | 1280×640 | 한 번에 다 — 비교용 |
+| `v37_pixel` | 1 | 1×3 | ❌ | 1280×640 | [V37] alpha 단계 우회, 픽셀 정렬만 |
+| `v37_full` | 3 | 1×3 | (변형마다) | 1280×640 | [V37] Stage1 + HiRes + Pixelized |
+| `v36_pro_stage1` | 1 | **단일** (free) | ❌ | 1024×1024 | [V36 Pro] 컨셉 디자인 탐색 (ControlNet 없음) |
+| `v36_pro_full` | 3 | **단일** (free) | (변형마다) | 1024×1024 | [V36 Pro] 컨셉 풀 파이프라인 |
+| `pixel_item` 🆕 | 2 (Stage1·**PixelAlpha**) | **단일** (no ControlNet) | ✅ | 1024×1024 | **단일 비-캐릭터 오브젝트** + 알파 (작물·아이템·소품·식물·음식·무기 단품). GGU-663 의 정확한 타겟 |
+| `single_pose` 🆕 | 3 (Stage1·Pixelized·**PixelAlpha**) | **단일** (1×1 cell) | ✅ | 640×640 | **단일 캐릭터 1장** + 알파 (1×3 시트 불필요). pose 4종 (front/right/back/custom) swap 가능 |
 | `pose_extract` | 1 | — | — | (입력 따름) | **utility**: 사용자 사진 → OpenPose stick figure |
 
 ### sprite 핵심 메모
@@ -27,6 +29,8 @@
 - **검 들기 trick**: `(holding silver sword:1.3), sword in right hand, gripping sword tightly`. negative 에 `floating sword, detached weapon` (NEG_PIXEL_SPRITE 에 이미 포함).
 - V36 Pro 만 ControlNet 없음 → free layout 가능.
 - `pose_extract` 는 prompt 무관 — `prompt_template == null`. 사용자 이미지만 받음.
+- **🆕 단일 layout 시리즈** (`pixel_item` / `single_pose`) — GGU-663 회고 후속. 기존 7종 (1×3 강제) 의 빈 칸 보강. 둘 다 `stage1` (흰배경 raw) + `pixel_alpha` (투명 cut) 양쪽 출력 — API caller 가 배경 유무 선택.
+- **단일 layout 변형의 SDXL 학습 결합 한계**: `pixel_item` 의 `coin treasure pile` / `berry tile pattern` 같은 일부 키워드는 SDXL 학습 패턴이 너무 강해 prompt 가중치 1.6 으로도 못 막음. *대부분의 게임 아이템* (sword, apple, prop) 은 안정적, *학습 결합 강한 키워드* 는 `--candidates 8` cherry-pick 으로 우회 (Pitfall #18 참조).
 
 ---
 
@@ -92,10 +96,10 @@
 "3방향 캐릭터 시트 한 번에"         →  sprite           →  full (5장 비교용)
 "단일 일러스트 (캐릭터 1장)"        →  illustration     →  animagine_hires 또는 hyphoria_hires
 "단일 픽셀 *오브젝트* (작물·아이템·소품) + 알파"
-                                    →  ⚠️ 카탈로그 빈 칸  →  차선: sprite/v36_pro_stage1 (알파 X)
-                                                              또는 icon/flat (flat 톤). SKILL §cheat-sheet
-                                                              하단 ⚠️ 박스 결정 트리 참고. *sprite/* 7종
-                                                              에는 절대 보내지 말 것* — 1×3 캐릭터 시트 강제.
+                                    →  sprite           →  pixel_item 🆕 (정식 — GGU-663 후속)
+                                                              *sprite/* 메인 7종 (1×3 강제) 에는 보내지 말 것*.
+"단일 *캐릭터 1장* + 알파 (1×3 시트 불필요)"
+                                    →  sprite           →  single_pose 🆕 (단일 cell + ControlNet 단일 stick figure)
 "Pony 스타일 / score_X 표현"       →  illustration     →  pony_hires
 "고정밀 SDXL 일러스트"              →  illustration     →  hyphoria_hires (Modern) 또는 anything_hires (범용)
 "VRAM 제한 / 빠른 iteration"        →  illustration     →  meinamix_hires (SD1.5)

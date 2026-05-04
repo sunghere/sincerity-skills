@@ -117,32 +117,41 @@ recommend → 후보 → not_for_warnings 비어있는 첫 후보 채택
 
 | 의도 | 카테고리/변형 | alias |
 |---|---|---|
-| 게임용 픽셀 캐릭터 (즉시 사용) | `sprite/pixel_alpha` ⭐ | `@character` |
+| 게임용 픽셀 캐릭터 3-pose 시트 (즉시 사용) | `sprite/pixel_alpha` ⭐ | `@character` |
 | 게임 캐릭터 디테일 보강 | `sprite/hires` | — |
 | 일러스트풍 캐릭터 (배경 알파) | `sprite/rembg_alpha` | — |
 | 비교용 (5장 한 번에) | `sprite/full` | — |
+| **단일 픽셀 *오브젝트* + 알파** (작물·아이템·소품·식물) 🆕 | `sprite/pixel_item` | — |
+| **단일 *캐릭터 1장* + 알파** (1×3 시트 불필요) 🆕 | `sprite/single_pose` | — |
 | 마케팅·표지 일러스트 (단일) | `illustration/animagine_hires` | `@marketing` |
 | Pony 스타일 일러스트 | `illustration/pony_hires` | — |
 | 픽셀 타일/배경 | `pixel_bg/*` | — |
 | UI 아이콘 (flat) | `icon/flat` | — |
 | 임시 스캐치 1장 | `@sketch` (bypass 자동) | `@sketch` |
 
-> sprite/* 모두 1×3 multi-pose 시트 — 단일 이미지 필요하면 `illustration/*`. 자세한 변형 비교는 `buck(file_path="references/variant-quick-table.md")`.
+> sprite/* 메인 7종 은 1×3 multi-pose 시트 — 단일 이미지 필요하면 신규 `sprite/pixel_item` (사물) /
+> `sprite/single_pose` (캐릭터) 또는 `illustration/*`. 자세한 변형 비교는
+> `buck(file_path="references/variant-quick-table.md")`.
 
-> ⚠️ **카탈로그 빈 칸 — 단일 픽셀 *오브젝트* (작물·아이템·소품·식물·음식·무기 단품) + 알파**:
-> 정확히 매칭되는 변형이 **현재 없다**. `sprite/*` 메인 라인업은 *캐릭터 1×3 시트* 강제,
-> `icon/flat` 은 flat/벡터 톤(픽셀아트 X), `pixel_bg/*` 는 배경(알파 X), `sprite/v36_pro_stage1`
-> 은 단일 layout 이지만 알파 X + 캐릭터 의도. **차선 결정 트리**:
+> ✅ **카탈로그 빈 칸 해소 (asset-factory PR #57 머지 — 2026-05-04)**:
 >
-> 1. *알파가 협상 가능* → `sprite/v36_pro_stage1` (단일 1280×896, 후처리로 알파 추출)
-> 2. *알파 필수 + flat 톤 OK* → `icon/flat` (UI 아이콘이지만 단일 알파)
-> 3. *알파 + 픽셀 톤 둘 다 필수* → 카탈로그 빈 칸. asset-factory upstream 에 새 변형
->    (가칭 `sprite/pixel_item` — single layout, ControlNet 미사용, 알파, no-character 키워드)
->    추가 트래킹. 그 전까지는 HoD/PM 단계에서 의뢰서 변경 (캐릭터 시트로 재정의 또는
->    Aseprite 수작업 핸드오프) 가 정답이지, *형태가 안 맞는 변형으로 호출하지 말 것*.
+> GGU-663 회고 후속으로 **단일 layout 시리즈** 2종이 카탈로그에 정식 추가:
 >
-> 회피 휴리스틱: 의뢰서 본문에 *"캐릭터" / "1girl/1boy" 가 없고 "작물/소품/아이템/배경
-> 오브젝트" 가 있다* → `sprite/*` 7종 *전부 차단*, 위 결정 트리로.
+> 1. **`sprite/pixel_item` 🆕** — 단일 비-캐릭터 오브젝트 (작물·아이템·소품·식물·음식·무기 단품) + 알파. 1024×1024, ControlNet 미사용. GGU-663 같은 사고의 *정확한 타겟*.
+> 2. **`sprite/single_pose` 🆕** — 단일 캐릭터 1장 + 알파 (1×3 시트가 불필요한 단일 캐릭터 의뢰용). 640×640, ControlNet 단일 stick figure. pose 4종 (front/right/back/custom) swap 가능.
+>
+> 둘 다 `stage1` (흰배경 raw) + `pixel_alpha` (투명 cut) 양쪽 출력 — API caller 가 배경 유무 선택.
+>
+> **회피 휴리스틱 (갱신)**: 의뢰서 본문에 *"캐릭터" / "1girl/1boy" 가 없고 "작물/소품/아이템/배경
+> 오브젝트" 가 있다* → `sprite/pixel_item` 사용. *단일 캐릭터 1장* (1×3 시트 불필요) 의뢰면
+> `sprite/single_pose` 사용. **`sprite/*` 메인 7종 (`pixel_alpha`/`hires`/`rembg_alpha`/`stage1`/
+> `full`/`v37_pixel`/`v37_full`) 은 *1×3 시트 강제* — 단일 의뢰엔 절대 보내지 말 것** (Pitfall #15).
+>
+> ⚠️ **단일 layout 변형의 SDXL 학습 결합 한계 (Pitfall #18)**: `pixel_item` 의 `coin treasure pile` /
+> `berry tile pattern` 같은 일부 키워드는 SDXL 의 학습 패턴이 너무 강해 negative 가중치 1.6 으로도
+> 못 막음. *대부분의 게임 아이템* (sword, apple, prop, potion) 은 단일 강제 안정적이지만, *학습
+> 결합 강한 키워드* 는 `--candidates 8` cherry-pick 으로 우회. 또는 subject 의 명사 substring
+> 변경 (e.g. `berry` → `small red fruit`).
 
 ---
 
@@ -196,9 +205,11 @@ recommend → 후보 → not_for_warnings 비어있는 첫 후보 채택
 12. **변형 의도(layout) 무시 금지** — 호출 전 *반드시* `meta.output_layout.kind` 확인. `pose_grid` 인데 단일 일러스트 의도면 결과 안 나옴 (실 사고 사례 ①: `sprite/pixel_alpha` 를 *학교 복도 씬* 1장 의도로 잘못 호출 → 캐릭터 2명 그려진 학교 복도. 사례 ② GGU-663: *64×64 단일 픽셀 berry bush* (캐릭터 아닌 식물 오브젝트) 의뢰에 `sprite/pixel_alpha` 호출 → 1280×640 1×3 캐릭터 시트 4장 생성. recommend top hit 가 score 0.65 + `not_for_warnings: ["scene/background"]` 만 붙어서 *Asset Relay 가 합리적으로 채택* — 카탈로그 자체에 단일 픽셀 오브젝트 + 알파 변형이 없는 게 진짜 결함). **회피 휴리스틱**: 변형 호출 전 1초 셀프체크 4축 — *(a) 단일 vs 그리드 (b) 캐릭터 수 0 / 1 / N (c) 배경 유무 (d) 알파 유무*.
 13. **`subject` 모드 가이드** — `meta.prompt_template.user_slot.description` 따른다 (캐릭터 묘사만, 스타일/배경 묘사 금지, `(chibi:1.4)` 같은 가중치 금지). 변형이 박은 base_positive 와 *중복 묘사* 하지 마라 (영향 거의 없고 토큰 낭비).
 14. **`base_negative` override 금지** — 사용자 `negative_prompt` 는 *append 만*. 변형이 박은 필수 negative (예: `floating sword, detached weapon` — sprite/pixel_alpha) 는 안전 정책상 override 불가.
-15. **단일 *오브젝트* (캐릭터 아닌 작물·아이템·소품) → `sprite/*` 절대 금지**. GGU-663 회고. `sprite/*` 메인 라인업 7종 (`pixel_alpha`/`hires`/`rembg_alpha`/`stage1`/`full`/`v37_pixel`/`v37_full`) 은 ControlNet 의 `pose_grid_1x3_*` PNG 를 강제로 박아 두기 때문에 *입력 prompt 가 식물/아이템/배경 오브젝트라도* 무조건 *세 자세 캐릭터 시트* 가 나온다. 의뢰서에 `1girl/1boy/character` 키워드가 없으면 `sprite/*` 7종 *전부 차단*. 차선은 cheat-sheet 하단 ⚠️ 박스의 결정 트리 (`sprite/v36_pro_stage1` / `icon/flat` / 의뢰서 재정의). *"recommend 가 sprite/pixel_alpha 를 #1 로 줬다"* 는 채택 근거가 안 됨 (#16 참조).
+15. **단일 *오브젝트* (캐릭터 아닌 작물·아이템·소품) → `sprite/pixel_item` 사용**. GGU-663 회고 + asset-factory PR #57 (머지). 이전엔 카탈로그 빈 칸이라 `sprite/v36_pro_stage1` 차선 권장이었지만, 2026-05-04 부터 **정식 변형 `sprite/pixel_item`** 사용. *단일 캐릭터 1장 + 알파 (1×3 시트 불필요)* 의뢰는 **`sprite/single_pose`** 사용. 여전히 **`sprite/*` 메인 7종 (`pixel_alpha`/`hires`/`rembg_alpha`/`stage1`/`full`/`v37_pixel`/`v37_full`) 은 1×3 강제 — 단일 의뢰엔 절대 금지** (ControlNet 의 `pose_grid_1x3_*` PNG 박힘). 의뢰서에 `1girl/1boy/character` 키워드가 없으면 `sprite/pixel_item`, 있고 *단일* 이면 `sprite/single_pose`, *3-pose 시트* 면 `sprite/pixel_alpha` (메인). *"recommend 가 메인 라인업 7종 중 하나를 #1 로 줬다"* 는 채택 근거가 안 됨 (#16 참조).
 16. **recommend 의 `not_for_warnings` 빈 게 적합 보증 아님**. recommend 는 *전체 카탈로그 중 최고점* 을 주는 룰 기반 분류기지, *의도 적합성* 을 검증하지 않는다. score 0.65 같은 낮은 신호 + warnings 1개 이상이면 채택 보류 후 step 2~3 (intent/output_layout) 직접 매칭 필수. **임계**: score ≥ 0.8 + `not_for_warnings == []` + `output_layout` 4축 일치 — 셋 다 충족해야 즉시 채택. 하나라도 모자라면 `meta.use_cases` 본문을 사람 눈으로 읽고 비교.
 17. **`--candidates` 최소 8 권장** (구 권장: 4). cherry-pick 의 의미는 *N장 중 최선 1장 선택* 인데 N=4 면 시리즈 톤·seed 가족 · 손가락/얼굴 결함을 흡수할 풀이 부족. 8장이면 cherry-pick UI 그리드(2×4)와 자연스럽게 맞고, 시리즈 5장 같은 seed 가족에서 톤 일관성 확보 여유가 생김. 단발 디자인 탐색은 4 도 OK 지만, *납품용 자산* 은 8 이상.
+18. **단일 layout 변형의 SDXL 학습 결합 한계**. asset-factory PR #57 검증 (smoke 7회) 회고. `sprite/pixel_item` 의 *대부분 의뢰* (sword, apple 단일, prop, potion) 는 단일 강제 안정적이지만, *학습 결합 강한 키워드* — `coin treasure pile` / `berry tile pattern` 같은 SDXL 학습 데이터 결합 — 은 negative 가중치 1.6 으로도 못 막아 *2-3 candidate 가 fallback*. **워크어라운드**: (a) `--candidates 8` cherry-pick 으로 단일 결과 1장 선택 (Pitfall #17 과 정합). (b) subject 의 명사 substring 변경 — `berry` → `small red fruit` 처럼 학습 결합 약한 표현. (c) 본 한계는 *"단일 layout 변형 자체의 결함"* 이 아닌 *"SDXL 픽셀아트 모델의 근본 학습 분포"* 라 prompt engineering 만으론 완전 해결 안 됨 (별도 ckpt swap 또는 inpaint regional prompter 가 후속 spike 영역).
+19. **recommend 가 query 언어에 따라 false confidence 다르게 발생**. asset-factory PR #57 의 P0 fix. 이전 `_SINGLE_INTENT_TOKENS` 가 한국어만 robust 하던 시기에 영문 query `1girl pixel character alpha` → `sprite/pixel_alpha 0.85` top-1 으로 *캐릭터 버전 사고* 가능했음. 현재는 영문 캐릭터 시그널 (`1girl`/`1boy`/`character`/`girl`/`boy`/`npc`) 추가 + implicit (-0.5) / explicit (-0.2) grid 페널티 분기로 차단. **사용자 측 워크어라운드**: 의뢰서가 *한국어/영문 한쪽 언어만* 으로 작성되면 미발견 false confidence 위험 — *둘 다 키워드 혼용* 권장 (e.g. "단일 작물 single crop 픽셀 알파"). 또는 본 SKILL 의 4축 셀프체크 (#12) 강제.
 
 ---
 
